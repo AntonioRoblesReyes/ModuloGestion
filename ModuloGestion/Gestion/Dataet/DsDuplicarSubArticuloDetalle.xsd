@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsDuplicarSubArticuloDetalle" targetNamespace="http://tempuri.org/DsDuplicarSubArticuloDetalle.xsd" xmlns:mstns="http://tempuri.org/DsDuplicarSubArticuloDetalle.xsd" xmlns="http://tempuri.org/DsDuplicarSubArticuloDetalle.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DuplicarSubArticulosDetalleTableAdapter" GeneratorDataComponentClassName="DuplicarSubArticulosDetalleTableAdapter" Name="DuplicarSubArticulosDetalle" UserDataComponentName="DuplicarSubArticulosDetalleTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.DuplicarSubArticulosDetalle" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id_detalle_Sub_Articulo, Id_Sub_Articulo, Id_descripcion_Detalle, Largo, Ancho, Grueso, Cantidad, Id_Material_Detalle, PiesLargo, Anchopulgadas, GruesoPulgadas, PiesUnidad, M2Cara, M2Canto, M2Cabeza, Id_Medida, NuevoId, Orden FROM DuplicarSubArticulosDetalle</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_detalle_Sub_Articulo" DataSetColumn="Id_detalle_Sub_Articulo" />
+              <Mapping SourceColumn="Id_Sub_Articulo" DataSetColumn="Id_Sub_Articulo" />
+              <Mapping SourceColumn="Id_descripcion_Detalle" DataSetColumn="Id_descripcion_Detalle" />
+              <Mapping SourceColumn="Largo" DataSetColumn="Largo" />
+              <Mapping SourceColumn="Ancho" DataSetColumn="Ancho" />
+              <Mapping SourceColumn="Grueso" DataSetColumn="Grueso" />
+              <Mapping SourceColumn="Cantidad" DataSetColumn="Cantidad" />
+              <Mapping SourceColumn="Id_Material_Detalle" DataSetColumn="Id_Material_Detalle" />
+              <Mapping SourceColumn="PiesLargo" DataSetColumn="PiesLargo" />
+              <Mapping SourceColumn="Anchopulgadas" DataSetColumn="Anchopulgadas" />
+              <Mapping SourceColumn="GruesoPulgadas" DataSetColumn="GruesoPulgadas" />
+              <Mapping SourceColumn="PiesUnidad" DataSetColumn="PiesUnidad" />
+              <Mapping SourceColumn="M2Cara" DataSetColumn="M2Cara" />
+              <Mapping SourceColumn="M2Canto" DataSetColumn="M2Canto" />
+              <Mapping SourceColumn="M2Cabeza" DataSetColumn="M2Cabeza" />
+              <Mapping SourceColumn="Id_Medida" DataSetColumn="Id_Medida" />
+              <Mapping SourceColumn="NuevoId" DataSetColumn="NuevoId" />
+              <Mapping SourceColumn="Orden" DataSetColumn="Orden" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertarSubArticuloDetalle" Modifier="Public" Name="InsertarSubArticuloDetalle" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertarSubArticuloDetalle">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO SubArticulosDetalle
+                         (Id_detalle_Sub_Articulo, Id_Sub_Articulo, Id_descripcion_Detalle, Largo, Ancho, Grueso, Cantidad, Id_Material_Detalle, PiesLargo, Anchopulgadas, GruesoPulgadas, 
+                         PiesUnidad, M2Cara, M2Canto, M2Cabeza, Id_Medida)
+SELECT        Orden, NuevoId, Id_descripcion_Detalle, Largo, Ancho, Grueso, Cantidad, Id_Material_Detalle, PiesLargo, Anchopulgadas, GruesoPulgadas, PiesUnidad, M2Cara, 
+                         M2Canto, M2Cabeza, Id_Medida
+FROM            DuplicarSubArticulosDetalle
+WHERE        (NuevoId = @IdSubArticulo)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="IdSubArticulo" ColumnName="NuevoId" DataSourceName="GestionEmpresa.dbo.DuplicarSubArticulosDetalle" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@IdSubArticulo" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="NuevoId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="NuevoDetalleSubArticulo" Modifier="Public" Name="NuevoDetalleSubArticulo" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="NuevoDetalleSubArticulo">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       DuplicarSubArticulosDetalle
+SET                NuevoId = @Nuevo
+WHERE        (Id_Sub_Articulo = @IdSubArticulo)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Nuevo" ColumnName="NuevoId" DataSourceName="GestionEmpresa.dbo.DuplicarSubArticulosDetalle" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Nuevo" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="NuevoId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdSubArticulo" ColumnName="Id_Sub_Articulo" DataSourceName="GestionEmpresa.dbo.DuplicarSubArticulosDetalle" DataTypeServer="nvarchar(40)" DbType="String" Direction="Input" ParameterName="@IdSubArticulo" Precision="0" ProviderType="NVarChar" Scale="0" Size="40" SourceColumn="Id_Sub_Articulo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsDuplicarSubArticuloDetalle" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DsDuplicarSubArticuloDetalle" msprop:Generator_UserDSName="DsDuplicarSubArticuloDetalle">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DuplicarSubArticulosDetalle" msprop:Generator_TableClassName="DuplicarSubArticulosDetalleDataTable" msprop:Generator_TableVarName="tableDuplicarSubArticulosDetalle" msprop:Generator_TablePropName="DuplicarSubArticulosDetalle" msprop:Generator_RowDeletingName="DuplicarSubArticulosDetalleRowDeleting" msprop:Generator_UserTableName="DuplicarSubArticulosDetalle" msprop:Generator_RowChangingName="DuplicarSubArticulosDetalleRowChanging" msprop:Generator_RowEvHandlerName="DuplicarSubArticulosDetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="DuplicarSubArticulosDetalleRowDeleted" msprop:Generator_RowEvArgName="DuplicarSubArticulosDetalleRowChangeEvent" msprop:Generator_RowChangedName="DuplicarSubArticulosDetalleRowChanged" msprop:Generator_RowClassName="DuplicarSubArticulosDetalleRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_detalle_Sub_Articulo" msprop:Generator_ColumnVarNameInTable="columnId_detalle_Sub_Articulo" msprop:Generator_ColumnPropNameInRow="Id_detalle_Sub_Articulo" msprop:Generator_ColumnPropNameInTable="Id_detalle_Sub_ArticuloColumn" msprop:Generator_UserColumnName="Id_detalle_Sub_Articulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Sub_Articulo" msprop:Generator_ColumnVarNameInTable="columnId_Sub_Articulo" msprop:Generator_ColumnPropNameInRow="Id_Sub_Articulo" msprop:Generator_ColumnPropNameInTable="Id_Sub_ArticuloColumn" msprop:Generator_UserColumnName="Id_Sub_Articulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_descripcion_Detalle" msprop:Generator_ColumnVarNameInTable="columnId_descripcion_Detalle" msprop:Generator_ColumnPropNameInRow="Id_descripcion_Detalle" msprop:Generator_ColumnPropNameInTable="Id_descripcion_DetalleColumn" msprop:Generator_UserColumnName="Id_descripcion_Detalle">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="18" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Largo" msprop:Generator_ColumnVarNameInTable="columnLargo" msprop:Generator_ColumnPropNameInRow="Largo" msprop:Generator_ColumnPropNameInTable="LargoColumn" msprop:Generator_UserColumnName="Largo" type="xs:decimal" />
+              <xs:element name="Ancho" msprop:Generator_ColumnVarNameInTable="columnAncho" msprop:Generator_ColumnPropNameInRow="Ancho" msprop:Generator_ColumnPropNameInTable="AnchoColumn" msprop:Generator_UserColumnName="Ancho" type="xs:decimal" />
+              <xs:element name="Grueso" msprop:Generator_ColumnVarNameInTable="columnGrueso" msprop:Generator_ColumnPropNameInRow="Grueso" msprop:Generator_ColumnPropNameInTable="GruesoColumn" msprop:Generator_UserColumnName="Grueso" type="xs:decimal" />
+              <xs:element name="Cantidad" msprop:Generator_ColumnVarNameInTable="columnCantidad" msprop:Generator_ColumnPropNameInRow="Cantidad" msprop:Generator_ColumnPropNameInTable="CantidadColumn" msprop:Generator_UserColumnName="Cantidad" type="xs:int" />
+              <xs:element name="Id_Material_Detalle" msprop:Generator_ColumnVarNameInTable="columnId_Material_Detalle" msprop:Generator_ColumnPropNameInRow="Id_Material_Detalle" msprop:Generator_ColumnPropNameInTable="Id_Material_DetalleColumn" msprop:Generator_UserColumnName="Id_Material_Detalle">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PiesLargo" msprop:Generator_ColumnVarNameInTable="columnPiesLargo" msprop:Generator_ColumnPropNameInRow="PiesLargo" msprop:Generator_ColumnPropNameInTable="PiesLargoColumn" msprop:Generator_UserColumnName="PiesLargo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Anchopulgadas" msprop:Generator_ColumnVarNameInTable="columnAnchopulgadas" msprop:Generator_ColumnPropNameInRow="Anchopulgadas" msprop:Generator_ColumnPropNameInTable="AnchopulgadasColumn" msprop:Generator_UserColumnName="Anchopulgadas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GruesoPulgadas" msprop:Generator_ColumnVarNameInTable="columnGruesoPulgadas" msprop:Generator_ColumnPropNameInRow="GruesoPulgadas" msprop:Generator_ColumnPropNameInTable="GruesoPulgadasColumn" msprop:Generator_UserColumnName="GruesoPulgadas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PiesUnidad" msprop:Generator_ColumnVarNameInTable="columnPiesUnidad" msprop:Generator_ColumnPropNameInRow="PiesUnidad" msprop:Generator_ColumnPropNameInTable="PiesUnidadColumn" msprop:Generator_UserColumnName="PiesUnidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="M2Cara" msprop:Generator_ColumnVarNameInTable="columnM2Cara" msprop:Generator_ColumnPropNameInRow="M2Cara" msprop:Generator_ColumnPropNameInTable="M2CaraColumn" msprop:Generator_UserColumnName="M2Cara" type="xs:decimal" minOccurs="0" />
+              <xs:element name="M2Canto" msprop:Generator_ColumnVarNameInTable="columnM2Canto" msprop:Generator_ColumnPropNameInRow="M2Canto" msprop:Generator_ColumnPropNameInTable="M2CantoColumn" msprop:Generator_UserColumnName="M2Canto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="M2Cabeza" msprop:Generator_ColumnVarNameInTable="columnM2Cabeza" msprop:Generator_ColumnPropNameInRow="M2Cabeza" msprop:Generator_ColumnPropNameInTable="M2CabezaColumn" msprop:Generator_UserColumnName="M2Cabeza" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Id_Medida" msprop:Generator_ColumnVarNameInTable="columnId_Medida" msprop:Generator_ColumnPropNameInRow="Id_Medida" msprop:Generator_ColumnPropNameInTable="Id_MedidaColumn" msprop:Generator_UserColumnName="Id_Medida" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NuevoId" msprop:Generator_ColumnVarNameInTable="columnNuevoId" msprop:Generator_ColumnPropNameInRow="NuevoId" msprop:Generator_ColumnPropNameInTable="NuevoIdColumn" msprop:Generator_UserColumnName="NuevoId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Orden" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOrden" msprop:Generator_ColumnPropNameInRow="Orden" msprop:Generator_ColumnPropNameInTable="OrdenColumn" msprop:Generator_UserColumnName="Orden" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="54" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DuplicarSubArticulosDetalle" />
+      <xs:field xpath="mstns:Id_detalle_Sub_Articulo" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsCosumoPinturaArticulo" targetNamespace="http://tempuri.org/DsCosumoPinturaArticulo.xsd" xmlns:mstns="http://tempuri.org/DsCosumoPinturaArticulo.xsd" xmlns="http://tempuri.org/DsCosumoPinturaArticulo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ConsumoPinturaArticuloTableAdapter" GeneratorDataComponentClassName="ConsumoPinturaArticuloTableAdapter" Name="ConsumoPinturaArticulo" UserDataComponentName="ConsumoPinturaArticuloTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa1.dbo.ConsumoPinturaArticulo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Id_Proyecto, IdPresupuesto, IdDetallePresupuesto, IdArticulo, IdPinturaComponente, Desperdicio, Estado_Presupuesto, Id_Empresa, PrecioCompra, CantidadArticulos, Codigo, CosumoArticulo, TotalCostoArticulo, 
+                         TotalDesperdicioArticulo, TotalNecesidadarticulo, Id_Medida, Descripcion, Descripcion_Medida
+FROM            ConsumoPinturaArticulo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Proyecto" DataSetColumn="Id_Proyecto" />
+              <Mapping SourceColumn="IdPresupuesto" DataSetColumn="IdPresupuesto" />
+              <Mapping SourceColumn="IdDetallePresupuesto" DataSetColumn="IdDetallePresupuesto" />
+              <Mapping SourceColumn="IdArticulo" DataSetColumn="IdArticulo" />
+              <Mapping SourceColumn="IdPinturaComponente" DataSetColumn="IdPinturaComponente" />
+              <Mapping SourceColumn="Desperdicio" DataSetColumn="Desperdicio" />
+              <Mapping SourceColumn="Estado_Presupuesto" DataSetColumn="Estado_Presupuesto" />
+              <Mapping SourceColumn="Id_Empresa" DataSetColumn="Id_Empresa" />
+              <Mapping SourceColumn="PrecioCompra" DataSetColumn="PrecioCompra" />
+              <Mapping SourceColumn="CantidadArticulos" DataSetColumn="CantidadArticulos" />
+              <Mapping SourceColumn="CosumoArticulo" DataSetColumn="CosumoArticulo" />
+              <Mapping SourceColumn="TotalDesperdicioArticulo" DataSetColumn="TotalDesperdicioArticulo" />
+              <Mapping SourceColumn="TotalNecesidadarticulo" DataSetColumn="TotalNecesidadarticulo" />
+              <Mapping SourceColumn="TotalCostoArticulo" DataSetColumn="TotalCostoArticulo" />
+              <Mapping SourceColumn="Codigo" DataSetColumn="Codigo" />
+              <Mapping SourceColumn="Id_Medida" DataSetColumn="Id_Medida" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Descripcion_Medida" DataSetColumn="Descripcion_Medida" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa1.dbo.ConsumoPinturaArticulo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByPresupuestoDetalle" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPresupuestoDetalle" GeneratorSourceName="FillByPresupuestoDetalle" GetMethodModifier="Public" GetMethodName="GetDataByPresupuestoDetalle" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPresupuestoDetalle" UserSourceName="FillByPresupuestoDetalle">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Id_Proyecto, IdPresupuesto, IdDetallePresupuesto, IdArticulo, IdPinturaComponente, Desperdicio, Estado_Presupuesto, Id_Empresa, PrecioCompra, CantidadArticulos, Codigo, CosumoArticulo, TotalCostoArticulo, 
+                         TotalDesperdicioArticulo, TotalNecesidadarticulo, Id_Medida, Descripcion, Descripcion_Medida
+FROM            ConsumoPinturaArticulo
+WHERE        (IdDetallePresupuesto = @DetallePresupuesto)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="DetallePresupuesto" ColumnName="IdDetallePresupuesto" DataSourceName="GestionEmpresa1.dbo.ConsumoPinturaArticulo" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@DetallePresupuesto" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="IdDetallePresupuesto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsCosumoPinturaArticulo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DsCosumoPinturaArticulo" msprop:Generator_UserDSName="DsCosumoPinturaArticulo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ConsumoPinturaArticulo" msprop:Generator_TableClassName="ConsumoPinturaArticuloDataTable" msprop:Generator_TableVarName="tableConsumoPinturaArticulo" msprop:Generator_TablePropName="ConsumoPinturaArticulo" msprop:Generator_RowDeletingName="ConsumoPinturaArticuloRowDeleting" msprop:Generator_RowChangingName="ConsumoPinturaArticuloRowChanging" msprop:Generator_RowEvHandlerName="ConsumoPinturaArticuloRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsumoPinturaArticuloRowDeleted" msprop:Generator_UserTableName="ConsumoPinturaArticulo" msprop:Generator_RowChangedName="ConsumoPinturaArticuloRowChanged" msprop:Generator_RowEvArgName="ConsumoPinturaArticuloRowChangeEvent" msprop:Generator_RowClassName="ConsumoPinturaArticuloRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Proyecto" msprop:Generator_ColumnVarNameInTable="columnId_Proyecto" msprop:Generator_ColumnPropNameInRow="Id_Proyecto" msprop:Generator_ColumnPropNameInTable="Id_ProyectoColumn" msprop:Generator_UserColumnName="Id_Proyecto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IdPresupuesto" msprop:Generator_ColumnVarNameInTable="columnIdPresupuesto" msprop:Generator_ColumnPropNameInRow="IdPresupuesto" msprop:Generator_ColumnPropNameInTable="IdPresupuestoColumn" msprop:Generator_UserColumnName="IdPresupuesto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IdDetallePresupuesto" msprop:Generator_ColumnVarNameInTable="columnIdDetallePresupuesto" msprop:Generator_ColumnPropNameInRow="IdDetallePresupuesto" msprop:Generator_ColumnPropNameInTable="IdDetallePresupuestoColumn" msprop:Generator_UserColumnName="IdDetallePresupuesto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IdArticulo" msprop:Generator_ColumnVarNameInTable="columnIdArticulo" msprop:Generator_ColumnPropNameInRow="IdArticulo" msprop:Generator_ColumnPropNameInTable="IdArticuloColumn" msprop:Generator_UserColumnName="IdArticulo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IdPinturaComponente" msprop:Generator_ColumnVarNameInTable="columnIdPinturaComponente" msprop:Generator_ColumnPropNameInRow="IdPinturaComponente" msprop:Generator_ColumnPropNameInTable="IdPinturaComponenteColumn" msprop:Generator_UserColumnName="IdPinturaComponente" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Desperdicio" msprop:Generator_ColumnVarNameInTable="columnDesperdicio" msprop:Generator_ColumnPropNameInRow="Desperdicio" msprop:Generator_ColumnPropNameInTable="DesperdicioColumn" msprop:Generator_UserColumnName="Desperdicio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Estado_Presupuesto" msprop:Generator_ColumnVarNameInTable="columnEstado_Presupuesto" msprop:Generator_ColumnPropNameInRow="Estado_Presupuesto" msprop:Generator_ColumnPropNameInTable="Estado_PresupuestoColumn" msprop:Generator_UserColumnName="Estado_Presupuesto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Empresa" msprop:Generator_ColumnVarNameInTable="columnId_Empresa" msprop:Generator_ColumnPropNameInRow="Id_Empresa" msprop:Generator_ColumnPropNameInTable="Id_EmpresaColumn" msprop:Generator_UserColumnName="Id_Empresa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PrecioCompra" msprop:Generator_ColumnVarNameInTable="columnPrecioCompra" msprop:Generator_ColumnPropNameInRow="PrecioCompra" msprop:Generator_ColumnPropNameInTable="PrecioCompraColumn" msprop:Generator_UserColumnName="PrecioCompra" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CantidadArticulos" msprop:Generator_ColumnVarNameInTable="columnCantidadArticulos" msprop:Generator_ColumnPropNameInRow="CantidadArticulos" msprop:Generator_ColumnPropNameInTable="CantidadArticulosColumn" msprop:Generator_UserColumnName="CantidadArticulos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CosumoArticulo" msprop:Generator_ColumnVarNameInTable="columnCosumoArticulo" msprop:Generator_ColumnPropNameInRow="CosumoArticulo" msprop:Generator_ColumnPropNameInTable="CosumoArticuloColumn" msprop:Generator_UserColumnName="CosumoArticulo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalDesperdicioArticulo" msprop:Generator_ColumnVarNameInTable="columnTotalDesperdicioArticulo" msprop:Generator_ColumnPropNameInRow="TotalDesperdicioArticulo" msprop:Generator_ColumnPropNameInTable="TotalDesperdicioArticuloColumn" msprop:Generator_UserColumnName="TotalDesperdicioArticulo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalNecesidadarticulo" msprop:Generator_ColumnVarNameInTable="columnTotalNecesidadarticulo" msprop:Generator_ColumnPropNameInRow="TotalNecesidadarticulo" msprop:Generator_ColumnPropNameInTable="TotalNecesidadarticuloColumn" msprop:Generator_UserColumnName="TotalNecesidadarticulo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalCostoArticulo" msprop:Generator_ColumnVarNameInTable="columnTotalCostoArticulo" msprop:Generator_ColumnPropNameInRow="TotalCostoArticulo" msprop:Generator_ColumnPropNameInTable="TotalCostoArticuloColumn" msprop:Generator_UserColumnName="TotalCostoArticulo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Codigo" msprop:Generator_ColumnVarNameInTable="columnCodigo" msprop:Generator_ColumnPropNameInRow="Codigo" msprop:Generator_ColumnPropNameInTable="CodigoColumn" msprop:Generator_UserColumnName="Codigo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Medida" msprop:Generator_ColumnVarNameInTable="columnId_Medida" msprop:Generator_ColumnPropNameInRow="Id_Medida" msprop:Generator_ColumnPropNameInTable="Id_MedidaColumn" msprop:Generator_UserColumnName="Id_Medida" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion_Medida" msprop:Generator_ColumnVarNameInTable="columnDescripcion_Medida" msprop:Generator_ColumnPropNameInRow="Descripcion_Medida" msprop:Generator_ColumnPropNameInTable="Descripcion_MedidaColumn" msprop:Generator_UserColumnName="Descripcion_Medida">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

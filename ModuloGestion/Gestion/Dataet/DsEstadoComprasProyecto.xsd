@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsEstadoComprasProyecto" targetNamespace="http://tempuri.org/DsEstadoComprasProyecto.xsd" xmlns:mstns="http://tempuri.org/DsEstadoComprasProyecto.xsd" xmlns="http://tempuri.org/DsEstadoComprasProyecto.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EstadoCompraProyectoTableAdapter" GeneratorDataComponentClassName="EstadoCompraProyectoTableAdapter" Name="EstadoCompraProyecto" UserDataComponentName="EstadoCompraProyectoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa1.dbo.EstadoCompraProyecto" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Codigo, Id_Proyecto, Id_Material_Detalle, TotalCompraPresupuesto, CantidadComprada, CantidadPendiente, Id_Empresa, Estado_Presupuesto, PrecioCompra, Id_Medida, id_Presupuesto
+FROM            EstadoCompraProyecto</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Codigo" DataSetColumn="Codigo" />
+              <Mapping SourceColumn="Id_Proyecto" DataSetColumn="Id_Proyecto" />
+              <Mapping SourceColumn="Id_Material_Detalle" DataSetColumn="Id_Material_Detalle" />
+              <Mapping SourceColumn="TotalCompraPresupuesto" DataSetColumn="TotalCompraPresupuesto" />
+              <Mapping SourceColumn="CantidadComprada" DataSetColumn="CantidadComprada" />
+              <Mapping SourceColumn="CantidadPendiente" DataSetColumn="CantidadPendiente" />
+              <Mapping SourceColumn="Id_Empresa" DataSetColumn="Id_Empresa" />
+              <Mapping SourceColumn="Estado_Presupuesto" DataSetColumn="Estado_Presupuesto" />
+              <Mapping SourceColumn="PrecioCompra" DataSetColumn="PrecioCompra" />
+              <Mapping SourceColumn="Id_Medida" DataSetColumn="Id_Medida" />
+              <Mapping SourceColumn="id_Presupuesto" DataSetColumn="id_Presupuesto" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.EstadoCompraProyecto" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByIdempresaIdProyecto" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByIdempresaIdProyecto" GeneratorSourceName="FillByIdempresaIdProyecto" GetMethodModifier="Public" GetMethodName="GetDataByIdempresaIdProyecto" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByIdempresaIdProyecto" UserSourceName="FillByIdempresaIdProyecto">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Codigo, Id_Proyecto, Id_Material_Detalle, TotalCompraPresupuesto, CantidadComprada, CantidadPendiente, Id_Empresa, Estado_Presupuesto, PrecioCompra, 
+                         Id_Medida
+FROM            EstadoCompraProyecto
+WHERE        (Id_Proyecto = @Id_Proyecto) AND (Id_Empresa = @Id_Empresa)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Id_Proyecto" ColumnName="Id_Proyecto" DataSourceName="GestionEmpresa.dbo.EstadoCompraProyecto" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Id_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Id_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Id_Empresa" ColumnName="Id_Empresa" DataSourceName="GestionEmpresa.dbo.EstadoCompraProyecto" DataTypeServer="nvarchar(5)" DbType="String" Direction="Input" ParameterName="@Id_Empresa" Precision="0" ProviderType="NVarChar" Scale="0" Size="5" SourceColumn="Id_Empresa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa1.dbo.EstadoCompraProyecto" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByIdPresupuesto" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByIdPresupuesto" GeneratorSourceName="FillByIdPresupuesto" GetMethodModifier="Public" GetMethodName="GetDataByIdPresupuesto" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByIdPresupuesto" UserSourceName="FillByIdPresupuesto">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CantidadComprada, CantidadPendiente, Codigo, Estado_Presupuesto, Id_Empresa, Id_Material_Detalle, Id_Medida, Id_Proyecto, PrecioCompra, TotalCompraPresupuesto, id_Presupuesto
+FROM            EstadoCompraProyecto
+WHERE        (id_Presupuesto = @id_Presupuesto)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="id_Presupuesto" ColumnName="id_Presupuesto" DataSourceName="GestionEmpresa1.dbo.EstadoCompraProyecto" DataTypeServer="nvarchar(15)" DbType="String" Direction="Input" ParameterName="@id_Presupuesto" Precision="0" ProviderType="NVarChar" Scale="0" Size="15" SourceColumn="id_Presupuesto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsEstadoComprasProyecto" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DsEstadoComprasProyecto" msprop:Generator_UserDSName="DsEstadoComprasProyecto">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="EstadoCompraProyecto" msprop:Generator_TableClassName="EstadoCompraProyectoDataTable" msprop:Generator_TableVarName="tableEstadoCompraProyecto" msprop:Generator_TablePropName="EstadoCompraProyecto" msprop:Generator_RowDeletingName="EstadoCompraProyectoRowDeleting" msprop:Generator_RowChangingName="EstadoCompraProyectoRowChanging" msprop:Generator_RowEvHandlerName="EstadoCompraProyectoRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadoCompraProyectoRowDeleted" msprop:Generator_UserTableName="EstadoCompraProyecto" msprop:Generator_RowChangedName="EstadoCompraProyectoRowChanged" msprop:Generator_RowEvArgName="EstadoCompraProyectoRowChangeEvent" msprop:Generator_RowClassName="EstadoCompraProyectoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Codigo" msprop:Generator_ColumnVarNameInTable="columnCodigo" msprop:Generator_ColumnPropNameInRow="Codigo" msprop:Generator_ColumnPropNameInTable="CodigoColumn" msprop:Generator_UserColumnName="Codigo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Proyecto" msprop:Generator_ColumnVarNameInTable="columnId_Proyecto" msprop:Generator_ColumnPropNameInRow="Id_Proyecto" msprop:Generator_ColumnPropNameInTable="Id_ProyectoColumn" msprop:Generator_UserColumnName="Id_Proyecto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Material_Detalle" msprop:Generator_ColumnVarNameInTable="columnId_Material_Detalle" msprop:Generator_ColumnPropNameInRow="Id_Material_Detalle" msprop:Generator_ColumnPropNameInTable="Id_Material_DetalleColumn" msprop:Generator_UserColumnName="Id_Material_Detalle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalCompraPresupuesto" msprop:Generator_ColumnVarNameInTable="columnTotalCompraPresupuesto" msprop:Generator_ColumnPropNameInRow="TotalCompraPresupuesto" msprop:Generator_ColumnPropNameInTable="TotalCompraPresupuestoColumn" msprop:Generator_UserColumnName="TotalCompraPresupuesto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CantidadComprada" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCantidadComprada" msprop:Generator_ColumnPropNameInRow="CantidadComprada" msprop:Generator_ColumnPropNameInTable="CantidadCompradaColumn" msprop:Generator_UserColumnName="CantidadComprada" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CantidadPendiente" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCantidadPendiente" msprop:Generator_ColumnPropNameInRow="CantidadPendiente" msprop:Generator_ColumnPropNameInTable="CantidadPendienteColumn" msprop:Generator_UserColumnName="CantidadPendiente" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Id_Empresa" msprop:Generator_ColumnVarNameInTable="columnId_Empresa" msprop:Generator_ColumnPropNameInRow="Id_Empresa" msprop:Generator_ColumnPropNameInTable="Id_EmpresaColumn" msprop:Generator_UserColumnName="Id_Empresa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Estado_Presupuesto" msprop:Generator_ColumnVarNameInTable="columnEstado_Presupuesto" msprop:Generator_ColumnPropNameInRow="Estado_Presupuesto" msprop:Generator_ColumnPropNameInTable="Estado_PresupuestoColumn" msprop:Generator_UserColumnName="Estado_Presupuesto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PrecioCompra" msprop:Generator_ColumnVarNameInTable="columnPrecioCompra" msprop:Generator_ColumnPropNameInRow="PrecioCompra" msprop:Generator_ColumnPropNameInTable="PrecioCompraColumn" msprop:Generator_UserColumnName="PrecioCompra" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Id_Medida" msprop:Generator_ColumnVarNameInTable="columnId_Medida" msprop:Generator_ColumnPropNameInRow="Id_Medida" msprop:Generator_ColumnPropNameInTable="Id_MedidaColumn" msprop:Generator_UserColumnName="Id_Medida" type="xs:decimal" minOccurs="0" />
+              <xs:element name="id_Presupuesto" msprop:Generator_ColumnVarNameInTable="columnid_Presupuesto" msprop:Generator_ColumnPropNameInRow="id_Presupuesto" msprop:Generator_ColumnPropNameInTable="id_PresupuestoColumn" msprop:Generator_UserColumnName="id_Presupuesto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

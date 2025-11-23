@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsAnalisisProyecto" targetNamespace="http://tempuri.org/DsAnalisisProyecto.xsd" xmlns:mstns="http://tempuri.org/DsAnalisisProyecto.xsd" xmlns="http://tempuri.org/DsAnalisisProyecto.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AnalisisProyectoTableAdapter" GeneratorDataComponentClassName="AnalisisProyectoTableAdapter" Name="AnalisisProyecto" UserDataComponentName="AnalisisProyectoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.AnalisisProyecto" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id_Proyecto, TrabajoTaller, TrabajoPiintura, TotalHoras, CostoTrabajo, CostoMadera, CostoPintura, CostoFereteria, CostoOtrosCostos, SubTotalCostoDirecto, TotalCostoIdirecto, Totalcosto, CostoTransporteEmbalaje, CostoHerrajes, CostoMontaje, SubTotalCosto, TotalBeneficio, SubtotalVenta, TotalImprevistos, PrecioGenerado, TotalDescuento, PrecioVenta, Precio_Ajustado, Id_Empresa, EstadoPresupuesto FROM dbo.AnalisisProyecto</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Proyecto" DataSetColumn="Id_Proyecto" />
+              <Mapping SourceColumn="TrabajoTaller" DataSetColumn="TrabajoTaller" />
+              <Mapping SourceColumn="TrabajoPiintura" DataSetColumn="TrabajoPiintura" />
+              <Mapping SourceColumn="TotalHoras" DataSetColumn="TotalHoras" />
+              <Mapping SourceColumn="CostoTrabajo" DataSetColumn="CostoTrabajo" />
+              <Mapping SourceColumn="CostoMadera" DataSetColumn="CostoMadera" />
+              <Mapping SourceColumn="CostoPintura" DataSetColumn="CostoPintura" />
+              <Mapping SourceColumn="CostoFereteria" DataSetColumn="CostoFereteria" />
+              <Mapping SourceColumn="CostoOtrosCostos" DataSetColumn="CostoOtrosCostos" />
+              <Mapping SourceColumn="SubTotalCostoDirecto" DataSetColumn="SubTotalCostoDirecto" />
+              <Mapping SourceColumn="TotalCostoIdirecto" DataSetColumn="TotalCostoIdirecto" />
+              <Mapping SourceColumn="Totalcosto" DataSetColumn="Totalcosto" />
+              <Mapping SourceColumn="CostoTransporteEmbalaje" DataSetColumn="CostoTransporteEmbalaje" />
+              <Mapping SourceColumn="CostoHerrajes" DataSetColumn="CostoHerrajes" />
+              <Mapping SourceColumn="CostoMontaje" DataSetColumn="CostoMontaje" />
+              <Mapping SourceColumn="SubTotalCosto" DataSetColumn="SubTotalCosto" />
+              <Mapping SourceColumn="TotalBeneficio" DataSetColumn="TotalBeneficio" />
+              <Mapping SourceColumn="SubtotalVenta" DataSetColumn="SubtotalVenta" />
+              <Mapping SourceColumn="TotalImprevistos" DataSetColumn="TotalImprevistos" />
+              <Mapping SourceColumn="PrecioGenerado" DataSetColumn="PrecioGenerado" />
+              <Mapping SourceColumn="TotalDescuento" DataSetColumn="TotalDescuento" />
+              <Mapping SourceColumn="PrecioVenta" DataSetColumn="PrecioVenta" />
+              <Mapping SourceColumn="Precio_Ajustado" DataSetColumn="Precio_Ajustado" />
+              <Mapping SourceColumn="Id_Empresa" DataSetColumn="Id_Empresa" />
+              <Mapping SourceColumn="EstadoPresupuesto" DataSetColumn="EstadoPresupuesto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProyectosTableAdapter" GeneratorDataComponentClassName="ProyectosTableAdapter" Name="Proyectos" UserDataComponentName="ProyectosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.Proyectos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Proyectos] WHERE (([Id_Fiscal] = @Original_Id_Fiscal) AND ([Id_Proyecto] = @Original_Id_Proyecto) AND ((@IsNull_Nombre_Proyecto = 1 AND [Nombre_Proyecto] IS NULL) OR ([Nombre_Proyecto] = @Original_Nombre_Proyecto)) AND ((@IsNull_Direccion_Proyecto = 1 AND [Direccion_Proyecto] IS NULL) OR ([Direccion_Proyecto] = @Original_Direccion_Proyecto)) AND ((@IsNull_Ciudad_Proyecto = 1 AND [Ciudad_Proyecto] IS NULL) OR ([Ciudad_Proyecto] = @Original_Ciudad_Proyecto)) AND ((@IsNull_Pais_Proyecto = 1 AND [Pais_Proyecto] IS NULL) OR ([Pais_Proyecto] = @Original_Pais_Proyecto)) AND ((@IsNull_Datos = 1 AND [Datos] IS NULL) OR ([Datos] = @Original_Datos)) AND ((@IsNull_Impuestoventa = 1 AND [Impuestoventa] IS NULL) OR ([Impuestoventa] = @Original_Impuestoventa)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Id_Fiscal" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Id_Fiscal" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Id_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Id_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Nombre_Proyecto" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Nombre_Proyecto" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Nombre_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nombre_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Direccion_Proyecto" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Direccion_Proyecto" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Direccion_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Direccion_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Ciudad_Proyecto" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Ciudad_Proyecto" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Ciudad_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Ciudad_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pais_Proyecto" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pais_Proyecto" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Pais_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Pais_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Datos" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Datos" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Datos" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Datos" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Impuestoventa" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Impuestoventa" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_Impuestoventa" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="Impuestoventa" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Proyectos] ([Id_Fiscal], [Id_Proyecto], [Nombre_Proyecto], [Direccion_Proyecto], [Ciudad_Proyecto], [Pais_Proyecto], [Datos], [Impuestoventa]) VALUES (@Id_Fiscal, @Id_Proyecto, @Nombre_Proyecto, @Direccion_Proyecto, @Ciudad_Proyecto, @Pais_Proyecto, @Datos, @Impuestoventa);
+SELECT Id_Fiscal, Id_Proyecto, Nombre_Proyecto, Direccion_Proyecto, Ciudad_Proyecto, Pais_Proyecto, Datos, Impuestoventa FROM Proyectos WHERE (Id_Proyecto = @Id_Proyecto)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Id_Fiscal" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Id_Fiscal" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Id_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Id_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nombre_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nombre_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Direccion_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Direccion_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Ciudad_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Ciudad_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Pais_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Pais_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Datos" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Datos" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Impuestoventa" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="Impuestoventa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id_Fiscal, Id_Proyecto, Nombre_Proyecto, Direccion_Proyecto, Ciudad_Proyecto, Pais_Proyecto, Datos, Impuestoventa FROM dbo.Proyectos</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Proyectos] SET [Id_Fiscal] = @Id_Fiscal, [Id_Proyecto] = @Id_Proyecto, [Nombre_Proyecto] = @Nombre_Proyecto, [Direccion_Proyecto] = @Direccion_Proyecto, [Ciudad_Proyecto] = @Ciudad_Proyecto, [Pais_Proyecto] = @Pais_Proyecto, [Datos] = @Datos, [Impuestoventa] = @Impuestoventa WHERE (([Id_Fiscal] = @Original_Id_Fiscal) AND ([Id_Proyecto] = @Original_Id_Proyecto) AND ((@IsNull_Nombre_Proyecto = 1 AND [Nombre_Proyecto] IS NULL) OR ([Nombre_Proyecto] = @Original_Nombre_Proyecto)) AND ((@IsNull_Direccion_Proyecto = 1 AND [Direccion_Proyecto] IS NULL) OR ([Direccion_Proyecto] = @Original_Direccion_Proyecto)) AND ((@IsNull_Ciudad_Proyecto = 1 AND [Ciudad_Proyecto] IS NULL) OR ([Ciudad_Proyecto] = @Original_Ciudad_Proyecto)) AND ((@IsNull_Pais_Proyecto = 1 AND [Pais_Proyecto] IS NULL) OR ([Pais_Proyecto] = @Original_Pais_Proyecto)) AND ((@IsNull_Datos = 1 AND [Datos] IS NULL) OR ([Datos] = @Original_Datos)) AND ((@IsNull_Impuestoventa = 1 AND [Impuestoventa] IS NULL) OR ([Impuestoventa] = @Original_Impuestoventa)));
+SELECT Id_Fiscal, Id_Proyecto, Nombre_Proyecto, Direccion_Proyecto, Ciudad_Proyecto, Pais_Proyecto, Datos, Impuestoventa FROM Proyectos WHERE (Id_Proyecto = @Id_Proyecto)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Id_Fiscal" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Id_Fiscal" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Id_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Id_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nombre_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nombre_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Direccion_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Direccion_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Ciudad_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Ciudad_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Pais_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Pais_Proyecto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Datos" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Datos" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Impuestoventa" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="Impuestoventa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Id_Fiscal" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Id_Fiscal" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Id_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Id_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Nombre_Proyecto" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Nombre_Proyecto" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Nombre_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Nombre_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Direccion_Proyecto" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Direccion_Proyecto" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Direccion_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Direccion_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Ciudad_Proyecto" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Ciudad_Proyecto" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Ciudad_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Ciudad_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pais_Proyecto" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pais_Proyecto" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Pais_Proyecto" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Pais_Proyecto" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Datos" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Datos" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Datos" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Datos" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Impuestoventa" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Impuestoventa" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_Impuestoventa" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="Impuestoventa" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Fiscal" DataSetColumn="Id_Fiscal" />
+              <Mapping SourceColumn="Id_Proyecto" DataSetColumn="Id_Proyecto" />
+              <Mapping SourceColumn="Nombre_Proyecto" DataSetColumn="Nombre_Proyecto" />
+              <Mapping SourceColumn="Direccion_Proyecto" DataSetColumn="Direccion_Proyecto" />
+              <Mapping SourceColumn="Ciudad_Proyecto" DataSetColumn="Ciudad_Proyecto" />
+              <Mapping SourceColumn="Pais_Proyecto" DataSetColumn="Pais_Proyecto" />
+              <Mapping SourceColumn="Datos" DataSetColumn="Datos" />
+              <Mapping SourceColumn="Impuestoventa" DataSetColumn="Impuestoventa" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsAnalisisProyecto" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DsAnalisisProyecto" msprop:Generator_UserDSName="DsAnalisisProyecto">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AnalisisProyecto" msprop:Generator_TableClassName="AnalisisProyectoDataTable" msprop:Generator_TableVarName="tableAnalisisProyecto" msprop:Generator_RowChangedName="AnalisisProyectoRowChanged" msprop:Generator_TablePropName="AnalisisProyecto" msprop:Generator_RowDeletingName="AnalisisProyectoRowDeleting" msprop:Generator_RowChangingName="AnalisisProyectoRowChanging" msprop:Generator_RowEvHandlerName="AnalisisProyectoRowChangeEventHandler" msprop:Generator_RowDeletedName="AnalisisProyectoRowDeleted" msprop:Generator_RowClassName="AnalisisProyectoRow" msprop:Generator_UserTableName="AnalisisProyecto" msprop:Generator_RowEvArgName="AnalisisProyectoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Proyecto" msprop:Generator_ColumnVarNameInTable="columnId_Proyecto" msprop:Generator_ColumnPropNameInRow="Id_Proyecto" msprop:Generator_ColumnPropNameInTable="Id_ProyectoColumn" msprop:Generator_UserColumnName="Id_Proyecto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TrabajoTaller" msprop:Generator_ColumnVarNameInTable="columnTrabajoTaller" msprop:Generator_ColumnPropNameInRow="TrabajoTaller" msprop:Generator_ColumnPropNameInTable="TrabajoTallerColumn" msprop:Generator_UserColumnName="TrabajoTaller" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TrabajoPiintura" msprop:Generator_ColumnVarNameInTable="columnTrabajoPiintura" msprop:Generator_ColumnPropNameInRow="TrabajoPiintura" msprop:Generator_ColumnPropNameInTable="TrabajoPiinturaColumn" msprop:Generator_UserColumnName="TrabajoPiintura" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalHoras" msprop:Generator_ColumnVarNameInTable="columnTotalHoras" msprop:Generator_ColumnPropNameInRow="TotalHoras" msprop:Generator_ColumnPropNameInTable="TotalHorasColumn" msprop:Generator_UserColumnName="TotalHoras" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CostoTrabajo" msprop:Generator_ColumnVarNameInTable="columnCostoTrabajo" msprop:Generator_ColumnPropNameInRow="CostoTrabajo" msprop:Generator_ColumnPropNameInTable="CostoTrabajoColumn" msprop:Generator_UserColumnName="CostoTrabajo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CostoMadera" msprop:Generator_ColumnVarNameInTable="columnCostoMadera" msprop:Generator_ColumnPropNameInRow="CostoMadera" msprop:Generator_ColumnPropNameInTable="CostoMaderaColumn" msprop:Generator_UserColumnName="CostoMadera" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CostoPintura" msprop:Generator_ColumnVarNameInTable="columnCostoPintura" msprop:Generator_ColumnPropNameInRow="CostoPintura" msprop:Generator_ColumnPropNameInTable="CostoPinturaColumn" msprop:Generator_UserColumnName="CostoPintura" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CostoFereteria" msprop:Generator_ColumnVarNameInTable="columnCostoFereteria" msprop:Generator_ColumnPropNameInRow="CostoFereteria" msprop:Generator_ColumnPropNameInTable="CostoFereteriaColumn" msprop:Generator_UserColumnName="CostoFereteria" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CostoOtrosCostos" msprop:Generator_ColumnVarNameInTable="columnCostoOtrosCostos" msprop:Generator_ColumnPropNameInRow="CostoOtrosCostos" msprop:Generator_ColumnPropNameInTable="CostoOtrosCostosColumn" msprop:Generator_UserColumnName="CostoOtrosCostos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SubTotalCostoDirecto" msprop:Generator_ColumnVarNameInTable="columnSubTotalCostoDirecto" msprop:Generator_ColumnPropNameInRow="SubTotalCostoDirecto" msprop:Generator_ColumnPropNameInTable="SubTotalCostoDirectoColumn" msprop:Generator_UserColumnName="SubTotalCostoDirecto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalCostoIdirecto" msprop:Generator_ColumnVarNameInTable="columnTotalCostoIdirecto" msprop:Generator_ColumnPropNameInRow="TotalCostoIdirecto" msprop:Generator_ColumnPropNameInTable="TotalCostoIdirectoColumn" msprop:Generator_UserColumnName="TotalCostoIdirecto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Totalcosto" msprop:Generator_ColumnVarNameInTable="columnTotalcosto" msprop:Generator_ColumnPropNameInRow="Totalcosto" msprop:Generator_ColumnPropNameInTable="TotalcostoColumn" msprop:Generator_UserColumnName="Totalcosto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CostoTransporteEmbalaje" msprop:Generator_ColumnVarNameInTable="columnCostoTransporteEmbalaje" msprop:Generator_ColumnPropNameInRow="CostoTransporteEmbalaje" msprop:Generator_ColumnPropNameInTable="CostoTransporteEmbalajeColumn" msprop:Generator_UserColumnName="CostoTransporteEmbalaje" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CostoHerrajes" msprop:Generator_ColumnVarNameInTable="columnCostoHerrajes" msprop:Generator_ColumnPropNameInRow="CostoHerrajes" msprop:Generator_ColumnPropNameInTable="CostoHerrajesColumn" msprop:Generator_UserColumnName="CostoHerrajes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CostoMontaje" msprop:Generator_ColumnVarNameInTable="columnCostoMontaje" msprop:Generator_ColumnPropNameInRow="CostoMontaje" msprop:Generator_ColumnPropNameInTable="CostoMontajeColumn" msprop:Generator_UserColumnName="CostoMontaje" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SubTotalCosto" msprop:Generator_ColumnVarNameInTable="columnSubTotalCosto" msprop:Generator_ColumnPropNameInRow="SubTotalCosto" msprop:Generator_ColumnPropNameInTable="SubTotalCostoColumn" msprop:Generator_UserColumnName="SubTotalCosto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalBeneficio" msprop:Generator_ColumnVarNameInTable="columnTotalBeneficio" msprop:Generator_ColumnPropNameInRow="TotalBeneficio" msprop:Generator_ColumnPropNameInTable="TotalBeneficioColumn" msprop:Generator_UserColumnName="TotalBeneficio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SubtotalVenta" msprop:Generator_ColumnVarNameInTable="columnSubtotalVenta" msprop:Generator_ColumnPropNameInRow="SubtotalVenta" msprop:Generator_ColumnPropNameInTable="SubtotalVentaColumn" msprop:Generator_UserColumnName="SubtotalVenta" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalImprevistos" msprop:Generator_ColumnVarNameInTable="columnTotalImprevistos" msprop:Generator_ColumnPropNameInRow="TotalImprevistos" msprop:Generator_ColumnPropNameInTable="TotalImprevistosColumn" msprop:Generator_UserColumnName="TotalImprevistos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PrecioGenerado" msprop:Generator_ColumnVarNameInTable="columnPrecioGenerado" msprop:Generator_ColumnPropNameInRow="PrecioGenerado" msprop:Generator_ColumnPropNameInTable="PrecioGeneradoColumn" msprop:Generator_UserColumnName="PrecioGenerado" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalDescuento" msprop:Generator_ColumnVarNameInTable="columnTotalDescuento" msprop:Generator_ColumnPropNameInRow="TotalDescuento" msprop:Generator_ColumnPropNameInTable="TotalDescuentoColumn" msprop:Generator_UserColumnName="TotalDescuento" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PrecioVenta" msprop:Generator_ColumnVarNameInTable="columnPrecioVenta" msprop:Generator_ColumnPropNameInRow="PrecioVenta" msprop:Generator_ColumnPropNameInTable="PrecioVentaColumn" msprop:Generator_UserColumnName="PrecioVenta" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Precio_Ajustado" msprop:Generator_ColumnVarNameInTable="columnPrecio_Ajustado" msprop:Generator_ColumnPropNameInRow="Precio_Ajustado" msprop:Generator_ColumnPropNameInTable="Precio_AjustadoColumn" msprop:Generator_UserColumnName="Precio_Ajustado" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Id_Empresa" msprop:Generator_ColumnVarNameInTable="columnId_Empresa" msprop:Generator_ColumnPropNameInRow="Id_Empresa" msprop:Generator_ColumnPropNameInTable="Id_EmpresaColumn" msprop:Generator_UserColumnName="Id_Empresa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EstadoPresupuesto" msprop:Generator_ColumnVarNameInTable="columnEstadoPresupuesto" msprop:Generator_ColumnPropNameInRow="EstadoPresupuesto" msprop:Generator_ColumnPropNameInTable="EstadoPresupuestoColumn" msprop:Generator_UserColumnName="EstadoPresupuesto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Proyectos" msprop:Generator_TableClassName="ProyectosDataTable" msprop:Generator_TableVarName="tableProyectos" msprop:Generator_TablePropName="Proyectos" msprop:Generator_RowDeletingName="ProyectosRowDeleting" msprop:Generator_RowChangingName="ProyectosRowChanging" msprop:Generator_RowEvHandlerName="ProyectosRowChangeEventHandler" msprop:Generator_RowDeletedName="ProyectosRowDeleted" msprop:Generator_UserTableName="Proyectos" msprop:Generator_RowChangedName="ProyectosRowChanged" msprop:Generator_RowEvArgName="ProyectosRowChangeEvent" msprop:Generator_RowClassName="ProyectosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Fiscal" msprop:Generator_ColumnVarNameInTable="columnId_Fiscal" msprop:Generator_ColumnPropNameInRow="Id_Fiscal" msprop:Generator_ColumnPropNameInTable="Id_FiscalColumn" msprop:Generator_UserColumnName="Id_Fiscal">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Proyecto" msprop:Generator_ColumnVarNameInTable="columnId_Proyecto" msprop:Generator_ColumnPropNameInRow="Id_Proyecto" msprop:Generator_ColumnPropNameInTable="Id_ProyectoColumn" msprop:Generator_UserColumnName="Id_Proyecto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nombre_Proyecto" msprop:Generator_ColumnVarNameInTable="columnNombre_Proyecto" msprop:Generator_ColumnPropNameInRow="Nombre_Proyecto" msprop:Generator_ColumnPropNameInTable="Nombre_ProyectoColumn" msprop:Generator_UserColumnName="Nombre_Proyecto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Direccion_Proyecto" msprop:Generator_ColumnVarNameInTable="columnDireccion_Proyecto" msprop:Generator_ColumnPropNameInRow="Direccion_Proyecto" msprop:Generator_ColumnPropNameInTable="Direccion_ProyectoColumn" msprop:Generator_UserColumnName="Direccion_Proyecto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ciudad_Proyecto" msprop:Generator_ColumnVarNameInTable="columnCiudad_Proyecto" msprop:Generator_ColumnPropNameInRow="Ciudad_Proyecto" msprop:Generator_ColumnPropNameInTable="Ciudad_ProyectoColumn" msprop:Generator_UserColumnName="Ciudad_Proyecto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pais_Proyecto" msprop:Generator_ColumnVarNameInTable="columnPais_Proyecto" msprop:Generator_ColumnPropNameInRow="Pais_Proyecto" msprop:Generator_ColumnPropNameInTable="Pais_ProyectoColumn" msprop:Generator_UserColumnName="Pais_Proyecto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Datos" msprop:Generator_ColumnVarNameInTable="columnDatos" msprop:Generator_ColumnPropNameInRow="Datos" msprop:Generator_ColumnPropNameInTable="DatosColumn" msprop:Generator_UserColumnName="Datos" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Impuestoventa" msprop:Generator_ColumnVarNameInTable="columnImpuestoventa" msprop:Generator_ColumnPropNameInRow="Impuestoventa" msprop:Generator_ColumnPropNameInTable="ImpuestoventaColumn" msprop:Generator_UserColumnName="Impuestoventa" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Proyectos" />
+      <xs:field xpath="mstns:Id_Proyecto" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

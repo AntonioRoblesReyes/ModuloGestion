@@ -1,0 +1,4 @@
+ <connectionStrings>
+        <add name="WindowsApplication1.My.MySettings.conexion" connectionString="Data Source=antonio-dell;Initial Catalog=GestionEmpresa;Persist Security Info=True;User ID=ultima;Password=laura2007"
+            providerName="System.Data.SqlClient" />
+    </connectionStrings>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsNotasEntregaNombres" targetNamespace="http://tempuri.org/DsNotasEntregaNombres.xsd" xmlns:mstns="http://tempuri.org/DsNotasEntregaNombres.xsd" xmlns="http://tempuri.org/DsNotasEntregaNombres.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NotasEntregaNombresTableAdapter" GeneratorDataComponentClassName="NotasEntregaNombresTableAdapter" Name="NotasEntregaNombres" UserDataComponentName="NotasEntregaNombresTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.NotasEntregaNombres" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id_Sub_Articulo, Descripcion_Sub_Articulo FROM dbo.NotasEntregaNombres</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Sub_Articulo" DataSetColumn="Id_Sub_Articulo" />
+              <Mapping SourceColumn="Descripcion_Sub_Articulo" DataSetColumn="Descripcion_Sub_Articulo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsNotasEntregaNombres" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DsNotasEntregaNombres" msprop:Generator_UserDSName="DsNotasEntregaNombres">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NotasEntregaNombres" msprop:Generator_TableClassName="NotasEntregaNombresDataTable" msprop:Generator_TableVarName="tableNotasEntregaNombres" msprop:Generator_TablePropName="NotasEntregaNombres" msprop:Generator_RowDeletingName="NotasEntregaNombresRowDeleting" msprop:Generator_UserTableName="NotasEntregaNombres" msprop:Generator_RowChangingName="NotasEntregaNombresRowChanging" msprop:Generator_RowEvHandlerName="NotasEntregaNombresRowChangeEventHandler" msprop:Generator_RowDeletedName="NotasEntregaNombresRowDeleted" msprop:Generator_RowEvArgName="NotasEntregaNombresRowChangeEvent" msprop:Generator_RowChangedName="NotasEntregaNombresRowChanged" msprop:Generator_RowClassName="NotasEntregaNombresRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Sub_Articulo" msprop:Generator_ColumnVarNameInTable="columnId_Sub_Articulo" msprop:Generator_ColumnPropNameInRow="Id_Sub_Articulo" msprop:Generator_ColumnPropNameInTable="Id_Sub_ArticuloColumn" msprop:Generator_UserColumnName="Id_Sub_Articulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion_Sub_Articulo" msprop:Generator_ColumnVarNameInTable="columnDescripcion_Sub_Articulo" msprop:Generator_ColumnPropNameInRow="Descripcion_Sub_Articulo" msprop:Generator_ColumnPropNameInTable="Descripcion_Sub_ArticuloColumn" msprop:Generator_UserColumnName="Descripcion_Sub_Articulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

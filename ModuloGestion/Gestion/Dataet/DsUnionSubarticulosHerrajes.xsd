@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsUnionSubarticulosHerrajes" targetNamespace="http://tempuri.org/DsUnionSubarticulosHerrajes.xsd" xmlns:mstns="http://tempuri.org/DsUnionSubarticulosHerrajes.xsd" xmlns="http://tempuri.org/DsUnionSubarticulosHerrajes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UnionSubarticulosHerrajesTableAdapter" GeneratorDataComponentClassName="UnionSubarticulosHerrajesTableAdapter" Name="UnionSubarticulosHerrajes" UserDataComponentName="UnionSubarticulosHerrajesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa1.dbo.UnionSubarticulosHerrajes" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Id_Sub_Articulo, Descripcion_Sub_Articulo
+FROM            UnionSubarticulosHerrajes</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Sub_Articulo" DataSetColumn="Id_Sub_Articulo" />
+              <Mapping SourceColumn="Descripcion_Sub_Articulo" DataSetColumn="Descripcion_Sub_Articulo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsUnionSubarticulosHerrajes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DsUnionSubarticulosHerrajes" msprop:Generator_UserDSName="DsUnionSubarticulosHerrajes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="UnionSubarticulosHerrajes" msprop:Generator_TableClassName="UnionSubarticulosHerrajesDataTable" msprop:Generator_TableVarName="tableUnionSubarticulosHerrajes" msprop:Generator_TablePropName="UnionSubarticulosHerrajes" msprop:Generator_RowDeletingName="UnionSubarticulosHerrajesRowDeleting" msprop:Generator_RowChangingName="UnionSubarticulosHerrajesRowChanging" msprop:Generator_RowEvHandlerName="UnionSubarticulosHerrajesRowChangeEventHandler" msprop:Generator_RowDeletedName="UnionSubarticulosHerrajesRowDeleted" msprop:Generator_UserTableName="UnionSubarticulosHerrajes" msprop:Generator_RowChangedName="UnionSubarticulosHerrajesRowChanged" msprop:Generator_RowEvArgName="UnionSubarticulosHerrajesRowChangeEvent" msprop:Generator_RowClassName="UnionSubarticulosHerrajesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Sub_Articulo" msprop:Generator_ColumnVarNameInTable="columnId_Sub_Articulo" msprop:Generator_ColumnPropNameInRow="Id_Sub_Articulo" msprop:Generator_ColumnPropNameInTable="Id_Sub_ArticuloColumn" msprop:Generator_UserColumnName="Id_Sub_Articulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion_Sub_Articulo" msprop:Generator_ColumnVarNameInTable="columnDescripcion_Sub_Articulo" msprop:Generator_ColumnPropNameInRow="Descripcion_Sub_Articulo" msprop:Generator_ColumnPropNameInTable="Descripcion_Sub_ArticuloColumn" msprop:Generator_UserColumnName="Descripcion_Sub_Articulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

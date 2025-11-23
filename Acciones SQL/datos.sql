@@ -1,0 +1,3 @@
+
+INSERT INTO PresupuestoDetalleElementos
+SELECT * FROM GestionEmpresa.dbo.ConsultaPresupuestoDetalleElementos

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsEmpresasProyecto" targetNamespace="http://tempuri.org/DsEmpresasProyecto.xsd" xmlns:mstns="http://tempuri.org/DsEmpresasProyecto.xsd" xmlns="http://tempuri.org/DsEmpresasProyecto.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EmpresaProyectosTableAdapter" GeneratorDataComponentClassName="EmpresaProyectosTableAdapter" Name="EmpresaProyectos" UserDataComponentName="EmpresaProyectosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.EmpresaProyectos" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id_Empresa, Id_Presupuesto, Id_Proyecto FROM dbo.EmpresaProyectos</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Empresa" DataSetColumn="Id_Empresa" />
+              <Mapping SourceColumn="Id_Presupuesto" DataSetColumn="Id_Presupuesto" />
+              <Mapping SourceColumn="Id_Proyecto" DataSetColumn="Id_Proyecto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsEmpresasProyecto" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DsEmpresasProyecto" msprop:Generator_UserDSName="DsEmpresasProyecto">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="EmpresaProyectos" msprop:Generator_TableClassName="EmpresaProyectosDataTable" msprop:Generator_TableVarName="tableEmpresaProyectos" msprop:Generator_TablePropName="EmpresaProyectos" msprop:Generator_RowDeletingName="EmpresaProyectosRowDeleting" msprop:Generator_UserTableName="EmpresaProyectos" msprop:Generator_RowChangingName="EmpresaProyectosRowChanging" msprop:Generator_RowEvHandlerName="EmpresaProyectosRowChangeEventHandler" msprop:Generator_RowDeletedName="EmpresaProyectosRowDeleted" msprop:Generator_RowEvArgName="EmpresaProyectosRowChangeEvent" msprop:Generator_RowChangedName="EmpresaProyectosRowChanged" msprop:Generator_RowClassName="EmpresaProyectosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Empresa" msprop:Generator_ColumnVarNameInTable="columnId_Empresa" msprop:Generator_ColumnPropNameInRow="Id_Empresa" msprop:Generator_ColumnPropNameInTable="Id_EmpresaColumn" msprop:Generator_UserColumnName="Id_Empresa">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Presupuesto" msprop:Generator_ColumnVarNameInTable="columnId_Presupuesto" msprop:Generator_ColumnPropNameInRow="Id_Presupuesto" msprop:Generator_ColumnPropNameInTable="Id_PresupuestoColumn" msprop:Generator_UserColumnName="Id_Presupuesto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Proyecto" msprop:Generator_ColumnVarNameInTable="columnId_Proyecto" msprop:Generator_ColumnPropNameInRow="Id_Proyecto" msprop:Generator_ColumnPropNameInTable="Id_ProyectoColumn" msprop:Generator_UserColumnName="Id_Proyecto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:EmpresaProyectos" />
+      <xs:field xpath="mstns:Id_Empresa" />
+      <xs:field xpath="mstns:Id_Presupuesto" />
+      <xs:field xpath="mstns:Id_Proyecto" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

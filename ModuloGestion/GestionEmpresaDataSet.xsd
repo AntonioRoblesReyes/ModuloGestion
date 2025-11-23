@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GestionEmpresaDataSet" targetNamespace="http://tempuri.org/GestionEmpresaDataSet.xsd" xmlns:mstns="http://tempuri.org/GestionEmpresaDataSet.xsd" xmlns="http://tempuri.org/GestionEmpresaDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TotalCompraPoveedorTableAdapter" GeneratorDataComponentClassName="TotalCompraPoveedorTableAdapter" Name="TotalCompraPoveedor" UserDataComponentName="TotalCompraPoveedorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.TotalCompraPoveedor" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id_Proveedor, RazonSocial, SubUS, ImpUS, TotUS, SubRD, ImpRD, TotRD FROM dbo.TotalCompraPoveedor</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Proveedor" DataSetColumn="Id_Proveedor" />
+              <Mapping SourceColumn="RazonSocial" DataSetColumn="RazonSocial" />
+              <Mapping SourceColumn="SubUS" DataSetColumn="SubUS" />
+              <Mapping SourceColumn="ImpUS" DataSetColumn="ImpUS" />
+              <Mapping SourceColumn="TotUS" DataSetColumn="TotUS" />
+              <Mapping SourceColumn="SubRD" DataSetColumn="SubRD" />
+              <Mapping SourceColumn="ImpRD" DataSetColumn="ImpRD" />
+              <Mapping SourceColumn="TotRD" DataSetColumn="TotRD" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GestionEmpresaDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GestionEmpresaDataSet" msprop:Generator_UserDSName="GestionEmpresaDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TotalCompraPoveedor" msprop:Generator_TableClassName="TotalCompraPoveedorDataTable" msprop:Generator_TableVarName="tableTotalCompraPoveedor" msprop:Generator_TablePropName="TotalCompraPoveedor" msprop:Generator_RowDeletingName="TotalCompraPoveedorRowDeleting" msprop:Generator_RowChangingName="TotalCompraPoveedorRowChanging" msprop:Generator_RowEvHandlerName="TotalCompraPoveedorRowChangeEventHandler" msprop:Generator_RowDeletedName="TotalCompraPoveedorRowDeleted" msprop:Generator_UserTableName="TotalCompraPoveedor" msprop:Generator_RowChangedName="TotalCompraPoveedorRowChanged" msprop:Generator_RowEvArgName="TotalCompraPoveedorRowChangeEvent" msprop:Generator_RowClassName="TotalCompraPoveedorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Proveedor" msprop:Generator_ColumnVarNameInTable="columnId_Proveedor" msprop:Generator_ColumnPropNameInRow="Id_Proveedor" msprop:Generator_ColumnPropNameInTable="Id_ProveedorColumn" msprop:Generator_UserColumnName="Id_Proveedor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RazonSocial" msprop:Generator_ColumnVarNameInTable="columnRazonSocial" msprop:Generator_ColumnPropNameInRow="RazonSocial" msprop:Generator_ColumnPropNameInTable="RazonSocialColumn" msprop:Generator_UserColumnName="RazonSocial" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubUS" msprop:Generator_ColumnVarNameInTable="columnSubUS" msprop:Generator_ColumnPropNameInRow="SubUS" msprop:Generator_ColumnPropNameInTable="SubUSColumn" msprop:Generator_UserColumnName="SubUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ImpUS" msprop:Generator_ColumnVarNameInTable="columnImpUS" msprop:Generator_ColumnPropNameInRow="ImpUS" msprop:Generator_ColumnPropNameInTable="ImpUSColumn" msprop:Generator_UserColumnName="ImpUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotUS" msprop:Generator_ColumnVarNameInTable="columnTotUS" msprop:Generator_ColumnPropNameInRow="TotUS" msprop:Generator_ColumnPropNameInTable="TotUSColumn" msprop:Generator_UserColumnName="TotUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SubRD" msprop:Generator_ColumnVarNameInTable="columnSubRD" msprop:Generator_ColumnPropNameInRow="SubRD" msprop:Generator_ColumnPropNameInTable="SubRDColumn" msprop:Generator_UserColumnName="SubRD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ImpRD" msprop:Generator_ColumnVarNameInTable="columnImpRD" msprop:Generator_ColumnPropNameInRow="ImpRD" msprop:Generator_ColumnPropNameInTable="ImpRDColumn" msprop:Generator_UserColumnName="ImpRD" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotRD" msprop:Generator_ColumnVarNameInTable="columnTotRD" msprop:Generator_ColumnPropNameInRow="TotRD" msprop:Generator_ColumnPropNameInTable="TotRDColumn" msprop:Generator_UserColumnName="TotRD" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsSubArticulosMaterial" targetNamespace="http://tempuri.org/DsSubArticulosMaterial.xsd" xmlns:mstns="http://tempuri.org/DsSubArticulosMaterial.xsd" xmlns="http://tempuri.org/DsSubArticulosMaterial.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="GestionEmpresaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GestionEmpresaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ModuloGestion.My.MySettings.GlobalReference.Default.GestionEmpresaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SubarticuloMaterialTableAdapter" GeneratorDataComponentClassName="SubarticuloMaterialTableAdapter" Name="SubarticuloMaterial" UserDataComponentName="SubarticuloMaterialTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.SubarticuloMaterial" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id_Sub_Articulo, Id_descripcion_Detalle, Cantidad, Desperdicio, Id_Material_Detalle, TotalDesperdicio, TotalCompra, Id_Medida, PiesUnidad, Anchopulgadas, GruesoPulgadas, PiesLargo, TotalNecesidad FROM SubarticuloMaterial</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Sub_Articulo" DataSetColumn="Id_Sub_Articulo" />
+              <Mapping SourceColumn="Desperdicio" DataSetColumn="Desperdicio" />
+              <Mapping SourceColumn="Id_Material_Detalle" DataSetColumn="Id_Material_Detalle" />
+              <Mapping SourceColumn="TotalDesperdicio" DataSetColumn="TotalDesperdicio" />
+              <Mapping SourceColumn="TotalCompra" DataSetColumn="TotalCompra" />
+              <Mapping SourceColumn="Id_descripcion_Detalle" DataSetColumn="Id_descripcion_Detalle" />
+              <Mapping SourceColumn="Cantidad" DataSetColumn="Cantidad" />
+              <Mapping SourceColumn="Id_Medida" DataSetColumn="Id_Medida" />
+              <Mapping SourceColumn="PiesUnidad" DataSetColumn="PiesUnidad" />
+              <Mapping SourceColumn="TotalNecesidad" DataSetColumn="TotalNecesidad" />
+              <Mapping SourceColumn="PiesLargo" DataSetColumn="PiesLargo" />
+              <Mapping SourceColumn="Anchopulgadas" DataSetColumn="Anchopulgadas" />
+              <Mapping SourceColumn="GruesoPulgadas" DataSetColumn="GruesoPulgadas" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.SubarticuloMaterial" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByIdSubArticulo" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByIdSubArticulo" GeneratorSourceName="FillByIdSubArticulo" GetMethodModifier="Public" GetMethodName="GetDataByIdSubArticulo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByIdSubArticulo" UserSourceName="FillByIdSubArticulo">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Cantidad, Desperdicio, Id_Material_Detalle, Id_Medida, Id_Sub_Articulo, Id_descripcion_Detalle, PiesUnidad, TotalCompra, TotalDesperdicio, Anchopulgadas, GruesoPulgadas, PiesLargo, TotalNecesidad FROM SubarticuloMaterial WHERE (Id_Sub_Articulo = @IdSubArticulo)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdSubArticulo" ColumnName="Id_Sub_Articulo" DataSourceName="GestionEmpresa.dbo.SubarticuloMaterial" DataTypeServer="nvarchar(40)" DbType="String" Direction="Input" ParameterName="@IdSubArticulo" Precision="0" ProviderType="NVarChar" Scale="0" Size="40" SourceColumn="Id_Sub_Articulo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="GestionEmpresaConnectionString (MySettings)" DbObjectName="GestionEmpresa.dbo.SubarticuloMaterial" DbObjectType="View" GenerateShortCommands="true" GeneratorSourceName="SubArticuloCosumo" Modifier="Public" Name="SubArticuloCosumo" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="SubArticuloCosumo">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Id_Sub_Articulo, SUM(TotalCompra) AS Expr1, Id_Medida
+FROM            SubarticuloMaterial
+GROUP BY Id_Sub_Articulo, Id_Medida
+HAVING        (Id_Sub_Articulo = @IdSubArticulo)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdSubArticulo" ColumnName="Id_Sub_Articulo" DataSourceName="GestionEmpresa.dbo.SubarticuloMaterial" DataTypeServer="nvarchar(40)" DbType="String" Direction="Input" ParameterName="@IdSubArticulo" Precision="0" ProviderType="NVarChar" Scale="0" Size="40" SourceColumn="Id_Sub_Articulo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsSubArticulosMaterial" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DsSubArticulosMaterial" msprop:Generator_UserDSName="DsSubArticulosMaterial">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SubarticuloMaterial" msprop:Generator_TableClassName="SubarticuloMaterialDataTable" msprop:Generator_TableVarName="tableSubarticuloMaterial" msprop:Generator_TablePropName="SubarticuloMaterial" msprop:Generator_RowDeletingName="SubarticuloMaterialRowDeleting" msprop:Generator_UserTableName="SubarticuloMaterial" msprop:Generator_RowChangingName="SubarticuloMaterialRowChanging" msprop:Generator_RowEvHandlerName="SubarticuloMaterialRowChangeEventHandler" msprop:Generator_RowDeletedName="SubarticuloMaterialRowDeleted" msprop:Generator_RowEvArgName="SubarticuloMaterialRowChangeEvent" msprop:Generator_RowChangedName="SubarticuloMaterialRowChanged" msprop:Generator_RowClassName="SubarticuloMaterialRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Sub_Articulo" msprop:Generator_ColumnVarNameInTable="columnId_Sub_Articulo" msprop:Generator_ColumnPropNameInRow="Id_Sub_Articulo" msprop:Generator_ColumnPropNameInTable="Id_Sub_ArticuloColumn" msprop:Generator_UserColumnName="Id_Sub_Articulo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Desperdicio" msprop:Generator_ColumnVarNameInTable="columnDesperdicio" msprop:Generator_ColumnPropNameInRow="Desperdicio" msprop:Generator_ColumnPropNameInTable="DesperdicioColumn" msprop:Generator_UserColumnName="Desperdicio" type="xs:double" />
+              <xs:element name="Id_Material_Detalle" msprop:Generator_ColumnVarNameInTable="columnId_Material_Detalle" msprop:Generator_ColumnPropNameInRow="Id_Material_Detalle" msprop:Generator_ColumnPropNameInTable="Id_Material_DetalleColumn" msprop:Generator_UserColumnName="Id_Material_Detalle">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalDesperdicio" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalDesperdicio" msprop:Generator_ColumnPropNameInRow="TotalDesperdicio" msprop:Generator_ColumnPropNameInTable="TotalDesperdicioColumn" msprop:Generator_UserColumnName="TotalDesperdicio" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalCompra" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalCompra" msprop:Generator_ColumnPropNameInRow="TotalCompra" msprop:Generator_ColumnPropNameInTable="TotalCompraColumn" msprop:Generator_UserColumnName="TotalCompra" type="xs:double" minOccurs="0" />
+              <xs:element name="Id_descripcion_Detalle" msprop:Generator_ColumnVarNameInTable="columnId_descripcion_Detalle" msprop:Generator_ColumnPropNameInRow="Id_descripcion_Detalle" msprop:Generator_ColumnPropNameInTable="Id_descripcion_DetalleColumn" msprop:Generator_UserColumnName="Id_descripcion_Detalle">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cantidad" msprop:Generator_ColumnVarNameInTable="columnCantidad" msprop:Generator_ColumnPropNameInRow="Cantidad" msprop:Generator_ColumnPropNameInTable="CantidadColumn" msprop:Generator_UserColumnName="Cantidad" type="xs:int" />
+              <xs:element name="Id_Medida" msprop:Generator_ColumnVarNameInTable="columnId_Medida" msprop:Generator_ColumnPropNameInRow="Id_Medida" msprop:Generator_ColumnPropNameInTable="Id_MedidaColumn" msprop:Generator_UserColumnName="Id_Medida">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PiesUnidad" msprop:Generator_ColumnVarNameInTable="columnPiesUnidad" msprop:Generator_ColumnPropNameInRow="PiesUnidad" msprop:Generator_ColumnPropNameInTable="PiesUnidadColumn" msprop:Generator_UserColumnName="PiesUnidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalNecesidad" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalNecesidad" msprop:Generator_ColumnPropNameInRow="TotalNecesidad" msprop:Generator_ColumnPropNameInTable="TotalNecesidadColumn" msprop:Generator_UserColumnName="TotalNecesidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PiesLargo" msprop:Generator_ColumnVarNameInTable="columnPiesLargo" msprop:Generator_ColumnPropNameInRow="PiesLargo" msprop:Generator_ColumnPropNameInTable="PiesLargoColumn" msprop:Generator_UserColumnName="PiesLargo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Anchopulgadas" msprop:Generator_ColumnVarNameInTable="columnAnchopulgadas" msprop:Generator_ColumnPropNameInRow="Anchopulgadas" msprop:Generator_ColumnPropNameInTable="AnchopulgadasColumn" msprop:Generator_UserColumnName="Anchopulgadas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GruesoPulgadas" msprop:Generator_ColumnVarNameInTable="columnGruesoPulgadas" msprop:Generator_ColumnPropNameInRow="GruesoPulgadas" msprop:Generator_ColumnPropNameInTable="GruesoPulgadasColumn" msprop:Generator_UserColumnName="GruesoPulgadas" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
