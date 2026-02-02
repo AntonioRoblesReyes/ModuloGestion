@@ -21,7 +21,7 @@
         Dim objForm As Form
         Dim blnAbierto As Boolean = False
         blnAbierto = False
-        For Each objForm In My.Application.OpenForms
+        For Each objForm In Application.OpenForms
             If (Trim(objForm.Name) = Trim(Myform.Name)) Then
                 blnAbierto = True
             End If
