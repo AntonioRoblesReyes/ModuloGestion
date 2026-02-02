@@ -243,7 +243,7 @@ Public Class FrmHorarios
 
 
     Private Sub FrmHorarios_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
     End Sub
 
     Private Sub HorariosEmpleadosDataGridView_RowsRemoved(sender As System.Object, e As System.Windows.Forms.DataGridViewRowsRemovedEventArgs) Handles HorariosEmpleadosDataGridView.RowsRemoved

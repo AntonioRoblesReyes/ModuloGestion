@@ -152,7 +152,7 @@
 
     Private Sub FrmPagosClientes_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'TODO: esta línea de código carga datos en la tabla 'DsPresupuestos.Presupuesto' Puede moverla o quitarla según sea necesario.
-        AplicarEstiloFormulario(Me)
+     
         Me.PresupuestoTableAdapter.Fill(Me.DsPresupuestos.Presupuesto)
         TotalCobrado()
         CargarValoresMonto()

@@ -12,7 +12,7 @@ Public Class FrmVerFacturas
     End Sub
 
     Private Sub FrmVerFacturas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
 
         Me.FacturaDetalleTableAdapter.Fill(Me.DsFacturas.FacturaDetalle)
         Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
@@ -528,13 +528,14 @@ Public Class FrmVerFacturas
         '--------------------------------------------------
         ' 3) Evaluar combinación exacta y pintar pagos
         '--------------------------------------------------
-        Dim indices As List(Of Integer)
+        'Integer indices = 0
+        'Dim indices As List(Of Integer)
 
-        If ExisteCombinacionExacta(montos, pendiente, indices) Then
-            For Each i In indices
-                dgvPagosCandidatos.Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
-            Next
-        End If
+        'If ExisteCombinacionExacta(montos, pendiente, indices) Then
+        '    For Each i In indices
+        '        dgvPagosCandidatos.Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
+        '    Next
+        'End If
 
     End Sub
 

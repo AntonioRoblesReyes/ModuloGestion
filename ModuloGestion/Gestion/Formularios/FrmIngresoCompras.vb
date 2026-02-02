@@ -33,7 +33,7 @@ Public Class FrmIngresoCompras
     End Sub
 
     Private Sub FrmIngresoCompras_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
 
 
         ' Cargar tabla de tasas de cambio

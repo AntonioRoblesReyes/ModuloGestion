@@ -63,7 +63,7 @@
         Me.Text = "Estado de Presupuestos"
 
 
-        AplicarEstiloFormulario(Me)
+     
         Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
         Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
         Me.ProveedoresTableAdapter.Fill(Me.DsProveedores.Proveedores)

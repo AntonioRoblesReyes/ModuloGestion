@@ -4,7 +4,7 @@
 
 
     Private Sub FrmConsultaPrecios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         'TODO: esta línea de código carga datos en la tabla 'DsCompras.CompraMateriales' Puede moverla o quitarla según sea necesario.
         Me.CompraMaterialesTableAdapter.Fill(Me.DsCompras.CompraMateriales)
         'TODO: esta línea de código carga datos en la tabla 'DsProveedores.Proveedores' Puede moverla o quitarla según sea necesario.

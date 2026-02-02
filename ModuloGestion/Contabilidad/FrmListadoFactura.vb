@@ -25,7 +25,7 @@
 
     Private Sub FrmListadoFactura_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
-        AplicarEstiloFormulario(Me)
+     
         'TODO: esta línea de código carga datos en la tabla 'DsClientes.Clientes' Puede moverla o quitarla según sea necesario.
 
         MdiParent = My.Forms.FrmContabilidad

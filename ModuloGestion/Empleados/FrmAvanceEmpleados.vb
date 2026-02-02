@@ -50,7 +50,7 @@
 
 
     Private Sub FrmAvanceEmpleados_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         'Me.AvanceEmpleadosTableAdapter.Fill(Me.DsEmpleados.AvanceEmpleados)
 
         'Me.NominasTableAdapter.Fill(Me.DsEmpleados.Nominas)

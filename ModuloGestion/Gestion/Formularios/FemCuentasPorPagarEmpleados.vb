@@ -36,7 +36,7 @@
     End Sub
 
     Private Sub FemCuentasPorPagarEmpleados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         'TODO: esta línea de código carga datos en la tabla 'DsContabilidad.Bancos' Puede moverla o quitarla según sea necesario.
 
         Me.CompraMaterialesTableAdapter.FillByPendientePersonal(Me.DsCompras.CompraMateriales)

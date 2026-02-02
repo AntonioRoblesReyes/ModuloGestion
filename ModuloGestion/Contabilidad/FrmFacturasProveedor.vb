@@ -35,7 +35,7 @@
 
     End Sub
     Private Sub FrmFacturasProveedor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+
         ' Establecer el formulario padre y maximizar
         MdiParent = My.Forms.FrmContabilidad
         Me.WindowState = FormWindowState.Maximized

@@ -40,7 +40,7 @@
     End Sub
 
     Private Sub FrmVerClientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         If ClientesDataGridView IsNot Nothing Then
             AplicarEstiloDGV(ClientesDataGridView)
         End If

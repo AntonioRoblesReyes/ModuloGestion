@@ -7,7 +7,7 @@
     End Sub
 
     Private Sub FrmPresupuestosCon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         Me.PresupuestoTableAdapter.Fill(Me.DsPresupuestos.Presupuesto)
 
     End Sub

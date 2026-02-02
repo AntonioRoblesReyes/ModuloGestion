@@ -10,7 +10,7 @@
     End Sub
 
     Private Sub FrmAdministrativas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         Me.TasaTableAdapter.Fill(Me.DsTasa.Tasa)
 
     End Sub

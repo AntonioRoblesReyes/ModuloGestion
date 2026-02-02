@@ -155,7 +155,7 @@ Public Class FrmEmpleados
     End Sub
 
     Private Sub FrmEmpleados_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         'TODO: esta línea de código carga datos en la tabla 'DsEmpleados.NominasDetalle' Puede moverla o quitarla según sea necesario.
         Me.NominasDetalleTableAdapter.Fill(Me.DsEmpleados.NominasDetalle)
 

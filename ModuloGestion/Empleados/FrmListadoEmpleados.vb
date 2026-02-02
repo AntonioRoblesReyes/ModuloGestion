@@ -17,7 +17,7 @@
     End Sub
 
     Private Sub FrmListadoEmpleados_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
     End Sub
 
     Private Sub TextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox.TextChanged

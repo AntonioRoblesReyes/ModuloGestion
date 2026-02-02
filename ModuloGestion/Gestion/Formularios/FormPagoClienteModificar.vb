@@ -91,7 +91,7 @@
 
 
     Private Sub FormPagoClienteModificar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         PagosClientesDetalleTableAdapter.FillByIdPago(DsPagosClientes.PagosClientesDetalle, Label1.Text)
         PagosClientesTableAdapter.FillByIdCobro(DsPagosClientes.PagosClientes, Label1.Text)
     End Sub

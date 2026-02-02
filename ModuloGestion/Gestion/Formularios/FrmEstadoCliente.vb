@@ -179,7 +179,7 @@
     End Sub
 
     Private Sub FrmEstadoCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         ' Si quieres cargar datos al inicio, puedes hacerlo aquí
     End Sub
 

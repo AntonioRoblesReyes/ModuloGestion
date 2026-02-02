@@ -240,7 +240,7 @@ Public Class FrmNomina
     End Sub
 
     Private Sub FrmNomina_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
 
         Try
             ' Cargar datos en las tablas del dataset DsEmpleados

@@ -4,7 +4,7 @@ Imports System.IO
 Public Class FrmPresupuestos
 
     Private Sub FrmPresupuestos_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         TxtOrdenDeCompra.ReadOnly = True
         TxtOrdenDeCompra.BackColor = SystemColors.Window ' Fondo blanco como normal
         TxtOrdenDeCompra.Cursor = Cursors.Hand          ' Cambia el cursor para indicar clic

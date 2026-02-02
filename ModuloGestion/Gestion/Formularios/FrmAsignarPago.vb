@@ -206,7 +206,7 @@ Public Class FrmAsignarPago
 
 
     Private Sub FrmAsignarPago_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         TextBox1.Text = 0
     End Sub
     Private Sub PresupuestoDataGridView_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs)

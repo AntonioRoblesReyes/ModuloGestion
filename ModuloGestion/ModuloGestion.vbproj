@@ -8,11 +8,11 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{414E2EF6-169F-456A-BA3E-18C1F4213A81}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>ModuloGestion.My.MyApplication</StartupObject>
+    <StartupObject>ModuloGestion.FrmInicioSesion</StartupObject>
     <RootNamespace>ModuloGestion</RootNamespace>
     <AssemblyName>ModuloGestion</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

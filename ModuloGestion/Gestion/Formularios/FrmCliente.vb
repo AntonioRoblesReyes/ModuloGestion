@@ -16,7 +16,7 @@ Public Class FrmCliente
 
     Private Sub FrmCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        AplicarEstiloFormulario(Me)
+     
         ProyectosDataGridView.Columns("ver").Width = 50
 
     End Sub

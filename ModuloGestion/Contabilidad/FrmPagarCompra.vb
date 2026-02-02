@@ -23,7 +23,7 @@ Public Class FrmPagarCompra
     ' ==========
 
     Private Sub FrmPagarCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
 
         ' Tasa del día
         CargarTasaMedia()

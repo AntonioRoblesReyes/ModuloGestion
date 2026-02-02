@@ -253,7 +253,7 @@
     End Sub
 
     Private Sub FrmArticulo_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         Try
             Me.PresupuestoDetalleTableAdapter.FillByIdArticulo(Me.DsPresupuestoDetalle.PresupuestoDetalle, TxtIdArticulo.Text)
             Me.MedidasCompraTableAdapter.Fill(Me.DsMedidasCompra.MedidasCompra)

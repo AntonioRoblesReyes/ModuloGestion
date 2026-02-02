@@ -62,7 +62,7 @@ Public Class FrmCobros
     End Sub
 
     Private Sub FrmCobros_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+
         Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
         'TODO: esta línea de código carga datos en la tabla 'DsPagosClientesDetalle.PagosClientesDetalle' Puede moverla o quitarla según sea necesario.
         Me.PagosClientesDetalleTableAdapter.Fill(Me.DsPagosClientesDetalle.PagosClientesDetalle)
@@ -107,7 +107,7 @@ Public Class FrmCobros
             MsgBox("el registro no cuadra")
         End If
     End Sub
-    Private Sub cmbAño_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAño.SelectedIndexChanged
+    Private Sub CmbAño_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAño.SelectedIndexChanged
         AplicarFiltroSoloAño()
         LlenarComboMesPorAño()
     End Sub

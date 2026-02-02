@@ -473,7 +473,7 @@ Public Class EstudioPrecios
     End Sub
 
     Private Sub EstudioPrecios_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+     
         Me.TrabajoTallerTextBox.Text = Me.DsArticulos.Articulos(Me.ArticulosBindingSource.Position).HorasTrabajoTaller
         Me.CostoMontajeTextBox.Text = Me.DsArticulos.Articulos(Me.ArticulosBindingSource.Position).Montaje
     End Sub
