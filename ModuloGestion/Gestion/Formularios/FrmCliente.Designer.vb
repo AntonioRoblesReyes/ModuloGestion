@@ -292,6 +292,9 @@ Partial Class FrmCliente
         Me.GrbClientes.Controls.Add(Nombre_ClienteLabel)
         Me.GrbClientes.Controls.Add(Id_FiscalLabel)
         Me.GrbClientes.Controls.Add(Me.TipoComprobanteTextBox)
+        Me.GrbClientes.BackColor = System.Drawing.Color.White
+        Me.GrbClientes.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GrbClientes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.GrbClientes.Location = New System.Drawing.Point(13, 26)
         Me.GrbClientes.Margin = New System.Windows.Forms.Padding(4)
         Me.GrbClientes.Name = "GrbClientes"
@@ -369,13 +372,17 @@ Partial Class FrmCliente
         '
         'Button1
         '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(120, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(455, 244)
         Me.Button1.Margin = New System.Windows.Forms.Padding(4)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(99, 28)
         Me.Button1.TabIndex = 22
         Me.Button1.Text = "Ver"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'EMail__ClienteTextBox
         '
@@ -437,6 +444,8 @@ Partial Class FrmCliente
         Me.ProyectosDataGridView.AllowUserToAddRows = False
         Me.ProyectosDataGridView.AllowUserToDeleteRows = False
         Me.ProyectosDataGridView.AutoGenerateColumns = False
+        Me.ProyectosDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.ProyectosDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ProyectosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ProyectosDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.Ver, Me.Estado})
         Me.ProyectosDataGridView.DataSource = Me.ProyectosBindingSource
@@ -509,6 +518,8 @@ Partial Class FrmCliente
         Me.DvgPagoCliente.AllowUserToAddRows = False
         Me.DvgPagoCliente.AllowUserToDeleteRows = False
         Me.DvgPagoCliente.AutoGenerateColumns = False
+        Me.DvgPagoCliente.BackgroundColor = System.Drawing.Color.White
+        Me.DvgPagoCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.DvgPagoCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DvgPagoCliente.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn5, Me.Divisa, Me.Valor})
         Me.DvgPagoCliente.DataSource = Me.PagosClientesBindingSource
@@ -587,6 +598,8 @@ Partial Class FrmCliente
         Me.PagosClientesDetalleDataGridView.AllowUserToAddRows = False
         Me.PagosClientesDetalleDataGridView.AllowUserToDeleteRows = False
         Me.PagosClientesDetalleDataGridView.AutoGenerateColumns = False
+        Me.PagosClientesDetalleDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.PagosClientesDetalleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PagosClientesDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.PagosClientesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPrespuestoPd, Me.TotalAsignado, Me.Divisa1, Me.Fecha})
         Me.PagosClientesDetalleDataGridView.DataSource = Me.PagosClientesDetalleBindingSource
@@ -671,6 +684,8 @@ Partial Class FrmCliente
         Me.PresupuestoDataGridView.AllowUserToAddRows = False
         Me.PresupuestoDataGridView.AllowUserToDeleteRows = False
         Me.PresupuestoDataGridView.AutoGenerateColumns = False
+        Me.PresupuestoDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.PresupuestoDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PresupuestoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.PresupuestoDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPresupuesto, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn11, Me.Moneda, Me.TotalUS, Me.PagadoUS, Me.PendienteUS, Me.TotalRd, Me.PagadoRd, Me.PendienteRD, Me.Total, Me.Pagado, Me.Pendiente, Me.Ejecutado, Me.PagadoP, Me.Ir, Me.EstadoP})
         Me.PresupuestoDataGridView.DataSource = Me.PresupuestoBindingSource
@@ -1084,43 +1099,59 @@ Partial Class FrmCliente
         '
         'BtnEstadoCliente
         '
+        Me.BtnEstadoCliente.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.BtnEstadoCliente.FlatAppearance.BorderSize = 0
+        Me.BtnEstadoCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnEstadoCliente.ForeColor = System.Drawing.Color.White
         Me.BtnEstadoCliente.Location = New System.Drawing.Point(13, 315)
         Me.BtnEstadoCliente.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnEstadoCliente.Name = "BtnEstadoCliente"
         Me.BtnEstadoCliente.Size = New System.Drawing.Size(124, 28)
         Me.BtnEstadoCliente.TabIndex = 72
         Me.BtnEstadoCliente.Text = "EstadoCliente"
-        Me.BtnEstadoCliente.UseVisualStyleBackColor = True
+        Me.BtnEstadoCliente.UseVisualStyleBackColor = False
         '
         'BtnPagos
         '
+        Me.BtnPagos.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.BtnPagos.FlatAppearance.BorderSize = 0
+        Me.BtnPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnPagos.ForeColor = System.Drawing.Color.White
         Me.BtnPagos.Location = New System.Drawing.Point(145, 315)
         Me.BtnPagos.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnPagos.Name = "BtnPagos"
         Me.BtnPagos.Size = New System.Drawing.Size(124, 28)
         Me.BtnPagos.TabIndex = 73
         Me.BtnPagos.Text = "Pagos"
-        Me.BtnPagos.UseVisualStyleBackColor = True
+        Me.BtnPagos.UseVisualStyleBackColor = False
         '
         'CmdNuevoProyecto
         '
+        Me.CmdNuevoProyecto.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.CmdNuevoProyecto.FlatAppearance.BorderSize = 0
+        Me.CmdNuevoProyecto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CmdNuevoProyecto.ForeColor = System.Drawing.Color.White
         Me.CmdNuevoProyecto.Location = New System.Drawing.Point(277, 315)
         Me.CmdNuevoProyecto.Margin = New System.Windows.Forms.Padding(4)
         Me.CmdNuevoProyecto.Name = "CmdNuevoProyecto"
         Me.CmdNuevoProyecto.Size = New System.Drawing.Size(124, 28)
         Me.CmdNuevoProyecto.TabIndex = 74
         Me.CmdNuevoProyecto.Text = "Nuevo Proyecto"
-        Me.CmdNuevoProyecto.UseVisualStyleBackColor = True
+        Me.CmdNuevoProyecto.UseVisualStyleBackColor = False
         '
         'BtnGuardarCliente
         '
+        Me.BtnGuardarCliente.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.BtnGuardarCliente.FlatAppearance.BorderSize = 0
+        Me.BtnGuardarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnGuardarCliente.ForeColor = System.Drawing.Color.White
         Me.BtnGuardarCliente.Location = New System.Drawing.Point(409, 315)
         Me.BtnGuardarCliente.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnGuardarCliente.Name = "BtnGuardarCliente"
         Me.BtnGuardarCliente.Size = New System.Drawing.Size(124, 28)
         Me.BtnGuardarCliente.TabIndex = 75
         Me.BtnGuardarCliente.Text = "Guardar "
-        Me.BtnGuardarCliente.UseVisualStyleBackColor = True
+        Me.BtnGuardarCliente.UseVisualStyleBackColor = False
         '
         'LabelTotalUSAsignado
         '
@@ -1147,7 +1178,10 @@ Partial Class FrmCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(1587, 699)
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.LabelTotalUSAsignado)
         Me.Controls.Add(Me.BtnGuardarCliente)
