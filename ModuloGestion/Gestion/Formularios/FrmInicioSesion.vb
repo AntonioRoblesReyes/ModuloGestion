@@ -8,7 +8,7 @@ Public Class FrmInicioSesion
     Private Const AutoLoginHabilitado As Boolean = True   ' Ponlo en False para desactivar
     Private Const AutoLoginRellenaPassword As Boolean = True ' True: también llena la contraseña (no recomendado)
     Private ReadOnly EquiposPermitidos As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase) From {
-        "PORTATIL-DELL",
+        "PCShernia",
         "TABLET"
     }
 

@@ -16,11 +16,7 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim presupuesto As String = Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).Id_Presupuesto
-        'My.Forms.FrmIngresoCompras.CompraMaterialesDetalleDataGridView.CurrentRow.Cells(9).Value = presupuesto
-        My.Forms.FrmIngresoCompras.ValidarDetalle()
-    End Sub
+
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim presupuesto As String = Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).Id_Presupuesto

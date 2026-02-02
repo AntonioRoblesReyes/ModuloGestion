@@ -243,9 +243,7 @@
 
         My.Forms.FrmIngresoCompras.Close()
         My.Forms.FrmIngresoCompras.Label1.Text = Label5.Text
-        'My.Forms.FrmIngresoCompras.LblPresupuesto.Text = Me.DsCompras.CompraMateriales(Me.CompraMaterialesBindingSource.Position).Id_Presupuesto
-        'My.Forms.FrmIngresoCompras.LblProyecto.Text = Me.DsCompras.CompraMateriales(Me.CompraMaterialesBindingSource.Position).Id_proyecto_Presupuestos
-        My.Forms.FrmIngresoCompras.ModificarCompra()
+
     End Sub '
 
     Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click

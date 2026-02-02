@@ -129,7 +129,7 @@
             My.Forms.FrmFacturaMontajeEditar.LblPresupuesto.Text = PresupuestoDataGridView.CurrentRow.Cells(2).Value
             My.Forms.FrmFacturaMontajeEditar.LblProyecto.Text = PresupuestoDataGridView.CurrentRow.Cells(1).Value
             My.Forms.FrmFacturaMontajeEditar.EmpresasContratadasMontajeTableAdapter.Fill(My.Forms.FrmFacturaMontajeEditar.DsPagosMontaje.EmpresasContratadasMontaje)
-            My.Forms.FrmFacturaMontajeEditar.NuevaFactura()
+            My.Forms.FrmFacturaMontajeEditar.PrepararNuevaFactura()
         Catch ex As Exception
             MsgBox("No hay Presupuesto")
         End Try

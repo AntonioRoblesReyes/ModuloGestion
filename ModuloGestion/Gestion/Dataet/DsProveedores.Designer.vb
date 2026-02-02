@@ -702,7 +702,7 @@ Partial Public Class DsProveedores
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnId_Proveedor}, true))
             Me.columnId_Proveedor.AllowDBNull = false
             Me.columnId_Proveedor.Unique = true
-            Me.columnId_Proveedor.MaxLength = 30
+            Me.columnId_Proveedor.MaxLength = 50
             Me.columnRazonSocial.MaxLength = 50
             Me.columnDireccion.MaxLength = 100
             Me.columnCiudad.MaxLength = 50
@@ -1014,7 +1014,7 @@ Partial Public Class DsProveedores
             Me.columnIdCuenta.AllowDBNull = false
             Me.columnIdCuenta.MaxLength = 8
             Me.columnId_Proveedor.AllowDBNull = false
-            Me.columnId_Proveedor.MaxLength = 30
+            Me.columnId_Proveedor.MaxLength = 50
             Me.columnDescripcionSubCuenta.AllowDBNull = false
             Me.columnDescripcionSubCuenta.MaxLength = 50
         End Sub
@@ -1452,7 +1452,7 @@ Partial Public Class DsProveedores
             Me.columnIdFacturaProveedor.AllowDBNull = false
             Me.columnIdFacturaProveedor.MaxLength = 50
             Me.columnId_Proveedor.AllowDBNull = false
-            Me.columnId_Proveedor.MaxLength = 30
+            Me.columnId_Proveedor.MaxLength = 50
             Me.columnSubtotal.AllowDBNull = false
             Me.columnValorImpuesto.AllowDBNull = false
             Me.columnImpuesto.AllowDBNull = false

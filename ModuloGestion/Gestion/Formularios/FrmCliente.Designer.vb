@@ -141,7 +141,6 @@ Partial Class FrmCliente
         Me.BtnGuardarCliente = New System.Windows.Forms.Button()
         Me.LabelTotalUSAsignado = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         EMail__ClienteLabel = New System.Windows.Forms.Label()
         NumeroTellfono_ClienteLabel = New System.Windows.Forms.Label()
         Pais_ClienteLabel = New System.Windows.Forms.Label()
@@ -1144,21 +1143,11 @@ Partial Class FrmCliente
         Me.Label3.TabIndex = 77
         Me.Label3.Text = "Total Asignado RD"
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(1057, 291)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 78
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'FrmCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1587, 699)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.LabelTotalUSAsignado)
         Me.Controls.Add(Me.BtnGuardarCliente)
@@ -1307,5 +1296,4 @@ Partial Class FrmCliente
     Friend WithEvents EstadoP As DataGridViewButtonColumn
     Friend WithEvents LabelTotalUSAsignado As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Button2 As Button
 End Class

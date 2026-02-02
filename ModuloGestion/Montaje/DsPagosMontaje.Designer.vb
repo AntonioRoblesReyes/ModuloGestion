@@ -3759,9 +3759,21 @@ Partial Public Class DsPagosMontaje
         
         Private columnPagado As Global.System.Data.DataColumn
         
-        Private columnPendiente As Global.System.Data.DataColumn
-        
         Private columnImpuesto As Global.System.Data.DataColumn
+        
+        Private columnRetencionIRS As Global.System.Data.DataColumn
+        
+        Private columnTotalIrs As Global.System.Data.DataColumn
+        
+        Private columnTotalConIrs As Global.System.Data.DataColumn
+        
+        Private columnPendienteInstalador As Global.System.Data.DataColumn
+        
+        Private columnPendientefactura As Global.System.Data.DataColumn
+        
+        Private columnNCF As Global.System.Data.DataColumn
+        
+        Private columnSubTotalIrs As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
@@ -3880,17 +3892,65 @@ Partial Public Class DsPagosMontaje
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PendienteColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ImpuestoColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnPendiente
+                Return Me.columnImpuesto
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ImpuestoColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property RetencionIRSColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnImpuesto
+                Return Me.columnRetencionIRS
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property TotalIrsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalIrs
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property TotalConIrsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalConIrs
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PendienteInstaladorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPendienteInstalador
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PendientefacturaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPendientefactura
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property NCFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNCF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property SubTotalIrsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubTotalIrs
             End Get
         End Property
         
@@ -3931,9 +3991,27 @@ Partial Public Class DsPagosMontaje
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddFacturaMontajeRow(ByVal IdFacturaMontaje As String, ByVal parentEmpresasContratadasMontajeRowByFK_PagoMontaje_EmpresasContratadasMontaje1 As EmpresasContratadasMontajeRow, ByVal FechaPAgo As Date, ByVal Id_Proyecto As String, ByVal Id_Presupuesto As String, ByVal SubTotal As Decimal, ByVal Itebis As Decimal, ByVal Total As Decimal, ByVal Observaciones As String, ByVal Pagado As Decimal, ByVal Pendiente As Decimal, ByVal Impuesto As Decimal) As FacturaMontajeRow
+        Public Overloads Function AddFacturaMontajeRow( _
+                    ByVal IdFacturaMontaje As String,  _
+                    ByVal parentEmpresasContratadasMontajeRowByFK_PagoMontaje_EmpresasContratadasMontaje1 As EmpresasContratadasMontajeRow,  _
+                    ByVal FechaPAgo As Date,  _
+                    ByVal Id_Proyecto As String,  _
+                    ByVal Id_Presupuesto As String,  _
+                    ByVal SubTotal As Decimal,  _
+                    ByVal Itebis As Decimal,  _
+                    ByVal Total As Decimal,  _
+                    ByVal Observaciones As String,  _
+                    ByVal Pagado As Decimal,  _
+                    ByVal Impuesto As Decimal,  _
+                    ByVal RetencionIRS As Decimal,  _
+                    ByVal TotalIrs As Decimal,  _
+                    ByVal TotalConIrs As Decimal,  _
+                    ByVal PendienteInstalador As Decimal,  _
+                    ByVal Pendientefactura As Decimal,  _
+                    ByVal NCF As String,  _
+                    ByVal SubTotalIrs As Decimal) As FacturaMontajeRow
             Dim rowFacturaMontajeRow As FacturaMontajeRow = CType(Me.NewRow,FacturaMontajeRow)
-            Dim columnValuesArray() As Object = New Object() {IdFacturaMontaje, Nothing, FechaPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observaciones, Pagado, Pendiente, Impuesto}
+            Dim columnValuesArray() As Object = New Object() {IdFacturaMontaje, Nothing, FechaPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observaciones, Pagado, Impuesto, RetencionIRS, TotalIrs, TotalConIrs, PendienteInstalador, Pendientefactura, NCF, SubTotalIrs}
             If (Not (parentEmpresasContratadasMontajeRowByFK_PagoMontaje_EmpresasContratadasMontaje1) Is Nothing) Then
                 columnValuesArray(1) = parentEmpresasContratadasMontajeRowByFK_PagoMontaje_EmpresasContratadasMontaje1(0)
             End If
@@ -3975,8 +4053,14 @@ Partial Public Class DsPagosMontaje
             Me.columnTotal = MyBase.Columns("Total")
             Me.columnObservaciones = MyBase.Columns("Observaciones")
             Me.columnPagado = MyBase.Columns("Pagado")
-            Me.columnPendiente = MyBase.Columns("Pendiente")
             Me.columnImpuesto = MyBase.Columns("Impuesto")
+            Me.columnRetencionIRS = MyBase.Columns("RetencionIRS")
+            Me.columnTotalIrs = MyBase.Columns("TotalIrs")
+            Me.columnTotalConIrs = MyBase.Columns("TotalConIrs")
+            Me.columnPendienteInstalador = MyBase.Columns("PendienteInstalador")
+            Me.columnPendientefactura = MyBase.Columns("Pendientefactura")
+            Me.columnNCF = MyBase.Columns("NCF")
+            Me.columnSubTotalIrs = MyBase.Columns("SubTotalIrs")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4002,10 +4086,22 @@ Partial Public Class DsPagosMontaje
             MyBase.Columns.Add(Me.columnObservaciones)
             Me.columnPagado = New Global.System.Data.DataColumn("Pagado", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPagado)
-            Me.columnPendiente = New Global.System.Data.DataColumn("Pendiente", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPendiente)
             Me.columnImpuesto = New Global.System.Data.DataColumn("Impuesto", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnImpuesto)
+            Me.columnRetencionIRS = New Global.System.Data.DataColumn("RetencionIRS", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRetencionIRS)
+            Me.columnTotalIrs = New Global.System.Data.DataColumn("TotalIrs", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalIrs)
+            Me.columnTotalConIrs = New Global.System.Data.DataColumn("TotalConIrs", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalConIrs)
+            Me.columnPendienteInstalador = New Global.System.Data.DataColumn("PendienteInstalador", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPendienteInstalador)
+            Me.columnPendientefactura = New Global.System.Data.DataColumn("Pendientefactura", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPendientefactura)
+            Me.columnNCF = New Global.System.Data.DataColumn("NCF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNCF)
+            Me.columnSubTotalIrs = New Global.System.Data.DataColumn("SubTotalIrs", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubTotalIrs)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIdFacturaMontaje}, true))
             Me.columnIdFacturaMontaje.AllowDBNull = false
             Me.columnIdFacturaMontaje.Unique = true
@@ -4023,8 +4119,8 @@ Partial Public Class DsPagosMontaje
             Me.columnObservaciones.AllowDBNull = false
             Me.columnObservaciones.MaxLength = 255
             Me.columnPagado.AllowDBNull = false
-            Me.columnPendiente.AllowDBNull = false
-            Me.columnImpuesto.AllowDBNull = false
+            Me.columnPendienteInstalador.AllowDBNull = false
+            Me.columnNCF.MaxLength = 40
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4170,8 +4266,6 @@ Partial Public Class DsPagosMontaje
         
         Private columnIdArticulo As Global.System.Data.DataColumn
         
-        Private columnDescrpcion As Global.System.Data.DataColumn
-        
         Private columnCantidad As Global.System.Data.DataColumn
         
         Private columnPrecio As Global.System.Data.DataColumn
@@ -4179,6 +4273,12 @@ Partial Public Class DsPagosMontaje
         Private columnTotalPartida As Global.System.Data.DataColumn
         
         Private columnId_Presupuesto As Global.System.Data.DataColumn
+        
+        Private columnDescripcion As Global.System.Data.DataColumn
+        
+        Private columnPrecioConIrs As Global.System.Data.DataColumn
+        
+        Private columnTotalConIrs As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
@@ -4249,14 +4349,6 @@ Partial Public Class DsPagosMontaje
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DescrpcionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDescrpcion
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property CantidadColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCantidad
@@ -4284,6 +4376,30 @@ Partial Public Class DsPagosMontaje
         Public ReadOnly Property Id_PresupuestoColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnId_Presupuesto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property DescripcionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDescripcion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PrecioConIrsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPrecioConIrs
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property TotalConIrsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalConIrs
             End Get
         End Property
         
@@ -4324,9 +4440,9 @@ Partial Public Class DsPagosMontaje
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddFacturaMontajeDetalleRow(ByVal IdFacturaMontajeDetalle As String, ByVal parentFacturaMontajeRowByFK_PagoMontajeDetalle_PagoMontaje As FacturaMontajeRow, ByVal IdDetalle_Presupuesto As String, ByVal IdArticulo As String, ByVal Descrpcion As String, ByVal Cantidad As Decimal, ByVal Precio As Decimal, ByVal TotalPartida As Decimal, ByVal Id_Presupuesto As String) As FacturaMontajeDetalleRow
+        Public Overloads Function AddFacturaMontajeDetalleRow(ByVal IdFacturaMontajeDetalle As String, ByVal parentFacturaMontajeRowByFK_PagoMontajeDetalle_PagoMontaje As FacturaMontajeRow, ByVal IdDetalle_Presupuesto As String, ByVal IdArticulo As String, ByVal Cantidad As Decimal, ByVal Precio As Decimal, ByVal TotalPartida As Decimal, ByVal Id_Presupuesto As String, ByVal Descripcion As String, ByVal PrecioConIrs As Decimal, ByVal TotalConIrs As Decimal) As FacturaMontajeDetalleRow
             Dim rowFacturaMontajeDetalleRow As FacturaMontajeDetalleRow = CType(Me.NewRow,FacturaMontajeDetalleRow)
-            Dim columnValuesArray() As Object = New Object() {IdFacturaMontajeDetalle, Nothing, IdDetalle_Presupuesto, IdArticulo, Descrpcion, Cantidad, Precio, TotalPartida, Id_Presupuesto}
+            Dim columnValuesArray() As Object = New Object() {IdFacturaMontajeDetalle, Nothing, IdDetalle_Presupuesto, IdArticulo, Cantidad, Precio, TotalPartida, Id_Presupuesto, Descripcion, PrecioConIrs, TotalConIrs}
             If (Not (parentFacturaMontajeRowByFK_PagoMontajeDetalle_PagoMontaje) Is Nothing) Then
                 columnValuesArray(1) = parentFacturaMontajeRowByFK_PagoMontajeDetalle_PagoMontaje(0)
             End If
@@ -4362,11 +4478,13 @@ Partial Public Class DsPagosMontaje
             Me.columnIdFacturaMontaje = MyBase.Columns("IdFacturaMontaje")
             Me.columnIdDetalle_Presupuesto = MyBase.Columns("IdDetalle_Presupuesto")
             Me.columnIdArticulo = MyBase.Columns("IdArticulo")
-            Me.columnDescrpcion = MyBase.Columns("Descrpcion")
             Me.columnCantidad = MyBase.Columns("Cantidad")
             Me.columnPrecio = MyBase.Columns("Precio")
             Me.columnTotalPartida = MyBase.Columns("TotalPartida")
             Me.columnId_Presupuesto = MyBase.Columns("Id_Presupuesto")
+            Me.columnDescripcion = MyBase.Columns("Descripcion")
+            Me.columnPrecioConIrs = MyBase.Columns("PrecioConIrs")
+            Me.columnTotalConIrs = MyBase.Columns("TotalConIrs")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4380,8 +4498,6 @@ Partial Public Class DsPagosMontaje
             MyBase.Columns.Add(Me.columnIdDetalle_Presupuesto)
             Me.columnIdArticulo = New Global.System.Data.DataColumn("IdArticulo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnIdArticulo)
-            Me.columnDescrpcion = New Global.System.Data.DataColumn("Descrpcion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDescrpcion)
             Me.columnCantidad = New Global.System.Data.DataColumn("Cantidad", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCantidad)
             Me.columnPrecio = New Global.System.Data.DataColumn("Precio", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -4390,6 +4506,12 @@ Partial Public Class DsPagosMontaje
             MyBase.Columns.Add(Me.columnTotalPartida)
             Me.columnId_Presupuesto = New Global.System.Data.DataColumn("Id_Presupuesto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnId_Presupuesto)
+            Me.columnDescripcion = New Global.System.Data.DataColumn("Descripcion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDescripcion)
+            Me.columnPrecioConIrs = New Global.System.Data.DataColumn("PrecioConIrs", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPrecioConIrs)
+            Me.columnTotalConIrs = New Global.System.Data.DataColumn("TotalConIrs", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalConIrs)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIdFacturaMontajeDetalle}, true))
             Me.columnIdFacturaMontajeDetalle.AllowDBNull = false
             Me.columnIdFacturaMontajeDetalle.Unique = true
@@ -4400,13 +4522,15 @@ Partial Public Class DsPagosMontaje
             Me.columnIdDetalle_Presupuesto.MaxLength = 50
             Me.columnIdArticulo.AllowDBNull = false
             Me.columnIdArticulo.MaxLength = 35
-            Me.columnDescrpcion.AllowDBNull = false
-            Me.columnDescrpcion.MaxLength = 255
             Me.columnCantidad.AllowDBNull = false
             Me.columnPrecio.AllowDBNull = false
             Me.columnTotalPartida.AllowDBNull = false
             Me.columnId_Presupuesto.AllowDBNull = false
             Me.columnId_Presupuesto.MaxLength = 15
+            Me.columnDescripcion.AllowDBNull = false
+            Me.columnDescripcion.MaxLength = 500
+            Me.columnPrecioConIrs.ReadOnly = true
+            Me.columnTotalConIrs.ReadOnly = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7417,23 +7541,118 @@ Partial Public Class DsPagosMontaje
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Pendiente() As Decimal
+        Public Property Impuesto() As Decimal
             Get
-                Return CType(Me(Me.tableFacturaMontaje.PendienteColumn),Decimal)
+                Try 
+                    Return CType(Me(Me.tableFacturaMontaje.ImpuestoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Impuesto' de la tabla 'FacturaMontaje' es DBNull.", e)
+                End Try
             End Get
             Set
-                Me(Me.tableFacturaMontaje.PendienteColumn) = value
+                Me(Me.tableFacturaMontaje.ImpuestoColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Impuesto() As Decimal
+        Public Property RetencionIRS() As Decimal
             Get
-                Return CType(Me(Me.tableFacturaMontaje.ImpuestoColumn),Decimal)
+                Try 
+                    Return CType(Me(Me.tableFacturaMontaje.RetencionIRSColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'RetencionIRS' de la tabla 'FacturaMontaje' es DBNull.", e)
+                End Try
             End Get
             Set
-                Me(Me.tableFacturaMontaje.ImpuestoColumn) = value
+                Me(Me.tableFacturaMontaje.RetencionIRSColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property TotalIrs() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturaMontaje.TotalIrsColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'TotalIrs' de la tabla 'FacturaMontaje' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturaMontaje.TotalIrsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property TotalConIrs() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturaMontaje.TotalConIrsColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'TotalConIrs' de la tabla 'FacturaMontaje' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturaMontaje.TotalConIrsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property PendienteInstalador() As Decimal
+            Get
+                Return CType(Me(Me.tableFacturaMontaje.PendienteInstaladorColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tableFacturaMontaje.PendienteInstaladorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Pendientefactura() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturaMontaje.PendientefacturaColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Pendientefactura' de la tabla 'FacturaMontaje' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturaMontaje.PendientefacturaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property NCF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturaMontaje.NCFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'NCF' de la tabla 'FacturaMontaje' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturaMontaje.NCFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property SubTotalIrs() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturaMontaje.SubTotalIrsColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'SubTotalIrs' de la tabla 'FacturaMontaje' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturaMontaje.SubTotalIrsColumn) = value
             End Set
         End Property
         
@@ -7447,6 +7666,90 @@ Partial Public Class DsPagosMontaje
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_PagoMontaje_EmpresasContratadasMontaje1"))
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsImpuestoNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontaje.ImpuestoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetImpuestoNull()
+            Me(Me.tableFacturaMontaje.ImpuestoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsRetencionIRSNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontaje.RetencionIRSColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetRetencionIRSNull()
+            Me(Me.tableFacturaMontaje.RetencionIRSColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsTotalIrsNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontaje.TotalIrsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetTotalIrsNull()
+            Me(Me.tableFacturaMontaje.TotalIrsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsTotalConIrsNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontaje.TotalConIrsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetTotalConIrsNull()
+            Me(Me.tableFacturaMontaje.TotalConIrsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsPendientefacturaNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontaje.PendientefacturaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetPendientefacturaNull()
+            Me(Me.tableFacturaMontaje.PendientefacturaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsNCFNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontaje.NCFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetNCFNull()
+            Me(Me.tableFacturaMontaje.NCFColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsSubTotalIrsNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontaje.SubTotalIrsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetSubTotalIrsNull()
+            Me(Me.tableFacturaMontaje.SubTotalIrsColumn) = Global.System.Convert.DBNull
+        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
@@ -7520,17 +7823,6 @@ Partial Public Class DsPagosMontaje
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Descrpcion() As String
-            Get
-                Return CType(Me(Me.tableFacturaMontajeDetalle.DescrpcionColumn),String)
-            End Get
-            Set
-                Me(Me.tableFacturaMontajeDetalle.DescrpcionColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property Cantidad() As Decimal
             Get
                 Return CType(Me(Me.tableFacturaMontajeDetalle.CantidadColumn),Decimal)
@@ -7575,6 +7867,49 @@ Partial Public Class DsPagosMontaje
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Descripcion() As String
+            Get
+                Return CType(Me(Me.tableFacturaMontajeDetalle.DescripcionColumn),String)
+            End Get
+            Set
+                Me(Me.tableFacturaMontajeDetalle.DescripcionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property PrecioConIrs() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturaMontajeDetalle.PrecioConIrsColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'PrecioConIrs' de la tabla 'FacturaMontajeDetalle' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturaMontajeDetalle.PrecioConIrsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property TotalConIrs() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturaMontajeDetalle.TotalConIrsColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'TotalConIrs' de la tabla 'FacturaMontajeDetalle' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturaMontajeDetalle.TotalConIrsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property FacturaMontajeRow() As FacturaMontajeRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_PagoMontajeDetalle_PagoMontaje")),FacturaMontajeRow)
@@ -7583,6 +7918,30 @@ Partial Public Class DsPagosMontaje
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_PagoMontajeDetalle_PagoMontaje"))
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsPrecioConIrsNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontajeDetalle.PrecioConIrsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetPrecioConIrsNull()
+            Me(Me.tableFacturaMontajeDetalle.PrecioConIrsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsTotalConIrsNull() As Boolean
+            Return Me.IsNull(Me.tableFacturaMontajeDetalle.TotalConIrsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetTotalConIrsNull()
+            Me(Me.tableFacturaMontajeDetalle.TotalConIrsColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -8779,7 +9138,7 @@ Namespace DsPagosMontajeTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(10) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(11) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT IdPagoMontaje, IdEmpresaMontaje, Fecha, valor, Asignado, PendienteAsignar,"& _ 
@@ -8826,57 +9185,63 @@ Namespace DsPagosMontajeTableAdapters
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdPagoMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPagoMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT Asignado, Comprobante, Fecha, FormaDePago, IdEmpresaMontaje, IdPagoMontaje"& _ 
-                ", Id_Empresa, Moneda, Observaciones, PendienteAsignar, valor FROM PagoMontaje WH"& _ 
-                "ERE (IdEmpresaMontaje = @IdEmpresaMontaje) ORDER BY Fecha DESC, IdPagoMontaje DE"& _ 
-                "SC"
+            Me._commandCollection(5).CommandText = "SELECT IdPagoMontaje, IdEmpresaMontaje, Fecha, valor, Asignado, PendienteAsignar,"& _ 
+                " Id_Empresa, FormaDePago, Observaciones, Moneda, Comprobante"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   PagoMontaje"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (PendienteAsignar > 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Fecha DESC, IdPagoMontaje DESC"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(6) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(6).Connection = Me.Connection
             Me._commandCollection(6).CommandText = "SELECT Asignado, Comprobante, Fecha, FormaDePago, IdEmpresaMontaje, IdPagoMontaje"& _ 
                 ", Id_Empresa, Moneda, Observaciones, PendienteAsignar, valor FROM PagoMontaje WH"& _ 
-                "ERE (IdPagoMontaje LIKE @Filtro) OR (IdEmpresaMontaje LIKE @Filtro) ORDER BY Fec"& _ 
-                "ha DESC"
+                "ERE (IdEmpresaMontaje = @IdEmpresaMontaje) ORDER BY Fecha DESC, IdPagoMontaje DE"& _ 
+                "SC"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Filtro", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPagoMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(7) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(7).Connection = Me.Connection
             Me._commandCollection(7).CommandText = "SELECT Asignado, Comprobante, Fecha, FormaDePago, IdEmpresaMontaje, IdPagoMontaje"& _ 
                 ", Id_Empresa, Moneda, Observaciones, PendienteAsignar, valor FROM PagoMontaje WH"& _ 
-                "ERE (IdPagoMontaje = @IdPago) ORDER BY IdPagoMontaje"
+                "ERE (IdPagoMontaje LIKE @Filtro) OR (IdEmpresaMontaje LIKE @Filtro) ORDER BY Fec"& _ 
+                "ha DESC"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdPago", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPagoMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Filtro", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPagoMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "INSERT INTO PagoMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IdPagoMontaje, IdEmpresaMontaj"& _ 
+            Me._commandCollection(8).CommandText = "SELECT Asignado, Comprobante, Fecha, FormaDePago, IdEmpresaMontaje, IdPagoMontaje"& _ 
+                ", Id_Empresa, Moneda, Observaciones, PendienteAsignar, valor FROM PagoMontaje WH"& _ 
+                "ERE (IdPagoMontaje = @IdPago) ORDER BY IdPagoMontaje"
+            Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdPago", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPagoMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(9).Connection = Me.Connection
+            Me._commandCollection(9).CommandText = "INSERT INTO PagoMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IdPagoMontaje, IdEmpresaMontaj"& _ 
                 "e, Fecha, valor, Asignado, PendienteAsignar, Id_Empresa, FormaDePago, Observacio"& _ 
                 "nes, Moneda)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@IdPagoMontaje,@IdEmpresaMontaje,@Fecha,@valor,@Asi"& _ 
                 "gnado,@PendienteAsignar,@Id_Empresa,@FormaDePago,@Observaciones,@Moneda)"
-            Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdPagoMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPagoMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Fecha", Global.System.Data.SqlDbType.[Date], 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Fecha", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@valor", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "valor", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Asignado", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Asignado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PendienteAsignar", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteAsignar", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Empresa", Global.System.Data.SqlDbType.NVarChar, 5, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Empresa", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormaDePago", Global.System.Data.SqlDbType.NVarChar, 100, Global.System.Data.ParameterDirection.Input, 0, 0, "FormaDePago", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Observaciones", Global.System.Data.SqlDbType.VarChar, 2147483647, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Moneda", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Moneda", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(9) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(9).Connection = Me.Connection
-            Me._commandCollection(9).CommandText = "UPDATE       PagoMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                FormaDePAgo = @FormaDePAgo, Observac"& _ 
-                "iones = @Observaciones, Pagado = 1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IdPago = @IdPago)"
             Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormaDePAgo", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "FormaDePAgo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Observaciones", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdPago", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPago", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdPagoMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPagoMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Fecha", Global.System.Data.SqlDbType.[Date], 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Fecha", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@valor", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "valor", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Asignado", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Asignado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PendienteAsignar", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteAsignar", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Empresa", Global.System.Data.SqlDbType.NVarChar, 5, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Empresa", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormaDePago", Global.System.Data.SqlDbType.NVarChar, 100, Global.System.Data.ParameterDirection.Input, 0, 0, "FormaDePago", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Observaciones", Global.System.Data.SqlDbType.VarChar, 2147483647, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Moneda", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Moneda", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(10) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(10).Connection = Me.Connection
-            Me._commandCollection(10).CommandText = "SELECT        ISNULL(RIGHT(MAX(IdPagoMontaje) + 100001, 5), '00001') AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
-                "OM            PagoMontaje"
+            Me._commandCollection(10).CommandText = "UPDATE       PagoMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                FormaDePAgo = @FormaDePAgo, Observac"& _ 
+                "iones = @Observaciones, Pagado = 1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IdPago = @IdPago)"
             Me._commandCollection(10).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(10).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormaDePAgo", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "FormaDePAgo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(10).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Observaciones", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(10).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdPago", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "IdPago", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(11) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(11).Connection = Me.Connection
+            Me._commandCollection(11).CommandText = "SELECT        ISNULL(RIGHT(MAX(IdPagoMontaje) + 100001, 5), '00001') AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
+                "OM            PagoMontaje"
+            Me._commandCollection(11).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8907,8 +9272,32 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByIdEmpresa(ByVal dataTable As DsPagosMontaje.PagoMontajeDataTable, ByVal IdEmpresaMontaje As String) As Integer
+        Public Overloads Overridable Function FillByConSaldoPendiente(ByVal dataTable As DsPagosMontaje.PagoMontajeDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByConSaldoPendiente() As DsPagosMontaje.PagoMontajeDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Dim dataTable As DsPagosMontaje.PagoMontajeDataTable = New DsPagosMontaje.PagoMontajeDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByIdEmpresa(ByVal dataTable As DsPagosMontaje.PagoMontajeDataTable, ByVal IdEmpresaMontaje As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(6)
             If (IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
             Else
@@ -8926,7 +9315,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByIdEmpresa(ByVal IdEmpresaMontaje As String) As DsPagosMontaje.PagoMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand = Me.CommandCollection(6)
             If (IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
             Else
@@ -8942,7 +9331,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByIdFiltro(ByVal dataTable As DsPagosMontaje.PagoMontajeDataTable, ByVal Filtro As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Me.Adapter.SelectCommand = Me.CommandCollection(7)
             If (Filtro Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Filtro")
             Else
@@ -8960,7 +9349,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByIDFiltro(ByVal Filtro As String) As DsPagosMontaje.PagoMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Me.Adapter.SelectCommand = Me.CommandCollection(7)
             If (Filtro Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Filtro")
             Else
@@ -8976,7 +9365,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByIdPago(ByVal dataTable As DsPagosMontaje.PagoMontajeDataTable, ByVal IdPago As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(7)
+            Me.Adapter.SelectCommand = Me.CommandCollection(8)
             If (IdPago Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdPago")
             Else
@@ -8994,7 +9383,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByIdPago(ByVal IdPago As String) As DsPagosMontaje.PagoMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(7)
+            Me.Adapter.SelectCommand = Me.CommandCollection(8)
             If (IdPago Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdPago")
             Else
@@ -9186,7 +9575,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
         Public Overloads Overridable Function NuevoPago(ByVal IdPagoMontaje As String, ByVal IdEmpresaMontaje As String, ByVal Fecha As String, ByVal valor As Decimal, ByVal Asignado As Decimal, ByVal PendienteAsignar As Decimal, ByVal Id_Empresa As String, ByVal FormaDePago As String, ByVal Observaciones As String, ByVal Moneda As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(8)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(9)
             If (IdPagoMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdPagoMontaje")
             Else
@@ -9246,7 +9635,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function Pagar(ByVal FormaDePAgo As String, ByVal Observaciones As String, ByVal IdPago As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(9)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(10)
             If (FormaDePAgo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("FormaDePAgo")
             Else
@@ -9282,7 +9671,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SiguientePago() As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(10)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(11)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14164,8 +14553,14 @@ Namespace DsPagosMontajeTableAdapters
             tableMapping.ColumnMappings.Add("Total", "Total")
             tableMapping.ColumnMappings.Add("Observaciones", "Observaciones")
             tableMapping.ColumnMappings.Add("Pagado", "Pagado")
-            tableMapping.ColumnMappings.Add("Pendiente", "Pendiente")
             tableMapping.ColumnMappings.Add("Impuesto", "Impuesto")
+            tableMapping.ColumnMappings.Add("RetencionIRS", "RetencionIRS")
+            tableMapping.ColumnMappings.Add("TotalIrs", "TotalIrs")
+            tableMapping.ColumnMappings.Add("TotalConIrs", "TotalConIrs")
+            tableMapping.ColumnMappings.Add("PendienteInstalador", "PendienteInstalador")
+            tableMapping.ColumnMappings.Add("Pendientefactura", "Pendientefactura")
+            tableMapping.ColumnMappings.Add("NCF", "NCF")
+            tableMapping.ColumnMappings.Add("SubTotalIrs", "SubTotalIrs")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -14174,8 +14569,16 @@ Namespace DsPagosMontajeTableAdapters
                 "riginal_FechaPAgo) AND ([Id_Proyecto] = @Original_Id_Proyecto) AND ([Id_Presupue"& _ 
                 "sto] = @Original_Id_Presupuesto) AND ([SubTotal] = @Original_SubTotal) AND ([Ite"& _ 
                 "bis] = @Original_Itebis) AND ([Total] = @Original_Total) AND ([Observaciones] = "& _ 
-                "@Original_Observaciones) AND ([Pagado] = @Original_Pagado) AND ([Pendiente] = @O"& _ 
-                "riginal_Pendiente) AND ([Impuesto] = @Original_Impuesto))"
+                "@Original_Observaciones) AND ([Pagado] = @Original_Pagado) AND ([PendienteInstal"& _ 
+                "ador] = @Original_PendienteInstalador) AND ((@IsNull_Impuesto = 1 AND [Impuesto]"& _ 
+                " IS NULL) OR ([Impuesto] = @Original_Impuesto)) AND ((@IsNull_RetencionIRS = 1 A"& _ 
+                "ND [RetencionIRS] IS NULL) OR ([RetencionIRS] = @Original_RetencionIRS)) AND ((@"& _ 
+                "IsNull_TotalIrs = 1 AND [TotalIrs] IS NULL) OR ([TotalIrs] = @Original_TotalIrs)"& _ 
+                ") AND ((@IsNull_TotalConIrs = 1 AND [TotalConIrs] IS NULL) OR ([TotalConIrs] = @"& _ 
+                "Original_TotalConIrs)) AND ((@IsNull_Pendientefactura = 1 AND [Pendientefactura]"& _ 
+                " IS NULL) OR ([Pendientefactura] = @Original_Pendientefactura)) AND ((@IsNull_NC"& _ 
+                "F = 1 AND [NCF] IS NULL) OR ([NCF] = @Original_NCF)) AND ((@IsNull_SubTotalIrs ="& _ 
+                " 1 AND [SubTotalIrs] IS NULL) OR ([SubTotalIrs] = @Original_SubTotalIrs)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -14187,18 +14590,34 @@ Namespace DsPagosMontajeTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Total", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Observaciones", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Pagado", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pagado", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Pendiente", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendiente", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Impuesto", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Impuesto", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PendienteInstalador", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteInstalador", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Impuesto", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Impuesto", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Impuesto", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 4, "Impuesto", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_RetencionIRS", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RetencionIRS", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RetencionIRS", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "RetencionIRS", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TotalIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TotalIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TotalIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TotalConIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TotalConIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TotalConIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalConIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Pendientefactura", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Pendientefactura", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Pendientefactura", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendientefactura", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_NCF", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NCF", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_NCF", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NCF", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SubTotalIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SubTotalIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SubTotalIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "SubTotalIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [FacturaMontaje] ([IdFacturaMontaje], [IdEmpresaMontaje], [FechaPAgo]"& _ 
                 ", [Id_Proyecto], [Id_Presupuesto], [SubTotal], [Itebis], [Total], [Observaciones"& _ 
-                "], [Pagado], [Pendiente], [Impuesto]) VALUES (@IdFacturaMontaje, @IdEmpresaMonta"& _ 
-                "je, @FechaPAgo, @Id_Proyecto, @Id_Presupuesto, @SubTotal, @Itebis, @Total, @Obse"& _ 
-                "rvaciones, @Pagado, @Pendiente, @Impuesto);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT IdFacturaMontaje, IdEmpresaM"& _ 
-                "ontaje, FechaPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observa"& _ 
-                "ciones, Pagado, Pendiente, Impuesto FROM FacturaMontaje WHERE (IdFacturaMontaje "& _ 
-                "= @IdFacturaMontaje) ORDER BY IdFacturaMontaje DESC"
+                "], [Pagado], [PendienteInstalador], [Impuesto], [RetencionIRS], [TotalIrs], [Tot"& _ 
+                "alConIrs], [Pendientefactura], [NCF], [SubTotalIrs]) VALUES (@IdFacturaMontaje, "& _ 
+                "@IdEmpresaMontaje, @FechaPAgo, @Id_Proyecto, @Id_Presupuesto, @SubTotal, @Itebis"& _ 
+                ", @Total, @Observaciones, @Pagado, @PendienteInstalador, @Impuesto, @RetencionIR"& _ 
+                "S, @TotalIrs, @TotalConIrs, @Pendientefactura, @NCF, @SubTotalIrs);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT IdFa"& _ 
+                "cturaMontaje, IdEmpresaMontaje, FechaPAgo, Id_Proyecto, Id_Presupuesto, SubTotal"& _ 
+                ", Itebis, Total, Observaciones, Pagado, PendienteInstalador, Impuesto, Retencion"& _ 
+                "IRS, TotalIrs, TotalConIrs, Pendientefactura, NCF, SubTotalIrs FROM FacturaMonta"& _ 
+                "je WHERE (IdFacturaMontaje = @IdFacturaMontaje) ORDER BY IdFacturaMontaje DESC"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -14210,25 +14629,42 @@ Namespace DsPagosMontajeTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Observaciones", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pagado", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pagado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendiente", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendiente", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Impuesto", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Impuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PendienteInstalador", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteInstalador", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Impuesto", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 4, "Impuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RetencionIRS", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "RetencionIRS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalIrs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalConIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalConIrs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendientefactura", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendientefactura", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NCF", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NCF", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubTotalIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "SubTotalIrs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [FacturaMontaje] SET [IdFacturaMontaje] = @IdFacturaMontaje, [IdEmpresaMon"& _ 
                 "taje] = @IdEmpresaMontaje, [FechaPAgo] = @FechaPAgo, [Id_Proyecto] = @Id_Proyect"& _ 
                 "o, [Id_Presupuesto] = @Id_Presupuesto, [SubTotal] = @SubTotal, [Itebis] = @Itebi"& _ 
                 "s, [Total] = @Total, [Observaciones] = @Observaciones, [Pagado] = @Pagado, [Pend"& _ 
-                "iente] = @Pendiente, [Impuesto] = @Impuesto WHERE (([IdFacturaMontaje] = @Origin"& _ 
-                "al_IdFacturaMontaje) AND ([IdEmpresaMontaje] = @Original_IdEmpresaMontaje) AND ("& _ 
-                "[FechaPAgo] = @Original_FechaPAgo) AND ([Id_Proyecto] = @Original_Id_Proyecto) A"& _ 
-                "ND ([Id_Presupuesto] = @Original_Id_Presupuesto) AND ([SubTotal] = @Original_Sub"& _ 
-                "Total) AND ([Itebis] = @Original_Itebis) AND ([Total] = @Original_Total) AND ([O"& _ 
-                "bservaciones] = @Original_Observaciones) AND ([Pagado] = @Original_Pagado) AND ("& _ 
-                "[Pendiente] = @Original_Pendiente) AND ([Impuesto] = @Original_Impuesto));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELE"& _ 
-                "CT IdFacturaMontaje, IdEmpresaMontaje, FechaPAgo, Id_Proyecto, Id_Presupuesto, S"& _ 
-                "ubTotal, Itebis, Total, Observaciones, Pagado, Pendiente, Impuesto FROM FacturaM"& _ 
-                "ontaje WHERE (IdFacturaMontaje = @IdFacturaMontaje) ORDER BY IdFacturaMontaje DE"& _ 
-                "SC"
+                "ienteInstalador] = @PendienteInstalador, [Impuesto] = @Impuesto, [RetencionIRS] "& _ 
+                "= @RetencionIRS, [TotalIrs] = @TotalIrs, [TotalConIrs] = @TotalConIrs, [Pendient"& _ 
+                "efactura] = @Pendientefactura, [NCF] = @NCF, [SubTotalIrs] = @SubTotalIrs WHERE "& _ 
+                "(([IdFacturaMontaje] = @Original_IdFacturaMontaje) AND ([IdEmpresaMontaje] = @Or"& _ 
+                "iginal_IdEmpresaMontaje) AND ([FechaPAgo] = @Original_FechaPAgo) AND ([Id_Proyec"& _ 
+                "to] = @Original_Id_Proyecto) AND ([Id_Presupuesto] = @Original_Id_Presupuesto) A"& _ 
+                "ND ([SubTotal] = @Original_SubTotal) AND ([Itebis] = @Original_Itebis) AND ([Tot"& _ 
+                "al] = @Original_Total) AND ([Observaciones] = @Original_Observaciones) AND ([Pag"& _ 
+                "ado] = @Original_Pagado) AND ([PendienteInstalador] = @Original_PendienteInstala"& _ 
+                "dor) AND ((@IsNull_Impuesto = 1 AND [Impuesto] IS NULL) OR ([Impuesto] = @Origin"& _ 
+                "al_Impuesto)) AND ((@IsNull_RetencionIRS = 1 AND [RetencionIRS] IS NULL) OR ([Re"& _ 
+                "tencionIRS] = @Original_RetencionIRS)) AND ((@IsNull_TotalIrs = 1 AND [TotalIrs]"& _ 
+                " IS NULL) OR ([TotalIrs] = @Original_TotalIrs)) AND ((@IsNull_TotalConIrs = 1 AN"& _ 
+                "D [TotalConIrs] IS NULL) OR ([TotalConIrs] = @Original_TotalConIrs)) AND ((@IsNu"& _ 
+                "ll_Pendientefactura = 1 AND [Pendientefactura] IS NULL) OR ([Pendientefactura] ="& _ 
+                " @Original_Pendientefactura)) AND ((@IsNull_NCF = 1 AND [NCF] IS NULL) OR ([NCF]"& _ 
+                " = @Original_NCF)) AND ((@IsNull_SubTotalIrs = 1 AND [SubTotalIrs] IS NULL) OR ("& _ 
+                "[SubTotalIrs] = @Original_SubTotalIrs)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT IdFacturaMontaje, IdEmpresaMon"& _ 
+                "taje, FechaPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observaci"& _ 
+                "ones, Pagado, PendienteInstalador, Impuesto, RetencionIRS, TotalIrs, TotalConIrs"& _ 
+                ", Pendientefactura, NCF, SubTotalIrs FROM FacturaMontaje WHERE (IdFacturaMontaje"& _ 
+                " = @IdFacturaMontaje) ORDER BY IdFacturaMontaje DESC"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -14240,8 +14676,14 @@ Namespace DsPagosMontajeTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Observaciones", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pagado", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pagado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendiente", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendiente", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Impuesto", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Impuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PendienteInstalador", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteInstalador", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Impuesto", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 4, "Impuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RetencionIRS", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "RetencionIRS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalIrs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalConIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalConIrs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendientefactura", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendientefactura", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NCF", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NCF", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubTotalIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "SubTotalIrs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FechaPAgo", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FechaPAgo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -14252,8 +14694,21 @@ Namespace DsPagosMontajeTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Total", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Observaciones", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Pagado", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pagado", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Pendiente", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendiente", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Impuesto", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Impuesto", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PendienteInstalador", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteInstalador", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Impuesto", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Impuesto", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Impuesto", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 4, "Impuesto", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_RetencionIRS", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RetencionIRS", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RetencionIRS", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "RetencionIRS", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TotalIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TotalIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TotalIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TotalConIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TotalConIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TotalConIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalConIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Pendientefactura", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Pendientefactura", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Pendientefactura", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendientefactura", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_NCF", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NCF", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_NCF", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NCF", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SubTotalIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SubTotalIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SubTotalIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "SubTotalIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14266,83 +14721,100 @@ Namespace DsPagosMontajeTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(8) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(9) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        IdFacturaMontaje, IdEmpresaMontaje, FechaPAgo, Id_Proyecto, Id_Pres"& _ 
-                "upuesto, SubTotal, Itebis, Total, Observaciones, Pagado, Pendiente, Impuesto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
-                "OM            FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY IdFacturaMontaje DESC"
+            Me._commandCollection(0).CommandText = "SELECT IdFacturaMontaje, IdEmpresaMontaje, FechaPAgo, Id_Proyecto, Id_Presupuesto"& _ 
+                ", SubTotal, Itebis, Total, Observaciones, Pagado, PendienteInstalador, Impuesto,"& _ 
+                " RetencionIRS, TotalIrs, TotalConIrs, Pendientefactura, NCF, SubTotalIrs"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
+                " FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY IdFacturaMontaje DESC"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "UPDATE       FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Pagado = @Pagado, Pendiente = @Pe"& _ 
-                "ndiente"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IdFacturaMontaje = @IdFacturaMontaje)"
+            Me._commandCollection(1).CommandText = "UPDATE FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET          SubTotal = @SubTotal, Itebis = @Itebis, Total"& _ 
+                " = @Total, PendienteInstalador = @Pendiente, TotalIrs = @TotalIRS, TotalConIrs ="& _ 
+                " @TotalConIRS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  (IdFacturaMontaje = @IdFacturaMontaje)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pagado", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Pagado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendiente", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendiente", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubTotal", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "SubTotal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Itebis", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Itebis", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendiente", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteInstalador", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalIRS", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalIrs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalConIRS", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalConIrs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  (IdFacturaMontaje = @Id"& _ 
-                "Factura)"
+            Me._commandCollection(2).CommandText = "UPDATE FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET          Pagado = @Pagado, PendienteInstalador = @Pend"& _ 
+                "iente"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  (IdFacturaMontaje = @IdFacturaMontaje)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFactura", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pagado", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Pagado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendiente", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteInstalador", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT FechaPAgo, IdEmpresaMontaje, IdFacturaMontaje, Id_Presupuesto, Id_Proyecto"& _ 
-                ", Impuesto, Itebis, Observaciones, Pagado, Pendiente, SubTotal, Total FROM Factu"& _ 
-                "raMontaje WHERE (Pendiente <> 0) AND (IdEmpresaMontaje = @IdEmpresaMontaje) ORDE"& _ 
-                "R BY IdFacturaMontaje DESC"
+            Me._commandCollection(3).CommandText = "SELECT COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  (IdFacturaMontaje = @Id"& _ 
+                "Factura)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFactura", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
             Me._commandCollection(4).CommandText = "SELECT FechaPAgo, IdEmpresaMontaje, IdFacturaMontaje, Id_Presupuesto, Id_Proyecto"& _ 
-                ", Impuesto, Itebis, Observaciones, Pagado, Pendiente, SubTotal, Total FROM Factu"& _ 
-                "raMontaje WHERE (IdEmpresaMontaje = @IdEmpresaMontaje) ORDER BY IdFacturaMontaje"& _ 
-                " DESC"
+                ", Impuesto, Itebis, NCF, Observaciones, Pagado, PendienteInstalador, Pendientefa"& _ 
+                "ctura, RetencionIRS, SubTotal, SubTotalIrs, Total, TotalConIrs, TotalIrs"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
+                " FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (IdEmpresaMontaje = @IdEmpresaMontaje) AND (PendienteInst"& _ 
+                "alador > 0.1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY IdFacturaMontaje DESC"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
             Me._commandCollection(5).CommandText = "SELECT FechaPAgo, IdEmpresaMontaje, IdFacturaMontaje, Id_Presupuesto, Id_Proyecto"& _ 
-                ", Impuesto, Itebis, Observaciones, Pagado, Pendiente, SubTotal, Total FROM Factu"& _ 
-                "raMontaje WHERE (IdFacturaMontaje = @IdFacturaMontaje) ORDER BY IdFacturaMontaje"& _ 
-                " DESC"
+                ", Impuesto, Itebis, NCF, Observaciones, Pagado, PendienteInstalador, Pendientefa"& _ 
+                "ctura, RetencionIRS, SubTotal, SubTotalIrs, Total, TotalConIrs, TotalIrs FROM Fa"& _ 
+                "cturaMontaje WHERE (IdEmpresaMontaje = @IdEmpresaMontaje) ORDER BY IdFacturaMont"& _ 
+                "aje DESC"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(6) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(6).Connection = Me.Connection
             Me._commandCollection(6).CommandText = "SELECT FechaPAgo, IdEmpresaMontaje, IdFacturaMontaje, Id_Presupuesto, Id_Proyecto"& _ 
-                ", Impuesto, Itebis, Observaciones, Pagado, Pendiente, SubTotal, Total FROM Factu"& _ 
-                "raMontaje WHERE (Id_Proyecto = @Id_Proyecto) ORDER BY IdFacturaMontaje DESC"
+                ", Impuesto, Itebis, NCF, Observaciones, Pagado, PendienteInstalador, Pendientefa"& _ 
+                "ctura, RetencionIRS, SubTotal, SubTotalIrs, Total, TotalConIrs, TotalIrs FROM Fa"& _ 
+                "cturaMontaje WHERE (IdFacturaMontaje = @IdFacturaMontaje) ORDER BY IdFacturaMont"& _ 
+                "aje DESC"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Proyecto", Global.System.Data.SqlDbType.NVarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Proyecto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(7) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "INSERT INTO FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IdFacturaMontaje, IdEmpresa"& _ 
-                "Montaje, FechaPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observ"& _ 
-                "aciones, Pagado, Pendiente, Impuesto)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@IdFacturaMontaje,@IdEmpre"& _ 
-                "saMontaje,@FechaPAgo,@Id_Proyecto,@Id_Presupuesto,@SubTotal,@Itebis,@Total,@Obse"& _ 
-                "rvaciones,@Pagado,@Pendiente,@Impuesto);  "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(7).CommandText = "SELECT FechaPAgo, IdEmpresaMontaje, IdFacturaMontaje, Id_Presupuesto, Id_Proyecto"& _ 
+                ", Impuesto, Itebis, NCF, Observaciones, Pagado, PendienteInstalador, Pendientefa"& _ 
+                "ctura, RetencionIRS, SubTotal, SubTotalIrs, Total, TotalConIrs, TotalIrs FROM Fa"& _ 
+                "cturaMontaje WHERE (Id_Proyecto = @Id_Proyecto) ORDER BY IdFacturaMontaje DESC"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FechaPAgo", Global.System.Data.SqlDbType.[Date], 3, Global.System.Data.ParameterDirection.Input, 0, 0, "FechaPAgo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Proyecto", Global.System.Data.SqlDbType.NVarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Proyecto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Presupuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubTotal", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "SubTotal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Itebis", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Itebis", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Observaciones", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pagado", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Pagado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendiente", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Pendiente", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Impuesto", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Impuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "SELECT        RIGHT(MAX(IdFacturaMontaje) + 100001, 5) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            "& _ 
-                "FacturaMontaje"
+            Me._commandCollection(8).CommandText = "INSERT INTO FacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (IdFacturaMontaje, IdEmpresaMontaje, Fec"& _ 
+                "haPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observaciones, Pag"& _ 
+                "ado, PendienteInstalador, Impuesto, RetencionIRS)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES (@IdFacturaMontaje,@Id"& _ 
+                "EmpresaMontaje,@FechaPAgo,@Id_Proyecto,@Id_Presupuesto,@SubTotal,@Itebis,@Total,"& _ 
+                "@Observaciones,@Pagado,@Pendiente, 0.18, .1);      "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FechaPAgo", Global.System.Data.SqlDbType.[Date], 3, Global.System.Data.ParameterDirection.Input, 0, 0, "FechaPAgo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Proyecto", Global.System.Data.SqlDbType.NVarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Proyecto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Presupuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubTotal", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "SubTotal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Itebis", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Itebis", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Observaciones", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "Observaciones", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pagado", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Pagado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Pendiente", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "PendienteInstalador", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(9).Connection = Me.Connection
+            Me._commandCollection(9).CommandText = "SELECT        RIGHT(MAX(IdFacturaMontaje) + 100001, 5) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            "& _ 
+                "FacturaMontaje"
+            Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14374,7 +14846,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByFacturasPendientes(ByVal dataTable As DsPagosMontaje.FacturaMontajeDataTable, ByVal IdEmpresaMontaje As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             If (IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
             Else
@@ -14392,7 +14864,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByFacturasPendientes(ByVal IdEmpresaMontaje As String) As DsPagosMontaje.FacturaMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             If (IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
             Else
@@ -14408,7 +14880,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByIdEmpresa(ByVal dataTable As DsPagosMontaje.FacturaMontajeDataTable, ByVal IdEmpresaMontaje As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
             If (IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
             Else
@@ -14426,7 +14898,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByIdEmpresa(ByVal IdEmpresaMontaje As String) As DsPagosMontaje.FacturaMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
             If (IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
             Else
@@ -14442,7 +14914,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByIdFactura(ByVal dataTable As DsPagosMontaje.FacturaMontajeDataTable, ByVal IdFacturaMontaje As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand = Me.CommandCollection(6)
             If (IdFacturaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontaje")
             Else
@@ -14460,7 +14932,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataBydFactura(ByVal IdFacturaMontaje As String) As DsPagosMontaje.FacturaMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand = Me.CommandCollection(6)
             If (IdFacturaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontaje")
             Else
@@ -14476,7 +14948,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByIdProyrcto(ByVal dataTable As DsPagosMontaje.FacturaMontajeDataTable, ByVal Id_Proyecto As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Me.Adapter.SelectCommand = Me.CommandCollection(7)
             If (Id_Proyecto Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Id_Proyecto")
             Else
@@ -14494,7 +14966,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataBydProyrcto(ByVal Id_Proyecto As String) As DsPagosMontaje.FacturaMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Me.Adapter.SelectCommand = Me.CommandCollection(7)
             If (Id_Proyecto Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Id_Proyecto")
             Else
@@ -14537,7 +15009,25 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_IdFacturaMontaje As String, ByVal Original_IdEmpresaMontaje As String, ByVal Original_FechaPAgo As Date, ByVal Original_Id_Proyecto As String, ByVal Original_Id_Presupuesto As String, ByVal Original_SubTotal As Decimal, ByVal Original_Itebis As Decimal, ByVal Original_Total As Decimal, ByVal Original_Observaciones As String, ByVal Original_Pagado As Decimal, ByVal Original_Pendiente As Decimal, ByVal Original_Impuesto As Decimal) As Integer
+        Public Overloads Overridable Function Delete( _
+                    ByVal Original_IdFacturaMontaje As String,  _
+                    ByVal Original_IdEmpresaMontaje As String,  _
+                    ByVal Original_FechaPAgo As Date,  _
+                    ByVal Original_Id_Proyecto As String,  _
+                    ByVal Original_Id_Presupuesto As String,  _
+                    ByVal Original_SubTotal As Decimal,  _
+                    ByVal Original_Itebis As Decimal,  _
+                    ByVal Original_Total As Decimal,  _
+                    ByVal Original_Observaciones As String,  _
+                    ByVal Original_Pagado As Decimal,  _
+                    ByVal Original_PendienteInstalador As Decimal,  _
+                    ByVal Original_Impuesto As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_RetencionIRS As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TotalIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TotalConIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Pendientefactura As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_NCF As String,  _
+                    ByVal Original_SubTotalIrs As Global.System.Nullable(Of Decimal)) As Integer
             If (Original_IdFacturaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_IdFacturaMontaje")
             Else
@@ -14568,8 +15058,56 @@ Namespace DsPagosMontajeTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_Observaciones,String)
             End If
             Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_Pagado,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_Pendiente,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_Impuesto,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_PendienteInstalador,Decimal)
+            If (Original_Impuesto.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Impuesto.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            If (Original_RetencionIRS.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_RetencionIRS.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
+            End If
+            If (Original_TotalIrs.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_TotalIrs.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (Original_TotalConIrs.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_TotalConIrs.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Pendientefactura.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_Pendientefactura.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
+            End If
+            If (Original_NCF Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_NCF,String)
+            End If
+            If (Original_SubTotalIrs.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_SubTotalIrs.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14589,7 +15127,25 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal IdFacturaMontaje As String, ByVal IdEmpresaMontaje As String, ByVal FechaPAgo As Date, ByVal Id_Proyecto As String, ByVal Id_Presupuesto As String, ByVal SubTotal As Decimal, ByVal Itebis As Decimal, ByVal Total As Decimal, ByVal Observaciones As String, ByVal Pagado As Decimal, ByVal Pendiente As Decimal, ByVal Impuesto As Decimal) As Integer
+        Public Overloads Overridable Function Insert( _
+                    ByVal IdFacturaMontaje As String,  _
+                    ByVal IdEmpresaMontaje As String,  _
+                    ByVal FechaPAgo As Date,  _
+                    ByVal Id_Proyecto As String,  _
+                    ByVal Id_Presupuesto As String,  _
+                    ByVal SubTotal As Decimal,  _
+                    ByVal Itebis As Decimal,  _
+                    ByVal Total As Decimal,  _
+                    ByVal Observaciones As String,  _
+                    ByVal Pagado As Decimal,  _
+                    ByVal PendienteInstalador As Decimal,  _
+                    ByVal Impuesto As Global.System.Nullable(Of Decimal),  _
+                    ByVal RetencionIRS As Global.System.Nullable(Of Decimal),  _
+                    ByVal TotalIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal TotalConIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Pendientefactura As Global.System.Nullable(Of Decimal),  _
+                    ByVal NCF As String,  _
+                    ByVal SubTotalIrs As Global.System.Nullable(Of Decimal)) As Integer
             If (IdFacturaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontaje")
             Else
@@ -14620,8 +15176,42 @@ Namespace DsPagosMontajeTableAdapters
                 Me.Adapter.InsertCommand.Parameters(8).Value = CType(Observaciones,String)
             End If
             Me.Adapter.InsertCommand.Parameters(9).Value = CType(Pagado,Decimal)
-            Me.Adapter.InsertCommand.Parameters(10).Value = CType(Pendiente,Decimal)
-            Me.Adapter.InsertCommand.Parameters(11).Value = CType(Impuesto,Decimal)
+            Me.Adapter.InsertCommand.Parameters(10).Value = CType(PendienteInstalador,Decimal)
+            If (Impuesto.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Impuesto.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (RetencionIRS.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(RetencionIRS.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            If (TotalIrs.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(TotalIrs.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (TotalConIrs.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(TotalConIrs.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
+            End If
+            If (Pendientefactura.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Pendientefactura.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            If (NCF Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(NCF,String)
+            End If
+            If (SubTotalIrs.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(SubTotalIrs.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14652,8 +15242,14 @@ Namespace DsPagosMontajeTableAdapters
                     ByVal Total As Decimal,  _
                     ByVal Observaciones As String,  _
                     ByVal Pagado As Decimal,  _
-                    ByVal Pendiente As Decimal,  _
-                    ByVal Impuesto As Decimal,  _
+                    ByVal PendienteInstalador As Decimal,  _
+                    ByVal Impuesto As Global.System.Nullable(Of Decimal),  _
+                    ByVal RetencionIRS As Global.System.Nullable(Of Decimal),  _
+                    ByVal TotalIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal TotalConIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Pendientefactura As Global.System.Nullable(Of Decimal),  _
+                    ByVal NCF As String,  _
+                    ByVal SubTotalIrs As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_IdFacturaMontaje As String,  _
                     ByVal Original_IdEmpresaMontaje As String,  _
                     ByVal Original_FechaPAgo As Date,  _
@@ -14664,8 +15260,14 @@ Namespace DsPagosMontajeTableAdapters
                     ByVal Original_Total As Decimal,  _
                     ByVal Original_Observaciones As String,  _
                     ByVal Original_Pagado As Decimal,  _
-                    ByVal Original_Pendiente As Decimal,  _
-                    ByVal Original_Impuesto As Decimal) As Integer
+                    ByVal Original_PendienteInstalador As Decimal,  _
+                    ByVal Original_Impuesto As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_RetencionIRS As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TotalIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TotalConIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Pendientefactura As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_NCF As String,  _
+                    ByVal Original_SubTotalIrs As Global.System.Nullable(Of Decimal)) As Integer
             If (IdFacturaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontaje")
             Else
@@ -14696,40 +15298,122 @@ Namespace DsPagosMontajeTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Observaciones,String)
             End If
             Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Pagado,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Pendiente,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Impuesto,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(PendienteInstalador,Decimal)
+            If (Impuesto.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Impuesto.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (RetencionIRS.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(RetencionIRS.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            If (TotalIrs.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(TotalIrs.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (TotalConIrs.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(TotalConIrs.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            End If
+            If (Pendientefactura.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Pendientefactura.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            If (NCF Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(NCF,String)
+            End If
+            If (SubTotalIrs.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(SubTotalIrs.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
             If (Original_IdFacturaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_IdFacturaMontaje")
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_IdFacturaMontaje,String)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_IdFacturaMontaje,String)
             End If
             If (Original_IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_IdEmpresaMontaje")
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_IdEmpresaMontaje,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_IdEmpresaMontaje,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_FechaPAgo,Date)
+            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_FechaPAgo,Date)
             If (Original_Id_Proyecto Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Id_Proyecto")
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Id_Proyecto,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Id_Proyecto,String)
             End If
             If (Original_Id_Presupuesto Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Id_Presupuesto")
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Id_Presupuesto,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Id_Presupuesto,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_SubTotal,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_Itebis,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Total,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_SubTotal,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_Itebis,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_Total,Decimal)
             If (Original_Observaciones Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Observaciones")
             Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Observaciones,String)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Observaciones,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Pagado,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Pendiente,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_Impuesto,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_Pagado,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_PendienteInstalador,Decimal)
+            If (Original_Impuesto.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_Impuesto.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+            End If
+            If (Original_RetencionIRS.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_RetencionIRS.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+            End If
+            If (Original_TotalIrs.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_TotalIrs.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
+            End If
+            If (Original_TotalConIrs.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_TotalConIrs.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Pendientefactura.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_Pendientefactura.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
+            End If
+            If (Original_NCF Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_NCF,String)
+            End If
+            If (Original_SubTotalIrs.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_SubTotalIrs.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(42).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14759,8 +15443,14 @@ Namespace DsPagosMontajeTableAdapters
                     ByVal Total As Decimal,  _
                     ByVal Observaciones As String,  _
                     ByVal Pagado As Decimal,  _
-                    ByVal Pendiente As Decimal,  _
-                    ByVal Impuesto As Decimal,  _
+                    ByVal PendienteInstalador As Decimal,  _
+                    ByVal Impuesto As Global.System.Nullable(Of Decimal),  _
+                    ByVal RetencionIRS As Global.System.Nullable(Of Decimal),  _
+                    ByVal TotalIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal TotalConIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Pendientefactura As Global.System.Nullable(Of Decimal),  _
+                    ByVal NCF As String,  _
+                    ByVal SubTotalIrs As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_IdFacturaMontaje As String,  _
                     ByVal Original_IdEmpresaMontaje As String,  _
                     ByVal Original_FechaPAgo As Date,  _
@@ -14771,9 +15461,56 @@ Namespace DsPagosMontajeTableAdapters
                     ByVal Original_Total As Decimal,  _
                     ByVal Original_Observaciones As String,  _
                     ByVal Original_Pagado As Decimal,  _
-                    ByVal Original_Pendiente As Decimal,  _
-                    ByVal Original_Impuesto As Decimal) As Integer
-            Return Me.Update(Original_IdFacturaMontaje, IdEmpresaMontaje, FechaPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observaciones, Pagado, Pendiente, Impuesto, Original_IdFacturaMontaje, Original_IdEmpresaMontaje, Original_FechaPAgo, Original_Id_Proyecto, Original_Id_Presupuesto, Original_SubTotal, Original_Itebis, Original_Total, Original_Observaciones, Original_Pagado, Original_Pendiente, Original_Impuesto)
+                    ByVal Original_PendienteInstalador As Decimal,  _
+                    ByVal Original_Impuesto As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_RetencionIRS As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TotalIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TotalConIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Pendientefactura As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_NCF As String,  _
+                    ByVal Original_SubTotalIrs As Global.System.Nullable(Of Decimal)) As Integer
+            Return Me.Update(Original_IdFacturaMontaje, IdEmpresaMontaje, FechaPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observaciones, Pagado, PendienteInstalador, Impuesto, RetencionIRS, TotalIrs, TotalConIrs, Pendientefactura, NCF, SubTotalIrs, Original_IdFacturaMontaje, Original_IdEmpresaMontaje, Original_FechaPAgo, Original_Id_Proyecto, Original_Id_Presupuesto, Original_SubTotal, Original_Itebis, Original_Total, Original_Observaciones, Original_Pagado, Original_PendienteInstalador, Original_Impuesto, Original_RetencionIRS, Original_TotalIrs, Original_TotalConIrs, Original_Pendientefactura, Original_NCF, Original_SubTotalIrs)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function ActualizarTotales(ByVal SubTotal As Decimal, ByVal Itebis As Decimal, ByVal Total As Decimal, ByVal Pendiente As Decimal, ByVal TotalIRS As Global.System.Nullable(Of Decimal), ByVal TotalConIRS As Global.System.Nullable(Of Decimal), ByVal IdFacturaMontaje As String) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
+            command.Parameters(0).Value = CType(SubTotal,Decimal)
+            command.Parameters(1).Value = CType(Itebis,Decimal)
+            command.Parameters(2).Value = CType(Total,Decimal)
+            command.Parameters(3).Value = CType(Pendiente,Decimal)
+            If (TotalIRS.HasValue = true) Then
+                command.Parameters(4).Value = CType(TotalIRS.Value,Decimal)
+            Else
+                command.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            If (TotalConIRS.HasValue = true) Then
+                command.Parameters(5).Value = CType(TotalConIRS.Value,Decimal)
+            Else
+                command.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            If (IdFacturaMontaje Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdFacturaMontaje")
+            Else
+                command.Parameters(6).Value = CType(IdFacturaMontaje,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14781,7 +15518,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function ActulizarPagoFactura(ByVal Pagado As Decimal, ByVal Pendiente As Decimal, ByVal IdFacturaMontaje As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
             command.Parameters(0).Value = CType(Pagado,Decimal)
             command.Parameters(1).Value = CType(Pendiente,Decimal)
             If (IdFacturaMontaje Is Nothing) Then
@@ -14809,7 +15546,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function ExisteFactura(ByVal IdFactura As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
             If (IdFactura Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFactura")
             Else
@@ -14840,8 +15577,8 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function Nueva(ByVal IdFacturaMontaje As String, ByVal IdEmpresaMontaje As String, ByVal FechaPAgo As String, ByVal Id_Proyecto As String, ByVal Id_Presupuesto As String, ByVal SubTotal As Decimal, ByVal Itebis As Decimal, ByVal Total As Decimal, ByVal Observaciones As String, ByVal Pagado As Decimal, ByVal Pendiente As Decimal, ByVal Impuesto As Decimal) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(7)
+        Public Overloads Overridable Function Nueva(ByVal IdFacturaMontaje As String, ByVal IdEmpresaMontaje As String, ByVal FechaPAgo As String, ByVal Id_Proyecto As String, ByVal Id_Presupuesto As String, ByVal SubTotal As Decimal, ByVal Itebis As Decimal, ByVal Total As Decimal, ByVal Observaciones As String, ByVal Pagado As Decimal, ByVal Pendiente As Decimal) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(8)
             If (IdFacturaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontaje")
             Else
@@ -14877,7 +15614,6 @@ Namespace DsPagosMontajeTableAdapters
             End If
             command.Parameters(9).Value = CType(Pagado,Decimal)
             command.Parameters(10).Value = CType(Pendiente,Decimal)
-            command.Parameters(11).Value = CType(Impuesto,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14898,7 +15634,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SiguienteFactura() As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(8)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(9)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -15052,46 +15788,56 @@ Namespace DsPagosMontajeTableAdapters
             tableMapping.ColumnMappings.Add("IdFacturaMontaje", "IdFacturaMontaje")
             tableMapping.ColumnMappings.Add("IdDetalle_Presupuesto", "IdDetalle_Presupuesto")
             tableMapping.ColumnMappings.Add("IdArticulo", "IdArticulo")
-            tableMapping.ColumnMappings.Add("Descrpcion", "Descrpcion")
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad")
             tableMapping.ColumnMappings.Add("Precio", "Precio")
             tableMapping.ColumnMappings.Add("TotalPartida", "TotalPartida")
             tableMapping.ColumnMappings.Add("Id_Presupuesto", "Id_Presupuesto")
+            tableMapping.ColumnMappings.Add("Descripcion", "Descripcion")
+            tableMapping.ColumnMappings.Add("PrecioConIrs", "PrecioConIrs")
+            tableMapping.ColumnMappings.Add("TotalConIrs", "TotalConIrs")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
             Me._adapter.DeleteCommand.CommandText = "DELETE FROM [FacturaMontajeDetalle] WHERE (([IdFacturaMontajeDetalle] = @Original"& _ 
                 "_IdFacturaMontajeDetalle) AND ([IdFacturaMontaje] = @Original_IdFacturaMontaje) "& _ 
                 "AND ([IdDetalle_Presupuesto] = @Original_IdDetalle_Presupuesto) AND ([IdArticulo"& _ 
-                "] = @Original_IdArticulo) AND ([Descrpcion] = @Original_Descrpcion) AND ([Cantid"& _ 
-                "ad] = @Original_Cantidad) AND ([Precio] = @Original_Precio) AND ([TotalPartida] "& _ 
-                "= @Original_TotalPartida) AND ([Id_Presupuesto] = @Original_Id_Presupuesto))"
+                "] = @Original_IdArticulo) AND ([Descripcion] = @Original_Descripcion) AND ([Cant"& _ 
+                "idad] = @Original_Cantidad) AND ([Precio] = @Original_Precio) AND ([TotalPartida"& _ 
+                "] = @Original_TotalPartida) AND ([Id_Presupuesto] = @Original_Id_Presupuesto) AN"& _ 
+                "D ((@IsNull_PrecioConIrs = 1 AND [PrecioConIrs] IS NULL) OR ([PrecioConIrs] = @O"& _ 
+                "riginal_PrecioConIrs)) AND ((@IsNull_TotalConIrs = 1 AND [TotalConIrs] IS NULL) "& _ 
+                "OR ([TotalConIrs] = @Original_TotalConIrs)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdFacturaMontajeDetalle", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontajeDetalle", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdDetalle_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdDetalle_Presupuesto", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdArticulo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdArticulo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Descrpcion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Descrpcion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Descripcion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Descripcion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Cantidad", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Cantidad", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Precio", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Precio", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TotalPartida", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalPartida", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Id_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Presupuesto", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PrecioConIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PrecioConIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PrecioConIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "PrecioConIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TotalConIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TotalConIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TotalConIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalConIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [FacturaMontajeDetalle] ([IdFacturaMontajeDetalle], [IdFacturaMontaje"& _ 
-                "], [IdDetalle_Presupuesto], [IdArticulo], [Descrpcion], [Cantidad], [Precio], [T"& _ 
-                "otalPartida], [Id_Presupuesto]) VALUES (@IdFacturaMontajeDetalle, @IdFacturaMont"& _ 
-                "aje, @IdDetalle_Presupuesto, @IdArticulo, @Descrpcion, @Cantidad, @Precio, @Tota"& _ 
-                "lPartida, @Id_Presupuesto);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT IdFacturaMontajeDetalle, IdFacturaMontaje, I"& _ 
-                "dDetalle_Presupuesto, IdArticulo, Descrpcion, Cantidad, Precio, TotalPartida, Id"& _ 
-                "_Presupuesto FROM FacturaMontajeDetalle WHERE (IdFacturaMontajeDetalle = @IdFact"& _ 
-                "uraMontajeDetalle) ORDER BY IdFacturaMontajeDetalle"
+                "], [IdDetalle_Presupuesto], [IdArticulo], [Descripcion], [Cantidad], [Precio], ["& _ 
+                "TotalPartida], [Id_Presupuesto]) VALUES (@IdFacturaMontajeDetalle, @IdFacturaMon"& _ 
+                "taje, @IdDetalle_Presupuesto, @IdArticulo, @Descripcion, @Cantidad, @Precio, @To"& _ 
+                "talPartida, @Id_Presupuesto);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT IdFacturaMontajeDetalle, IdFacturaMontaje,"& _ 
+                " IdDetalle_Presupuesto, IdArticulo, Descripcion, Cantidad, Precio, TotalPartida,"& _ 
+                " Id_Presupuesto, PrecioConIrs, TotalConIrs FROM FacturaMontajeDetalle WHERE (IdF"& _ 
+                "acturaMontajeDetalle = @IdFacturaMontajeDetalle) ORDER BY IdFacturaMontajeDetall"& _ 
+                "e"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontajeDetalle", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontajeDetalle", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdDetalle_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdDetalle_Presupuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdArticulo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdArticulo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Descrpcion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Descrpcion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Descripcion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Descripcion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cantidad", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Cantidad", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Precio", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Precio", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalPartida", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalPartida", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -15100,24 +15846,27 @@ Namespace DsPagosMontajeTableAdapters
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [FacturaMontajeDetalle] SET [IdFacturaMontajeDetalle] = @IdFacturaMontajeD"& _ 
                 "etalle, [IdFacturaMontaje] = @IdFacturaMontaje, [IdDetalle_Presupuesto] = @IdDet"& _ 
-                "alle_Presupuesto, [IdArticulo] = @IdArticulo, [Descrpcion] = @Descrpcion, [Canti"& _ 
-                "dad] = @Cantidad, [Precio] = @Precio, [TotalPartida] = @TotalPartida, [Id_Presup"& _ 
-                "uesto] = @Id_Presupuesto WHERE (([IdFacturaMontajeDetalle] = @Original_IdFactura"& _ 
-                "MontajeDetalle) AND ([IdFacturaMontaje] = @Original_IdFacturaMontaje) AND ([IdDe"& _ 
-                "talle_Presupuesto] = @Original_IdDetalle_Presupuesto) AND ([IdArticulo] = @Origi"& _ 
-                "nal_IdArticulo) AND ([Descrpcion] = @Original_Descrpcion) AND ([Cantidad] = @Ori"& _ 
-                "ginal_Cantidad) AND ([Precio] = @Original_Precio) AND ([TotalPartida] = @Origina"& _ 
-                "l_TotalPartida) AND ([Id_Presupuesto] = @Original_Id_Presupuesto));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT IdFa"& _ 
-                "cturaMontajeDetalle, IdFacturaMontaje, IdDetalle_Presupuesto, IdArticulo, Descrp"& _ 
-                "cion, Cantidad, Precio, TotalPartida, Id_Presupuesto FROM FacturaMontajeDetalle "& _ 
-                "WHERE (IdFacturaMontajeDetalle = @IdFacturaMontajeDetalle) ORDER BY IdFacturaMon"& _ 
-                "tajeDetalle"
+                "alle_Presupuesto, [IdArticulo] = @IdArticulo, [Descripcion] = @Descripcion, [Can"& _ 
+                "tidad] = @Cantidad, [Precio] = @Precio, [TotalPartida] = @TotalPartida, [Id_Pres"& _ 
+                "upuesto] = @Id_Presupuesto WHERE (([IdFacturaMontajeDetalle] = @Original_IdFactu"& _ 
+                "raMontajeDetalle) AND ([IdFacturaMontaje] = @Original_IdFacturaMontaje) AND ([Id"& _ 
+                "Detalle_Presupuesto] = @Original_IdDetalle_Presupuesto) AND ([IdArticulo] = @Ori"& _ 
+                "ginal_IdArticulo) AND ([Descripcion] = @Original_Descripcion) AND ([Cantidad] = "& _ 
+                "@Original_Cantidad) AND ([Precio] = @Original_Precio) AND ([TotalPartida] = @Ori"& _ 
+                "ginal_TotalPartida) AND ([Id_Presupuesto] = @Original_Id_Presupuesto) AND ((@IsN"& _ 
+                "ull_PrecioConIrs = 1 AND [PrecioConIrs] IS NULL) OR ([PrecioConIrs] = @Original_"& _ 
+                "PrecioConIrs)) AND ((@IsNull_TotalConIrs = 1 AND [TotalConIrs] IS NULL) OR ([Tot"& _ 
+                "alConIrs] = @Original_TotalConIrs)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT IdFacturaMontajeDetalle, IdFactura"& _ 
+                "Montaje, IdDetalle_Presupuesto, IdArticulo, Descripcion, Cantidad, Precio, Total"& _ 
+                "Partida, Id_Presupuesto, PrecioConIrs, TotalConIrs FROM FacturaMontajeDetalle WH"& _ 
+                "ERE (IdFacturaMontajeDetalle = @IdFacturaMontajeDetalle) ORDER BY IdFacturaMonta"& _ 
+                "jeDetalle"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontajeDetalle", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontajeDetalle", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdDetalle_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdDetalle_Presupuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdArticulo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdArticulo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Descrpcion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Descrpcion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Descripcion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Descripcion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cantidad", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Cantidad", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Precio", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Precio", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalPartida", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalPartida", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -15126,11 +15875,15 @@ Namespace DsPagosMontajeTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdDetalle_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdDetalle_Presupuesto", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IdArticulo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IdArticulo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Descrpcion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Descrpcion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Descripcion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Descripcion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Cantidad", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Cantidad", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Precio", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "Precio", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TotalPartida", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalPartida", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Id_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Presupuesto", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PrecioConIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PrecioConIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PrecioConIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "PrecioConIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TotalConIrs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TotalConIrs", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TotalConIrs", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalConIrs", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -15146,16 +15899,16 @@ Namespace DsPagosMontajeTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(5) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        IdFacturaMontajeDetalle, IdFacturaMontaje, IdDetalle_Presupuesto, I"& _ 
-                "dArticulo, Descrpcion, Cantidad, Precio, TotalPartida, Id_Presupuesto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     "& _ 
-                "       FacturaMontajeDetalle"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY IdFacturaMontajeDetalle"
+            Me._commandCollection(0).CommandText = "SELECT IdFacturaMontajeDetalle, IdFacturaMontaje, IdDetalle_Presupuesto, IdArticu"& _ 
+                "lo, Descripcion, Cantidad, Precio, TotalPartida, Id_Presupuesto, PrecioConIrs, T"& _ 
+                "otalConIrs"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   FacturaMontajeDetalle"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY IdFacturaMontajeDetalle"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT Cantidad, Descrpcion, IdArticulo, IdDetalle_Presupuesto, IdFacturaMontaje,"& _ 
-                " IdFacturaMontajeDetalle, Id_Presupuesto, Precio, TotalPartida FROM FacturaMonta"& _ 
-                "jeDetalle WHERE (IdFacturaMontaje = @IdFacturaMontaje) ORDER BY IdFacturaMontaje"& _ 
-                "Detalle"
+            Me._commandCollection(1).CommandText = "SELECT Cantidad, Descripcion, IdArticulo, IdDetalle_Presupuesto, IdFacturaMontaje"& _ 
+                ", IdFacturaMontajeDetalle, Id_Presupuesto, Precio, PrecioConIrs, TotalConIrs, To"& _ 
+                "talPartida FROM FacturaMontajeDetalle WHERE (IdFacturaMontaje = @IdFacturaMontaj"& _ 
+                "e) ORDER BY IdFacturaMontajeDetalle"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
@@ -15173,37 +15926,36 @@ Namespace DsPagosMontajeTableAdapters
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Proyecto", Global.System.Data.SqlDbType.NVarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Proyecto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT        Cantidad, Descrpcion, IdArticulo, IdDetalle_Presupuesto, IdFacturaM"& _ 
-                "ontaje, IdFacturaMontajeDetalle, Precio, TotalPartida, Id_Presupuesto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     "& _ 
-                "       FacturaMontajeDetalle"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Id_Presupuesto = @Id_Presupuesto)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"O"& _ 
+            Me._commandCollection(3).CommandText = "SELECT Cantidad, Descripcion, IdArticulo, IdDetalle_Presupuesto, IdFacturaMontaje"& _ 
+                ", IdFacturaMontajeDetalle, Id_Presupuesto, Precio, PrecioConIrs, TotalConIrs, To"& _ 
+                "talPartida FROM FacturaMontajeDetalle WHERE (Id_Presupuesto = @Id_Presupuesto) O"& _ 
                 "RDER BY IdFacturaMontajeDetalle"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Presupuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "INSERT INTO FacturaMontajeDetalle"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IdFacturaMontajeDeta"& _ 
-                "lle, IdFacturaMontaje, IdDetalle_Presupuesto, IdArticulo, Descrpcion, Cantidad, "& _ 
-                "Precio, TotalPartida, Id_Presupuesto)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@IdFacturaMontajeDetalle,@"& _ 
-                "IdFacturaMontaje,@IdDetalle_Presupuesto,@IdArticulo,@Descrpcion,@Cantidad,@Preci"& _ 
-                "o,@TotalPartida,@Id_Presupuesto);  "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(4).CommandText = "INSERT INTO FacturaMontajeDetalle"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  (IdFacturaMontajeDetalle, Id"& _ 
+                "FacturaMontaje, IdDetalle_Presupuesto, IdArticulo, Descripcion, Cantidad, Precio"& _ 
+                ", TotalPartida, Id_Presupuesto)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES (@IdFacturaMontajeDetalle,@IdFacturaMont"& _ 
+                "aje,@IdDetalle_Presupuesto,@IdArticulo,@Descripcion,@Cantidad,@Precio,@TotalPart"& _ 
+                "ida,@Id_Presupuesto);    "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontajeDetalle", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontajeDetalle", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdDetalle_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "IdDetalle_Presupuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdArticulo", Global.System.Data.SqlDbType.NVarChar, 35, Global.System.Data.ParameterDirection.Input, 0, 0, "IdArticulo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Descrpcion", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "Descrpcion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Descripcion", Global.System.Data.SqlDbType.NVarChar, 500, Global.System.Data.ParameterDirection.Input, 0, 0, "Descripcion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cantidad", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Cantidad", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Precio", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "Precio", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TotalPartida", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 2, "TotalPartida", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Presupuesto", Global.System.Data.SqlDbType.NVarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Presupuesto", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT        FacturaMontaje.IdFacturaMontaje + '-' + RIGHT(RIGHT(ISNULL(MAX(Fact"& _ 
-                "uraMontajeDetalle.IdFacturaMontajeDetalle), N'000'), 3) + 1001, 3) AS Siguiente,"& _ 
-                " FacturaMontaje.IdFacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            FacturaMontajeDetalle RIGHT OU"& _ 
-                "TER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         FacturaMontaje ON FacturaMontajeDetalle.IdFac"& _ 
-                "turaMontaje = FacturaMontaje.IdFacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY FacturaMontaje.IdFactura"& _ 
-                "Montaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"HAVING        (FacturaMontaje.IdFacturaMontaje = @IdFacturaMontaje)"
+            Me._commandCollection(5).CommandText = "SELECT FM.IdFacturaMontaje + '-' + RIGHT('000' + CAST(ISNULL(MAX(CAST(RIGHT(FMD.I"& _ 
+                "dFacturaMontajeDetalle, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3) AS Siguiente"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FRO"& _ 
+                "M     FacturaMontaje AS FM LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  FacturaMontajeDeta"& _ 
+                "lle AS FMD ON FM.IdFacturaMontaje = FMD.IdFacturaMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  (FM.IdFacturaMo"& _ 
+                "ntaje = @IdFacturaMontaje)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY FM.IdFacturaMontaje; "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -15366,7 +16118,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_IdFacturaMontajeDetalle As String, ByVal Original_IdFacturaMontaje As String, ByVal Original_IdDetalle_Presupuesto As String, ByVal Original_IdArticulo As String, ByVal Original_Descrpcion As String, ByVal Original_Cantidad As Decimal, ByVal Original_Precio As Decimal, ByVal Original_TotalPartida As Decimal, ByVal Original_Id_Presupuesto As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_IdFacturaMontajeDetalle As String, ByVal Original_IdFacturaMontaje As String, ByVal Original_IdDetalle_Presupuesto As String, ByVal Original_IdArticulo As String, ByVal Original_Descripcion As String, ByVal Original_Cantidad As Decimal, ByVal Original_Precio As Decimal, ByVal Original_TotalPartida As Decimal, ByVal Original_Id_Presupuesto As String, ByVal Original_PrecioConIrs As Global.System.Nullable(Of Decimal), ByVal Original_TotalConIrs As Global.System.Nullable(Of Decimal)) As Integer
             If (Original_IdFacturaMontajeDetalle Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_IdFacturaMontajeDetalle")
             Else
@@ -15387,10 +16139,10 @@ Namespace DsPagosMontajeTableAdapters
             Else
                 Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_IdArticulo,String)
             End If
-            If (Original_Descrpcion Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Descrpcion")
+            If (Original_Descripcion Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_Descripcion")
             Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Descrpcion,String)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Descripcion,String)
             End If
             Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_Cantidad,Decimal)
             Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Precio,Decimal)
@@ -15399,6 +16151,20 @@ Namespace DsPagosMontajeTableAdapters
                 Throw New Global.System.ArgumentNullException("Original_Id_Presupuesto")
             Else
                 Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_Id_Presupuesto,String)
+            End If
+            If (Original_PrecioConIrs.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_PrecioConIrs.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (Original_TotalConIrs.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_TotalConIrs.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -15419,7 +16185,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal IdFacturaMontajeDetalle As String, ByVal IdFacturaMontaje As String, ByVal IdDetalle_Presupuesto As String, ByVal IdArticulo As String, ByVal Descrpcion As String, ByVal Cantidad As Decimal, ByVal Precio As Decimal, ByVal TotalPartida As Decimal, ByVal Id_Presupuesto As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal IdFacturaMontajeDetalle As String, ByVal IdFacturaMontaje As String, ByVal IdDetalle_Presupuesto As String, ByVal IdArticulo As String, ByVal Descripcion As String, ByVal Cantidad As Decimal, ByVal Precio As Decimal, ByVal TotalPartida As Decimal, ByVal Id_Presupuesto As String) As Integer
             If (IdFacturaMontajeDetalle Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontajeDetalle")
             Else
@@ -15440,10 +16206,10 @@ Namespace DsPagosMontajeTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(3).Value = CType(IdArticulo,String)
             End If
-            If (Descrpcion Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Descrpcion")
+            If (Descripcion Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Descripcion")
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Descrpcion,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Descripcion,String)
             End If
             Me.Adapter.InsertCommand.Parameters(5).Value = CType(Cantidad,Decimal)
             Me.Adapter.InsertCommand.Parameters(6).Value = CType(Precio,Decimal)
@@ -15477,7 +16243,7 @@ Namespace DsPagosMontajeTableAdapters
                     ByVal IdFacturaMontaje As String,  _
                     ByVal IdDetalle_Presupuesto As String,  _
                     ByVal IdArticulo As String,  _
-                    ByVal Descrpcion As String,  _
+                    ByVal Descripcion As String,  _
                     ByVal Cantidad As Decimal,  _
                     ByVal Precio As Decimal,  _
                     ByVal TotalPartida As Decimal,  _
@@ -15486,11 +16252,13 @@ Namespace DsPagosMontajeTableAdapters
                     ByVal Original_IdFacturaMontaje As String,  _
                     ByVal Original_IdDetalle_Presupuesto As String,  _
                     ByVal Original_IdArticulo As String,  _
-                    ByVal Original_Descrpcion As String,  _
+                    ByVal Original_Descripcion As String,  _
                     ByVal Original_Cantidad As Decimal,  _
                     ByVal Original_Precio As Decimal,  _
                     ByVal Original_TotalPartida As Decimal,  _
-                    ByVal Original_Id_Presupuesto As String) As Integer
+                    ByVal Original_Id_Presupuesto As String,  _
+                    ByVal Original_PrecioConIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TotalConIrs As Global.System.Nullable(Of Decimal)) As Integer
             If (IdFacturaMontajeDetalle Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontajeDetalle")
             Else
@@ -15511,10 +16279,10 @@ Namespace DsPagosMontajeTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(3).Value = CType(IdArticulo,String)
             End If
-            If (Descrpcion Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Descrpcion")
+            If (Descripcion Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Descripcion")
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Descrpcion,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Descripcion,String)
             End If
             Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Cantidad,Decimal)
             Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Precio,Decimal)
@@ -15544,10 +16312,10 @@ Namespace DsPagosMontajeTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_IdArticulo,String)
             End If
-            If (Original_Descrpcion Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Descrpcion")
+            If (Original_Descripcion Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_Descripcion")
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Descrpcion,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Descripcion,String)
             End If
             Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Cantidad,Decimal)
             Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Precio,Decimal)
@@ -15556,6 +16324,20 @@ Namespace DsPagosMontajeTableAdapters
                 Throw New Global.System.ArgumentNullException("Original_Id_Presupuesto")
             Else
                 Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Id_Presupuesto,String)
+            End If
+            If (Original_PrecioConIrs.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_PrecioConIrs.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+            End If
+            If (Original_TotalConIrs.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_TotalConIrs.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -15580,7 +16362,7 @@ Namespace DsPagosMontajeTableAdapters
                     ByVal IdFacturaMontaje As String,  _
                     ByVal IdDetalle_Presupuesto As String,  _
                     ByVal IdArticulo As String,  _
-                    ByVal Descrpcion As String,  _
+                    ByVal Descripcion As String,  _
                     ByVal Cantidad As Decimal,  _
                     ByVal Precio As Decimal,  _
                     ByVal TotalPartida As Decimal,  _
@@ -15589,19 +16371,21 @@ Namespace DsPagosMontajeTableAdapters
                     ByVal Original_IdFacturaMontaje As String,  _
                     ByVal Original_IdDetalle_Presupuesto As String,  _
                     ByVal Original_IdArticulo As String,  _
-                    ByVal Original_Descrpcion As String,  _
+                    ByVal Original_Descripcion As String,  _
                     ByVal Original_Cantidad As Decimal,  _
                     ByVal Original_Precio As Decimal,  _
                     ByVal Original_TotalPartida As Decimal,  _
-                    ByVal Original_Id_Presupuesto As String) As Integer
-            Return Me.Update(Original_IdFacturaMontajeDetalle, IdFacturaMontaje, IdDetalle_Presupuesto, IdArticulo, Descrpcion, Cantidad, Precio, TotalPartida, Id_Presupuesto, Original_IdFacturaMontajeDetalle, Original_IdFacturaMontaje, Original_IdDetalle_Presupuesto, Original_IdArticulo, Original_Descrpcion, Original_Cantidad, Original_Precio, Original_TotalPartida, Original_Id_Presupuesto)
+                    ByVal Original_Id_Presupuesto As String,  _
+                    ByVal Original_PrecioConIrs As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TotalConIrs As Global.System.Nullable(Of Decimal)) As Integer
+            Return Me.Update(Original_IdFacturaMontajeDetalle, IdFacturaMontaje, IdDetalle_Presupuesto, IdArticulo, Descripcion, Cantidad, Precio, TotalPartida, Id_Presupuesto, Original_IdFacturaMontajeDetalle, Original_IdFacturaMontaje, Original_IdDetalle_Presupuesto, Original_IdArticulo, Original_Descripcion, Original_Cantidad, Original_Precio, Original_TotalPartida, Original_Id_Presupuesto, Original_PrecioConIrs, Original_TotalConIrs)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function NuevoDetalleFactura(ByVal IdFacturaMontajeDetalle As String, ByVal IdFacturaMontaje As String, ByVal IdDetalle_Presupuesto As String, ByVal IdArticulo As String, ByVal Descrpcion As String, ByVal Cantidad As Decimal, ByVal Precio As Decimal, ByVal TotalPartida As Decimal, ByVal Id_Presupuesto As String) As Integer
+        Public Overloads Overridable Function NuevoDetalleFactura(ByVal IdFacturaMontajeDetalle As String, ByVal IdFacturaMontaje As String, ByVal IdDetalle_Presupuesto As String, ByVal IdArticulo As String, ByVal Descripcion As String, ByVal Cantidad As Decimal, ByVal Precio As Decimal, ByVal TotalPartida As Decimal, ByVal Id_Presupuesto As String) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
             If (IdFacturaMontajeDetalle Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontajeDetalle")
@@ -15623,10 +16407,10 @@ Namespace DsPagosMontajeTableAdapters
             Else
                 command.Parameters(3).Value = CType(IdArticulo,String)
             End If
-            If (Descrpcion Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Descrpcion")
+            If (Descripcion Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Descripcion")
             Else
-                command.Parameters(4).Value = CType(Descrpcion,String)
+                command.Parameters(4).Value = CType(Descripcion,String)
             End If
             command.Parameters(5).Value = CType(Cantidad,Decimal)
             command.Parameters(6).Value = CType(Precio,Decimal)
@@ -15655,7 +16439,7 @@ Namespace DsPagosMontajeTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function SiguienteDetalle(ByVal IdFacturaMontaje As String) As String
+        Public Overloads Overridable Function SiguienteDetalle(ByVal IdFacturaMontaje As String) As Object
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
             If (IdFacturaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdFacturaMontaje")
@@ -15679,7 +16463,7 @@ Namespace DsPagosMontajeTableAdapters
                         OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
                 Return Nothing
             Else
-                Return CType(returnValue,String)
+                Return CType(returnValue,Object)
             End If
         End Function
     End Class

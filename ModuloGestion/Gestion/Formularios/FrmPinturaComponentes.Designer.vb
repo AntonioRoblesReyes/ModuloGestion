@@ -206,7 +206,7 @@ Partial Class FrmPinturaComponentes
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        Me.OpenFileDialog1.InitialDirectory = "\\PORTATIL-DELL\Users\Public\FichaTecnica"
+        Me.OpenFileDialog1.InitialDirectory = "\\PCShernia\Users\Public\FichaTecnica"
         '
         'FrmPinturaComponentes
         '

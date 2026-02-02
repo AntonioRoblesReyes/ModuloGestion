@@ -42,8 +42,6 @@ Partial Class FrmIngresoCompras
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.SubTotalCompraUSTextBox = New System.Windows.Forms.TextBox()
         Me.CompraMaterialesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsCompras = New ModuloGestion.DsCompras()
@@ -63,23 +61,6 @@ Partial Class FrmIngresoCompras
         Me.ObservacionesTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CompraMaterialesDetalleDataGridView = New System.Windows.Forms.DataGridView()
-        Me.IdDetallecompra = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDetalleP = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Id_Medida = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Tasa1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Id_Material = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DescripcionProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Itebis = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrecioUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ItebisUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrecioRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ItebisRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrecioEU = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalEU = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Id_Presupuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CompraMaterialesDetalleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ProveedoresProductoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsProveedoresProducto = New ModuloGestion.DsProveedoresProducto()
@@ -112,6 +93,21 @@ Partial Class FrmIngresoCompras
         Me.GroupBoxObservaciones = New System.Windows.Forms.GroupBox()
         Me.GroupBoxTotales = New System.Windows.Forms.GroupBox()
         Me.DsCompras1 = New ModuloGestion.DsCompras()
+        Me.IdDetallecompra = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdDetalleP = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Id_Medida = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tasa1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Id_Material = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DescripcionProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Itebis = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrecioUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItebisUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrecioRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItebisRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Id_Presupuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Id_CompraLabel = New System.Windows.Forms.Label()
         Id_ProveedorLabel = New System.Windows.Forms.Label()
         TasaLabel = New System.Windows.Forms.Label()
@@ -435,7 +431,7 @@ Partial Class FrmIngresoCompras
         Me.CompraMaterialesDetalleDataGridView.AllowUserToAddRows = False
         Me.CompraMaterialesDetalleDataGridView.AutoGenerateColumns = False
         Me.CompraMaterialesDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.CompraMaterialesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDetallecompra, Me.IdDetalleP, Me.Id_Medida, Me.Tasa1, Me.Id_Material, Me.DescripcionProveedor, Me.Itebis, Me.Cantidad, Me.PrecioUS, Me.ItebisUS, Me.TotalUS, Me.PrecioRD, Me.ItebisRD, Me.TotalRD, Me.PrecioEU, Me.TotalEU, Me.Id_Presupuesto})
+        Me.CompraMaterialesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDetallecompra, Me.IdDetalleP, Me.Id_Medida, Me.Tasa1, Me.Id_Material, Me.DescripcionProveedor, Me.Itebis, Me.Cantidad, Me.PrecioUS, Me.ItebisUS, Me.TotalUS, Me.PrecioRD, Me.ItebisRD, Me.TotalRD, Me.Id_Presupuesto})
         Me.CompraMaterialesDetalleDataGridView.DataSource = Me.CompraMaterialesDetalleBindingSource
         Me.CompraMaterialesDetalleDataGridView.Location = New System.Drawing.Point(16, 318)
         Me.CompraMaterialesDetalleDataGridView.Margin = New System.Windows.Forms.Padding(4)
@@ -443,181 +439,6 @@ Partial Class FrmIngresoCompras
         Me.CompraMaterialesDetalleDataGridView.RowHeadersWidth = 51
         Me.CompraMaterialesDetalleDataGridView.Size = New System.Drawing.Size(1332, 271)
         Me.CompraMaterialesDetalleDataGridView.TabIndex = 86
-        '
-        'IdDetallecompra
-        '
-        Me.IdDetallecompra.DataPropertyName = "Id_Detalle_compra"
-        Me.IdDetallecompra.HeaderText = "Id Detalle"
-        Me.IdDetallecompra.MinimumWidth = 6
-        Me.IdDetallecompra.Name = "IdDetallecompra"
-        Me.IdDetallecompra.Width = 125
-        '
-        'IdDetalleP
-        '
-        Me.IdDetalleP.DataPropertyName = "IdDetalle"
-        Me.IdDetalleP.HeaderText = "IdDetalleProveedor"
-        Me.IdDetalleP.MinimumWidth = 6
-        Me.IdDetalleP.Name = "IdDetalleP"
-        Me.IdDetalleP.Visible = False
-        Me.IdDetalleP.Width = 125
-        '
-        'Id_Medida
-        '
-        Me.Id_Medida.DataPropertyName = "Id_Medida"
-        Me.Id_Medida.HeaderText = "Id_Medida"
-        Me.Id_Medida.MinimumWidth = 6
-        Me.Id_Medida.Name = "Id_Medida"
-        Me.Id_Medida.Visible = False
-        Me.Id_Medida.Width = 125
-        '
-        'Tasa1
-        '
-        Me.Tasa1.DataPropertyName = "Tasa"
-        Me.Tasa1.HeaderText = "Tasa"
-        Me.Tasa1.MinimumWidth = 6
-        Me.Tasa1.Name = "Tasa1"
-        Me.Tasa1.Visible = False
-        Me.Tasa1.Width = 125
-        '
-        'Id_Material
-        '
-        Me.Id_Material.DataPropertyName = "Id_Material"
-        Me.Id_Material.HeaderText = "Id_Material"
-        Me.Id_Material.MinimumWidth = 6
-        Me.Id_Material.Name = "Id_Material"
-        Me.Id_Material.Visible = False
-        Me.Id_Material.Width = 125
-        '
-        'DescripcionProveedor
-        '
-        Me.DescripcionProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DescripcionProveedor.DataPropertyName = "DescripcionProveedor"
-        Me.DescripcionProveedor.HeaderText = "Descripcion"
-        Me.DescripcionProveedor.MinimumWidth = 6
-        Me.DescripcionProveedor.Name = "DescripcionProveedor"
-        Me.DescripcionProveedor.ReadOnly = True
-        Me.DescripcionProveedor.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'Itebis
-        '
-        Me.Itebis.DataPropertyName = "Itebis"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle1.Format = "n2"
-        Me.Itebis.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Itebis.HeaderText = "Itebis"
-        Me.Itebis.MinimumWidth = 6
-        Me.Itebis.Name = "Itebis"
-        Me.Itebis.Visible = False
-        Me.Itebis.Width = 60
-        '
-        'Cantidad
-        '
-        Me.Cantidad.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "n4"
-        Me.Cantidad.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.MinimumWidth = 6
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.Width = 75
-        '
-        'PrecioUS
-        '
-        Me.PrecioUS.DataPropertyName = "PrecioUS"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle3.Format = "n4"
-        Me.PrecioUS.DefaultCellStyle = DataGridViewCellStyle3
-        Me.PrecioUS.HeaderText = "PrecioUS"
-        Me.PrecioUS.MinimumWidth = 6
-        Me.PrecioUS.Name = "PrecioUS"
-        Me.PrecioUS.Width = 75
-        '
-        'ItebisUS
-        '
-        Me.ItebisUS.DataPropertyName = "ItebisUS"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle4.Format = "n2"
-        Me.ItebisUS.DefaultCellStyle = DataGridViewCellStyle4
-        Me.ItebisUS.HeaderText = "ItebisUS"
-        Me.ItebisUS.MinimumWidth = 6
-        Me.ItebisUS.Name = "ItebisUS"
-        Me.ItebisUS.Width = 75
-        '
-        'TotalUS
-        '
-        Me.TotalUS.DataPropertyName = "TotalUS"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle5.Format = "n2"
-        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle5
-        Me.TotalUS.HeaderText = "TotalUS"
-        Me.TotalUS.MinimumWidth = 6
-        Me.TotalUS.Name = "TotalUS"
-        Me.TotalUS.Width = 75
-        '
-        'PrecioRD
-        '
-        Me.PrecioRD.DataPropertyName = "PrecioRD"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle6.Format = "n4"
-        Me.PrecioRD.DefaultCellStyle = DataGridViewCellStyle6
-        Me.PrecioRD.HeaderText = "PrecioRD"
-        Me.PrecioRD.MinimumWidth = 6
-        Me.PrecioRD.Name = "PrecioRD"
-        Me.PrecioRD.Width = 75
-        '
-        'ItebisRD
-        '
-        Me.ItebisRD.DataPropertyName = "ItebisRD"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle7.Format = "n2"
-        Me.ItebisRD.DefaultCellStyle = DataGridViewCellStyle7
-        Me.ItebisRD.HeaderText = "ItebisRD"
-        Me.ItebisRD.MinimumWidth = 6
-        Me.ItebisRD.Name = "ItebisRD"
-        Me.ItebisRD.Width = 75
-        '
-        'TotalRD
-        '
-        Me.TotalRD.DataPropertyName = "TotalRD"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle8.Format = "n4"
-        Me.TotalRD.DefaultCellStyle = DataGridViewCellStyle8
-        Me.TotalRD.HeaderText = "TotalRD"
-        Me.TotalRD.MinimumWidth = 6
-        Me.TotalRD.Name = "TotalRD"
-        Me.TotalRD.Width = 75
-        '
-        'PrecioEU
-        '
-        Me.PrecioEU.DataPropertyName = "PrecioEU"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle9.Format = "n4"
-        Me.PrecioEU.DefaultCellStyle = DataGridViewCellStyle9
-        Me.PrecioEU.HeaderText = "PrecioEU"
-        Me.PrecioEU.MinimumWidth = 6
-        Me.PrecioEU.Name = "PrecioEU"
-        Me.PrecioEU.Visible = False
-        Me.PrecioEU.Width = 75
-        '
-        'TotalEU
-        '
-        Me.TotalEU.DataPropertyName = "TotalEU"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle10.Format = "n4"
-        Me.TotalEU.DefaultCellStyle = DataGridViewCellStyle10
-        Me.TotalEU.HeaderText = "TotalEU"
-        Me.TotalEU.MinimumWidth = 6
-        Me.TotalEU.Name = "TotalEU"
-        Me.TotalEU.Visible = False
-        Me.TotalEU.Width = 75
-        '
-        'Id_Presupuesto
-        '
-        Me.Id_Presupuesto.DataPropertyName = "Id_Presupuesto"
-        Me.Id_Presupuesto.HeaderText = "Presupuesto"
-        Me.Id_Presupuesto.MinimumWidth = 6
-        Me.Id_Presupuesto.Name = "Id_Presupuesto"
-        Me.Id_Presupuesto.Width = 125
         '
         'CompraMaterialesDetalleBindingSource
         '
@@ -892,6 +713,157 @@ Partial Class FrmIngresoCompras
         Me.DsCompras1.DataSetName = "DsCompras"
         Me.DsCompras1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
+        'IdDetallecompra
+        '
+        Me.IdDetallecompra.DataPropertyName = "Id_Detalle_compra"
+        Me.IdDetallecompra.HeaderText = "Id Detalle"
+        Me.IdDetallecompra.MinimumWidth = 6
+        Me.IdDetallecompra.Name = "IdDetallecompra"
+        Me.IdDetallecompra.Width = 125
+        '
+        'IdDetalleP
+        '
+        Me.IdDetalleP.DataPropertyName = "IdDetalle"
+        Me.IdDetalleP.HeaderText = "IdDetalleProveedor"
+        Me.IdDetalleP.MinimumWidth = 6
+        Me.IdDetalleP.Name = "IdDetalleP"
+        Me.IdDetalleP.Visible = False
+        Me.IdDetalleP.Width = 125
+        '
+        'Id_Medida
+        '
+        Me.Id_Medida.DataPropertyName = "Id_Medida"
+        Me.Id_Medida.HeaderText = "Id_Medida"
+        Me.Id_Medida.MinimumWidth = 6
+        Me.Id_Medida.Name = "Id_Medida"
+        Me.Id_Medida.Visible = False
+        Me.Id_Medida.Width = 125
+        '
+        'Tasa1
+        '
+        Me.Tasa1.DataPropertyName = "Tasa"
+        Me.Tasa1.HeaderText = "Tasa"
+        Me.Tasa1.MinimumWidth = 6
+        Me.Tasa1.Name = "Tasa1"
+        Me.Tasa1.Visible = False
+        Me.Tasa1.Width = 125
+        '
+        'Id_Material
+        '
+        Me.Id_Material.DataPropertyName = "Id_Material"
+        Me.Id_Material.HeaderText = "Id_Material"
+        Me.Id_Material.MinimumWidth = 6
+        Me.Id_Material.Name = "Id_Material"
+        Me.Id_Material.Visible = False
+        Me.Id_Material.Width = 125
+        '
+        'DescripcionProveedor
+        '
+        Me.DescripcionProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DescripcionProveedor.DataPropertyName = "DescripcionProveedor"
+        Me.DescripcionProveedor.HeaderText = "Descripcion"
+        Me.DescripcionProveedor.MinimumWidth = 6
+        Me.DescripcionProveedor.Name = "DescripcionProveedor"
+        Me.DescripcionProveedor.ReadOnly = True
+        Me.DescripcionProveedor.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'Itebis
+        '
+        Me.Itebis.DataPropertyName = "Itebis"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle1.Format = "n2"
+        Me.Itebis.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Itebis.HeaderText = "Itebis"
+        Me.Itebis.MinimumWidth = 6
+        Me.Itebis.Name = "Itebis"
+        Me.Itebis.Visible = False
+        Me.Itebis.Width = 60
+        '
+        'Cantidad
+        '
+        Me.Cantidad.DataPropertyName = "Cantidad"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle2.Format = "n4"
+        Me.Cantidad.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.MinimumWidth = 6
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.Width = 75
+        '
+        'PrecioUS
+        '
+        Me.PrecioUS.DataPropertyName = "PrecioUS"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle3.Format = "n4"
+        Me.PrecioUS.DefaultCellStyle = DataGridViewCellStyle3
+        Me.PrecioUS.HeaderText = "PrecioUS"
+        Me.PrecioUS.MinimumWidth = 6
+        Me.PrecioUS.Name = "PrecioUS"
+        Me.PrecioUS.Width = 75
+        '
+        'ItebisUS
+        '
+        Me.ItebisUS.DataPropertyName = "ItebisUS"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle4.Format = "n2"
+        Me.ItebisUS.DefaultCellStyle = DataGridViewCellStyle4
+        Me.ItebisUS.HeaderText = "ItebisUS"
+        Me.ItebisUS.MinimumWidth = 6
+        Me.ItebisUS.Name = "ItebisUS"
+        Me.ItebisUS.Width = 75
+        '
+        'TotalUS
+        '
+        Me.TotalUS.DataPropertyName = "TotalUS"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle5.Format = "n2"
+        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle5
+        Me.TotalUS.HeaderText = "TotalUS"
+        Me.TotalUS.MinimumWidth = 6
+        Me.TotalUS.Name = "TotalUS"
+        Me.TotalUS.Width = 75
+        '
+        'PrecioRD
+        '
+        Me.PrecioRD.DataPropertyName = "PrecioRD"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle6.Format = "n4"
+        Me.PrecioRD.DefaultCellStyle = DataGridViewCellStyle6
+        Me.PrecioRD.HeaderText = "PrecioRD"
+        Me.PrecioRD.MinimumWidth = 6
+        Me.PrecioRD.Name = "PrecioRD"
+        Me.PrecioRD.Width = 75
+        '
+        'ItebisRD
+        '
+        Me.ItebisRD.DataPropertyName = "ItebisRD"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle7.Format = "n2"
+        Me.ItebisRD.DefaultCellStyle = DataGridViewCellStyle7
+        Me.ItebisRD.HeaderText = "ItebisRD"
+        Me.ItebisRD.MinimumWidth = 6
+        Me.ItebisRD.Name = "ItebisRD"
+        Me.ItebisRD.Width = 75
+        '
+        'TotalRD
+        '
+        Me.TotalRD.DataPropertyName = "TotalRD"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle8.Format = "n4"
+        Me.TotalRD.DefaultCellStyle = DataGridViewCellStyle8
+        Me.TotalRD.HeaderText = "TotalRD"
+        Me.TotalRD.MinimumWidth = 6
+        Me.TotalRD.Name = "TotalRD"
+        Me.TotalRD.Width = 75
+        '
+        'Id_Presupuesto
+        '
+        Me.Id_Presupuesto.DataPropertyName = "Id_Presupuesto"
+        Me.Id_Presupuesto.HeaderText = "Presupuesto"
+        Me.Id_Presupuesto.MinimumWidth = 6
+        Me.Id_Presupuesto.Name = "Id_Presupuesto"
+        Me.Id_Presupuesto.Width = 125
+        '
         'FrmIngresoCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -980,6 +952,9 @@ Partial Class FrmIngresoCompras
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents GroupBoxDatosCompra As GroupBox
+    Friend WithEvents GroupBoxObservaciones As GroupBox
+    Friend WithEvents GroupBoxTotales As GroupBox
     Friend WithEvents IdDetallecompra As DataGridViewTextBoxColumn
     Friend WithEvents IdDetalleP As DataGridViewTextBoxColumn
     Friend WithEvents Id_Medida As DataGridViewTextBoxColumn
@@ -994,10 +969,5 @@ Partial Class FrmIngresoCompras
     Friend WithEvents PrecioRD As DataGridViewTextBoxColumn
     Friend WithEvents ItebisRD As DataGridViewTextBoxColumn
     Friend WithEvents TotalRD As DataGridViewTextBoxColumn
-    Friend WithEvents PrecioEU As DataGridViewTextBoxColumn
-    Friend WithEvents TotalEU As DataGridViewTextBoxColumn
     Friend WithEvents Id_Presupuesto As DataGridViewTextBoxColumn
-    Friend WithEvents GroupBoxDatosCompra As GroupBox
-    Friend WithEvents GroupBoxObservaciones As GroupBox
-    Friend WithEvents GroupBoxTotales As GroupBox
 End Class

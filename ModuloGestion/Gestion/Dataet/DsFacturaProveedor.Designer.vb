@@ -581,7 +581,7 @@ Partial Public Class DsFacturaProveedor
             Me.columnIdFacturaProveedor.AllowDBNull = false
             Me.columnIdFacturaProveedor.MaxLength = 50
             Me.columnId_Proveedor.AllowDBNull = false
-            Me.columnId_Proveedor.MaxLength = 30
+            Me.columnId_Proveedor.MaxLength = 50
             Me.columnValorImpuesto.AllowDBNull = false
             Me._columnTasaCambioRD_.AllowDBNull = false
             Me.columnFecha.AllowDBNull = false

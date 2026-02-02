@@ -17,7 +17,7 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\Portatil-dell\c\Ejecutable\</PublishUrl>
+    <PublishUrl>\\Pcshernia\d\ProgramasVisual\Ejecutable\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,12 +27,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\Pcshernia\d\ProgramasVisual\Ejecutable\</InstallUrl>
     <UpdateUrl>\\Portatil-dell\c\Ejecutable\</UpdateUrl>
     <MinimumRequiredVersion>0.0.0.27</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>295</ApplicationRevision>
-    <ApplicationVersion>0.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>30</ApplicationRevision>
+    <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -122,19 +123,14 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
-      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.7.0-beta.98\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic.Compatibility.Data" />
     <Reference Include="System">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll</HintPath>
@@ -142,6 +138,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
@@ -255,6 +252,9 @@
     </Compile>
     <Compile Include="FrmCambioProyecto.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gestion\Dataet\DsCompras.vb">
+      <DependentUpon>DsCompras.xsd</DependentUpon>
     </Compile>
     <Compile Include="Gestion\Dataet\DsProyectos.vb">
       <DependentUpon>DsProyectos.xsd</DependentUpon>
@@ -431,12 +431,6 @@
     <Compile Include="Gestion\Formularios\FrmPresopuestosAprobados.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gestion\Formularios\FrmProveedoresPago.Designer.vb">
-      <DependentUpon>FrmProveedoresPago.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Gestion\Formularios\FrmProveedoresPago.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Gestion\Formularios\FrmTotalesCompraProveedor.Designer.vb">
       <DependentUpon>FrmTotalesCompraProveedor.vb</DependentUpon>
     </Compile>
@@ -518,6 +512,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CryEmpresaMontajeEstado.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Montaje\CryFacturaIns.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CryFacturaIns.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Montaje\CryResumenFacturas.vb">
@@ -692,12 +692,6 @@
       <DependentUpon>FrmMaterialesCompra.vb</DependentUpon>
     </Compile>
     <Compile Include="FrmMaterialesCompra.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Montaje\FrmPagoMontajeEditar.Designer.vb">
-      <DependentUpon>FrmPagoMontajeEditar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Montaje\FrmPagoMontajeEditar.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gestion\Formularios\FrmMontaje.Designer.vb">
@@ -1541,12 +1535,6 @@
     <Compile Include="Gestion\Formularios\FrmCompraFerreteria.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gestion\Formularios\FrmComprasPorProveedor.Designer.vb">
-      <DependentUpon>FrmComprasPorProveedor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Gestion\Formularios\FrmComprasPorProveedor.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Gestion\Formularios\FrmConductores.Designer.vb">
       <DependentUpon>FrmConductores.vb</DependentUpon>
     </Compile>
@@ -2127,9 +2115,6 @@
     <EmbeddedResource Include="Gestion\Formularios\FrmPresopuestosAprobados.resx">
       <DependentUpon>FrmPresopuestosAprobados.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gestion\Formularios\FrmProveedoresPago.resx">
-      <DependentUpon>FrmProveedoresPago.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Gestion\Formularios\FrmTotalesCompraProveedor.resx">
       <DependentUpon>FrmTotalesCompraProveedor.vb</DependentUpon>
     </EmbeddedResource>
@@ -2175,6 +2160,10 @@
     <EmbeddedResource Include="Montaje\CryEmpresaMontajeEstado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CryEmpresaMontajeEstado.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Montaje\CryFacturaIns.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CryFacturaIns.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Montaje\CryResumenFacturas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2256,9 +2245,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMaterialesCompra.resx">
       <DependentUpon>FrmMaterialesCompra.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Montaje\FrmPagoMontajeEditar.resx">
-      <DependentUpon>FrmPagoMontajeEditar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion\Formularios\FrmMontaje.resx">
       <DependentUpon>FrmMontaje.vb</DependentUpon>
@@ -2406,10 +2392,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion\Formularios\FrmCompraFerreteria.resx">
       <DependentUpon>FrmCompraFerreteria.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gestion\Formularios\FrmComprasPorProveedor.resx">
-      <DependentUpon>FrmComprasPorProveedor.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion\Formularios\FrmConductores.resx">
       <DependentUpon>FrmConductores.vb</DependentUpon>
@@ -2673,7 +2655,6 @@
       <DependentUpon>DsContabilidad.xsd</DependentUpon>
     </None>
     <None Include="Contabilidad\DsContabilidad.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsContabilidad.Designer.vb</LastGenOutput>
     </None>
     <None Include="Contabilidad\DsContabilidad.xss">
@@ -2683,7 +2664,6 @@
       <DependentUpon>GestionEmpresaDataSet.xsd</DependentUpon>
     </None>
     <None Include="GestionEmpresaDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GestionEmpresaDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2694,7 +2674,6 @@
       <DependentUpon>DsProveedoresPagos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsProveedoresPagos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsProveedoresPagos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2705,7 +2684,6 @@
       <DependentUpon>DsTasa.xsd</DependentUpon>
     </None>
     <None Include="DsTasa.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsTasa.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2722,7 +2700,6 @@
       <DependentUpon>DsEstadoTrabajos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEstadoTrabajos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEstadoTrabajos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2739,7 +2716,6 @@
       <DependentUpon>HotelesDataSet.xsd</DependentUpon>
     </None>
     <None Include="Hoteles\HotelesDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>HotelesDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2758,7 +2734,6 @@
       <DependentUpon>DsEmpleados.xsd</DependentUpon>
     </None>
     <None Include="Empleados\DsEmpleados.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEmpleados.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2769,7 +2744,6 @@
       <DependentUpon>DsTipoComprobante.xsd</DependentUpon>
     </None>
     <None Include="DsTipoComprobante.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsTipoComprobante.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2780,7 +2754,6 @@
       <DependentUpon>DsAnalisisPresupuesto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsAnalisisPresupuesto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsAnalisisPresupuesto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2791,7 +2764,6 @@
       <DependentUpon>DsAnalisisProyecto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsAnalisisProyecto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsAnalisisProyecto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2802,7 +2774,6 @@
       <DependentUpon>DsAnexarFerreteriaCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsAnexarFerreteriaCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsAnexarFerreteriaCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2813,7 +2784,6 @@
       <DependentUpon>DsAnexarHerrajeCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsAnexarHerrajeCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsAnexarHerrajeCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2824,7 +2794,6 @@
       <DependentUpon>DsAnexarMaterialCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsAnexarMaterialCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsAnexarMaterialCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2835,7 +2804,6 @@
       <DependentUpon>DsAnexarPinturaCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsAnexarPinturaCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsAnexarPinturaCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2846,7 +2814,6 @@
       <DependentUpon>DsArticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsArticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsArticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2857,7 +2824,6 @@
       <DependentUpon>DsArticulosAprobados.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsArticulosAprobados.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsArticulosAprobados.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2868,7 +2834,6 @@
       <DependentUpon>DsArticulosdetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsArticulosdetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsArticulosdetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2879,7 +2844,6 @@
       <DependentUpon>DsCategoriasUsuarios.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsCategoriasUsuarios.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsCategoriasUsuarios.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2890,7 +2854,6 @@
       <DependentUpon>DsClientes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsClientes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsClientes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2898,7 +2861,6 @@
       <DependentUpon>DsClientes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsCompras.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsCompras.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2906,7 +2868,6 @@
       <DependentUpon>DsComprasPorProyecto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsComprasPorProyecto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsComprasPorProyecto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2917,7 +2878,6 @@
       <DependentUpon>DsComprasProyectoDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsComprasProyectoDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsComprasProyectoDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2928,7 +2888,6 @@
       <DependentUpon>DsConductores.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConductores.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConductores.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2939,7 +2898,6 @@
       <DependentUpon>DsConsultaHerrajesPresupuestoDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsultaHerrajesPresupuestoDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsultaHerrajesPresupuestoDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2950,7 +2908,6 @@
       <DependentUpon>DsConsumoArticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoArticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoArticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2961,7 +2918,6 @@
       <DependentUpon>DsConsumoArticulosInforme.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoArticulosInforme.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoArticulosInforme.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2972,7 +2928,6 @@
       <DependentUpon>DsConsumoArticulosResumen.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoArticulosResumen.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoArticulosResumen.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2983,7 +2938,6 @@
       <DependentUpon>DsConsumoElementos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoElementos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoElementos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -2994,7 +2948,6 @@
       <DependentUpon>DsConsumoFerreteriaArticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoFerreteriaArticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoFerreteriaArticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3005,7 +2958,6 @@
       <DependentUpon>DsConsumoHerrajesArticulo.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoHerrajesArticulo.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoHerrajesArticulo.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3016,7 +2968,6 @@
       <DependentUpon>DsConsumoMaterialArticulo.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoMaterialArticulo.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoMaterialArticulo.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3027,7 +2978,6 @@
       <DependentUpon>DsConsumoMaterialPresupuesto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoMaterialPresupuesto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoMaterialPresupuesto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3038,7 +2988,6 @@
       <DependentUpon>DsConsumoMaterialProyecto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoMaterialProyecto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoMaterialProyecto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3049,7 +2998,6 @@
       <DependentUpon>DsConsumoMaterialSubarticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoMaterialSubarticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoMaterialSubarticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3060,7 +3008,6 @@
       <DependentUpon>DsConsumoPinturaProyecto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsConsumoPinturaProyecto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsConsumoPinturaProyecto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3071,7 +3018,6 @@
       <DependentUpon>DsCosumoFerreteriaArticulo.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsCosumoFerreteriaArticulo.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsCosumoFerreteriaArticulo.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3082,7 +3028,6 @@
       <DependentUpon>DsCosumoPinturaArticulo.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsCosumoPinturaArticulo.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsCosumoPinturaArticulo.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3093,7 +3038,6 @@
       <DependentUpon>DsDsPresupuestoDetalleSubArticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsDsPresupuestoDetalleSubArticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsDsPresupuestoDetalleSubArticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3104,7 +3048,6 @@
       <DependentUpon>DsDuplicarSubArticuloDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsDuplicarSubArticuloDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsDuplicarSubArticuloDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3115,7 +3058,6 @@
       <DependentUpon>DsDuplicarSubArticuloFerreteria.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsDuplicarSubArticuloFerreteria.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsDuplicarSubArticuloFerreteria.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3126,7 +3068,6 @@
       <DependentUpon>DsEcabezadoConsumos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEcabezadoConsumos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEcabezadoConsumos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3137,7 +3078,6 @@
       <DependentUpon>DsEliminarMaterialPrecioCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEliminarMaterialPrecioCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEliminarMaterialPrecioCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3148,7 +3088,6 @@
       <DependentUpon>DsEliminarMatertialPrecioCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEliminarMatertialPrecioCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEliminarMatertialPrecioCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3159,7 +3098,6 @@
       <DependentUpon>DsEmpresasTransporte.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEmpresasTransporte.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEmpresasTransporte.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3170,7 +3108,6 @@
       <DependentUpon>DsEntradaPrecios.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEntradaPrecios.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEntradaPrecios.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3181,7 +3118,6 @@
       <DependentUpon>DsEstadoClientes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEstadoClientes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEstadoClientes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3192,7 +3128,6 @@
       <DependentUpon>DsEstadoComprasProyecto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEstadoComprasProyecto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEstadoComprasProyecto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3203,7 +3138,6 @@
       <DependentUpon>DsEstadoEntregas.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEstadoEntregas.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEstadoEntregas.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3214,7 +3148,6 @@
       <DependentUpon>DsEstadoEntregasHerrajes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEstadoEntregasHerrajes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEstadoEntregasHerrajes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3225,7 +3158,6 @@
       <DependentUpon>DsFacturaProveedor.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsFacturaProveedor.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsFacturaProveedor.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3233,7 +3165,6 @@
       <DependentUpon>DsFacturaProveedor.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsFacturas.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsFacturas.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3241,7 +3172,6 @@
       <DependentUpon>DsHerrajes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsHerrajes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsHerrajes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3252,7 +3182,6 @@
       <DependentUpon>DsHerrajesFamilia.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsHerrajesFamilia.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsHerrajesFamilia.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3263,7 +3192,6 @@
       <DependentUpon>DsHorasTrabajoTallerArticulo.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsHorasTrabajoTallerArticulo.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsHorasTrabajoTallerArticulo.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3274,7 +3202,6 @@
       <DependentUpon>DsImprimirCompras.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsImprimirCompras.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsImprimirCompras.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3285,7 +3212,6 @@
       <DependentUpon>DsImrpimirNotasEntregas.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsImrpimirNotasEntregas.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsImrpimirNotasEntregas.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3296,7 +3222,6 @@
       <DependentUpon>DsKitArticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsKitArticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsKitArticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3307,7 +3232,6 @@
       <DependentUpon>DsLineasEntraga.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsLineasEntraga.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsLineasEntraga.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3318,7 +3242,6 @@
       <DependentUpon>DsMaquinarias.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsMaquinarias.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsMaquinarias.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3329,7 +3252,6 @@
       <DependentUpon>DsMaterialDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsMaterialDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsMaterialDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3340,7 +3262,6 @@
       <DependentUpon>DsMaterialMedidadCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsMaterialMedidadCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsMaterialMedidadCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3351,7 +3272,6 @@
       <DependentUpon>DsMedidasCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsMedidasCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsMedidasCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3362,7 +3282,6 @@
       <DependentUpon>DsMonedas.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsMonedas.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsMonedas.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3373,7 +3292,6 @@
       <DependentUpon>DsNotasEntrega.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsNotasEntrega.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsNotasEntrega.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3384,7 +3302,6 @@
       <DependentUpon>DsNotasEntregaDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsNotasEntregaDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsNotasEntregaDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3395,7 +3312,6 @@
       <DependentUpon>DsNotasEntregaNombres.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsNotasEntregaNombres.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsNotasEntregaNombres.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3406,7 +3322,6 @@
       <DependentUpon>DsPagosClientes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPagosClientes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPagosClientes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3417,7 +3332,6 @@
       <DependentUpon>DsPagosClientesDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPagosClientesDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPagosClientesDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3428,7 +3342,6 @@
       <DependentUpon>DsPintura.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPintura.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPintura.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3439,7 +3352,6 @@
       <DependentUpon>DsPinturaAplicacion.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPinturaAplicacion.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPinturaAplicacion.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3450,7 +3362,6 @@
       <DependentUpon>DsPinturaAplicacionDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPinturaAplicacionDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPinturaAplicacionDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3461,7 +3372,6 @@
       <DependentUpon>DsPinturaComponentes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPinturaComponentes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPinturaComponentes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3472,7 +3382,6 @@
       <DependentUpon>DsPinturaConsumosElementos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPinturaConsumosElementos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPinturaConsumosElementos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3483,7 +3392,6 @@
       <DependentUpon>DsPinturaDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPinturaDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPinturaDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3494,7 +3402,6 @@
       <DependentUpon>DsPinturasFamilia.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPinturasFamilia.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPinturasFamilia.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3505,7 +3412,6 @@
       <DependentUpon>DsPreciosCompra.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPreciosCompra.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPreciosCompra.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3516,7 +3422,6 @@
       <DependentUpon>DsPreciosCompraConsulta.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPreciosCompraConsulta.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPreciosCompraConsulta.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3527,7 +3432,6 @@
       <DependentUpon>DsPreciosCompraProyecto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPreciosCompraProyecto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPreciosCompraProyecto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3539,7 +3443,6 @@
     </None>
     <None Include="Gestion\Dataet\DsPresuImprir.xsd">
       <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresuImprir.Designer.vb</LastGenOutput>
     </None>
     <None Include="Gestion\Dataet\DsPresuImprir.xss">
@@ -3549,7 +3452,6 @@
       <DependentUpon>DsDescripciones.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsDescripciones.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsDescripciones.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3560,7 +3462,6 @@
       <DependentUpon>DsDescripcionesdetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsDescripcionesdetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsDescripcionesdetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3571,7 +3472,6 @@
       <DependentUpon>DsEmpresas.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEmpresas.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEmpresas.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3582,7 +3482,6 @@
       <DependentUpon>DsEmpresasProyecto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsEmpresasProyecto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsEmpresasProyecto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3593,7 +3492,6 @@
       <DependentUpon>DsFerreteria.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsFerreteria.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsFerreteria.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3604,7 +3502,6 @@
       <DependentUpon>DsMaterial.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsMaterial.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsMaterial.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3615,7 +3512,6 @@
       <DependentUpon>DsMaterialFamilia.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsMaterialFamilia.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsMaterialFamilia.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3626,7 +3522,6 @@
       <DependentUpon>DsModeloArticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsModeloArticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsModeloArticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3637,7 +3532,6 @@
       <DependentUpon>DsPresupuestoDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPresupuestoDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresupuestoDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3648,7 +3542,6 @@
       <DependentUpon>DsPresupuestoDetalleElementos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPresupuestoDetalleElementos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresupuestoDetalleElementos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3659,7 +3552,6 @@
       <DependentUpon>DsPresupuestoDetalleferreteria.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPresupuestoDetalleferreteria.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresupuestoDetalleferreteria.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3670,7 +3562,6 @@
       <DependentUpon>DsPresupuestoDetalleHerrajes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPresupuestoDetalleHerrajes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresupuestoDetalleHerrajes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3681,7 +3572,6 @@
       <DependentUpon>DsPresupuestoDetallePintura.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPresupuestoDetallePintura.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresupuestoDetallePintura.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3692,7 +3582,6 @@
       <DependentUpon>DsPresupuestoDetalleSubArticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPresupuestoDetalleSubArticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresupuestoDetalleSubArticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3703,7 +3592,6 @@
       <DependentUpon>DsPresupuestoDocumentos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPresupuestoDocumentos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresupuestoDocumentos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3714,7 +3602,6 @@
       <DependentUpon>DsPresupuestos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsPresupuestos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsPresupuestos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3725,7 +3612,6 @@
       <DependentUpon>DsProveedores.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsProveedores.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsProveedores.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3736,7 +3622,6 @@
       <DependentUpon>DsProveedoresProducto.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsProveedoresProducto.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsProveedoresProducto.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3747,7 +3632,6 @@
       <DependentUpon>DsProyectoPendienteAsignar.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsProyectoPendienteAsignar.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsProyectoPendienteAsignar.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3758,7 +3642,6 @@
       <DependentUpon>DsProyectos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsProyectos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsProyectos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3769,7 +3652,6 @@
       <DependentUpon>DsProyectosDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsProyectosDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsProyectosDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3780,7 +3662,6 @@
       <DependentUpon>DsRecibosClientes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsRecibosClientes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsRecibosClientes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3791,7 +3672,6 @@
       <DependentUpon>DsSubArticulos.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsSubArticulos.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsSubArticulos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3802,7 +3682,6 @@
       <DependentUpon>DsSubArticulosDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsSubArticulosDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsSubArticulosDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3813,7 +3692,6 @@
       <DependentUpon>DsSubarticulosFamilia.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsSubarticulosFamilia.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsSubarticulosFamilia.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3824,7 +3702,6 @@
       <DependentUpon>DsSubArticulosFerreteria.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsSubArticulosFerreteria.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsSubArticulosFerreteria.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3835,7 +3712,6 @@
       <DependentUpon>DsSubArticulosMaterial.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsSubArticulosMaterial.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsSubArticulosMaterial.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3846,7 +3722,6 @@
       <DependentUpon>DsTotalFerreteriaArticulo.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsTotalFerreteriaArticulo.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsTotalFerreteriaArticulo.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3857,7 +3732,6 @@
       <DependentUpon>DsTrabajoTallerM2PinturaArticulo.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsTrabajoTallerM2PinturaArticulo.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsTrabajoTallerM2PinturaArticulo.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3868,7 +3742,6 @@
       <DependentUpon>DsUnionArticuloDetalle.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsUnionArticuloDetalle.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsUnionArticuloDetalle.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3879,7 +3752,6 @@
       <DependentUpon>DsUnionMaterialesNombre.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsUnionMaterialesNombre.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsUnionMaterialesNombre.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3890,7 +3762,6 @@
       <DependentUpon>DsUnionSubarticulosHerrajes.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsUnionSubarticulosHerrajes.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsUnionSubarticulosHerrajes.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3901,7 +3772,6 @@
       <DependentUpon>DsUsuarios.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsUsuarios.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsUsuarios.Designer.vb</LastGenOutput>
     </None>
     <None Include="Gestion\Dataet\DsUsuarios.xss">
@@ -3911,7 +3781,6 @@
       <DependentUpon>DsVehiculosTransporte.xsd</DependentUpon>
     </None>
     <None Include="Gestion\Dataet\DsVehiculosTransporte.xsd">
-      <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsVehiculosTransporte.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
@@ -3935,7 +3804,6 @@
     </None>
     <None Include="OptimizacionMadera\Cortes.vbproj" />
     <None Include="OptimizacionMadera\packages.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
@@ -3971,6 +3839,8 @@
     <Content Include="Resources\190.ICO" />
     <Content Include="Resources\23.ICO" />
     <Content Include="Resources\HDM.bmp" />
+    <None Include="packages.config" />
+    <None Include="Resources\Icon1.ico" />
     <Content Include="Resources\Impresora.bmp" />
     <Content Include="Resources\RPH.bmp" />
     <Content Include="Resources\RPM.bmp" />

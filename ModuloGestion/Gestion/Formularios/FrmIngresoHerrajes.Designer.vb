@@ -406,7 +406,7 @@ Partial Class FrmIngresoHerrajes
         '
         'OpenFileDialog1
         '
-        Me.OpenFileDialog1.InitialDirectory = "\\PORTATIL-DELL\Users\Public\Imajenes Herrajes"
+        Me.OpenFileDialog1.InitialDirectory = "\\PCShernia\Users\Public\Imajenes Herrajes"
         '
         'Tipo_herrajeTextBox
         '

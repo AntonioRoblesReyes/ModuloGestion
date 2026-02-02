@@ -301,7 +301,7 @@ Public Class FrmCliente
                 nombreCliente = nombreCliente.Replace(c, "_")
             Next
 
-            Dim rutaCarpeta As String = "\\Portatil-dell\d\Carpeta Datos\Proyectos\" & nombreCliente
+            Dim rutaCarpeta As String = "\\PCShernia\d\Carpeta Datos\Proyectos\" & nombreCliente
 
             If Not IO.Directory.Exists(rutaCarpeta) Then
                 IO.Directory.CreateDirectory(rutaCarpeta)
@@ -559,7 +559,5 @@ Public Class FrmCliente
 
 
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        VerificarPagosPresupuestos()
-    End Sub
+
 End Class

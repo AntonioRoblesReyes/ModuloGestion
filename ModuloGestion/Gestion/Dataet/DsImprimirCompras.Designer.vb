@@ -540,12 +540,6 @@ Partial Public Class DsImprimirCompras
         
         Private columnTotalCompraRD As Global.System.Data.DataColumn
         
-        Private columnSubTotalCompraEU As Global.System.Data.DataColumn
-        
-        Private columnImpuestoCompraEU As Global.System.Data.DataColumn
-        
-        Private columnTotalCompraEU As Global.System.Data.DataColumn
-        
         Private columnPagadoRD As Global.System.Data.DataColumn
         
         Private columnPendienteRD As Global.System.Data.DataColumn
@@ -721,30 +715,6 @@ Partial Public Class DsImprimirCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property SubTotalCompraEUColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSubTotalCompraEU
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ImpuestoCompraEUColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnImpuestoCompraEU
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property TotalCompraEUColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTotalCompraEU
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property PagadoRDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPagadoRD
@@ -837,16 +807,13 @@ Partial Public Class DsImprimirCompras
                     ByVal SubTotalCompraRD As Decimal,  _
                     ByVal ImpuestoCompraRD As Decimal,  _
                     ByVal TotalCompraRD As Decimal,  _
-                    ByVal SubTotalCompraEU As Decimal,  _
-                    ByVal ImpuestoCompraEU As Decimal,  _
-                    ByVal TotalCompraEU As Decimal,  _
                     ByVal PagadoRD As Decimal,  _
                     ByVal PendienteRD As Decimal,  _
                     ByVal PagadoUS As Decimal,  _
                     ByVal PendienteUS As Decimal,  _
                     ByVal FormaDePago As String) As CompraMaterialesRow
             Dim rowCompraMaterialesRow As CompraMaterialesRow = CType(Me.NewRow,CompraMaterialesRow)
-            Dim columnValuesArray() As Object = New Object() {Id_Compra, Nothing, Fecha_Compra, Fecha_Pago, Id_Empresa, FacturaProveedor, PorcientoImpuesto, Moneda, Tasa, SubTotalCompraUS, ImpuestoCompraUS, TotalCompraUS, Observaciones, SubTotalCompraRD, ImpuestoCompraRD, TotalCompraRD, SubTotalCompraEU, ImpuestoCompraEU, TotalCompraEU, PagadoRD, PendienteRD, PagadoUS, PendienteUS, FormaDePago}
+            Dim columnValuesArray() As Object = New Object() {Id_Compra, Nothing, Fecha_Compra, Fecha_Pago, Id_Empresa, FacturaProveedor, PorcientoImpuesto, Moneda, Tasa, SubTotalCompraUS, ImpuestoCompraUS, TotalCompraUS, Observaciones, SubTotalCompraRD, ImpuestoCompraRD, TotalCompraRD, PagadoRD, PendienteRD, PagadoUS, PendienteUS, FormaDePago}
             If (Not (parentProveedoresRowByFK_CompraMateriales_Proveedores) Is Nothing) Then
                 columnValuesArray(1) = parentProveedoresRowByFK_CompraMateriales_Proveedores(0)
             End If
@@ -894,9 +861,6 @@ Partial Public Class DsImprimirCompras
             Me.columnSubTotalCompraRD = MyBase.Columns("SubTotalCompraRD")
             Me.columnImpuestoCompraRD = MyBase.Columns("ImpuestoCompraRD")
             Me.columnTotalCompraRD = MyBase.Columns("TotalCompraRD")
-            Me.columnSubTotalCompraEU = MyBase.Columns("SubTotalCompraEU")
-            Me.columnImpuestoCompraEU = MyBase.Columns("ImpuestoCompraEU")
-            Me.columnTotalCompraEU = MyBase.Columns("TotalCompraEU")
             Me.columnPagadoRD = MyBase.Columns("PagadoRD")
             Me.columnPendienteRD = MyBase.Columns("PendienteRD")
             Me.columnPagadoUS = MyBase.Columns("PagadoUS")
@@ -939,12 +903,6 @@ Partial Public Class DsImprimirCompras
             MyBase.Columns.Add(Me.columnImpuestoCompraRD)
             Me.columnTotalCompraRD = New Global.System.Data.DataColumn("TotalCompraRD", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTotalCompraRD)
-            Me.columnSubTotalCompraEU = New Global.System.Data.DataColumn("SubTotalCompraEU", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSubTotalCompraEU)
-            Me.columnImpuestoCompraEU = New Global.System.Data.DataColumn("ImpuestoCompraEU", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnImpuestoCompraEU)
-            Me.columnTotalCompraEU = New Global.System.Data.DataColumn("TotalCompraEU", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTotalCompraEU)
             Me.columnPagadoRD = New Global.System.Data.DataColumn("PagadoRD", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPagadoRD)
             Me.columnPendienteRD = New Global.System.Data.DataColumn("PendienteRD", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -2646,8 +2604,8 @@ Partial Public Class DsImprimirCompras
             Me.columnFax.MaxLength = 15
             Me.columnEmail.MaxLength = 50
             Me.columnMoneda.MaxLength = 3
-            Me.columnTipoComprobante.MaxLength = 5
-            Me.columnCuentaContable.MaxLength = 25
+            Me.columnTipoComprobante.MaxLength = 2
+            Me.columnCuentaContable.MaxLength = 10
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3709,53 +3667,6 @@ Partial Public Class DsImprimirCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property SubTotalCompraEU() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableCompraMateriales.SubTotalCompraEUColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'SubTotalCompraEU' de la tabla 'CompraMateriales' es DBNul"& _ 
-                            "l.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableCompraMateriales.SubTotalCompraEUColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ImpuestoCompraEU() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableCompraMateriales.ImpuestoCompraEUColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'ImpuestoCompraEU' de la tabla 'CompraMateriales' es DBNul"& _ 
-                            "l.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableCompraMateriales.ImpuestoCompraEUColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property TotalCompraEU() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableCompraMateriales.TotalCompraEUColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'TotalCompraEU' de la tabla 'CompraMateriales' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableCompraMateriales.TotalCompraEUColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property PagadoRD() As Decimal
             Get
                 Try 
@@ -3958,42 +3869,6 @@ Partial Public Class DsImprimirCompras
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetTotalCompraRDNull()
             Me(Me.tableCompraMateriales.TotalCompraRDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsSubTotalCompraEUNull() As Boolean
-            Return Me.IsNull(Me.tableCompraMateriales.SubTotalCompraEUColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetSubTotalCompraEUNull()
-            Me(Me.tableCompraMateriales.SubTotalCompraEUColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsImpuestoCompraEUNull() As Boolean
-            Return Me.IsNull(Me.tableCompraMateriales.ImpuestoCompraEUColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetImpuestoCompraEUNull()
-            Me(Me.tableCompraMateriales.ImpuestoCompraEUColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsTotalCompraEUNull() As Boolean
-            Return Me.IsNull(Me.tableCompraMateriales.TotalCompraEUColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetTotalCompraEUNull()
-            Me(Me.tableCompraMateriales.TotalCompraEUColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5801,9 +5676,6 @@ Namespace DsImprimirComprasTableAdapters
             tableMapping.ColumnMappings.Add("SubTotalCompraRD", "SubTotalCompraRD")
             tableMapping.ColumnMappings.Add("ImpuestoCompraRD", "ImpuestoCompraRD")
             tableMapping.ColumnMappings.Add("TotalCompraRD", "TotalCompraRD")
-            tableMapping.ColumnMappings.Add("SubTotalCompraEU", "SubTotalCompraEU")
-            tableMapping.ColumnMappings.Add("ImpuestoCompraEU", "ImpuestoCompraEU")
-            tableMapping.ColumnMappings.Add("TotalCompraEU", "TotalCompraEU")
             tableMapping.ColumnMappings.Add("PagadoRD", "PagadoRD")
             tableMapping.ColumnMappings.Add("PendienteRD", "PendienteRD")
             tableMapping.ColumnMappings.Add("PagadoUS", "PagadoUS")
@@ -5825,30 +5697,30 @@ Namespace DsImprimirComprasTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT     Id_Compra, Id_Proveedor, Fecha_Compra, Fecha_Pago, Id_Empresa, Factura"& _ 
-                "Proveedor, PorcientoImpuesto, Moneda, Tasa, SubTotalCompraUS, ImpuestoCompraUS, "& _ 
-                "TotalCompraUS, Observaciones, SubTotalCompraRD, ImpuestoCompraRD, TotalCompraRD,"& _ 
-                " SubTotalCompraEU, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  ImpuestoCompraEU, TotalCompraEU, PagadoRD"& _ 
-                ", PendienteRD, PagadoUS, PendienteUS, FormaDePago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM        CompraMateriales"
+            Me._commandCollection(0).CommandText = "SELECT Id_Compra, Id_Proveedor, Fecha_Compra, Fecha_Pago, Id_Empresa, FacturaProv"& _ 
+                "eedor, PorcientoImpuesto, Moneda, Tasa, SubTotalCompraUS, ImpuestoCompraUS, Tota"& _ 
+                "lCompraUS, Observaciones, SubTotalCompraRD, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  ImpuestoCompraRD"& _ 
+                ", TotalCompraRD, PagadoRD, PendienteRD, PagadoUS, PendienteUS, FormaDePago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM"& _ 
+                "     CompraMateriales"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT FacturaProveedor, Fecha_Compra, Fecha_Pago, FormaDePago, Id_Compra, Id_Emp"& _ 
-                "resa, Id_Proveedor, ImpuestoCompraEU, ImpuestoCompraRD, ImpuestoCompraUS, Moneda"& _ 
-                ", Observaciones, PagadoRD, PagadoUS, PendienteRD, PendienteUS, PorcientoImpuesto"& _ 
-                ", SubTotalCompraEU, SubTotalCompraRD, SubTotalCompraUS, Tasa, TotalCompraEU, Tot"& _ 
-                "alCompraRD, TotalCompraUS FROM CompraMateriales WHERE (Id_Compra = @Id_Compra)"
+            Me._commandCollection(1).CommandText = "SELECT "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    Id_Compra,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    Id_Proveedor,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    Fecha_Compra,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    Fecha_Pago,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "   Id_Empresa,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    FacturaProveedor,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    PorcientoImpuesto,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    Moneda,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
+                "Tasa,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    SubTotalCompraUS,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    ImpuestoCompraUS,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    TotalCompraUS,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    Obs"& _ 
+                "ervaciones,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    SubTotalCompraRD,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    ImpuestoCompraRD,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    TotalCompraRD,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "   PagadoRD,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    PendienteRD,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    PagadoUS,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    PendienteUS,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    FormaDePago"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM CompraMateriales"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE Id_Compra = @Id_Compra"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Compra", Global.System.Data.SqlDbType.NVarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Compra", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Compra", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Id_Compra", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT FacturaProveedor, Fecha_Compra, Fecha_Pago, FormaDePago, Id_Compra, Id_Emp"& _ 
-                "resa, Id_Proveedor, ImpuestoCompraEU, ImpuestoCompraRD, ImpuestoCompraUS, Moneda"& _ 
-                ", Observaciones, PagadoRD, PagadoUS, PendienteRD, PendienteUS, PorcientoImpuesto"& _ 
-                ", SubTotalCompraEU, SubTotalCompraRD, SubTotalCompraUS, Tasa, TotalCompraEU, Tot"& _ 
-                "alCompraRD, TotalCompraUS FROM CompraMateriales WHERE (Fecha_Compra >= @Fecha_Co"& _ 
-                "mpra1) AND (Fecha_Compra <= @Fecha_Compra2) ORDER BY Fecha_Compra DESC, Id_Compr"& _ 
-                "a DESC"
+                "resa, Id_Proveedor, ImpuestoCompraRD, ImpuestoCompraUS, Moneda, Observaciones, P"& _ 
+                "agadoRD, PagadoUS, PendienteRD, PendienteUS, PorcientoImpuesto, SubTotalCompraRD"& _ 
+                ", SubTotalCompraUS, Tasa, TotalCompraRD, TotalCompraUS FROM CompraMateriales WHE"& _ 
+                "RE (Fecha_Compra >= @Fecha_Compra1) AND (Fecha_Compra <= @Fecha_Compra2) ORDER B"& _ 
+                "Y Fecha_Compra DESC, Id_Compra DESC"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Fecha_Compra1", Global.System.Data.SqlDbType.[Date], 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Fecha_Compra", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Fecha_Compra2", Global.System.Data.SqlDbType.[Date], 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Fecha_Compra", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

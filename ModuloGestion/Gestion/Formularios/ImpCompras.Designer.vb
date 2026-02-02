@@ -24,6 +24,12 @@ Partial Class ImpCompras
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
+        Me.DsCompras = New ModuloGestion.DsCompras()
+        Me.CompraMaterialesBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.CompraMaterialesTableAdapter1 = New ModuloGestion.DsComprasTableAdapters.CompraMaterialesTableAdapter()
+        Me.TableAdapterManager1 = New ModuloGestion.DsComprasTableAdapters.TableAdapterManager()
+        Me.ProveedoresBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ProveedoresTableAdapter1 = New ModuloGestion.DsComprasTableAdapters.ProveedoresTableAdapter()
         Me.DsImprimirCompras = New ModuloGestion.DsImprimirCompras()
         Me.CompraMaterialesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CompraMaterialesTableAdapter = New ModuloGestion.DsImprimirComprasTableAdapters.CompraMaterialesTableAdapter()
@@ -36,21 +42,16 @@ Partial Class ImpCompras
         Me.ProveedoresTableAdapter = New ModuloGestion.DsImprimirComprasTableAdapters.ProveedoresTableAdapter()
         Me.MedidasCompraBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MedidasCompraTableAdapter = New ModuloGestion.DsImprimirComprasTableAdapters.MedidasCompraTableAdapter()
-        Me.DsCompras = New ModuloGestion.DsCompras()
-        Me.CompraMaterialesBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.CompraMaterialesTableAdapter1 = New ModuloGestion.DsComprasTableAdapters.CompraMaterialesTableAdapter()
-        Me.TableAdapterManager1 = New ModuloGestion.DsComprasTableAdapters.TableAdapterManager()
-        Me.ProveedoresBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ProveedoresTableAdapter1 = New ModuloGestion.DsComprasTableAdapters.ProveedoresTableAdapter()
+        Me.LblIdCompra = New System.Windows.Forms.Label()
+        CType(Me.DsCompras, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CompraMaterialesBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ProveedoresBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsImprimirCompras, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CompraMaterialesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CompraMaterialesDetalleBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmpresasBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProveedoresBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MedidasCompraBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsCompras, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CompraMaterialesBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ProveedoresBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CrystalReportViewer1
@@ -65,6 +66,38 @@ Partial Class ImpCompras
         Me.CrystalReportViewer1.Size = New System.Drawing.Size(1299, 620)
         Me.CrystalReportViewer1.TabIndex = 0
         Me.CrystalReportViewer1.ToolPanelWidth = 267
+        '
+        'DsCompras
+        '
+        Me.DsCompras.DataSetName = "DsCompras"
+        Me.DsCompras.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'CompraMaterialesBindingSource1
+        '
+        Me.CompraMaterialesBindingSource1.DataMember = "CompraMateriales"
+        Me.CompraMaterialesBindingSource1.DataSource = Me.DsCompras
+        '
+        'CompraMaterialesTableAdapter1
+        '
+        Me.CompraMaterialesTableAdapter1.ClearBeforeFill = True
+        '
+        'TableAdapterManager1
+        '
+        Me.TableAdapterManager1.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager1.CompraMaterialesDetalleTableAdapter = Nothing
+        Me.TableAdapterManager1.Connection = Nothing
+        Me.TableAdapterManager1.PagoProveedorDetalleTableAdapter = Nothing
+        Me.TableAdapterManager1.PagoProveedorTableAdapter = Nothing
+        Me.TableAdapterManager1.UpdateOrder = ModuloGestion.DsComprasTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'ProveedoresBindingSource1
+        '
+        Me.ProveedoresBindingSource1.DataMember = "Proveedores"
+        Me.ProveedoresBindingSource1.DataSource = Me.DsCompras
+        '
+        'ProveedoresTableAdapter1
+        '
+        Me.ProveedoresTableAdapter1.ClearBeforeFill = True
         '
         'DsImprimirCompras
         '
@@ -123,58 +156,37 @@ Partial Class ImpCompras
         '
         Me.MedidasCompraTableAdapter.ClearBeforeFill = True
         '
-        'DsCompras
+        'LblIdCompra
         '
-        Me.DsCompras.DataSetName = "DsCompras"
-        Me.DsCompras.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'CompraMaterialesBindingSource1
-        '
-        Me.CompraMaterialesBindingSource1.DataMember = "CompraMateriales"
-        Me.CompraMaterialesBindingSource1.DataSource = Me.DsCompras
-        '
-        'CompraMaterialesTableAdapter1
-        '
-        Me.CompraMaterialesTableAdapter1.ClearBeforeFill = True
-        '
-        'TableAdapterManager1
-        '
-        Me.TableAdapterManager1.BackupDataSetBeforeUpdate = False
-
-        Me.TableAdapterManager1.CompraMaterialesDetalleTableAdapter = Nothing
-
-        Me.TableAdapterManager1.Connection = Nothing
-
-        Me.TableAdapterManager1.UpdateOrder = ModuloGestion.DsComprasTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'ProveedoresBindingSource1
-        '
-        Me.ProveedoresBindingSource1.DataMember = "Proveedores"
-        Me.ProveedoresBindingSource1.DataSource = Me.DsCompras
-        '
-        'ProveedoresTableAdapter1
-        '
-        Me.ProveedoresTableAdapter1.ClearBeforeFill = True
+        Me.LblIdCompra.AutoSize = True
+        Me.LblIdCompra.Location = New System.Drawing.Point(1038, 137)
+        Me.LblIdCompra.Name = "LblIdCompra"
+        Me.LblIdCompra.Size = New System.Drawing.Size(48, 16)
+        Me.LblIdCompra.TabIndex = 1
+        Me.LblIdCompra.Text = "Label1"
+        Me.LblIdCompra.Visible = False
         '
         'ImpCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1299, 620)
+        Me.Controls.Add(Me.LblIdCompra)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "ImpCompras"
         Me.Text = "ImpCompras"
+        CType(Me.DsCompras, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CompraMaterialesBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProveedoresBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsImprimirCompras, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CompraMaterialesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CompraMaterialesDetalleBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmpresasBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ProveedoresBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MedidasCompraBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsCompras, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CompraMaterialesBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ProveedoresBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents DsImprimirCompras As ModuloGestion.DsImprimirCompras
@@ -196,4 +208,5 @@ Partial Class ImpCompras
     Friend WithEvents TableAdapterManager1 As DsComprasTableAdapters.TableAdapterManager
     Friend WithEvents ProveedoresBindingSource1 As BindingSource
     Friend WithEvents ProveedoresTableAdapter1 As DsComprasTableAdapters.ProveedoresTableAdapter
+    Friend WithEvents LblIdCompra As Label
 End Class

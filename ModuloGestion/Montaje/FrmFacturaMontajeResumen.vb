@@ -54,6 +54,7 @@
     End Sub
 
     Private Sub FrmFacturaMontaje_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         'TODO: esta línea de código carga datos en la tabla 'DsPagosMontaje.EmpresasContratadasMontaje' Puede moverla o quitarla según sea necesario.
         Me.EmpresasContratadasMontajeTableAdapter.Fill(Me.DsPagosMontaje.EmpresasContratadasMontaje)
 
@@ -62,34 +63,95 @@
     End Sub
 
 
+    Private Sub FacturaMontajeDataGridView_CellClick(
+    sender As Object,
+    e As DataGridViewCellEventArgs
+) Handles FacturaMontajeDataGridView.CellClick
 
-    Private Sub FacturaMontajeDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles FacturaMontajeDataGridView.CellClick
-        Dim Proyecto As String = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).Id_Proyecto
-        Dim presupuesto As String = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).Id_Presupuesto
-        Dim EmpresaMontaje As String = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).IdEmpresaMontaje
-        EmpresasContratadasMontajeTableAdapter.FillById(DsPagosMontaje.EmpresasContratadasMontaje, EmpresaMontaje)
-        Label10.Text = Me.DsPagosMontaje.EmpresasContratadasMontaje(EmpresasContratadasMontajeBindingSource.Position).RazonSocial
-        Me.PresupuestoTableAdapter.FillByIdPresupuesto(Me.DsPresupuestos.Presupuesto, presupuesto)
-        Me.Label8.Text = Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).Descripcion_Presupuesto
-        Me.ProyectosTableAdapter.FillByProyecto(Me.DsProyectos.Proyectos, Proyecto)
-        Me.Label9.Text = Me.DsProyectos.Proyectos(Me.ProyectosBindingSource.Position).Nombre_Proyecto
-        Dim IdFactura As String = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).IdFacturaMontaje
-        If e.ColumnIndex = 11 Then
+        ' ===== Validaciones básicas =====
+        If e.RowIndex < 0 Then Exit Sub
+        If FacturaMontajeBindingSource.Current Is Nothing Then Exit Sub
 
-            My.Forms.FrmFacturaMontajeEditar.IdFacturaTextBox.Text = IdFactura
-            My.Forms.FrmFacturaMontajeEditar.LblPresupuesto.Text = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).Id_Presupuesto
-            My.Forms.FrmFacturaMontajeEditar.LblProyecto.Text = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).Id_Proyecto
-            My.Forms.FrmFacturaMontajeEditar.IdEmpresaMontajeTextBox.Text = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).IdEmpresaMontaje
+        Dim fila = DirectCast(FacturaMontajeBindingSource.Current, DataRowView)
+        Dim factura = DirectCast(fila.Row, DsPagosMontaje.FacturaMontajeRow)
 
-            My.Forms.FrmFacturaMontajeEditar.ModificarFactura()
-        ElseIf e.ColumnIndex = 12 Then
-            My.Forms.ImpPagoMomtaje.Label1.Text = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).IdFacturaMontaje
-            My.Forms.ImpPagoMomtaje.ImprimirFacturaMontaje()
+        Dim Proyecto As String = factura.Id_Proyecto
+        Dim presupuesto As String = factura.Id_Presupuesto
+        Dim EmpresaMontaje As String = factura.IdEmpresaMontaje
+        Dim IdFactura As String = factura.IdFacturaMontaje
 
+        ' ===== Empresa =====
+        EmpresasContratadasMontajeTableAdapter.FillById(
+        DsPagosMontaje.EmpresasContratadasMontaje, EmpresaMontaje)
+
+        If EmpresasContratadasMontajeBindingSource.Count > 0 Then
+            Label10.Text =
+            DsPagosMontaje.EmpresasContratadasMontaje(0).RazonSocial
+        Else
+            Label10.Text = ""
         End If
-        Me.FacturaMontajeDetalleTableAdapter.FillByIdFactura(Me.DsPagosMontaje.FacturaMontajeDetalle, IdFactura)
-        Me.PagoMontajeDetalleTableAdapter.FillByIdFactura(Me.DsPagosMontaje.PagoMontajeDetalle, IdFactura)
+
+        ' ===== Presupuesto =====
+        PresupuestoTableAdapter.FillByIdPresupuesto(
+        DsPresupuestos.Presupuesto, presupuesto)
+
+        If PresupuestoBindingSource.Count > 0 Then
+            Label8.Text =
+            DsPresupuestos.Presupuesto(0).Descripcion_Presupuesto
+        Else
+            Label8.Text = ""
+        End If
+
+        ' ===== Proyecto =====
+        ProyectosTableAdapter.FillByProyecto(
+        DsProyectos.Proyectos, Proyecto)
+
+        If ProyectosBindingSource.Count > 0 Then
+            Label9.Text =
+            DsProyectos.Proyectos(0).Nombre_Proyecto
+        Else
+            Label9.Text = ""
+        End If
+
+        ' ===== Botones =====
+        Dim nombreColumna As String =
+        FacturaMontajeDataGridView.Columns(e.ColumnIndex).Name
+
+        Select Case nombreColumna
+
+            Case "Modificar"
+                With My.Forms.FrmFacturaMontajeEditar
+                    .IdFacturaTextBox.Text = IdFactura
+                    .LblPresupuesto.Text = presupuesto
+                    .LblProyecto.Text = Proyecto
+                    .IdEmpresaMontajeTextBox.Text = EmpresaMontaje
+                    .ModificarFactura()
+                End With
+
+            Case "Imprimir"
+                With My.Forms.ImpPagoMomtaje
+                    .Label1.Text = IdFactura
+                    .ImprimirFacturaMontaje()
+
+                End With
+            Case "FacturaNcf"
+                With My.Forms.ImpPagoMomtaje
+                    .Label1.Text = IdFactura
+                    .ImprimirFacturaNfc()
+
+                End With
+
+        End Select
+
+        ' ===== Detalle y pagos =====
+        FacturaMontajeDetalleTableAdapter.FillByIdFactura(
+        DsPagosMontaje.FacturaMontajeDetalle, IdFactura)
+
+        PagoMontajeDetalleTableAdapter.FillByIdFactura(
+        DsPagosMontaje.PagoMontajeDetalle, IdFactura)
+
     End Sub
+
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.FacturaMontajeBindingSource.MoveFirst()
@@ -124,6 +186,25 @@
 
             Me.FacturaMontajeBindingSource.MoveNext()
         Next
+
+    End Sub
+    Private Sub txtFiltro_TextChanged(
+    sender As Object,
+    e As EventArgs
+) Handles TxtFiltro.TextChanged
+
+        Dim filtro As String = TxtFiltro.Text.Trim()
+
+        If filtro = "" Then
+            ' Quitar filtro
+            FacturaMontajeBindingSource.RemoveFilter()
+        Else
+            ' Filtrar por proyecto
+            FacturaMontajeBindingSource.Filter =
+            "Id_Proyecto LIKE '%" & filtro.Replace("'", "''") & "%'"
+        End If
+
+        'SumarValores()
 
     End Sub
 

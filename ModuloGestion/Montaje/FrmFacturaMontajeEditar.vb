@@ -2,352 +2,477 @@
 
 Public Class FrmFacturaMontajeEditar
 
+    '======================================================
+    '                     LOAD
+    '======================================================
+    Private Sub FrmFacturaMontajeEditar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            PresupuestoTableAdapter.Fill(DsPagosMontaje.Presupuesto)
+            PagoMontajeTableAdapter.Fill(DsPagosMontaje.PagoMontaje)
+            EmpresasContratadasMontajeTableAdapter.FillByActivas(DsPagosMontaje.EmpresasContratadasMontaje)
 
+        Catch ex As Exception
+            MessageBox.Show($"Error al cargar datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 
+    '======================================================
+    '                  MODIFICAR FACTURA
+    '======================================================
     Sub ModificarFactura()
-
-
-        Me.Show()
-        Me.ArticulosTableAdapter.Fill(DsArticulos.Articulos)
-        Me.FacturaMontajeTableAdapter.FillByIdFactura(Me.DsPagosMontaje.FacturaMontaje, IdFacturaTextBox.Text)
-        Me.FacturaMontajeDetalleTableAdapter.FillByIdFactura(Me.DsPagosMontaje.FacturaMontajeDetalle, IdFacturaTextBox.Text)
-        Dim Presupuesto As String = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).Id_Presupuesto
-        Me.PresupuestoDetalleTableAdapter.FillByIdPresupuesto(Me.DsPagosMontaje.PresupuestoDetalle, Presupuesto)
-        'Me.EmpresasContratadasMontajeTableAdapter.FillByRazonSocial(Me.DsPagosMontaje.EmpresasContratadasMontaje, IdEmpresaMontajeTextBox.Text)
-
-    End Sub
-    Sub AprobarDetalleFactura()
-
         Try
-            Dim Registros As Integer = FacturaMontajeDetalleDataGridView.Rows.Count
+            Me.Show()
+            ArticulosTableAdapter.Fill(DsArticulos.Articulos)
 
-            If Registros <> 0 Then
-                For Each row As DataGridViewRow In FacturaMontajeDetalleDataGridView.Rows
-                    Dim idDetalle As String = row.Cells(0).Value.ToString()
-                    Dim IdPago As String = row.Cells(1).Value.ToString()
-                    Dim IdDetallePresupuesto As String = row.Cells(2).Value.ToString()
-                    Dim IdArticulo As String = row.Cells(3).Value.ToString()
-                    Dim Descripcion As String = row.Cells(4).Value.ToString()
-                    Dim Cantidad As Double
-                    Dim Precio As Double
-                    Dim TotalPartida As Double
+            '========================
+            ' CARGAR EMPRESAS (COMBO)
+            '========================
+            EmpresasContratadasMontajeTableAdapter.Fill(
+            DsPagosMontaje.EmpresasContratadasMontaje
+        )
 
-                    ' Verificar y convertir valores numéricos
-                    If Double.TryParse(row.Cells(5).Value.ToString(), Cantidad) AndAlso
-                       Double.TryParse(row.Cells(6).Value.ToString(), Precio) AndAlso
-                       Double.TryParse(row.Cells(7).Value.ToString(), TotalPartida) Then
+            '========================
+            ' CARGAR FACTURA
+            '========================
+            FacturaMontajeTableAdapter.FillByIdFactura(
+            DsPagosMontaje.FacturaMontaje,
+            IdFacturaTextBox.Text
+        )
 
-                        ' Lógica de procesamiento
-                        PagoMontajeDetalleTableAdapter.NuevoDetallePago(idDetalle, IdPago, IdDetallePresupuesto, IdArticulo, Descripcion, Cantidad, Precio, TotalPartida)
-                    Else
-                        ' Manejar error de conversión
-                        Throw New FormatException("Error de formato en valores numéricos.")
-                    End If
-                Next
-            End If
-        Catch ex As FormatException
-            ' Manejar error de formato
-            Console.WriteLine("Error de formato: " & ex.Message)
-        Catch ex As Exception
-            ' Manejar excepción genérica
-            Console.WriteLine("Error: " & ex.Message)
-            Dim IdDetalle As String = $"{IdFacturaTextBox.Text}-001"
-            Dim IdDetallePresupuesto As String = $"{LblPresupuesto.Text}-001"
-
-            PagoMontajeDetalleTableAdapter.NuevoDetallePago(IdDetalle, IdFacturaTextBox.Text, IdDetallePresupuesto, "sin articulo", "PONER DESCRIPCION", 1, 0, 0)
-        End Try
-
-    End Sub
-
-    Sub SumaTotal()
-        Try
-            Dim suma As Double = 0
-
-            For Each row As DataGridViewRow In FacturaMontajeDetalleDataGridView.Rows
-                suma += CDbl(Val(row.Cells(7).Value))
-            Next
-
-            SubTotalTextBox.Text = Format(suma, "#,##0.0")
-
-            If Double.TryParse(ImpuestoTextBox.Text, Nothing) Then
-                ItebisTextBox.Text = Format(suma * CDbl(ImpuestoTextBox.Text), "#,##0.0")
-            Else
-                ItebisTextBox.Text = Format(0, "#,##0.0")
+            If FacturaMontajeBindingSource.Current Is Nothing Then
+                MessageBox.Show("Factura no encontrada.")
+                Exit Sub
             End If
 
-            TotalTextBox.Text = Format(suma + CDbl(ItebisTextBox.Text), "#,##0.0")
+            '========================
+            ' POSICIONAR LA EMPRESA
+            '========================
+            Dim idEmpresa As String =
+            CType(FacturaMontajeBindingSource.Current, DataRowView)(
+                "IdEmpresaMontaje"
+            ).ToString()
 
-            If Double.TryParse(PagadoTextBox.Text, Nothing) Then
-                PendienteTextBox.Text = Format(CDbl(TotalTextBox.Text) - CDbl(PagadoTextBox.Text), "#,##0.0")
-            Else
-                PendienteTextBox.Text = Format(0, "#,##0.0")
-            End If
+            EmpresasContratadasMontajeBindingSource.Position =
+            EmpresasContratadasMontajeBindingSource.Find(
+                "IdEmpresaMontaje",
+                idEmpresa
+            )
 
-            Validate()
-            FacturaMontajeBindingSource.EndEdit()
-            TableAdapterManager.UpdateAll(DsPagosMontaje)
+            '========================
+            ' DETALLE FACTURA
+            '========================
+            FacturaMontajeDetalleTableAdapter.FillByIdFactura(
+            DsPagosMontaje.FacturaMontajeDetalle,
+            IdFacturaTextBox.Text
+        )
+
+            '========================
+            ' PRESUPUESTO
+            '========================
+            Dim idPresupuesto As String =
+            CType(FacturaMontajeBindingSource.Current, DataRowView)(
+                "Id_Presupuesto"
+            ).ToString()
+
+            PresupuestoDetalleTableAdapter.FillByIdPresupuesto(
+            DsPagosMontaje.PresupuestoDetalle,
+            idPresupuesto
+        )
 
         Catch ex As Exception
-            ' Manejar la excepción según tus necesidades
-            MessageBox.Show($"Error al calcular la suma total: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error cargando la factura: " & ex.Message)
         End Try
     End Sub
 
 
 
+    '======================================================
+    '                  NUEVA FACTURA
+    '======================================================
+    Sub PrepararNuevaFactura()
+        Try
+            ArticulosTableAdapter.Fill(DsArticulos.Articulos)
+            IdFacturaTextBox.Text = FacturaMontajeTableAdapter.SiguienteFactura()
+            PresupuestoDetalleTableAdapter.FillByIdPresupuesto(DsPagosMontaje.PresupuestoDetalle, LblPresupuesto.Text)
+            Me.Show()
+        Catch ex As Exception
+            MessageBox.Show($"Error al crear nueva factura: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    '======================================================
+    '             NUEVA LINEA DE DETALLE
+    '======================================================
     Sub NuevaLinea()
         Try
-            ' Obtener el próximo detalle de la factura
-            Dim Siguiente As String = Me.FacturaMontajeDetalleTableAdapter.SiguienteDetalle(IdFacturaTextBox.Text)
+            Using cn As New SqlClient.SqlConnection(My.Settings.GestionEmpresaConnectionString)
+                Using cmd As New SqlClient.SqlCommand("sp_InsertarFacturaMontajeDetalle", cn)
+                    cmd.CommandType = CommandType.StoredProcedure
 
-            ' Llenar el DataSet con información relevante
-            ArticulosTableAdapter.FillByIdArticulo(DsArticulos.Articulos, PresupuestoDetalleDataGridView.CurrentRow.Cells(1).Value)
-            Dim DetallePresupuesto As String = Me.PresupuestoDetalleBindingSource.Current("IdDetalle_Presupuesto").ToString()
-            Dim Articulo As String = Me.PresupuestoDetalleBindingSource.Current("Articulo").ToString()
-            Dim Descripcion As String = "PONER DESCRIPCION"
-            Dim Cantidad As Double = 0
-            Dim previsto As Double = 0
-            Dim Total As Double = 0
+                    cmd.Parameters.AddWithValue("@IdFactura", IdFacturaTextBox.Text)
+                    cmd.Parameters.AddWithValue("@IdDetallePres", DBNull.Value)
+                    cmd.Parameters.AddWithValue("@IdArticulo", DBNull.Value)
+                    cmd.Parameters.AddWithValue("@Descripcion", "NUEVA LÍNEA")
+                    cmd.Parameters.AddWithValue("@Cantidad", 0)
+                    cmd.Parameters.AddWithValue("@Precio", 0)
+                    cmd.Parameters.AddWithValue("@IdPresupuesto", LblPresupuesto.Text)
 
-            ' Agregar un nuevo detalle a la factura
-            Me.FacturaMontajeDetalleTableAdapter.NuevoDetalleFactura(Siguiente, IdFacturaTextBox.Text, DetallePresupuesto, Articulo, Descripcion, Cantidad, previsto, Total, LblPresupuesto.Text)
+                    cn.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
 
-            ' Actualizar el DataGridView de detalles de la factura
-            Me.FacturaMontajeDetalleTableAdapter.FillByIdFactura(Me.DsPagosMontaje.FacturaMontajeDetalle, IdFacturaTextBox.Text)
-            Me.FacturaMontajeDetalleBindingSource.MoveLast()
+            ' 🔄 Refrescar detalle
+            FacturaMontajeDetalleTableAdapter.FillByIdFactura(
+            DsPagosMontaje.FacturaMontajeDetalle,
+            IdFacturaTextBox.Text
+        )
 
-            ' Calcular la suma total
-            SumaTotal()
+            ' 🔄 Refrescar cabecera
+            FacturaMontajeTableAdapter.FillByIdFactura(
+            DsPagosMontaje.FacturaMontaje,
+            IdFacturaTextBox.Text
+        )
 
-            ' Actualizar la lista de artículos
-            ArticulosTableAdapter.Fill(DsArticulos.Articulos)
         Catch ex As Exception
-            ' Manejar la excepción
             MsgBox("Error al agregar nueva línea: " & ex.Message)
         End Try
     End Sub
 
     Sub NuevoApuntePresupuesto()
+
+        Dim Factura As String = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).IdFacturaMontaje
+
+        Dim nuevoIdDetalle As String = Me.FacturaMontajeDetalleTableAdapter.SiguienteDetalle(IdFacturaTextBox.Text)
+        
         Try
-            ' Añadir nueva fila al DataGridView de FacturaMontajeDetalle
-            Dim nuevaFila As DataGridViewRow = FacturaMontajeDetalleDataGridView.Rows(FacturaMontajeDetalleDataGridView.Rows.Add())
-
-            ' Configurar la nueva fila
-            With nuevaFila
-                .Selected = False
-                .Cells(0).Value = .Index
-                .Cells(1).Value = IdFacturaTextBox.Text
-                .Cells(2).Value = PresupuestoDetalleDataGridView.CurrentRow.Cells(0).Value
-                .Cells(3).Value = PresupuestoDetalleDataGridView.CurrentRow.Cells(1).Value
-                .Cells(4).Value = ArticulosDataGridView.CurrentRow.Cells(1).Value
-                .Cells(5).Value = PresupuestoDetalleDataGridView.CurrentRow.Cells(2).Value
-                .Cells(6).Value = PresupuestoDetalleDataGridView.CurrentRow.Cells(3).Value
-                .Cells(7).Value = 0
-            End With
-
-            ' Seleccionar la nueva fila
-            FacturaMontajeDetalleDataGridView.ClearSelection()
-            FacturaMontajeDetalleDataGridView.CurrentCell = nuevaFila.Cells(0)
-
-        Catch ex As Exception
-            ' Manejar la excepción según tus necesidades
-            MessageBox.Show($"Error al agregar nuevo apunte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    Sub NuevaFactura()
-        Try
-            ' Llenar la tabla de Artículos
-            ArticulosTableAdapter.Fill(DsArticulos.Articulos)
-
-            ' Obtener el próximo número de factura
-            IdFacturaTextBox.Text = FacturaMontajeTableAdapter.SiguienteFactura()
-
-            ' Llenar el detalle de presupuesto según el presupuesto actual
-            PresupuestoDetalleTableAdapter.FillByIdPresupuesto(DsPagosMontaje.PresupuestoDetalle, LblPresupuesto.Text)
-
-            ' Mostrar el formulario
-            Me.Show()
-
-        Catch ex As Exception
-            ' Manejar cualquier excepción
-            MessageBox.Show($"Error al crear nueva factura: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-    Private Sub EmpresasContratadasMontajeBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles EmpresasContratadasMontajeBindingNavigatorSaveItem.Click
-        Try
-            Me.Validate()
-            Me.EmpresasContratadasMontajeBindingSource.EndEdit()
-            Me.TableAdapterManager.UpdateAll(Me.DsPagosMontaje)
-            MessageBox.Show("Los cambios se guardaron exitosamente.", "Guardar Cambios", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Catch ex As Exception
-            MessageBox.Show($"Error al guardar cambios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-
-    Private Sub FrmPagosMontaje_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        ' Llenar el DataSet con la tabla Presupuesto
-        Me.PresupuestoTableAdapter.Fill(Me.DsPagosMontaje.Presupuesto)
-
-        ' Llenar el DataSet con la tabla PagoMontaje
-        Me.PagoMontajeTableAdapter.Fill(Me.DsPagosMontaje.PagoMontaje)
-
-        ' Llenar el DataSet con las empresas contratadas activas para el montaje
-        Me.EmpresasContratadasMontajeTableAdapter.FillByActivas(DsPagosMontaje.EmpresasContratadasMontaje)
-
-
-    End Sub
-
-
-
-
-
-
-    Private Sub BtnNuevoPagp_Click(sender As System.Object, e As System.EventArgs)
-
-        NuevaFActura()
-
-
-
-    End Sub
-
-    Private Sub PresupuestoDetalleDataGridView_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles PresupuestoDetalleDataGridView.CellClick
-        Try
-            If Not String.IsNullOrEmpty(IdFacturaTextBox.Text) Then
-                If e.ColumnIndex = 5 Then
-                    Dim siguiente As String = FacturaMontajeDetalleTableAdapter.SiguienteDetalle(IdFacturaTextBox.Text)
-
-                    ' Obtener información del artículo seleccionado en el PresupuestoDetalle
-                    Dim articuloId As String = PresupuestoDetalleDataGridView.CurrentRow.Cells(1).Value.ToString()
-                    ArticulosTableAdapter.FillByIdArticulo(DsArticulos.Articulos, articuloId)
-                    Dim descripcion As String = DsArticulos.Articulos(0).Descripcion_articulo
-                    Dim cantidad As Double = Convert.ToDouble(PresupuestoDetalleDataGridView.CurrentRow.Cells(3).Value)
-                    Dim previsto As Double = Convert.ToDouble(PresupuestoDetalleDataGridView.CurrentRow.Cells(4).Value)
-                    Dim total As Double = cantidad * previsto
-
-                    ' Agregar nuevo detalle a la factura
-                    FacturaMontajeDetalleTableAdapter.NuevoDetalleFactura(siguiente, IdFacturaTextBox.Text, PresupuestoDetalleDataGridView.CurrentRow.Cells(0).Value.ToString(), articuloId, descripcion, cantidad, previsto, total, LblPresupuesto.Text)
-
-                    ' Actualizar el DataGridView de detalles de la factura
-                    FacturaMontajeDetalleTableAdapter.FillByIdFactura(DsPagosMontaje.FacturaMontajeDetalle, IdFacturaTextBox.Text)
-                    FacturaMontajeDetalleBindingSource.MoveFirst()
-
-                    ' Calcular la suma total
-                    SumaTotal()
-
-                    ' Actualizar la lista de artículos
-                    ArticulosTableAdapter.Fill(DsArticulos.Articulos)
-                End If
-            Else
-                MsgBox("Debe crear una nueva factura antes de agregar detalles.", MsgBoxStyle.Exclamation)
+            '===============================================
+            ' 1. VALIDAR QUE HAY FILA ACTUAL
+            '===============================================
+            If PresupuestoDetalleDataGridView.CurrentRow Is Nothing Then
+                MessageBox.Show("No hay fila seleccionada.")
+                Exit Sub
             End If
+
+            Dim fila As DataGridViewRow =
+            PresupuestoDetalleDataGridView.CurrentRow
+
+            '===============================================
+            ' 2. OBTENER DATOS (SIN NULLS)
+            '===============================================
+            Dim idDetallePres As String =
+            fila.Cells("IdDetallePresupuesto").Value.ToString().Trim()
+
+            Dim idArticulo As String =
+            fila.Cells("IdArticulo").Value.ToString().Trim()
+
+            Dim descripcion As String =
+            fila.Cells("IdArticulo").FormattedValue.ToString().Trim()
+
+            Dim cantidad As Decimal =
+            Convert.ToDecimal(fila.Cells("Cantidad").Value)
+
+            Dim precio As Decimal =
+            Convert.ToDecimal(fila.Cells("Previsto").Value)
+
+            Dim totalPartida As Decimal = cantidad * precio
+
+
+
+
+
+
+            '===============================================
+            ' 4. INSERTAR EN SQL
+            '===============================================
+            FacturaMontajeDetalleTableAdapter.Insert(
+            nuevoIdDetalle,
+            IdFacturaTextBox.Text,
+            idDetallePres,
+            idArticulo,
+            descripcion,
+            cantidad,
+            precio,
+            totalPartida,
+            LblPresupuesto.Text.Trim()
+        )
+
+            '===============================================
+            ' 5. REFRESCAR GRID
+            '===============================================
+            FacturaMontajeDetalleTableAdapter.FillByIdFactura(
+            DsPagosMontaje.FacturaMontajeDetalle,
+            IdFacturaTextBox.Text)
+
+
+
+
+            '===============================================
+            ' 7. RECALCULAR
+            '===============================================
+            SumaTotal()
+
         Catch ex As Exception
-            MsgBox($"Error al agregar detalle a la factura: {ex.Message}", MsgBoxStyle.Critical)
+            MessageBox.Show(
+            "Error al agregar nuevo apunte: " & ex.Message,
+            "Error",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error
+        )
         End Try
-    End Sub
 
-
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
-        NuevaLinea()
     End Sub
 
 
 
-    Private Sub BtnAprobarPago_Click(sender As System.Object, e As System.EventArgs) Handles BtnAprobarPago.Click
+    Sub SumaTotal()
+
+        ' Esta versión NO calcula nada
+        ' Solo pide a SQL que recalcule y refresca pantalla
+
         Try
-            ' Verificar si la factura ya existe
-            If FacturaMontajeTableAdapter.ExisteFactura(IdFacturaTextBox.Text) Then
-                MsgBox("La factura ya ha sido creada.", MsgBoxStyle.Exclamation)
-            Else
-                ' Crear una nueva factura de montaje
-                FacturaMontajeTableAdapter.Nueva(IdFacturaTextBox.Text, IdEmpresaMontajeTextBox.Text, FechaPAgoDateTimePicker.Value, LblProyecto.Text, LblPresupuesto.Text, 0, 0, 0, "", 0, 0, 0)
+            Using cn As New SqlClient.SqlConnection(My.Settings.GestionEmpresaConnectionString)
+                Using cmd As New SqlClient.SqlCommand("sp_RecalcularFacturaMontaje", cn)
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.Parameters.AddWithValue("@IdFactura", IdFacturaTextBox.Text)
 
-                ' Recargar el detalle del presupuesto
-                PresupuestoDetalleTableAdapter.FillByIdPresupuesto(DsPagosMontaje.PresupuestoDetalle, LblPresupuesto.Text)
+                    cn.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
 
-                ' Reiniciar el valor de PagadoTextBox
-                PagadoTextBox.Text = "0"
+            ' 🔄 Refrescar factura (cabecera)
+            FacturaMontajeTableAdapter.FillByIdFactura(
+            DsPagosMontaje.FacturaMontaje,
+            IdFacturaTextBox.Text
+        )
 
-                MsgBox("Factura creada exitosamente.", MsgBoxStyle.Information)
-            End If
         Catch ex As Exception
-            MsgBox($"Error al crear factura: {ex.Message}", MsgBoxStyle.Critical)
-        End Try
-    End Sub
-
-
-    Private Sub Button2_Click_1(sender As System.Object, e As System.EventArgs) Handles Button2.Click
-        My.Forms.ImpPagoMomtaje.Close()
-        My.Forms.ImpPagoMomtaje.Label1.Text = IdFacturaTextBox.Text
-        My.Forms.ImpPagoMomtaje.ImprimirFacturaMontaje()
-    End Sub
-
-
-
-
-
-    Private Sub RazonSocialComboBox_Click_1(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub FacturaMontajeDetalleDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles FacturaMontajeDetalleDataGridView.CellEndEdit
-        Try
-            If e.ColumnIndex = 5 OrElse e.ColumnIndex = 6 Then
-                Dim cantidad As Double = Convert.ToDouble(Me.FacturaMontajeDetalleDataGridView.CurrentRow.Cells(5).Value)
-                Dim precio As Double = Convert.ToDouble(Me.FacturaMontajeDetalleDataGridView.CurrentRow.Cells(6).Value)
-                Dim total As Double = cantidad * precio
-
-                Me.FacturaMontajeDetalleDataGridView.CurrentRow.Cells(7).Value = total
-                SumaTotal()
-
-                'Dim pagado As Double = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).Pagado
-                '' Realiza aquí las operaciones adicionales que necesites con la variable "Pagado"
-            End If
-        Catch ex As FormatException
-            ' Manejar errores de conversión de tipo
-            MsgBox("Error de formato en valores numéricos.")
-        Catch ex As Exception
-            ' Manejar otras excepciones
-            MsgBox("Error: " & ex.Message)
+            MessageBox.Show(
+            "Error al recalcular factura: " & ex.Message,
+            "Error",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error
+        )
         End Try
 
-        Me.Validate()
-        Me.FacturaMontajeBindingSource.EndEdit()
-        Me.TableAdapterManager.UpdateAll(DsPagosMontaje)
-
     End Sub
 
-    Private Sub FrmFacturaMontajeEditar_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        Try
 
-
-            'Dim fila As String = My.Forms.FrmFacturaMontajeResumen.FacturaMontajeDataGridView.CurrentRow.Index
-            My.Forms.FrmFacturaMontajeResumen.FacturaMontajeTableAdapter.Fill(My.Forms.FrmFacturaMontajeResumen.DsPagosMontaje.FacturaMontaje)
-            'My.Forms.FrmFacturaMontajeResumen.FacturaMontajeDataGridView.Rows(fila).Selected = True
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub FacturaMontajeDetalleDataGridView_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles FacturaMontajeDetalleDataGridView.RowsRemoved
+    '======================================================
+    '                EVENTOS DE INTERFAZ
+    '======================================================
+    Private Sub RetencionIRSTextBox_Leave(sender As Object, e As EventArgs) Handles RetencionIRSTextBox.Leave
         SumaTotal()
-        Me.Validate()
-        Me.FacturaMontajeBindingSource.EndEdit()
-        Me.TableAdapterManager.UpdateAll(DsPagosMontaje)
+    End Sub
+    Private Sub FacturaMontajeDetalleDataGridView_CellEndEdit(
+    sender As Object,
+    e As DataGridViewCellEventArgs
+) Handles FacturaMontajeDetalleDataGridView.CellEndEdit
+
+        Try
+            If e.RowIndex < 0 Then Exit Sub
+
+            Dim row As DataGridViewRow =
+            FacturaMontajeDetalleDataGridView.Rows(e.RowIndex)
+
+            ' 🔑 ID del detalle
+            Dim idDetalle As String =
+            row.Cells("IdFacturaMontajeDetalle").Value.ToString()
+
+            ' 🔢 Valores actuales (SIEMPRE)
+            Dim cantidad As Decimal = 0
+            Dim precio As Decimal = 0
+
+            Decimal.TryParse(Convert.ToString(row.Cells(5).Value), cantidad)
+            Decimal.TryParse(Convert.ToString(row.Cells(6).Value), precio)
+
+            ' ✏️ Descripción (puede cambiar o no)
+            Dim descripcion As String =
+            Convert.ToString(row.Cells(4).Value)
+
+            ' 🔵 SQL MANDA
+            Using cn As New SqlClient.SqlConnection(My.Settings.GestionEmpresaConnectionString)
+                Using cmd As New SqlClient.SqlCommand("sp_ActualizarDetalleFacturaMontaje", cn)
+                    cmd.CommandType = CommandType.StoredProcedure
+
+                    cmd.Parameters.AddWithValue("@IdDetalleFactura", idDetalle)
+                    cmd.Parameters.AddWithValue("@Cantidad", cantidad)
+                    cmd.Parameters.AddWithValue("@Precio", precio)
+                    cmd.Parameters.AddWithValue("@Descripcion", descripcion)
+
+                    cn.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+            ' 🔄 refrescar detalle y cabecera
+            FacturaMontajeDetalleTableAdapter.FillByIdFactura(
+            DsPagosMontaje.FacturaMontajeDetalle,
+            IdFacturaTextBox.Text
+        )
+
+            FacturaMontajeTableAdapter.FillByIdFactura(
+            DsPagosMontaje.FacturaMontaje,
+            IdFacturaTextBox.Text
+        )
+
+        Catch ex As Exception
+            MessageBox.Show(
+            "Error al actualizar el detalle: " & ex.Message,
+            "Error",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error
+        )
+        End Try
 
     End Sub
 
 
 
 
+    Private Sub FacturaMontajeDetalleDataGridView_RowsRemoved(
+    sender As Object,
+    e As DataGridViewRowsRemovedEventArgs
+) Handles FacturaMontajeDetalleDataGridView.RowsRemoved
+
+        Try
+            BeginInvoke(Sub()
+
+                            ' 1️⃣ Confirmar cambios locales
+                            FacturaMontajeDetalleBindingSource.EndEdit()
+
+                            ' 2️⃣ Enviar DELETE al SQL -> dispara TRIGGER
+                            FacturaMontajeDetalleTableAdapter.Update(
+                            DsPagosMontaje.FacturaMontajeDetalle
+                        )
+
+                            ' 3️⃣ Recargar cabecera desde SQL
+                            FacturaMontajeTableAdapter.FillByIdFactura(
+                            DsPagosMontaje.FacturaMontaje,
+                            IdFacturaTextBox.Text
+                        )
+
+                            ' 4️⃣ Actualizar pantalla
+                            SumaTotal()
+
+                        End Sub)
+
+        Catch ex As Exception
+            MessageBox.Show("Error al eliminar el detalle: " & ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 
 
 
     Private Sub ImpuestoTextBox_Leave(sender As Object, e As EventArgs) Handles ImpuestoTextBox.Leave
-        Me.Validate()
-        Me.FacturaMontajeBindingSource.EndEdit()
-        Me.TableAdapterManager.UpdateAll(DsPagosMontaje)
         SumaTotal()
     End Sub
+    Private Sub FormatearNumericosN2()
+        For Each ctrl As Control In Me.Controls
+            If TypeOf ctrl Is TextBox Then
+                Dim txt As TextBox = CType(ctrl, TextBox)
+
+                ' ⛔ EXCLUIR IDs
+                If txt Is IdFacturaTextBox Then Continue For
+                If txt Is IdEmpresaMontajeTextBox Then Continue For
+                If txt Is LblPresupuesto Then Continue For
+
+                Dim valor As Double
+                If Double.TryParse(txt.Text, valor) Then
+                    txt.Text = valor.ToString("N2")
+                End If
+            End If
+        Next
+    End Sub
+
+    Private Sub PresupuestoDetalleDataGridView_CellClick(
+    sender As Object,
+    e As DataGridViewCellEventArgs
+) Handles PresupuestoDetalleDataGridView.CellClick
+
+        Try
+            ' Evitar encabezados
+            If e.RowIndex < 0 OrElse e.ColumnIndex < 0 Then Exit Sub
+
+            ' Solo columna Añadir
+            If PresupuestoDetalleDataGridView.Columns(e.ColumnIndex).Name <> "Añadir" Then Exit Sub
+
+            ' Forzar fila correcta
+            PresupuestoDetalleDataGridView.CurrentCell =
+            PresupuestoDetalleDataGridView.Rows(e.RowIndex).Cells(e.ColumnIndex)
+
+            PresupuestoDetalleDataGridView.Rows(e.RowIndex).Selected = True
+
+            ' Llamar al método REAL
+            NuevoApuntePresupuesto()
+
+
+        Catch ex As Exception
+            MessageBox.Show("Error al añadir partida: " & ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
+
+    Private Sub BtnAprobarPago_Click(sender As Object, e As EventArgs) Handles BtnAprobarPago.Click
+        Try
+            If FacturaMontajeTableAdapter.ExisteFactura(IdFacturaTextBox.Text) Then
+                MsgBox("La factura ya está creada.", MsgBoxStyle.Exclamation)
+                Exit Sub
+            End If
+
+            ' 1️⃣ Crear factura en SQL
+            FacturaMontajeTableAdapter.Nueva(
+            IdFacturaTextBox.Text,
+            IdEmpresaMontajeTextBox.Text,
+            FechaPAgoDateTimePicker.Value,
+            LblProyecto.Text,
+            LblPresupuesto.Text,
+            0, 0, 0, "", 0, 0
+        )
+
+            MsgBox("Factura creada exitosamente.", MsgBoxStyle.Information)
+
+            ' 2️⃣ Pasar a modo MODIFICAR (igual que cuando la abres)
+            ModificarFactura()
+
+            ' 3️⃣ Inicializar estado visual
+            PagadoTextBox.Text = "0"
+
+        Catch ex As Exception
+            MsgBox("Error al crear factura: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub BtnNuevalínea_Click(sender As Object, e As EventArgs) Handles BtnNuevalínea.Click
+        Try
+            Dim nuevoId As String = FacturaMontajeDetalleTableAdapter.SiguienteDetalle(IdFacturaTextBox.Text)
+
+            FacturaMontajeDetalleTableAdapter.Insert(
+                nuevoId,
+                IdFacturaTextBox.Text,
+                "Sin Presupuesto",                ' Id detalle presupuesto vacío
+                "Sin Articulo",                ' Id artículo vacío
+                "NUEVA LÍNEA",     ' Descripción por defecto
+                0,
+                0,
+                0,
+                LblPresupuesto.Text
+            )
+
+            FacturaMontajeDetalleTableAdapter.FillByIdFactura(
+                DsPagosMontaje.FacturaMontajeDetalle,
+                IdFacturaTextBox.Text)
+
+            SumaTotal()
+
+        Catch ex As Exception
+            MsgBox("Error creando nueva línea: " & ex.Message)
+        End Try
+    End Sub
+
 End Class

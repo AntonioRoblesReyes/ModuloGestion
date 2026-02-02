@@ -1,10 +1,5 @@
 ﻿
 Imports System.IO
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
-
-
-
 
 
 Public Class FrmCobros
@@ -237,114 +232,10 @@ Public Class FrmCobros
         Label4.Text = Format(totalUS, "#,##0.00") ' Total US$
 
     End Sub
-    Private Sub ExportarDGVaPDF(ByVal dgv As DataGridView, ByVal rutaArchivo As String)
-        Try
-            Dim columnasExcluidas As New HashSet(Of String) From {"Asignado", "PendienteAsignar"}
-
-            Dim columnasExportables = dgv.Columns.Cast(Of DataGridViewColumn).
-            Where(Function(c) c.Visible AndAlso Not columnasExcluidas.Contains(c.Name)).ToList()
-
-            If columnasExportables.Count = 0 Then
-                MsgBox("No hay columnas válidas para exportar.", MsgBoxStyle.Exclamation)
-                Exit Sub
-            End If
-
-            Using fs As New FileStream(rutaArchivo, FileMode.Create)
-                Using doc As New Document(PageSize.A4.Rotate(), 20, 20, 20, 20)
-                    Dim writer As PdfWriter = PdfWriter.GetInstance(doc, fs)
-                    doc.Open()
-
-                    ' Título
-                    Dim titulo As New Paragraph("Listado de Pagos Filtrados", FontFactory.GetFont("Arial", 16.0F, iTextSharp.text.Font.BOLD))
-                    titulo.Alignment = Element.ALIGN_CENTER
-                    doc.Add(titulo)
-
-                    ' Fecha y hora
-                    Dim fechaHora As String = "Generado el " & Now.ToString("dd/MM/yyyy") & " a las " & Now.ToString("HH:mm")
-                    Dim infoFecha = New Paragraph(fechaHora, FontFactory.GetFont("Arial", 10.0F, iTextSharp.text.Font.ITALIC))
-                    infoFecha.Alignment = Element.ALIGN_CENTER
-                    doc.Add(infoFecha)
-
-                    doc.Add(New Paragraph(" "))
-
-                    ' Tabla
-                    Dim tabla As New PdfPTable(columnasExportables.Count)
-                    tabla.WidthPercentage = 100
-                    tabla.SetWidths(Enumerable.Repeat(1.0F, columnasExportables.Count).ToArray())
-
-                    For Each col In columnasExportables
-                        Dim celda As New PdfPCell(New Phrase(col.HeaderText, FontFactory.GetFont("Arial", 10.0F, iTextSharp.text.Font.BOLD)))
-                        celda.BackgroundColor = BaseColor.LIGHT_GRAY
-                        celda.HorizontalAlignment = Element.ALIGN_CENTER
-                        tabla.AddCell(celda)
-                    Next
-
-                    Dim totalRD As Double = 0
-                    Dim totalUS As Double = 0
-
-                    For Each fila As DataGridViewRow In dgv.Rows
-                        If fila.IsNewRow OrElse Not fila.Visible Then Continue For
-
-                        For Each col In columnasExportables
-                            Dim obj = fila.Cells(col.Index).FormattedValue
-                            Dim valor As String = ""
-                            Dim valorNumerico As Double = 0
-
-                            If obj IsNot Nothing Then
-                                If TypeOf obj Is DateTime Then
-                                    valor = CDate(obj).ToString("dd/MM/yyyy")
-                                ElseIf IsNumeric(obj) Then
-                                    valorNumerico = Convert.ToDouble(obj)
-                                    valor = valorNumerico.ToString("#,##0.00")
-                                Else
-                                    valor = obj.ToString()
-                                End If
-                            End If
-
-                            Dim frase = New Phrase(valor, FontFactory.GetFont("Arial", 10.0F, iTextSharp.text.Font.NORMAL))
-                            Dim celda As New PdfPCell(frase)
-
-                            If col.Name = "RD" OrElse col.Name = "US" Then
-                                celda.HorizontalAlignment = Element.ALIGN_RIGHT
-                            ElseIf TypeOf obj Is DateTime Then
-                                celda.HorizontalAlignment = Element.ALIGN_CENTER
-                            Else
-                                celda.HorizontalAlignment = Element.ALIGN_LEFT
-                            End If
-
-                            tabla.AddCell(celda)
-
-                            ' Suma solo si es numérico y la columna es RD o US
-                            If col.Name = "RD" Then totalRD += valorNumerico
-                            If col.Name = "US" Then totalUS += valorNumerico
-                        Next
-                    Next
-
-                    doc.Add(tabla)
-                    doc.Add(New Paragraph(" "))
-
-                    Dim totalesParrafo As New Paragraph("Totales:" & vbCrLf &
-                                                    "RD$: " & totalRD.ToString("#,##0.00") & vbCrLf &
-                                                    "US$: " & totalUS.ToString("#,##0.00"),
-                                                    FontFactory.GetFont("Arial", 12.0F, iTextSharp.text.Font.BOLD))
-                    totalesParrafo.Alignment = Element.ALIGN_RIGHT
-                    doc.Add(totalesParrafo)
-
-                    doc.Close()
-                End Using
-            End Using
-
-            If File.Exists(rutaArchivo) Then Process.Start(rutaArchivo)
-
-        Catch ex As Exception
-            MsgBox("Error al exportar a PDF: " & ex.Message, MsgBoxStyle.Critical)
-        End Try
-    End Sub
 
 
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim ruta As String = Path.Combine(Application.StartupPath, "PagosFiltrados_" & Now.ToString("yyyyMMdd_HHmmss") & ".pdf")
-        ExportarDGVaPDF(PagosClientesDataGridView, ruta)
+
     End Sub
 End Class

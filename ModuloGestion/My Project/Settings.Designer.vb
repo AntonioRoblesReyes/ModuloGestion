@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -57,22 +57,34 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=Portatil-DELL;Initial Catalog=GestionEmpresa;Persist Security Info=Tr"& _ 
-            "ue;User ID=sa;Password=laura2007")>  _
-        Public ReadOnly Property GestionEmpresaConnectionString() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=Portatil;Initial Catalog=Hoteles;Integrated Security=True")>  _
+        Public ReadOnly Property HotelesConnectionString() As String
             Get
-                Return CType(Me("GestionEmpresaConnectionString"),String)
+                Return CType(Me("HotelesConnectionString"),String)
             End Get
         End Property
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=Portatil;Initial Catalog=Hoteles;Integrated Security=True")>  _
-        Public ReadOnly Property HotelesConnectionString() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=PCShernia;Initial Catalog=GestionEmpresa;Persist Security Info=True;U"& _ 
+            "ser ID=sa;Password=laura2007;TrustServerCertificate=True")>  _
+        Public ReadOnly Property GestionEmpresaConnectionString() As String
             Get
-                Return CType(Me("HotelesConnectionString"),String)
+                Return CType(Me("GestionEmpresaConnectionString"),String)
             End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property TasaCambio() As Decimal
+            Get
+                Return CType(Me("TasaCambio"),Decimal)
+            End Get
+            Set
+                Me("TasaCambio") = value
+            End Set
         End Property
     End Class
 End Namespace

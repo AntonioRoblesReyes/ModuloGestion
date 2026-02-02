@@ -23,13 +23,12 @@ Partial Class FrmCuentasPorPagar
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCuentasPorPagar))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DsCompras = New ModuloGestion.DsCompras()
         Me.ProveedoresBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ProveedoresTableAdapter = New ModuloGestion.DsComprasTableAdapters.ProveedoresTableAdapter()
@@ -48,6 +47,8 @@ Partial Class FrmCuentasPorPagar
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ProveedoresBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.ProveedoresDataGridView = New System.Windows.Forms.DataGridView()
+        Me.Id_Proveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CompraMaterialesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CompraMaterialesTableAdapter = New ModuloGestion.DsComprasTableAdapters.CompraMaterialesTableAdapter()
         Me.CompraMaterialesDataGridView = New System.Windows.Forms.DataGridView()
@@ -68,8 +69,10 @@ Partial Class FrmCuentasPorPagar
         Me.LabelTotalSeleccionRD = New System.Windows.Forms.Label()
         Me.LabelTotalSeleccionUS = New System.Windows.Forms.Label()
         Me.BtnPagar = New System.Windows.Forms.Button()
-        Me.Id_Proveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SplitContainerMain = New System.Windows.Forms.SplitContainer()
+        Me.PanelTotales = New System.Windows.Forms.Panel()
+        Me.LabelBuscarProveedor = New System.Windows.Forms.Label()
+        Me.TxtBuscarProveedor = New System.Windows.Forms.TextBox()
         CType(Me.DsCompras, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProveedoresBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProveedoresBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +80,11 @@ Partial Class FrmCuentasPorPagar
         CType(Me.ProveedoresDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CompraMaterialesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CompraMaterialesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainerMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerMain.Panel1.SuspendLayout()
+        Me.SplitContainerMain.Panel2.SuspendLayout()
+        Me.SplitContainerMain.SuspendLayout()
+        Me.PanelTotales.SuspendLayout()
         Me.SuspendLayout()
         '
         'DsCompras
@@ -96,9 +104,10 @@ Partial Class FrmCuentasPorPagar
         'TableAdapterManager
         '
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-
         Me.TableAdapterManager.CompraMaterialesDetalleTableAdapter = Nothing
         Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.PagoProveedorDetalleTableAdapter = Nothing
+        Me.TableAdapterManager.PagoProveedorTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = ModuloGestion.DsComprasTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
         'ProveedoresBindingNavigator
@@ -116,14 +125,13 @@ Partial Class FrmCuentasPorPagar
         Me.ProveedoresBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.ProveedoresBindingNavigator.Name = "ProveedoresBindingNavigator"
         Me.ProveedoresBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.ProveedoresBindingNavigator.Size = New System.Drawing.Size(1543, 27)
+        Me.ProveedoresBindingNavigator.Size = New System.Drawing.Size(1543, 31)
         Me.ProveedoresBindingNavigator.TabIndex = 0
         Me.ProveedoresBindingNavigator.Text = "BindingNavigator1"
         '
         'BindingNavigatorAddNewItem
         '
         Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
         Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
         Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(29, 24)
@@ -139,7 +147,6 @@ Partial Class FrmCuentasPorPagar
         'BindingNavigatorDeleteItem
         '
         Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
         Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
         Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(29, 24)
@@ -148,7 +155,6 @@ Partial Class FrmCuentasPorPagar
         'BindingNavigatorMoveFirstItem
         '
         Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
         Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 24)
@@ -157,7 +163,6 @@ Partial Class FrmCuentasPorPagar
         'BindingNavigatorMovePreviousItem
         '
         Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
         Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 24)
@@ -186,7 +191,6 @@ Partial Class FrmCuentasPorPagar
         'BindingNavigatorMoveNextItem
         '
         Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
         Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 24)
@@ -195,7 +199,6 @@ Partial Class FrmCuentasPorPagar
         'BindingNavigatorMoveLastItem
         '
         Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
         Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 24)
@@ -209,7 +212,6 @@ Partial Class FrmCuentasPorPagar
         'ProveedoresBindingNavigatorSaveItem
         '
         Me.ProveedoresBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ProveedoresBindingNavigatorSaveItem.Image = CType(resources.GetObject("ProveedoresBindingNavigatorSaveItem.Image"), System.Drawing.Image)
         Me.ProveedoresBindingNavigatorSaveItem.Name = "ProveedoresBindingNavigatorSaveItem"
         Me.ProveedoresBindingNavigatorSaveItem.Size = New System.Drawing.Size(29, 24)
         Me.ProveedoresBindingNavigatorSaveItem.Text = "Guardar datos"
@@ -219,16 +221,37 @@ Partial Class FrmCuentasPorPagar
         Me.ProveedoresDataGridView.AllowUserToAddRows = False
         Me.ProveedoresDataGridView.AllowUserToDeleteRows = False
         Me.ProveedoresDataGridView.AutoGenerateColumns = False
+        Me.ProveedoresDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.ProveedoresDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ProveedoresDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ProveedoresDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id_Proveedor, Me.DataGridViewTextBoxColumn2})
         Me.ProveedoresDataGridView.DataSource = Me.ProveedoresBindingSource
-        Me.ProveedoresDataGridView.Location = New System.Drawing.Point(24, 55)
+        Me.ProveedoresDataGridView.Location = New System.Drawing.Point(0, 58)
         Me.ProveedoresDataGridView.Name = "ProveedoresDataGridView"
         Me.ProveedoresDataGridView.ReadOnly = True
         Me.ProveedoresDataGridView.RowHeadersWidth = 51
         Me.ProveedoresDataGridView.RowTemplate.Height = 24
-        Me.ProveedoresDataGridView.Size = New System.Drawing.Size(416, 220)
+        Me.ProveedoresDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.ProveedoresDataGridView.Size = New System.Drawing.Size(450, 538)
         Me.ProveedoresDataGridView.TabIndex = 1
+        '
+        'Id_Proveedor
+        '
+        Me.Id_Proveedor.DataPropertyName = "Id_Proveedor"
+        Me.Id_Proveedor.HeaderText = "Id_Proveedor"
+        Me.Id_Proveedor.MinimumWidth = 6
+        Me.Id_Proveedor.Name = "Id_Proveedor"
+        Me.Id_Proveedor.ReadOnly = True
+        Me.Id_Proveedor.Width = 125
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "RazonSocial"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Razón social"
+        Me.DataGridViewTextBoxColumn2.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
         '
         'CompraMaterialesBindingSource
         '
@@ -244,18 +267,19 @@ Partial Class FrmCuentasPorPagar
         Me.CompraMaterialesDataGridView.AllowUserToAddRows = False
         Me.CompraMaterialesDataGridView.AllowUserToDeleteRows = False
         Me.CompraMaterialesDataGridView.AllowUserToOrderColumns = True
-        Me.CompraMaterialesDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CompraMaterialesDataGridView.AutoGenerateColumns = False
+        Me.CompraMaterialesDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.CompraMaterialesDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.CompraMaterialesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CompraMaterialesDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id_Compra, Me.Proveedor, Me.Fecha, Me.Factura, Me.Moneda, Me.TotalUS, Me.DataGridViewTextBoxColumn24, Me.PendienteUS, Me.TotalRD, Me.DataGridViewTextBoxColumn26, Me.PendienteRD, Me.Pagar})
         Me.CompraMaterialesDataGridView.DataSource = Me.CompraMaterialesBindingSource
-        Me.CompraMaterialesDataGridView.Location = New System.Drawing.Point(24, 281)
+        Me.CompraMaterialesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.CompraMaterialesDataGridView.Location = New System.Drawing.Point(10, 10)
         Me.CompraMaterialesDataGridView.Name = "CompraMaterialesDataGridView"
         Me.CompraMaterialesDataGridView.RowHeadersWidth = 51
         Me.CompraMaterialesDataGridView.RowTemplate.Height = 24
-        Me.CompraMaterialesDataGridView.Size = New System.Drawing.Size(1451, 287)
+        Me.CompraMaterialesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.CompraMaterialesDataGridView.Size = New System.Drawing.Size(1069, 543)
         Me.CompraMaterialesDataGridView.TabIndex = 2
         '
         'Id_Compra
@@ -283,7 +307,7 @@ Partial Class FrmCuentasPorPagar
         Me.Fecha.MinimumWidth = 6
         Me.Fecha.Name = "Fecha"
         Me.Fecha.ReadOnly = True
-        Me.Fecha.Width = 75
+        Me.Fecha.Width = 90
         '
         'Factura
         '
@@ -306,9 +330,9 @@ Partial Class FrmCuentasPorPagar
         'TotalUS
         '
         Me.TotalUS.DataPropertyName = "TotalCompraUS"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle1.Format = "n2"
-        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle7.Format = "N2"
+        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle7
         Me.TotalUS.HeaderText = "Total US"
         Me.TotalUS.MinimumWidth = 6
         Me.TotalUS.Name = "TotalUS"
@@ -318,9 +342,9 @@ Partial Class FrmCuentasPorPagar
         'DataGridViewTextBoxColumn24
         '
         Me.DataGridViewTextBoxColumn24.DataPropertyName = "PagadoUS"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "n2"
-        Me.DataGridViewTextBoxColumn24.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle8.Format = "N2"
+        Me.DataGridViewTextBoxColumn24.DefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewTextBoxColumn24.HeaderText = "Pagado US"
         Me.DataGridViewTextBoxColumn24.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn24.Name = "DataGridViewTextBoxColumn24"
@@ -330,9 +354,9 @@ Partial Class FrmCuentasPorPagar
         'PendienteUS
         '
         Me.PendienteUS.DataPropertyName = "PendienteUS"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle3.Format = "n2"
-        Me.PendienteUS.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle9.Format = "N2"
+        Me.PendienteUS.DefaultCellStyle = DataGridViewCellStyle9
         Me.PendienteUS.HeaderText = "Pendiente US"
         Me.PendienteUS.MinimumWidth = 6
         Me.PendienteUS.Name = "PendienteUS"
@@ -342,9 +366,9 @@ Partial Class FrmCuentasPorPagar
         'TotalRD
         '
         Me.TotalRD.DataPropertyName = "TotalCompraRD"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle4.Format = "n2"
-        Me.TotalRD.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "N2"
+        Me.TotalRD.DefaultCellStyle = DataGridViewCellStyle10
         Me.TotalRD.HeaderText = "Total RD"
         Me.TotalRD.MinimumWidth = 6
         Me.TotalRD.Name = "TotalRD"
@@ -354,9 +378,9 @@ Partial Class FrmCuentasPorPagar
         'DataGridViewTextBoxColumn26
         '
         Me.DataGridViewTextBoxColumn26.DataPropertyName = "PagadoRD"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle5.Format = "n2"
-        Me.DataGridViewTextBoxColumn26.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle11.Format = "N2"
+        Me.DataGridViewTextBoxColumn26.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewTextBoxColumn26.HeaderText = "Pagado RD"
         Me.DataGridViewTextBoxColumn26.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn26.Name = "DataGridViewTextBoxColumn26"
@@ -366,9 +390,9 @@ Partial Class FrmCuentasPorPagar
         'PendienteRD
         '
         Me.PendienteRD.DataPropertyName = "PendienteRD"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle6.Format = "n2"
-        Me.PendienteRD.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle12.Format = "N2"
+        Me.PendienteRD.DefaultCellStyle = DataGridViewCellStyle12
         Me.PendienteRD.HeaderText = "Pendiente RD"
         Me.PendienteRD.MinimumWidth = 6
         Me.PendienteRD.Name = "PendienteRD"
@@ -387,81 +411,121 @@ Partial Class FrmCuentasPorPagar
         'LabelTotalGeneralRD
         '
         Me.LabelTotalGeneralRD.AutoSize = True
-        Me.LabelTotalGeneralRD.Location = New System.Drawing.Point(917, 107)
+        Me.LabelTotalGeneralRD.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelTotalGeneralRD.Location = New System.Drawing.Point(15, 10)
         Me.LabelTotalGeneralRD.Name = "LabelTotalGeneralRD"
-        Me.LabelTotalGeneralRD.Size = New System.Drawing.Size(48, 16)
+        Me.LabelTotalGeneralRD.Size = New System.Drawing.Size(125, 20)
         Me.LabelTotalGeneralRD.TabIndex = 3
-        Me.LabelTotalGeneralRD.Text = "Label1"
+        Me.LabelTotalGeneralRD.Text = "Total general RD"
         '
         'LabelTotalGeneralUS
         '
         Me.LabelTotalGeneralUS.AutoSize = True
-        Me.LabelTotalGeneralUS.Location = New System.Drawing.Point(917, 137)
+        Me.LabelTotalGeneralUS.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelTotalGeneralUS.Location = New System.Drawing.Point(15, 35)
         Me.LabelTotalGeneralUS.Name = "LabelTotalGeneralUS"
-        Me.LabelTotalGeneralUS.Size = New System.Drawing.Size(48, 16)
+        Me.LabelTotalGeneralUS.Size = New System.Drawing.Size(123, 20)
         Me.LabelTotalGeneralUS.TabIndex = 4
-        Me.LabelTotalGeneralUS.Text = "Label2"
+        Me.LabelTotalGeneralUS.Text = "Total general US"
         '
         'LabelTotalSeleccionRD
         '
+        Me.LabelTotalSeleccionRD.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelTotalSeleccionRD.AutoSize = True
-        Me.LabelTotalSeleccionRD.Location = New System.Drawing.Point(1148, 207)
+        Me.LabelTotalSeleccionRD.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelTotalSeleccionRD.Location = New System.Drawing.Point(680, 10)
         Me.LabelTotalSeleccionRD.Name = "LabelTotalSeleccionRD"
-        Me.LabelTotalSeleccionRD.Size = New System.Drawing.Size(89, 16)
+        Me.LabelTotalSeleccionRD.Size = New System.Drawing.Size(100, 20)
         Me.LabelTotalSeleccionRD.TabIndex = 6
-        Me.LabelTotalSeleccionRD.Text = "Total a Pagar"
+        Me.LabelTotalSeleccionRD.Text = "Total a pagar"
         '
         'LabelTotalSeleccionUS
         '
+        Me.LabelTotalSeleccionUS.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelTotalSeleccionUS.AutoSize = True
-        Me.LabelTotalSeleccionUS.Location = New System.Drawing.Point(1148, 232)
+        Me.LabelTotalSeleccionUS.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelTotalSeleccionUS.Location = New System.Drawing.Point(680, 35)
         Me.LabelTotalSeleccionUS.Name = "LabelTotalSeleccionUS"
-        Me.LabelTotalSeleccionUS.Size = New System.Drawing.Size(89, 16)
+        Me.LabelTotalSeleccionUS.Size = New System.Drawing.Size(100, 20)
         Me.LabelTotalSeleccionUS.TabIndex = 7
-        Me.LabelTotalSeleccionUS.Text = "Total a Pagar"
+        Me.LabelTotalSeleccionUS.Text = "Total a pagar"
         '
         'BtnPagar
         '
-        Me.BtnPagar.Location = New System.Drawing.Point(1140, 156)
+        Me.BtnPagar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnPagar.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.BtnPagar.Location = New System.Drawing.Point(910, 18)
         Me.BtnPagar.Name = "BtnPagar"
-        Me.BtnPagar.Size = New System.Drawing.Size(109, 33)
+        Me.BtnPagar.Size = New System.Drawing.Size(120, 32)
         Me.BtnPagar.TabIndex = 8
         Me.BtnPagar.Text = "Pagar"
         Me.BtnPagar.UseVisualStyleBackColor = True
         '
-        'Id_Proveedor
+        'SplitContainerMain
         '
-        Me.Id_Proveedor.DataPropertyName = "Id_Proveedor"
-        Me.Id_Proveedor.HeaderText = "Id_Proveedor"
-        Me.Id_Proveedor.MinimumWidth = 6
-        Me.Id_Proveedor.Name = "Id_Proveedor"
-        Me.Id_Proveedor.ReadOnly = True
-        Me.Id_Proveedor.Width = 125
+        Me.SplitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerMain.Location = New System.Drawing.Point(0, 31)
+        Me.SplitContainerMain.Name = "SplitContainerMain"
         '
-        'DataGridViewTextBoxColumn2
+        'SplitContainerMain.Panel1
         '
-        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "RazonSocial"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "RazonSocial"
-        Me.DataGridViewTextBoxColumn2.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.SplitContainerMain.Panel1.Controls.Add(Me.TxtBuscarProveedor)
+        Me.SplitContainerMain.Panel1.Controls.Add(Me.LabelBuscarProveedor)
+        Me.SplitContainerMain.Panel1.Controls.Add(Me.ProveedoresDataGridView)
+        Me.SplitContainerMain.Panel1.Padding = New System.Windows.Forms.Padding(10)
+        '
+        'SplitContainerMain.Panel2
+        '
+        Me.SplitContainerMain.Panel2.Controls.Add(Me.CompraMaterialesDataGridView)
+        Me.SplitContainerMain.Panel2.Controls.Add(Me.PanelTotales)
+        Me.SplitContainerMain.Panel2.Padding = New System.Windows.Forms.Padding(10, 10, 10, 5)
+        Me.SplitContainerMain.Size = New System.Drawing.Size(1543, 633)
+        Me.SplitContainerMain.SplitterDistance = 450
+        Me.SplitContainerMain.TabIndex = 9
+        '
+        'PanelTotales
+        '
+        Me.PanelTotales.BackColor = System.Drawing.Color.Gainsboro
+        Me.PanelTotales.Controls.Add(Me.LabelTotalGeneralRD)
+        Me.PanelTotales.Controls.Add(Me.LabelTotalGeneralUS)
+        Me.PanelTotales.Controls.Add(Me.LabelTotalSeleccionRD)
+        Me.PanelTotales.Controls.Add(Me.LabelTotalSeleccionUS)
+        Me.PanelTotales.Controls.Add(Me.BtnPagar)
+        Me.PanelTotales.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelTotales.Location = New System.Drawing.Point(10, 553)
+        Me.PanelTotales.Name = "PanelTotales"
+        Me.PanelTotales.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
+        Me.PanelTotales.Size = New System.Drawing.Size(1069, 75)
+        Me.PanelTotales.TabIndex = 10
+        '
+        'LabelBuscarProveedor
+        '
+        Me.LabelBuscarProveedor.AutoSize = True
+        Me.LabelBuscarProveedor.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabelBuscarProveedor.Location = New System.Drawing.Point(10, 10)
+        Me.LabelBuscarProveedor.Name = "LabelBuscarProveedor"
+        Me.LabelBuscarProveedor.Size = New System.Drawing.Size(114, 20)
+        Me.LabelBuscarProveedor.TabIndex = 2
+        Me.LabelBuscarProveedor.Text = "Buscar proveedor:"
+        Me.LabelBuscarProveedor.UseCompatibleTextRendering = True
+        '
+        'TxtBuscarProveedor
+        '
+        Me.TxtBuscarProveedor.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TxtBuscarProveedor.Location = New System.Drawing.Point(10, 30)
+        Me.TxtBuscarProveedor.Name = "TxtBuscarProveedor"
+        Me.TxtBuscarProveedor.Size = New System.Drawing.Size(430, 22)
+        Me.TxtBuscarProveedor.TabIndex = 3
         '
         'FrmCuentasPorPagar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1543, 623)
-        Me.Controls.Add(Me.BtnPagar)
-        Me.Controls.Add(Me.LabelTotalSeleccionUS)
-        Me.Controls.Add(Me.LabelTotalSeleccionRD)
-        Me.Controls.Add(Me.LabelTotalGeneralUS)
-        Me.Controls.Add(Me.LabelTotalGeneralRD)
-        Me.Controls.Add(Me.CompraMaterialesDataGridView)
-        Me.Controls.Add(Me.ProveedoresDataGridView)
+        Me.ClientSize = New System.Drawing.Size(1543, 664)
+        Me.Controls.Add(Me.SplitContainerMain)
         Me.Controls.Add(Me.ProveedoresBindingNavigator)
         Me.Name = "FrmCuentasPorPagar"
-        Me.Text = "FrmCuentasPorPagar"
+        Me.Text = "Cuentas por pagar"
         CType(Me.DsCompras, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ProveedoresBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ProveedoresBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
@@ -470,6 +534,13 @@ Partial Class FrmCuentasPorPagar
         CType(Me.ProveedoresDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CompraMaterialesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CompraMaterialesDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerMain.Panel1.ResumeLayout(False)
+        Me.SplitContainerMain.Panel1.PerformLayout()
+        Me.SplitContainerMain.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainerMain, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerMain.ResumeLayout(False)
+        Me.PanelTotales.ResumeLayout(False)
+        Me.PanelTotales.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -515,4 +586,8 @@ Partial Class FrmCuentasPorPagar
     Friend WithEvents Pagar As DataGridViewCheckBoxColumn
     Friend WithEvents Id_Proveedor As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents SplitContainerMain As SplitContainer
+    Friend WithEvents PanelTotales As Panel
+    Friend WithEvents TxtBuscarProveedor As TextBox
+    Friend WithEvents LabelBuscarProveedor As Label
 End Class

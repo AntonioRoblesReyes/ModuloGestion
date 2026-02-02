@@ -26,19 +26,38 @@
     End Sub
     Sub ImprimirCompra()
 
+        ' Obtener el ID de la compra desde el BindingSource (siempre seguro)
 
+
+
+
+        ' Cargar tablas relacionadas
         Me.ProveedoresTableAdapter.Fill(Me.DsImprimirCompras.Proveedores)
         Me.EmpresasTableAdapter.Fill(Me.DsImprimirCompras.Empresas)
 
-        Me.CompraMaterialesTableAdapter.Fill(Me.DsImprimirCompras.CompraMateriales)
+        ' Cargar cabecera
+        Me.CompraMaterialesTableAdapter.FillByIdCompra(
+        Me.DsImprimirCompras.CompraMateriales,
+       LblIdCompra.Text)
 
+        ' Cargar detalle
+        Me.CompraMaterialesDetalleTableAdapter.FillByIdCompra(
+        Me.DsImprimirCompras.CompraMaterialesDetalle,
+      LblIdCompra.Text)
+
+        ' Cargar medidas
         Me.MedidasCompraTableAdapter.Fill(Me.DsImprimirCompras.MedidasCompra)
-        Me.CompraMaterialesDetalleTableAdapter.FillByIdCompra(Me.DsImprimirCompras.CompraMaterialesDetalle, My.Forms.FrmIngresoCompras.Id_CompraTextBox.Text)
+
+        ' Mostrar reporte
         Dim rpt As New CryCompras
         rpt.SetDataSource(DsImprimirCompras)
         CrystalReportViewer1.ReportSource = rpt
         Me.Show()
+
     End Sub
+
+
+
     Private Sub CompraMaterialesBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs)
         Me.Validate()
         Me.CompraMaterialesBindingSource.EndEdit()

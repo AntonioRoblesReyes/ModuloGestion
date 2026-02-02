@@ -3211,7 +3211,7 @@ Partial Public Class DsContabilidad
             Me.columnIdFacturaProveedor.AllowDBNull = false
             Me.columnIdFacturaProveedor.MaxLength = 50
             Me.columnId_Proveedor.AllowDBNull = false
-            Me.columnId_Proveedor.MaxLength = 30
+            Me.columnId_Proveedor.MaxLength = 50
             Me.columnSubtotal.AllowDBNull = false
             Me.columnValorImpuesto.AllowDBNull = false
             Me.columnImpuesto.AllowDBNull = false

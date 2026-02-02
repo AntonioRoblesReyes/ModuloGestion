@@ -126,19 +126,7 @@
         CompraMaterialesDetalleTableAdapter.FillByIdCompra(DsCompras.CompraMaterialesDetalle, Compra)
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Try
-            With My.Forms.FrmIngresoCompras
-                .Close()
-                .Label1.Text = DsCompras.CompraMateriales(CompraMaterialesBindingSource.Position).Id_Compra
-                .LblPresupuesto.Text = DsCompras.CompraMateriales(CompraMaterialesBindingSource.Position).Id_Presupuesto
-                .LblProyecto.Text = DsCompras.CompraMateriales(CompraMaterialesBindingSource.Position).Id_proyecto_Presupuestos
-                .ModificarCompra()
-            End With
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
+
 
     Private Sub Id_ProveedorTextBox_TextChanged(sender As Object, e As EventArgs) Handles Id_ProveedorTextBox.TextChanged
         ComprasPorMesTableAdapter.FillByIdPoveedor(DsCompras.ComprasPorMes, Id_ProveedorTextBox.Text)

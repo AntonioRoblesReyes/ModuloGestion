@@ -1,9 +1,14 @@
 ﻿Public Class FrmAsignarPagoMontaje
     Sub AsignarPago()
-        Me.PagoMontajeTableAdapter.FillByIdPago(DsPagosMontaje.PagoMontaje, IdPagoMontajeTextBox.Text)
-        Me.FacturaMontajeTableAdapter.FillByFacturasPendientes(DsPagosMontaje.FacturaMontaje, IdEmpresaMontajeTextBox.Text)
-        Me.Show()
+        Me.PagoMontajeTableAdapter.FillByIdPago(
+        DsPagosMontaje.PagoMontaje,
+        IdPagoMontajeTextBox.Text)
+
+        Me.FacturaMontajeTableAdapter.FillByFacturasPendientes(
+        DsPagosMontaje.FacturaMontaje,
+        IdEmpresaMontajeTextBox.Text)
     End Sub
+
     Private Sub FacturaMontajeBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
         Me.Validate()
         Me.FacturaMontajeBindingSource.EndEdit()
@@ -12,67 +17,20 @@
     End Sub
 
     Private Sub FrmAsignarPagoMontaje_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: esta línea de código carga datos en la tabla 'DsPagosMontaje.FacturaMontajeDetalle' Puede moverla o quitarla según sea necesario.
 
-        'TODO: esta línea de código carga datos en la tabla 'DsProyectos.Proyectos' Puede moverla o quitarla según sea necesario.
-        Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
-        'TODO: esta línea de código carga datos en la tabla 'DsPresupuestos.Presupuesto' Puede moverla o quitarla según sea necesario.
-        Me.PresupuestoTableAdapter.Fill(Me.DsPresupuestos.Presupuesto)
-        'TODO: esta línea de código carga datos en la tabla 'DsClientes.Clientes' Puede moverla o quitarla según sea necesario.
-        Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
-        'TODO: esta línea de código carga datos en la tabla 'DsPagosMontaje.PagoMontajeDetalle' Puede moverla o quitarla según sea necesario.
-        Me.PagoMontajeDetalleTableAdapter.Fill(Me.DsPagosMontaje.PagoMontajeDetalle)
 
 
     End Sub
 
 
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-        Dim totalFactura As Double = FacturaMontajeDataGridView.CurrentRow.Cells(1).Value
-
-        Dim Pagado As Double = FacturaMontajeDataGridView.CurrentRow.Cells(2).Value
-
-        Dim Pendiente As Double = FacturaMontajeDataGridView.CurrentRow.Cells(3).Value
-
-        Dim Factura As String = FacturaMontajeDataGridView.CurrentRow.Cells(0).Value
-
-
-        Dim NuevoPagado As Double = Pagado + CDbl(TextBox1.Text)
-        Dim NuevoPendiente As Double = totalFactura - NuevoPagado
-
-        Me.FacturaMontajeTableAdapter.ActulizarPagoFactura(NuevoPagado, NuevoPendiente, Factura)
-
-
-        Dim Asignado As Double = DsPagosMontaje.PagoMontaje(Me.PagoMontajeBindingSource.Position).Asignado
-        Dim NuevoAsignado As Double = Asignado + CDbl(TextBox1.Text)
-        Dim TotalPago As Double = DsPagosMontaje.PagoMontaje(Me.PagoMontajeBindingSource.Position).valor
-        Dim NuevoPendiet As Double = TotalPago - NuevoAsignado
-        Dim pago As String = DsPagosMontaje.PagoMontaje(Me.PagoMontajeBindingSource.Position).IdPagoMontaje
-        Dim fecha As String = DsPagosMontaje.PagoMontaje(Me.PagoMontajeBindingSource.Position).Fecha
-
-
-        Me.PagoMontajeTableAdapter.ActulizarAsignado(NuevoAsignado, NuevoPendiet, pago)
-        My.Forms.FrmPagosMomtajeResumen.PagoMontajeTableAdapter.Fill(DsPagosMontaje.PagoMontaje)
-
-
-        Dim siguiente As String = Me.PagoMontajeDetalleTableAdapter.Siguiente(pago)
-        Dim presupuesto As String = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).Id_Presupuesto
-        Dim Proyecto As String = Me.DsPagosMontaje.FacturaMontaje(Me.FacturaMontajeBindingSource.Position).Id_Proyecto
-        Me.PagoMontajeDetalleTableAdapter.NuevoDetallePago(siguiente, pago, Proyecto, presupuesto, "RD$", CDbl(TextBox1.Text), fecha, Factura)
-
-
-
-        Me.Close()
-    End Sub
 
     Private Sub FacturaMontajeDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles FacturaMontajeDataGridView.CellClick
 
-        Dim pendientePago As Double = FacturaMontajeDataGridView.CurrentRow.Cells(3).Value
+        Dim pendientePago As Double = FacturaMontajeDataGridView.CurrentRow.Cells("PendienteInstalador").Value
         Dim pendienteA As Double = PendienteAsignarTextBox.Text
-        Dim Facturamontaje As String = FacturaMontajeDataGridView.CurrentRow.Cells(0).Value
-        Dim IdPresupuesto As String = FacturaMontajeDataGridView.CurrentRow.Cells(4).Value
+        Dim Facturamontaje As String = FacturaMontajeDataGridView.CurrentRow.Cells("IdFactura").Value
+        Dim IdPresupuesto As String = FacturaMontajeDataGridView.CurrentRow.Cells("Id_Presupuesto").Value
         Me.FacturaMontajeDetalleTableAdapter.FillByIdFactura(Me.DsPagosMontaje.FacturaMontajeDetalle, Facturamontaje)
         Me.PresupuestoTableAdapter.FillByIdPresupuesto(Me.DsPresupuestos.Presupuesto, IdPresupuesto)
         Me.Label2.Text = Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).Descripcion_Presupuesto
@@ -82,5 +40,84 @@
             Me.TextBox1.Text = Format(pendienteA, "#,##0.00")
         End If
     End Sub
+
+    Private Sub BtnAceptar_Click(sender As Object, e As EventArgs) Handles BtnAceptar.Click
+
+        ' ==========================
+        ' VALIDACIONES BÁSICAS
+        ' ==========================
+        If FacturaMontajeDataGridView.CurrentRow Is Nothing Then
+            MessageBox.Show("Seleccione una factura.", "Aviso",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        If String.IsNullOrWhiteSpace(TextBox1.Text) Then
+            MessageBox.Show("Indique el monto a asignar.", "Aviso",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim montoAsignar As Decimal
+        If Not Decimal.TryParse(TextBox1.Text, montoAsignar) OrElse montoAsignar <= 0 Then
+            MessageBox.Show("El monto a asignar no es válido.", "Aviso",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        ' ==========================
+        ' DATOS CLAVE
+        ' ==========================
+        Dim idPago As String =
+            IdPagoMontajeTextBox.Text.Trim()
+
+        Dim idFactura As String =
+            FacturaMontajeDataGridView.CurrentRow.Cells("IdFactura").Value.ToString()
+
+        ' ==========================
+        ' EJECUTA TODA LA LÓGICA EN SQL
+        ' ==========================
+        Try
+            Using cn As New SqlClient.SqlConnection(My.Settings.GestionEmpresaConnectionString)
+                Using cmd As New SqlClient.SqlCommand("dbo.sp_AsignarPagoFacturaMontaje", cn)
+                    cmd.CommandType = CommandType.StoredProcedure
+
+                    cmd.Parameters.Add("@IdPagoMontaje", SqlDbType.NVarChar, 25).Value = idPago
+                    cmd.Parameters.Add("@IdFacturaMontaje", SqlDbType.NVarChar, 25).Value = idFactura
+                    cmd.Parameters.Add("@MontoAsignar", SqlDbType.Decimal).Value = montoAsignar
+
+                    cn.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+            ' ==========================
+            ' REFRESCO DE PANTALLA
+            ' ==========================
+            PagoMontajeTableAdapter.Fill(DsPagosMontaje.PagoMontaje)
+
+            FacturaMontajeTableAdapter.FillByFacturasPendientes(
+                DsPagosMontaje.FacturaMontaje,
+                IdEmpresaMontajeTextBox.Text.Trim()
+            )
+
+            MessageBox.Show("Pago asignado correctamente.",
+                            "OK", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' 🔄 Refrescar formulario resumen si está abierto
+            If Application.OpenForms.OfType(Of FrmFacturaMontajeResumen).Any() Then
+                With My.Forms.FrmPagosMomtajeResumen
+                    .PagoMontajeTableAdapter.FillByConSaldoPendiente(.DsPagosMontaje.PagoMontaje)
+                End With
+            End If
+
+            Me.Close()
+
+        Catch ex As Exception
+            MessageBox.Show("Error al asignar el pago: " & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
 
 End Class

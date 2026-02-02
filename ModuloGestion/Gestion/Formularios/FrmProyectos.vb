@@ -273,19 +273,24 @@ Public Class FrmProyectos
             Dim TotalRD As Double = 0
             Dim SubtotalRD As Double = 0
 
-            Dim isubTotal As Integer = PresupuestoDataGridView.Rows.Count 'ITotal toma el valor del numero de registros k tiene latabla
-            'Definimos la variable i para controlar el ciclo for
-
             For Each row As DataGridViewRow In PresupuestoDataGridView.Rows
+
+                If row.IsNewRow Then Continue For
+
+                Dim estado As String = row.Cells("EstadoPresupuestoDataGridViewTextBoxColumn").Value.ToString().Trim().ToUpper()
+
+                ' SOLO SUMAR SI ESTÁ APROBADO, ENTREGADO O CERRADO
+                If estado <> "APROBADO" AndAlso estado <> "ENTREGADO" AndAlso estado <> "CERRADO" Then Continue For
+
                 SubtotalUS += Val(row.Cells(3).Value)
                 ImpuestoUS += Val(row.Cells(4).Value)
                 TotalUs += Val(row.Cells(5).Value)
                 SubtotalRD += Val(row.Cells(6).Value)
                 ImpuestoRD += Val(row.Cells(7).Value)
                 TotalRD += Val(row.Cells(8).Value)
+
             Next
 
-            'Mostramos el total en la caja de texto TxtTotal, en este caso la caja de texto tiene definido un formato como se mostrara el resultado, como dinero..
             TxtSubTotal.Text = Format(SubtotalUS, "#,##0.00")
             TxtTotal.Text = Format(TotalUs, "#,##0.00")
             TxtImpuesto.Text = Format(ImpuestoUS, "#,##0.00")
@@ -293,19 +298,16 @@ Public Class FrmProyectos
             SubRD.BackColor = Color.RoyalBlue
             ImpRD.BackColor = Color.RoyalBlue
             TotRD.BackColor = Color.RoyalBlue
+
             SubRD.Text = Format(SubtotalRD, "#,##0.00")
             ImpRD.Text = Format(ImpuestoRD, "#,##0.00")
             TotRD.Text = Format(TotalRD, "#,##0.00")
 
         Catch ex As Exception
-
+            ' opcional: Debug.WriteLine(ex.Message)
         End Try
-
-
-
-
-
     End Sub
+
 
 
 
@@ -659,9 +661,9 @@ Public Class FrmProyectos
 
             Dim NumerodeOrden As String = DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).Id_Presupuesto + "-" + DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).OrdenDeCompra
 
-            If File.Exists("\\PORTATIL-DELL\Users\Public\Carpeta Datos\Ordenes Compra Cliente\" & NumerodeOrden & ".pdf") Then
+            If File.Exists("\\PCShernia\Users\Public\Carpeta Datos\Ordenes Compra Cliente\" & NumerodeOrden & ".pdf") Then
 
-                System.Diagnostics.Process.Start("\\PORTATIL-DELL\Users\Public\Carpeta Datos\Ordenes Compra Cliente\" & NumerodeOrden & ".pdf")
+                System.Diagnostics.Process.Start("\\PCShernia\Users\Public\Carpeta Datos\Ordenes Compra Cliente\" & NumerodeOrden & ".pdf")
             Else
 
                 Dim msg As String
@@ -675,7 +677,7 @@ Public Class FrmProyectos
                 ' Display message.
                 response = MsgBox(msg, style, title)
                 If response = MsgBoxResult.Yes Then   ' User chose Yes.
-                    Shell("explorer.exe root = \\PORTATIL-DELL\Users\Public\Carpeta Datos\Ordenes Compra Cliente", vbNormalFocus)
+                    Shell("explorer.exe root = \\PCShernia\Users\Public\Carpeta Datos\Ordenes Compra Cliente", vbNormalFocus)
                 Else
 
                 End If
@@ -704,13 +706,13 @@ Public Class FrmProyectos
 
         My.Forms.FrmGastosProyecto.Close()
         My.Forms.FrmGastosProyecto.Label1.Text = TxtIdProyecto.Text
-
+        My.Forms.FrmGastosProyecto.lblSubTotalProyecto.Text = TxtSubTotal.Text
 
 
         My.Forms.FrmGastosProyecto.Show()
 
 
-    End Sub
+                                                              End Sub
 
     Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
         My.Forms.FrmComprasProyecto.Close()
@@ -744,7 +746,7 @@ Public Class FrmProyectos
         PresupuestoDataGridView.Columns(8).DefaultCellStyle.BackColor = Color.RoyalBlue
     End Sub
 
-    Private Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
+    Private Sub BtnNuevoPagoMontaje_Click(sender As System.Object, e As System.EventArgs) Handles BtnNuevoPagoMontaje.Click
         Try
 
 
@@ -752,7 +754,7 @@ Public Class FrmProyectos
             My.Forms.FrmFacturaMontajeEditar.LblPresupuesto.Text = PresupuestoDataGridView.CurrentRow.Cells(1).Value
             My.Forms.FrmFacturaMontajeEditar.LblProyecto.Text = TxtIdProyecto.Text
             My.Forms.FrmFacturaMontajeEditar.EmpresasContratadasMontajeTableAdapter.Fill(My.Forms.FrmFacturaMontajeEditar.DsPagosMontaje.EmpresasContratadasMontaje)
-            My.Forms.FrmFacturaMontajeEditar.NuevaFActura()
+            My.Forms.FrmFacturaMontajeEditar.PrepararNuevaFactura()
         Catch ex As Exception
             MsgBox("No hay Presupuesto")
         End Try
@@ -779,6 +781,8 @@ Public Class FrmProyectos
 
         My.Forms.FrmFacturaMontajeResumen.FmProyecto()
         My.Forms.FrmFacturaMontajeResumen.Label9.Text = TxtIdProyecto.Text
+
+
     End Sub
 
 

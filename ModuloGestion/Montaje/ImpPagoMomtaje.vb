@@ -25,6 +25,21 @@
         CrystalReportViewer1.ReportSource = rpt
         Me.Show()
     End Sub
+    Sub ImprimirFacturaNfc()
+        Me.EmpresasContratadasMontajeTableAdapter.Fill(Me.DsPagosMontaje.EmpresasContratadasMontaje)
+        Me.PresupuestoTableAdapter.Fill(Me.DsPagosMontaje.Presupuesto)
+        Me.FacturaMontajeTableAdapter.FillByIdFactura(Me.DsPagosMontaje.FacturaMontaje, Label1.Text)
+        Me.FacturaMontajeDetalleTableAdapter.FillByIdFactura(DsPagosMontaje.FacturaMontajeDetalle, Label1.Text)
+        Me.ProyectosTableAdapter.Fill(Me.DsPagosMontaje.Proyectos)
+        Me.PagoMontajeDetalleTableAdapter.FillByIdFactura(Me.DsPagosMontaje.PagoMontajeDetalle, Label1.Text)
+
+
+
+        Dim rpt As New CryFacturaIns
+        rpt.SetDataSource(DsPagosMontaje)
+        CrystalReportViewer1.ReportSource = rpt
+        Me.Show()
+    End Sub
     Sub ImprimirResumenPagos()
         Me.EmpresasContratadasMontajeTableAdapter.Fill(Me.DsPagosMontaje.EmpresasContratadasMontaje)
         Me.PagoMontajeTableAdapter.FillByIdEmpresa(Me.DsPagosMontaje.PagoMontaje, Label1.Text)

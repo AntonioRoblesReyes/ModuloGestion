@@ -94,7 +94,7 @@ Public Class FrmVerFerreteria
                 OpenFileDialog1.ShowDialog()
                 Path.GetFileName(Me.DsFerreteria.Ferreteria(Me.FerreteriaBindingSource.Position).Imajen)
                 archivo = OpenFileDialog1.FileName
-                PictureBox1.Text = "\\PORTATIL-DELL\Users\Public\Imajenes Herrajes\" + Path.GetFileName(Me.OpenFileDialog1.FileName)
+                PictureBox1.Text = "\\PCShernia\Users\Public\Imajenes Herrajes\" + Path.GetFileName(Me.OpenFileDialog1.FileName)
 
                 Me.Validate()
                 Me.FerreteriaDataGridView.EndEdit()

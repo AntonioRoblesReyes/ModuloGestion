@@ -384,10 +384,7 @@ Public Class FrmGestion
 
     End Sub
 
-    Private Sub PagosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagosToolStripMenuItem.Click
-        My.Forms.FrmProveedoresPago.Close()
-        My.Forms.FrmProveedoresPago.Show()
-    End Sub
+
 
     Private Sub HotelesToolStripMenuItem_Click(sender As Object, e As EventArgs)
         My.Forms.FrmHoteles.Close()
@@ -411,12 +408,12 @@ Public Class FrmGestion
     End Sub
 
     Private Sub GizelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GizelToolStripMenuItem.Click
-        Process.Start("\\Portatil-dell\d\Programas Visual\Gizeh\gizeh.application")
+        Process.Start("\\PCShernia\d\Programas Visual\Gizeh\gizeh.application")
 
     End Sub
 
     Private Sub SueldoAntonioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SueldoAntonioToolStripMenuItem.Click
-        Process.Start("\\Portatil-dell\d\Programas Visual\SueldoAntonio\SueldoAntonio.application")
+        Process.Start("\\PCShernia\d\Programas Visual\SueldoAntonio\SueldoAntonio.application")
 
     End Sub
 
@@ -430,6 +427,20 @@ Public Class FrmGestion
 
     Private Sub OptimizadorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OptimizadorToolStripMenuItem.Click
         Process.Start("C:\CuttingWin\CuttingWin.exe")
+    End Sub
+
+    Private Sub BancoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BancoToolStripMenuItem.Click
+        Process.Start("\\Pcshernia\d\ProgramasVisual\EstadoInmaAntonio\EstadoInmaAntonio.application")
+    End Sub
+    Private Sub HotelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HotelToolStripMenuItem.Click
+        Try
+            Process.Start(IO.Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.Programs),
+                "Hoteles\Hoteles.appref-ms"
+            ))
+        Catch
+            MessageBox.Show("Hoteles no está instalado en esta PC.")
+        End Try
     End Sub
 
 

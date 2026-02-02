@@ -507,7 +507,7 @@ Partial Public Class DsComprasProyectoDetalle
             Me.columnCantidad.AllowDBNull = false
             Me.columnId_Compra.AllowDBNull = false
             Me.columnId_Compra.Unique = true
-            Me.columnId_Compra.MaxLength = 15
+            Me.columnId_Compra.MaxLength = 20
             Me.columnMoneda.MaxLength = 5
             Me.columnId_Empresa.AllowDBNull = false
             Me.columnId_Empresa.MaxLength = 5

@@ -46,13 +46,14 @@
     End Sub
 
     Private Sub FrmEmpresaMontaje_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        'TODO: esta línea de código carga datos en la tabla 'DsArticulos.Articulos' Puede moverla o quitarla según sea necesario.
+        Me.ArticulosTableAdapter.Fill(Me.DsArticulos.Articulos)
 
         Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
         'TODO: esta línea de código carga datos en la tabla 'DsProyectos.Proyectos' Puede moverla o quitarla según sea necesario.
         Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
         'TODO: esta línea de código carga datos en la tabla 'DsPresupuestos.Presupuesto' Puede moverla o quitarla según sea necesario.
         Me.PresupuestoTableAdapter.Fill(Me.DsPresupuestos.Presupuesto)
-
 
 
     End Sub
@@ -84,12 +85,12 @@
         Me.FacturaMontajeDetalleTableAdapter.FillByIdFactura(DsPagosMontaje.FacturaMontajeDetalle, IdFactura)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtnResumenFactura.Click
         My.Forms.ImpPagoMomtaje.Label1.Text = IdEmpresaMontajeTextBox.Text
         My.Forms.ImpPagoMomtaje.ImprimirResumenFactura()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles BtnResumenPagos.Click
         My.Forms.ImpPagoMomtaje.Label1.Text = IdEmpresaMontajeTextBox.Text
         My.Forms.ImpPagoMomtaje.ImprimirResumenPagos()
     End Sub
@@ -99,4 +100,38 @@
         My.Forms.FrmNuevaEmpresaMontaje.Close()
         My.Forms.FrmNuevaEmpresaMontaje.Nueva()
     End Sub
+    Private Sub BtnModificarFactura_Click(sender As Object, e As EventArgs) Handles BtnModificarFactura.Click
+        Try
+            ' Validar que haya datos
+            If FacturaMontajeBindingSource.Position < 0 OrElse
+               DsPagosMontaje.FacturaMontaje.Count = 0 Then
+                MessageBox.Show("No hay factura seleccionada.", "Aviso",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            ' Tomar valores
+            Dim fila = DsPagosMontaje.FacturaMontaje(FacturaMontajeBindingSource.Position)
+
+            Dim idfactura As String = fila.IdFacturaMontaje
+            Dim presupuesto As String = fila.Id_Presupuesto
+            Dim proyecto As String = fila.Id_Proyecto
+            Dim empresaMontaje As String = fila.IdEmpresaMontaje
+
+            ' Cargar en formulario
+            With My.Forms.FrmFacturaMontajeEditar
+                .IdFacturaTextBox.Text = idfactura
+                .LblPresupuesto.Text = presupuesto
+                .LblProyecto.Text = proyecto
+                .IdEmpresaMontajeTextBox.Text = empresaMontaje
+                .ModificarFactura()
+                .Show()
+            End With
+
+        Catch ex As Exception
+            MessageBox.Show("Error al modificar factura: " & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 End Class

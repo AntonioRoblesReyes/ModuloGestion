@@ -1,25 +1,23 @@
 ﻿Public Class FrmComprasProyecto
 
+    ' Bandera para saber cuándo el formulario está cargando datos
+    Private cargando As Boolean = False
+
     Sub ComprasAdministrar()
         Me.lblempresa.Text = "IN"
 
         Me.MdiParent = My.Forms.FrmGestion
         Me.ProveedoresTableAdapter.Fill(Me.DsProveedores.Proveedores)
-
         Me.ProveedoresTableAdapter.Fill(Me.DsProveedores.Proveedores)
-
         Me.CompraMaterialesTableAdapter.Fill(Me.DsCompras.CompraMateriales)
         Me.Show()
-
     End Sub
 
     Sub ValidarDetalle()
         Me.Validate()
         Me.CompraMaterialesDetalleBindingSource.EndEdit()
         Me.CompraMaterialesDetalleTableAdapter.Update(DsCompras)
-
     End Sub
-
 
     Sub Compras()
 
@@ -34,6 +32,7 @@
         Me.Show()
 
     End Sub
+
     Public Sub Filtrarpresupuesto()
 
         Me.lblempresa.Text = My.Forms.FrmProyectos.DsPresupuestos.Presupuesto(My.Forms.FrmProyectos.PresupuestoBindingSource.Position).Id_empresa
@@ -54,6 +53,7 @@
         Me.Totales()
         Me.Show()
     End Sub
+
     Public Sub FiltrarProyecto()
         Me.MdiParent = My.Forms.FrmGestion
         'Me.ProveedoresTableAdapter.Fill(Me.DsProveedores.Proveedores)
@@ -65,7 +65,11 @@
         Me.Totales()
         Me.Show()
     End Sub
+
     Sub Totales()
+        ' No recalculamos totales mientras está cargando para no ralentizar
+        If cargando Then Exit Sub
+
         Dim subtotal As Double = 0
         Dim impuesto As Double = 0
         Dim Sumatotal As Double = 0
@@ -88,6 +92,7 @@
         End Try
 
     End Sub
+
     Sub FiltrarProyectoEmpresa()
         Try
             Me.MdiParent = My.Forms.FrmGestion
@@ -103,41 +108,47 @@
     End Sub
 
     Private Sub FrmComprasProyecto_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        cerrardatset(Me)
-        cerrarGrill(Me)
+        Cerrardatset(Me)
+        CerrarGrill(Me)
     End Sub
 
+    ' LOAD: ahora solo hace cosas ligeras, no carga datos pesados
     Private Sub FrmComprasProyecto_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: esta línea de código carga datos en la tabla 'DsCompras.CompraMateriales' Puede moverla o quitarla según sea necesario.
-        Me.CompraMaterialesTableAdapter.Fill(Me.DsCompras.CompraMateriales)
-        'TODO: esta línea de código carga datos en la tabla 'DsPreciosCompra.PreciosCompra' Puede moverla o quitarla según sea necesario.
-        Me.PreciosCompraTableAdapter.Fill(Me.DsPreciosCompra.PreciosCompra)
-        'TODO: esta línea de código carga datos en la tabla 'DsTasa.Tasa' Puede moverla o quitarla según sea necesario.
-        Me.TasaTableAdapter.Fill(Me.DsTasa.Tasa)
-        'TODO: esta línea de código carga datos en la tabla 'DsProyectos.Proyectos' Puede moverla o quitarla según sea necesario.
-        Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
-        'TODO: esta línea de código carga datos en la tabla 'DsProveedores.Proveedores' Puede moverla o quitarla según sea necesario.
-        Me.ProveedoresTableAdapter.Fill(Me.DsProveedores.Proveedores)
-        'TODO: esta línea de código carga datos en la tabla 'DsPresupuestos.Presupuesto' Puede moverla o quitarla según sea necesario.
-        Me.PresupuestoTableAdapter.Fill(Me.DsPresupuestos.Presupuesto)
-        'TODO: esta línea de código carga datos en la tabla 'DsCompras.CompraMaterialesDetalle' Puede moverla o quitarla según sea necesario.
-        Me.CompraMaterialesDetalleTableAdapter.Fill(Me.DsCompras.CompraMaterialesDetalle)
-        'TODO: esta línea de código carga datos en la tabla 'DsTasa.Tasa' Puede moverla o quitarla según sea necesario.
-        Me.TasaTableAdapter.Fill(Me.DsTasa.Tasa)
-        'TODO: esta línea de código carga datos en la tabla 'DsCompras.CompraMaterialesDetalle' Puede moverla o quitarla según sea necesario.
-        Me.PresupuestoTableAdapter.FillByAprobado(DsPresupuestos.Presupuesto)
+        ' Fecha por defecto
         Dim fechaPredeterminada As Date = Date.Now.AddDays(-7)
         DateTimePicker3.Value = fechaPredeterminada
+    End Sub
+
+    ' SHOWN: aquí se hace toda la carga pesada, después de que el formulario ya se ve
+    Private Sub FrmComprasProyecto_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        cargando = True
+        Try
+            ' Tasa
+            Me.TasaTableAdapter.Fill(Me.DsTasa.Tasa)
+
+            ' Proveedores
+            Me.ProveedoresTableAdapter.Fill(Me.DsProveedores.Proveedores)
+
+            ' Proyectos
+            Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
+
+            ' CompraMateriales
+            Me.CompraMaterialesTableAdapter.FillUltimas500(Me.DsCompras.CompraMateriales)
+
+            ' *** SOLO APROBADOS ***
+            Me.PresupuestoTableAdapter.FillByAprobado(Me.DsPresupuestos.Presupuesto)
+
+        Catch ex As Exception
+            MsgBox("Error cargando datos: " & ex.Message, MsgBoxStyle.Exclamation)
+        Finally
+            cargando = False
+        End Try
+
+        ' Calcula totales solo cuando todo terminó de cargar
         Totales()
     End Sub
 
-
-
-
-
-
     Private Sub BtnNuevaCompra_Click(sender As System.Object, e As System.EventArgs) Handles BtnNuevaCompra.Click
-
 
         Dim Fecha As Date = Date.Now
         Me.TasaTableAdapter.FillByIdFecha(Me.DsTasa.Tasa, Fecha)
@@ -150,38 +161,28 @@
 
         My.Forms.FrmProveedoresListado.Nuevacompra()
 
-
-
-
-
-
-
     End Sub
-
-
-
-
 
     Private Sub PreciosCompraDataGridView_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs)
         Dim IdMaterial As String = Me.DsPreciosCompra.PreciosCompra(Me.PreciosCompraBindingSource.Position).Id_Material
         'Me.CompraMaterialesDetalleTableAdapter.FillByIdMaterial(Me.DsComprasDetalle.CompraMaterialesDetalle, IdMaterial)
     End Sub
 
+    Private Sub BtnVerConmpra_Click(sender As Object, e As EventArgs) Handles BtnVerConmpra.Click
+        Try
+            Dim idCompra As String = Me.DsCompras.CompraMateriales(Me.CompraMaterialesBindingSource.Position).Id_Compra
 
+            Dim f As New FrmIngresoCompras()
 
+            f.EsNuevaCompra = False   ' ←←← MODO EDICIÓN
 
+            f.CargarCompra(idCompra)
+            f.ShowDialog()
 
-
-
-
-    Private Sub BtmynVerConmpra_Click(sender As System.Object, e As System.EventArgs) Handles BtnVerConmpra.Click
-
-        My.Forms.FrmIngresoCompras.Close()
-        My.Forms.FrmIngresoCompras.Label1.Text = Me.DsCompras.CompraMateriales(Me.CompraMaterialesBindingSource.Position).Id_Compra
-
-        My.Forms.FrmIngresoCompras.ModificarCompra()
+        Catch ex As Exception
+            MessageBox.Show("No se pudo abrir la compra seleccionada." & vbCrLf & ex.Message)
+        End Try
     End Sub
-
 
 
     Private Sub ComprasPorProyectoDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles ComprasPorProyectoDataGridView.CellClick
@@ -207,29 +208,41 @@
                     Me.CompraMaterialesDetalleBindingSource.EndEdit()
                     Me.CompraMaterialesDetalleTableAdapter.Update(DsCompras)
                 Else
-                    ' Manejar el caso donde no hay presupuesto en la posición actual (opcional)
-                    ' Puedes mostrar un mensaje o realizar alguna acción adicional
                     MessageBox.Show("No hay presupuesto en la posición actual.")
                 End If
             Else
-                ' Manejar el caso donde no hay fila seleccionada en el DataGridView (opcional)
-                ' Puedes mostrar un mensaje o realizar alguna acción adicional
                 MessageBox.Show("No hay fila seleccionada en el DataGridView.")
             End If
         End If
-
-
     End Sub
 
     Private Sub CompraMaterialesDetalleDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles CompraMaterialesDetalleDataGridView.CellEndEdit
         ValidarDetalle()
     End Sub
 
-
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        My.Forms.ImpCompras.Close()
-        My.Forms.ImpCompras.ImprimirListado()
+        Try
+            My.Forms.ImpCompras.Close()
+        Catch
+        End Try
+
+        ' Tomar el ID desde la fila actual del BindingSource (SIEMPRE ES CORRECTO)
+        If CompraMaterialesBindingSource.Current Is Nothing Then
+            MsgBox("No hay compra seleccionada.", MsgBoxStyle.Exclamation)
+            Exit Sub
+        End If
+
+        Dim fila As DataRowView = CType(CompraMaterialesBindingSource.Current, DataRowView)
+        Dim idCompra As String = fila("Id_Compra").ToString()
+
+        ' Mostrarlo por seguridad
+        MsgBox("ID enviado a impresión: " & idCompra)
+
+        ' Pasar el Id al formulario de impresión
+        My.Forms.ImpCompras.LblIdCompra.Text = idCompra
+
+        ' Ejecutar impresión
+        My.Forms.ImpCompras.ImprimirCompra()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -241,21 +254,23 @@
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         My.Forms.FemCuentasPorPagarEmpleados.Close()
         My.Forms.FemCuentasPorPagarEmpleados.Show()
-
     End Sub
 
     Private Sub TxtBuscar_TextChanged(sender As Object, e As EventArgs) Handles TxtBuscar.TextChanged
+        ' Evita que durante la carga inicial se estén ejecutando filtros
+        If cargando Then Exit Sub
 
         Me.CompraMaterialesTableAdapter.FillByBuscar(DsCompras.CompraMateriales, "%" & TxtBuscar.Text & "%")
     End Sub
 
     Private Sub TxtBuscar_leave(sender As Object, e As EventArgs) Handles TxtBuscar.Leave
-
         Totales()
     End Sub
 
-
     Private Sub TxtValor_TextChanged(sender As Object, e As EventArgs) Handles TxtValor.TextChanged
+        ' Evita consultas mientras el formulario aún está cargando
+        If cargando Then Exit Sub
+
         Dim filtro As String = TxtValor.Text.Trim()
         If String.IsNullOrEmpty(filtro) Then
             ' Si está vacío, carga todos los datos
@@ -266,20 +281,15 @@
         End If
     End Sub
 
-
-
-
-
     Private Sub BtnFiltrarFecha_Click(sender As Object, e As EventArgs) Handles BtnFiltrarFecha.Click
         Dim fecha As Date = DateTimePicker3.Value.Date
         Me.CompraMaterialesTableAdapter.FillByFecha1(Me.DsCompras.CompraMateriales, fecha)
         Totales()
-
     End Sub
+
     Private Sub BtnQuitarFiltroFecha_Click(sender As Object, e As EventArgs) Handles BtnQuitarFiltroFecha.Click
         Me.CompraMaterialesTableAdapter.Fill(Me.DsCompras.CompraMateriales)
         Totales()
-
     End Sub
 
 End Class

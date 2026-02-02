@@ -361,12 +361,12 @@ Partial Class FrmProyectoCliente
         '
         'OpenFileDialog1
         '
-        Me.OpenFileDialog1.InitialDirectory = "\\PORTATIL-DELL\Users\Public\Carpeta Datos\Proyectos"
+        Me.OpenFileDialog1.InitialDirectory = "\\PCShernia\Users\Public\Carpeta Datos\Proyectos"
         '
         'SaveFileDialog1
         '
         Me.SaveFileDialog1.FileName = "Nombre_ProyectoTextBox.text"
-        Me.SaveFileDialog1.InitialDirectory = "\\PORTATIL-DELL\Users\Public\Carpeta Datos\Proyectos"
+        Me.SaveFileDialog1.InitialDirectory = "\\PCShernia\Users\Public\Carpeta Datos\Proyectos"
         '
         'BtnCrearCarpetea
         '

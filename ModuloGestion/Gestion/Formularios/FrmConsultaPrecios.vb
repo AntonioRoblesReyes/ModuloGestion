@@ -37,7 +37,7 @@
             My.Forms.FrmIngresoCompras.Label1.Text = Me.DsCompras.CompraMateriales(Me.CompraMaterialesBindingSource.Position).Id_Compra
             My.Forms.FrmIngresoCompras.LblPresupuesto.Text = Me.DsCompras.CompraMateriales(Me.CompraMaterialesBindingSource.Position).Id_Presupuesto
             My.Forms.FrmIngresoCompras.LblProyecto.Text = Me.DsCompras.CompraMateriales(Me.CompraMaterialesBindingSource.Position).Id_proyecto_Presupuestos
-            My.Forms.FrmIngresoCompras.ModificarCompra()
+
 
         End If
 

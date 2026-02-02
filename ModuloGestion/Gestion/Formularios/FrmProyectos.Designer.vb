@@ -46,7 +46,7 @@ Partial Class FrmProyectos
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.BtnNuevoPagoMontaje = New System.Windows.Forms.Button()
         Me.ImpRD = New System.Windows.Forms.TextBox()
         Me.TotRD = New System.Windows.Forms.TextBox()
         Me.SubRD = New System.Windows.Forms.TextBox()
@@ -75,19 +75,6 @@ Partial Class FrmProyectos
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CmbBuscraEstado = New System.Windows.Forms.ComboBox()
         Me.PresupuestoDataGridView = New System.Windows.Forms.DataGridView()
-        Me.FechaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DescripcionPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SubTotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ValorImpuestoUs = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalPresupuestoUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SubTotalRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ValorImpuestoRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalPresupuestoRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EstadoPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Orden = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Ver = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Ejecutado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PresupuestoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPresupuestos = New ModuloGestion.DsPresupuestos()
         Me.TxtIdProyecto = New System.Windows.Forms.TextBox()
@@ -147,6 +134,19 @@ Partial Class FrmProyectos
         Me.SiguientePrespuestoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Button7 = New System.Windows.Forms.Button()
         Me.TableAdapterManager7 = New ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager()
+        Me.FechaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DescripcionPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SubTotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValorImpuestoUs = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalPresupuestoUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SubTotalRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValorImpuestoRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalPresupuestoRD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EstadoPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Orden = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ver = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Ejecutado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Id_ProyectoLabel = New System.Windows.Forms.Label()
         Nombre_ProyectoLabel = New System.Windows.Forms.Label()
         Direccion_ProyectoLabel = New System.Windows.Forms.Label()
@@ -183,70 +183,70 @@ Partial Class FrmProyectos
         'Id_ProyectoLabel
         '
         Id_ProyectoLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Id_ProyectoLabel.Location = New System.Drawing.Point(9, 27)
+        Id_ProyectoLabel.Location = New System.Drawing.Point(10, 34)
         Id_ProyectoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Id_ProyectoLabel.Name = "Id_ProyectoLabel"
-        Id_ProyectoLabel.Size = New System.Drawing.Size(100, 25)
+        Id_ProyectoLabel.Size = New System.Drawing.Size(112, 31)
         Id_ProyectoLabel.TabIndex = 2
         Id_ProyectoLabel.Text = "Id Proyecto:"
         '
         'Nombre_ProyectoLabel
         '
         Nombre_ProyectoLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Nombre_ProyectoLabel.Location = New System.Drawing.Point(9, 59)
+        Nombre_ProyectoLabel.Location = New System.Drawing.Point(10, 74)
         Nombre_ProyectoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Nombre_ProyectoLabel.Name = "Nombre_ProyectoLabel"
-        Nombre_ProyectoLabel.Size = New System.Drawing.Size(100, 25)
+        Nombre_ProyectoLabel.Size = New System.Drawing.Size(112, 31)
         Nombre_ProyectoLabel.TabIndex = 4
         Nombre_ProyectoLabel.Text = "Nombre Proyecto:"
         '
         'Direccion_ProyectoLabel
         '
         Direccion_ProyectoLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Direccion_ProyectoLabel.Location = New System.Drawing.Point(9, 94)
+        Direccion_ProyectoLabel.Location = New System.Drawing.Point(10, 118)
         Direccion_ProyectoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Direccion_ProyectoLabel.Name = "Direccion_ProyectoLabel"
-        Direccion_ProyectoLabel.Size = New System.Drawing.Size(100, 25)
+        Direccion_ProyectoLabel.Size = New System.Drawing.Size(112, 31)
         Direccion_ProyectoLabel.TabIndex = 6
         Direccion_ProyectoLabel.Text = "Direccion Proyecto:"
         '
         'Impuesto
         '
         Impuesto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Impuesto.Location = New System.Drawing.Point(931, 24)
+        Impuesto.Location = New System.Drawing.Point(1047, 30)
         Impuesto.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Impuesto.Name = "Impuesto"
-        Impuesto.Size = New System.Drawing.Size(67, 25)
+        Impuesto.Size = New System.Drawing.Size(75, 31)
         Impuesto.TabIndex = 8
         Impuesto.Text = "Impuesto"
         '
         'Pais_ProyectoLabel
         '
         Pais_ProyectoLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Pais_ProyectoLabel.Location = New System.Drawing.Point(9, 130)
+        Pais_ProyectoLabel.Location = New System.Drawing.Point(10, 162)
         Pais_ProyectoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Pais_ProyectoLabel.Name = "Pais_ProyectoLabel"
-        Pais_ProyectoLabel.Size = New System.Drawing.Size(100, 25)
+        Pais_ProyectoLabel.Size = New System.Drawing.Size(112, 31)
         Pais_ProyectoLabel.TabIndex = 10
         Pais_ProyectoLabel.Text = "Pais Proyecto:"
         '
         'DatosLabel
         '
         DatosLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        DatosLabel.Location = New System.Drawing.Point(468, 130)
+        DatosLabel.Location = New System.Drawing.Point(526, 162)
         DatosLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         DatosLabel.Name = "DatosLabel"
-        DatosLabel.Size = New System.Drawing.Size(100, 25)
+        DatosLabel.Size = New System.Drawing.Size(112, 31)
         DatosLabel.TabIndex = 14
         DatosLabel.Text = "Datos:"
         '
         'Id_FiscalLabel
         '
         Id_FiscalLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Id_FiscalLabel.Location = New System.Drawing.Point(261, 27)
+        Id_FiscalLabel.Location = New System.Drawing.Point(294, 34)
         Id_FiscalLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Id_FiscalLabel.Name = "Id_FiscalLabel"
-        Id_FiscalLabel.Size = New System.Drawing.Size(116, 25)
+        Id_FiscalLabel.Size = New System.Drawing.Size(130, 31)
         Id_FiscalLabel.TabIndex = 19
         Id_FiscalLabel.Text = "Id Fiscal Cliente"
         '
@@ -259,7 +259,7 @@ Partial Class FrmProyectos
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.Button5)
-        Me.GroupBox1.Controls.Add(Me.Button4)
+        Me.GroupBox1.Controls.Add(Me.BtnNuevoPagoMontaje)
         Me.GroupBox1.Controls.Add(Me.ImpRD)
         Me.GroupBox1.Controls.Add(Me.TotRD)
         Me.GroupBox1.Controls.Add(Me.SubRD)
@@ -296,21 +296,21 @@ Partial Class FrmProyectos
         Me.GroupBox1.Controls.Add(Pais_ProyectoLabel)
         Me.GroupBox1.Controls.Add(Me.Pais_ProyectoTextBox)
         Me.GroupBox1.Controls.Add(DatosLabel)
-        Me.GroupBox1.Location = New System.Drawing.Point(16, 58)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupBox1.Location = New System.Drawing.Point(18, 72)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Size = New System.Drawing.Size(1481, 540)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox1.Size = New System.Drawing.Size(1666, 675)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(760, 17)
-        Me.Button6.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button6.Location = New System.Drawing.Point(855, 21)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(163, 26)
+        Me.Button6.Size = New System.Drawing.Size(183, 32)
         Me.Button6.TabIndex = 53
         Me.Button6.Text = "Duplicar Presupuesto"
         Me.Button6.UseVisualStyleBackColor = True
@@ -318,9 +318,9 @@ Partial Class FrmProyectos
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(381, 116)
+        Me.Label2.Location = New System.Drawing.Point(429, 145)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(48, 16)
+        Me.Label2.Size = New System.Drawing.Size(57, 20)
         Me.Label2.TabIndex = 52
         Me.Label2.Text = "Label2"
         Me.Label2.Visible = False
@@ -328,9 +328,9 @@ Partial Class FrmProyectos
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(385, 78)
+        Me.Label1.Location = New System.Drawing.Point(433, 98)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(48, 16)
+        Me.Label1.Size = New System.Drawing.Size(57, 20)
         Me.Label1.TabIndex = 51
         Me.Label1.Text = "Label1"
         Me.Label1.Visible = False
@@ -338,62 +338,62 @@ Partial Class FrmProyectos
         'Button5
         '
         Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button5.Location = New System.Drawing.Point(1278, 102)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button5.Location = New System.Drawing.Point(1438, 128)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(123, 26)
+        Me.Button5.Size = New System.Drawing.Size(138, 32)
         Me.Button5.TabIndex = 50
         Me.Button5.Text = "Resumen Montanje"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'Button4
+        'BtnNuevoPagoMontaje
         '
-        Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button4.Location = New System.Drawing.Point(1278, 31)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(123, 26)
-        Me.Button4.TabIndex = 49
-        Me.Button4.Text = "Pagos Montaje"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.BtnNuevoPagoMontaje.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnNuevoPagoMontaje.Location = New System.Drawing.Point(1438, 39)
+        Me.BtnNuevoPagoMontaje.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnNuevoPagoMontaje.Name = "BtnNuevoPagoMontaje"
+        Me.BtnNuevoPagoMontaje.Size = New System.Drawing.Size(176, 32)
+        Me.BtnNuevoPagoMontaje.TabIndex = 49
+        Me.BtnNuevoPagoMontaje.Text = "Nuevo Pago Montaje"
+        Me.BtnNuevoPagoMontaje.UseVisualStyleBackColor = True
         '
         'ImpRD
         '
         Me.ImpRD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ImpRD.Location = New System.Drawing.Point(789, 482)
-        Me.ImpRD.Margin = New System.Windows.Forms.Padding(4)
+        Me.ImpRD.Location = New System.Drawing.Point(888, 602)
+        Me.ImpRD.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ImpRD.Name = "ImpRD"
-        Me.ImpRD.Size = New System.Drawing.Size(132, 22)
+        Me.ImpRD.Size = New System.Drawing.Size(148, 26)
         Me.ImpRD.TabIndex = 48
         Me.ImpRD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TotRD
         '
         Me.TotRD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TotRD.Location = New System.Drawing.Point(931, 482)
-        Me.TotRD.Margin = New System.Windows.Forms.Padding(4)
+        Me.TotRD.Location = New System.Drawing.Point(1047, 602)
+        Me.TotRD.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TotRD.Name = "TotRD"
-        Me.TotRD.Size = New System.Drawing.Size(132, 22)
+        Me.TotRD.Size = New System.Drawing.Size(148, 26)
         Me.TotRD.TabIndex = 47
         Me.TotRD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'SubRD
         '
         Me.SubRD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SubRD.Location = New System.Drawing.Point(648, 482)
-        Me.SubRD.Margin = New System.Windows.Forms.Padding(4)
+        Me.SubRD.Location = New System.Drawing.Point(729, 602)
+        Me.SubRD.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.SubRD.Name = "SubRD"
-        Me.SubRD.Size = New System.Drawing.Size(132, 22)
+        Me.SubRD.Size = New System.Drawing.Size(148, 26)
         Me.SubRD.TabIndex = 46
         Me.SubRD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Id_EmpresaTextBox
         '
         Me.Id_EmpresaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosDetalleBindingSource, "Id_Empresa", True))
-        Me.Id_EmpresaTextBox.Location = New System.Drawing.Point(468, 59)
-        Me.Id_EmpresaTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.Id_EmpresaTextBox.Location = New System.Drawing.Point(526, 74)
+        Me.Id_EmpresaTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Id_EmpresaTextBox.Name = "Id_EmpresaTextBox"
-        Me.Id_EmpresaTextBox.Size = New System.Drawing.Size(72, 22)
+        Me.Id_EmpresaTextBox.Size = New System.Drawing.Size(80, 26)
         Me.Id_EmpresaTextBox.TabIndex = 45
         '
         'ProyectosDetalleBindingSource
@@ -409,10 +409,10 @@ Partial Class FrmProyectos
         'Button2
         '
         Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.Location = New System.Drawing.Point(1107, 29)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button2.Location = New System.Drawing.Point(1245, 36)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(163, 26)
+        Me.Button2.Size = New System.Drawing.Size(183, 32)
         Me.Button2.TabIndex = 44
         Me.Button2.Text = "Compras Presupuesto"
         Me.Button2.UseVisualStyleBackColor = True
@@ -420,10 +420,10 @@ Partial Class FrmProyectos
         'BtnResumenMontaje
         '
         Me.BtnResumenMontaje.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnResumenMontaje.Location = New System.Drawing.Point(1278, 68)
-        Me.BtnResumenMontaje.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnResumenMontaje.Location = New System.Drawing.Point(1438, 85)
+        Me.BtnResumenMontaje.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnResumenMontaje.Name = "BtnResumenMontaje"
-        Me.BtnResumenMontaje.Size = New System.Drawing.Size(123, 26)
+        Me.BtnResumenMontaje.Size = New System.Drawing.Size(138, 32)
         Me.BtnResumenMontaje.TabIndex = 43
         Me.BtnResumenMontaje.Text = "Ver Gastos"
         Me.BtnResumenMontaje.UseVisualStyleBackColor = True
@@ -431,10 +431,10 @@ Partial Class FrmProyectos
         'BtnVerOrden
         '
         Me.BtnVerOrden.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnVerOrden.Location = New System.Drawing.Point(1142, 134)
-        Me.BtnVerOrden.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnVerOrden.Location = New System.Drawing.Point(1285, 168)
+        Me.BtnVerOrden.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnVerOrden.Name = "BtnVerOrden"
-        Me.BtnVerOrden.Size = New System.Drawing.Size(122, 26)
+        Me.BtnVerOrden.Size = New System.Drawing.Size(137, 32)
         Me.BtnVerOrden.TabIndex = 42
         Me.BtnVerOrden.Text = "Ver Orden"
         Me.BtnVerOrden.UseVisualStyleBackColor = True
@@ -442,10 +442,10 @@ Partial Class FrmProyectos
         'txtdatos
         '
         Me.txtdatos.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Datos", True))
-        Me.txtdatos.Location = New System.Drawing.Point(576, 130)
-        Me.txtdatos.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtdatos.Location = New System.Drawing.Point(648, 162)
+        Me.txtdatos.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtdatos.Name = "txtdatos"
-        Me.txtdatos.Size = New System.Drawing.Size(403, 22)
+        Me.txtdatos.Size = New System.Drawing.Size(453, 26)
         Me.txtdatos.TabIndex = 41
         '
         'ProyectosBindingSource
@@ -462,20 +462,20 @@ Partial Class FrmProyectos
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(1418, 126)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Location = New System.Drawing.Point(1595, 158)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(40, 37)
+        Me.Button1.Size = New System.Drawing.Size(45, 46)
         Me.Button1.TabIndex = 40
         Me.Button1.UseVisualStyleBackColor = True
         '
         'BtnRevisionArticulos
         '
         Me.BtnRevisionArticulos.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnRevisionArticulos.Location = New System.Drawing.Point(1142, 102)
-        Me.BtnRevisionArticulos.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnRevisionArticulos.Location = New System.Drawing.Point(1285, 128)
+        Me.BtnRevisionArticulos.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnRevisionArticulos.Name = "BtnRevisionArticulos"
-        Me.BtnRevisionArticulos.Size = New System.Drawing.Size(122, 26)
+        Me.BtnRevisionArticulos.Size = New System.Drawing.Size(137, 32)
         Me.BtnRevisionArticulos.TabIndex = 39
         Me.BtnRevisionArticulos.Text = "Revision Articulos"
         Me.BtnRevisionArticulos.UseVisualStyleBackColor = True
@@ -483,10 +483,10 @@ Partial Class FrmProyectos
         'BtnPendienteEntregas
         '
         Me.BtnPendienteEntregas.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnPendienteEntregas.Location = New System.Drawing.Point(936, 53)
-        Me.BtnPendienteEntregas.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnPendienteEntregas.Location = New System.Drawing.Point(1053, 66)
+        Me.BtnPendienteEntregas.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnPendienteEntregas.Name = "BtnPendienteEntregas"
-        Me.BtnPendienteEntregas.Size = New System.Drawing.Size(163, 26)
+        Me.BtnPendienteEntregas.Size = New System.Drawing.Size(183, 32)
         Me.BtnPendienteEntregas.TabIndex = 38
         Me.BtnPendienteEntregas.Text = "Pendiente Entregas"
         Me.BtnPendienteEntregas.UseVisualStyleBackColor = True
@@ -494,49 +494,49 @@ Partial Class FrmProyectos
         'ImpuestoventaTextBox
         '
         Me.ImpuestoventaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Impuestoventa", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "## %"))
-        Me.ImpuestoventaTextBox.Location = New System.Drawing.Point(1016, 23)
-        Me.ImpuestoventaTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.ImpuestoventaTextBox.Location = New System.Drawing.Point(1143, 29)
+        Me.ImpuestoventaTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ImpuestoventaTextBox.Name = "ImpuestoventaTextBox"
-        Me.ImpuestoventaTextBox.Size = New System.Drawing.Size(50, 22)
+        Me.ImpuestoventaTextBox.Size = New System.Drawing.Size(56, 26)
         Me.ImpuestoventaTextBox.TabIndex = 36
         '
         'BtmNotasEntrega
         '
         Me.BtmNotasEntrega.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtmNotasEntrega.Location = New System.Drawing.Point(1278, 134)
-        Me.BtmNotasEntrega.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtmNotasEntrega.Location = New System.Drawing.Point(1438, 168)
+        Me.BtmNotasEntrega.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtmNotasEntrega.Name = "BtmNotasEntrega"
-        Me.BtmNotasEntrega.Size = New System.Drawing.Size(123, 26)
+        Me.BtmNotasEntrega.Size = New System.Drawing.Size(138, 32)
         Me.BtmNotasEntrega.TabIndex = 28
         Me.BtmNotasEntrega.Text = "Notas Entrega"
         Me.BtmNotasEntrega.UseVisualStyleBackColor = True
         '
         'BtnCompras
         '
-        Me.BtnCompras.Location = New System.Drawing.Point(997, 94)
-        Me.BtnCompras.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnCompras.Location = New System.Drawing.Point(1122, 118)
+        Me.BtnCompras.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnCompras.Name = "BtnCompras"
-        Me.BtnCompras.Size = New System.Drawing.Size(123, 26)
+        Me.BtnCompras.Size = New System.Drawing.Size(138, 32)
         Me.BtnCompras.TabIndex = 35
         Me.BtnCompras.Text = "Compras "
         Me.BtnCompras.UseVisualStyleBackColor = True
         '
         'BtnCarpetas
         '
-        Me.BtnCarpetas.Location = New System.Drawing.Point(997, 127)
-        Me.BtnCarpetas.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnCarpetas.Location = New System.Drawing.Point(1122, 159)
+        Me.BtnCarpetas.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnCarpetas.Name = "BtnCarpetas"
-        Me.BtnCarpetas.Size = New System.Drawing.Size(136, 26)
+        Me.BtnCarpetas.Size = New System.Drawing.Size(153, 32)
         Me.BtnCarpetas.TabIndex = 33
         Me.BtnCarpetas.Text = "Abrir Carpeta"
         Me.BtnCarpetas.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(760, 54)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button3.Location = New System.Drawing.Point(855, 68)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(163, 28)
+        Me.Button3.Size = New System.Drawing.Size(183, 35)
         Me.Button3.TabIndex = 32
         Me.Button3.Text = "Quitar Filtros"
         Me.Button3.UseVisualStyleBackColor = True
@@ -544,10 +544,10 @@ Partial Class FrmProyectos
         'BtnEstadoEntregas
         '
         Me.BtnEstadoEntregas.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnEstadoEntregas.Location = New System.Drawing.Point(1139, 66)
-        Me.BtnEstadoEntregas.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnEstadoEntregas.Location = New System.Drawing.Point(1281, 82)
+        Me.BtnEstadoEntregas.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnEstadoEntregas.Name = "BtnEstadoEntregas"
-        Me.BtnEstadoEntregas.Size = New System.Drawing.Size(122, 26)
+        Me.BtnEstadoEntregas.Size = New System.Drawing.Size(137, 32)
         Me.BtnEstadoEntregas.TabIndex = 31
         Me.BtnEstadoEntregas.Text = "Estado Entregas"
         Me.BtnEstadoEntregas.UseVisualStyleBackColor = True
@@ -555,30 +555,30 @@ Partial Class FrmProyectos
         'TxtImpuesto
         '
         Me.TxtImpuesto.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtImpuesto.Location = New System.Drawing.Point(360, 482)
-        Me.TxtImpuesto.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtImpuesto.Location = New System.Drawing.Point(405, 602)
+        Me.TxtImpuesto.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TxtImpuesto.Name = "TxtImpuesto"
-        Me.TxtImpuesto.Size = New System.Drawing.Size(132, 22)
+        Me.TxtImpuesto.Size = New System.Drawing.Size(148, 26)
         Me.TxtImpuesto.TabIndex = 23
         Me.TxtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxtTotal
         '
         Me.TxtTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtTotal.Location = New System.Drawing.Point(501, 482)
-        Me.TxtTotal.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtTotal.Location = New System.Drawing.Point(564, 602)
+        Me.TxtTotal.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TxtTotal.Name = "TxtTotal"
-        Me.TxtTotal.Size = New System.Drawing.Size(132, 22)
+        Me.TxtTotal.Size = New System.Drawing.Size(148, 26)
         Me.TxtTotal.TabIndex = 22
         Me.TxtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxtSubTotal
         '
         Me.TxtSubTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtSubTotal.Location = New System.Drawing.Point(219, 482)
-        Me.TxtSubTotal.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtSubTotal.Location = New System.Drawing.Point(246, 602)
+        Me.TxtSubTotal.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TxtSubTotal.Name = "TxtSubTotal"
-        Me.TxtSubTotal.Size = New System.Drawing.Size(132, 22)
+        Me.TxtSubTotal.Size = New System.Drawing.Size(148, 26)
         Me.TxtSubTotal.TabIndex = 21
         Me.TxtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -586,19 +586,19 @@ Partial Class FrmProyectos
         '
         Me.TxtIdFiscalCliente.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Id_Fiscal", True))
         Me.TxtIdFiscalCliente.Enabled = False
-        Me.TxtIdFiscalCliente.Location = New System.Drawing.Point(385, 27)
-        Me.TxtIdFiscalCliente.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtIdFiscalCliente.Location = New System.Drawing.Point(433, 34)
+        Me.TxtIdFiscalCliente.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TxtIdFiscalCliente.Name = "TxtIdFiscalCliente"
-        Me.TxtIdFiscalCliente.Size = New System.Drawing.Size(181, 22)
+        Me.TxtIdFiscalCliente.Size = New System.Drawing.Size(203, 26)
         Me.TxtIdFiscalCliente.TabIndex = 20
         '
         'Label4
         '
         Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label4.Location = New System.Drawing.Point(576, 27)
+        Me.Label4.Location = New System.Drawing.Point(648, 34)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(156, 25)
+        Me.Label4.Size = New System.Drawing.Size(176, 31)
         Me.Label4.TabIndex = 19
         Me.Label4.Text = "Buscar Por Estado"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -607,10 +607,10 @@ Partial Class FrmProyectos
         '
         Me.CmbBuscraEstado.FormattingEnabled = True
         Me.CmbBuscraEstado.Items.AddRange(New Object() {"Pendiente", "Aprobado", "Entregado", "Cerrado", "Rechazado"})
-        Me.CmbBuscraEstado.Location = New System.Drawing.Point(576, 58)
-        Me.CmbBuscraEstado.Margin = New System.Windows.Forms.Padding(4)
+        Me.CmbBuscraEstado.Location = New System.Drawing.Point(648, 72)
+        Me.CmbBuscraEstado.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CmbBuscraEstado.Name = "CmbBuscraEstado"
-        Me.CmbBuscraEstado.Size = New System.Drawing.Size(155, 24)
+        Me.CmbBuscraEstado.Size = New System.Drawing.Size(174, 28)
         Me.CmbBuscraEstado.TabIndex = 16
         '
         'PresupuestoDataGridView
@@ -639,13 +639,402 @@ Partial Class FrmProyectos
         DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.PresupuestoDataGridView.DefaultCellStyle = DataGridViewCellStyle10
-        Me.PresupuestoDataGridView.Location = New System.Drawing.Point(9, 164)
-        Me.PresupuestoDataGridView.Margin = New System.Windows.Forms.Padding(4)
+        Me.PresupuestoDataGridView.Location = New System.Drawing.Point(10, 205)
+        Me.PresupuestoDataGridView.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PresupuestoDataGridView.Name = "PresupuestoDataGridView"
         Me.PresupuestoDataGridView.RowHeadersWidth = 51
         Me.PresupuestoDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.PresupuestoDataGridView.Size = New System.Drawing.Size(1464, 310)
+        Me.PresupuestoDataGridView.Size = New System.Drawing.Size(1647, 388)
         Me.PresupuestoDataGridView.TabIndex = 15
+        '
+        'PresupuestoBindingSource
+        '
+        Me.PresupuestoBindingSource.DataMember = "Presupuesto"
+        Me.PresupuestoBindingSource.DataSource = Me.DsPresupuestos
+        '
+        'DsPresupuestos
+        '
+        Me.DsPresupuestos.DataSetName = "DsPresupuestos"
+        Me.DsPresupuestos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'TxtIdProyecto
+        '
+        Me.TxtIdProyecto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Id_Proyecto", True))
+        Me.TxtIdProyecto.Location = New System.Drawing.Point(156, 34)
+        Me.TxtIdProyecto.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TxtIdProyecto.Name = "TxtIdProyecto"
+        Me.TxtIdProyecto.Size = New System.Drawing.Size(127, 26)
+        Me.TxtIdProyecto.TabIndex = 3
+        '
+        'TxtNombre
+        '
+        Me.TxtNombre.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Nombre_Proyecto", True))
+        Me.TxtNombre.Location = New System.Drawing.Point(156, 74)
+        Me.TxtNombre.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TxtNombre.Name = "TxtNombre"
+        Me.TxtNombre.Size = New System.Drawing.Size(360, 26)
+        Me.TxtNombre.TabIndex = 5
+        '
+        'Direccion_ProyectoTextBox
+        '
+        Me.Direccion_ProyectoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Direccion_Proyecto", True))
+        Me.Direccion_ProyectoTextBox.Location = New System.Drawing.Point(156, 118)
+        Me.Direccion_ProyectoTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Direccion_ProyectoTextBox.Name = "Direccion_ProyectoTextBox"
+        Me.Direccion_ProyectoTextBox.Size = New System.Drawing.Size(360, 26)
+        Me.Direccion_ProyectoTextBox.TabIndex = 7
+        '
+        'Ciudad_ProyectoTextBox
+        '
+        Me.Ciudad_ProyectoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Ciudad_Proyecto", True))
+        Me.Ciudad_ProyectoTextBox.Location = New System.Drawing.Point(648, 118)
+        Me.Ciudad_ProyectoTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Ciudad_ProyectoTextBox.Name = "Ciudad_ProyectoTextBox"
+        Me.Ciudad_ProyectoTextBox.Size = New System.Drawing.Size(453, 26)
+        Me.Ciudad_ProyectoTextBox.TabIndex = 9
+        '
+        'Pais_ProyectoTextBox
+        '
+        Me.Pais_ProyectoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Pais_Proyecto", True))
+        Me.Pais_ProyectoTextBox.Location = New System.Drawing.Point(156, 162)
+        Me.Pais_ProyectoTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Pais_ProyectoTextBox.Name = "Pais_ProyectoTextBox"
+        Me.Pais_ProyectoTextBox.Size = New System.Drawing.Size(360, 26)
+        Me.Pais_ProyectoTextBox.TabIndex = 11
+        '
+        'PresupuestoDetalleHerrajesBindingSource
+        '
+        Me.PresupuestoDetalleHerrajesBindingSource.DataMember = "PresupuestoDetalleHerrajes"
+        Me.PresupuestoDetalleHerrajesBindingSource.DataSource = Me.DsPresupuestoDetalleHerrajes
+        '
+        'DsPresupuestoDetalleHerrajes
+        '
+        Me.DsPresupuestoDetalleHerrajes.DataSetName = "DsPresupuestoDetalleHerrajes"
+        Me.DsPresupuestoDetalleHerrajes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'EmpresasBindingSource
+        '
+        Me.EmpresasBindingSource.DataMember = "Empresas"
+        Me.EmpresasBindingSource.DataSource = Me.DsEmpresas
+        '
+        'DsEmpresas
+        '
+        Me.DsEmpresas.DataSetName = "DsEmpresas"
+        Me.DsEmpresas.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'ProyectosTableAdapter
+        '
+        Me.ProyectosTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.ProyectosTableAdapter = Nothing
+        Me.TableAdapterManager.UpdateOrder = ModuloGestion.DsProyectosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'ProyectosBindingNavigator
+        '
+        Me.ProyectosBindingNavigator.AddNewItem = Me.BindingNavigatorAddNewItem
+        Me.ProyectosBindingNavigator.BindingSource = Me.ProyectosBindingSource
+        Me.ProyectosBindingNavigator.CountItem = Me.BindingNavigatorCountItem
+        Me.ProyectosBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
+        Me.ProyectosBindingNavigator.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ProyectosBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.ProyectosBindingNavigatorSaveItem})
+        Me.ProyectosBindingNavigator.Location = New System.Drawing.Point(0, 0)
+        Me.ProyectosBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
+        Me.ProyectosBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
+        Me.ProyectosBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
+        Me.ProyectosBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
+        Me.ProyectosBindingNavigator.Name = "ProyectosBindingNavigator"
+        Me.ProyectosBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
+        Me.ProyectosBindingNavigator.Size = New System.Drawing.Size(1699, 31)
+        Me.ProyectosBindingNavigator.TabIndex = 1
+        Me.ProyectosBindingNavigator.Text = "BindingNavigator1"
+        '
+        'BindingNavigatorAddNewItem
+        '
+        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
+        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorAddNewItem.Text = "Agregar nuevo"
+        '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(57, 26)
+        Me.BindingNavigatorCountItem.Text = "de {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
+        '
+        'BindingNavigatorDeleteItem
+        '
+        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
+        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorDeleteItem.Text = "Eliminar"
+        '
+        'BindingNavigatorMoveFirstItem
+        '
+        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
+        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
+        '
+        'BindingNavigatorMovePreviousItem
+        '
+        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
+        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
+        '
+        'BindingNavigatorSeparator
+        '
+        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 31)
+        '
+        'BindingNavigatorPositionItem
+        '
+        Me.BindingNavigatorPositionItem.AccessibleName = "Posición"
+        Me.BindingNavigatorPositionItem.AutoSize = False
+        Me.BindingNavigatorPositionItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
+        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(73, 31)
+        Me.BindingNavigatorPositionItem.Text = "0"
+        Me.BindingNavigatorPositionItem.ToolTipText = "Posición actual"
+        '
+        'BindingNavigatorSeparator1
+        '
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 31)
+        '
+        'BindingNavigatorMoveNextItem
+        '
+        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
+        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
+        '
+        'BindingNavigatorMoveLastItem
+        '
+        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
+        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorMoveLastItem.Text = "Mover último"
+        '
+        'BindingNavigatorSeparator2
+        '
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 31)
+        '
+        'ProyectosBindingNavigatorSaveItem
+        '
+        Me.ProyectosBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ProyectosBindingNavigatorSaveItem.Image = CType(resources.GetObject("ProyectosBindingNavigatorSaveItem.Image"), System.Drawing.Image)
+        Me.ProyectosBindingNavigatorSaveItem.Name = "ProyectosBindingNavigatorSaveItem"
+        Me.ProyectosBindingNavigatorSaveItem.Size = New System.Drawing.Size(34, 26)
+        Me.ProyectosBindingNavigatorSaveItem.Text = "Guardar datos"
+        '
+        'DsProyectosDetalleBindingSource
+        '
+        Me.DsProyectosDetalleBindingSource.DataSource = Me.DsProyectosDetalle
+        Me.DsProyectosDetalleBindingSource.Position = 0
+        '
+        'ProyectosDetalleTableAdapter
+        '
+        Me.ProyectosDetalleTableAdapter.ClearBeforeFill = True
+        '
+        'EmpresasTableAdapter
+        '
+        Me.EmpresasTableAdapter.ClearBeforeFill = True
+        '
+        'CmdGuardar
+        '
+        Me.CmdGuardar.Location = New System.Drawing.Point(423, 2)
+        Me.CmdGuardar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.CmdGuardar.Name = "CmdGuardar"
+        Me.CmdGuardar.Size = New System.Drawing.Size(112, 35)
+        Me.CmdGuardar.TabIndex = 20
+        Me.CmdGuardar.Text = "Guardar"
+        Me.CmdGuardar.UseVisualStyleBackColor = True
+        '
+        'CmdCerrar
+        '
+        Me.CmdCerrar.Location = New System.Drawing.Point(544, 2)
+        Me.CmdCerrar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.CmdCerrar.Name = "CmdCerrar"
+        Me.CmdCerrar.Size = New System.Drawing.Size(112, 35)
+        Me.CmdCerrar.TabIndex = 21
+        Me.CmdCerrar.Text = "Cerrar"
+        Me.CmdCerrar.UseVisualStyleBackColor = True
+        '
+        'CmdNuevoPresupuesto
+        '
+        Me.CmdNuevoPresupuesto.Location = New System.Drawing.Point(666, 2)
+        Me.CmdNuevoPresupuesto.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.CmdNuevoPresupuesto.Name = "CmdNuevoPresupuesto"
+        Me.CmdNuevoPresupuesto.Size = New System.Drawing.Size(198, 35)
+        Me.CmdNuevoPresupuesto.TabIndex = 22
+        Me.CmdNuevoPresupuesto.Text = "Nuevo Presupuesto"
+        Me.CmdNuevoPresupuesto.UseVisualStyleBackColor = True
+        '
+        'PresupuestoTableAdapter
+        '
+        Me.PresupuestoTableAdapter.ClearBeforeFill = True
+        '
+        'BtnFacturas
+        '
+        Me.BtnFacturas.Location = New System.Drawing.Point(1080, 2)
+        Me.BtnFacturas.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnFacturas.Name = "BtnFacturas"
+        Me.BtnFacturas.Size = New System.Drawing.Size(198, 35)
+        Me.BtnFacturas.TabIndex = 29
+        Me.BtnFacturas.Text = "Facturas"
+        Me.BtnFacturas.UseVisualStyleBackColor = True
+        '
+        'BtnEstadoProyecto
+        '
+        Me.BtnEstadoProyecto.Location = New System.Drawing.Point(1287, 2)
+        Me.BtnEstadoProyecto.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnEstadoProyecto.Name = "BtnEstadoProyecto"
+        Me.BtnEstadoProyecto.Size = New System.Drawing.Size(198, 35)
+        Me.BtnEstadoProyecto.TabIndex = 30
+        Me.BtnEstadoProyecto.Text = "Estado Proyecto"
+        Me.BtnEstadoProyecto.UseVisualStyleBackColor = True
+        '
+        'DsClientes
+        '
+        Me.DsClientes.DataSetName = "DsClientes"
+        Me.DsClientes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'ClientesBindingSource
+        '
+        Me.ClientesBindingSource.DataMember = "Clientes"
+        Me.ClientesBindingSource.DataSource = Me.DsClientes
+        '
+        'ClientesTableAdapter
+        '
+        Me.ClientesTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager1
+        '
+        Me.TableAdapterManager1.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager1.ClientesTableAdapter = Me.ClientesTableAdapter
+        Me.TableAdapterManager1.PresupuestoTableAdapter = Nothing
+        Me.TableAdapterManager1.UpdateOrder = ModuloGestion.DsClientesTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'BtnAnalisisProyecto
+        '
+        Me.BtnAnalisisProyecto.Location = New System.Drawing.Point(873, 2)
+        Me.BtnAnalisisProyecto.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnAnalisisProyecto.Name = "BtnAnalisisProyecto"
+        Me.BtnAnalisisProyecto.Size = New System.Drawing.Size(198, 35)
+        Me.BtnAnalisisProyecto.TabIndex = 31
+        Me.BtnAnalisisProyecto.Text = "Analisis Proyecto"
+        Me.BtnAnalisisProyecto.UseVisualStyleBackColor = True
+        '
+        'TableAdapterManager2
+        '
+        Me.TableAdapterManager2.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager2.ProyectosDetalleTableAdapter = Me.ProyectosDetalleTableAdapter
+        Me.TableAdapterManager2.UpdateOrder = ModuloGestion.DsProyectosDetalleTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'DsPresupuestoDetalle
+        '
+        Me.DsPresupuestoDetalle.DataSetName = "DsPresupuestoDetalle"
+        Me.DsPresupuestoDetalle.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'PresupuestoDetalleBindingSource
+        '
+        Me.PresupuestoDetalleBindingSource.DataMember = "PresupuestoDetalle"
+        Me.PresupuestoDetalleBindingSource.DataSource = Me.DsPresupuestoDetalle
+        '
+        'PresupuestoDetalleTableAdapter
+        '
+        Me.PresupuestoDetalleTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager3
+        '
+        Me.TableAdapterManager3.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager3.PresupuestoDetalleTableAdapter = Me.PresupuestoDetalleTableAdapter
+        Me.TableAdapterManager3.UpdateOrder = ModuloGestion.DsPresupuestoDetalleTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'DsPresupuestoDetallePintura
+        '
+        Me.DsPresupuestoDetallePintura.DataSetName = "DsPresupuestoDetallePintura"
+        Me.DsPresupuestoDetallePintura.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'PresupuestoDetallePinturaBindingSource
+        '
+        Me.PresupuestoDetallePinturaBindingSource.DataMember = "PresupuestoDetallePintura"
+        Me.PresupuestoDetallePinturaBindingSource.DataSource = Me.DsPresupuestoDetallePintura
+        '
+        'PresupuestoDetallePinturaTableAdapter
+        '
+        Me.PresupuestoDetallePinturaTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager4
+        '
+        Me.TableAdapterManager4.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager4.PresupuestoDetallePinturaTableAdapter = Me.PresupuestoDetallePinturaTableAdapter
+        Me.TableAdapterManager4.UpdateOrder = ModuloGestion.DsPresupuestoDetallePinturaTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'PresupuestoDetalleHerrajesTableAdapter
+        '
+        Me.PresupuestoDetalleHerrajesTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager5
+        '
+        Me.TableAdapterManager5.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager5.PresupuestoDetalleHerrajesTableAdapter = Me.PresupuestoDetalleHerrajesTableAdapter
+        Me.TableAdapterManager5.UpdateOrder = ModuloGestion.DsPresupuestoDetalleHerrajesTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'DsPreciosCompraProyecto
+        '
+        Me.DsPreciosCompraProyecto.DataSetName = "DsPreciosCompraProyecto"
+        Me.DsPreciosCompraProyecto.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'PreciosCompraProyectoBindingSource
+        '
+        Me.PreciosCompraProyectoBindingSource.DataMember = "PreciosCompraProyecto"
+        Me.PreciosCompraProyectoBindingSource.DataSource = Me.DsPreciosCompraProyecto
+        '
+        'PreciosCompraProyectoTableAdapter
+        '
+        Me.PreciosCompraProyectoTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager6
+        '
+        Me.TableAdapterManager6.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager6.PreciosCompraProyectoTableAdapter = Me.PreciosCompraProyectoTableAdapter
+        Me.TableAdapterManager6.UpdateOrder = ModuloGestion.DsPreciosCompraProyectoTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(1494, 2)
+        Me.Button7.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(228, 35)
+        Me.Button7.TabIndex = 32
+        Me.Button7.Text = "Duplicar Precios Compra"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'TableAdapterManager7
+        '
+        Me.TableAdapterManager7.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager7.PresupuestoTableAdapter = Me.PresupuestoTableAdapter
+        Me.TableAdapterManager7.UpdateOrder = ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
         'FechaDataGridViewTextBoxColumn
         '
@@ -789,400 +1178,11 @@ Partial Class FrmProyectos
         Me.Ejecutado.Name = "Ejecutado"
         Me.Ejecutado.Width = 75
         '
-        'PresupuestoBindingSource
-        '
-        Me.PresupuestoBindingSource.DataMember = "Presupuesto"
-        Me.PresupuestoBindingSource.DataSource = Me.DsPresupuestos
-        '
-        'DsPresupuestos
-        '
-        Me.DsPresupuestos.DataSetName = "DsPresupuestos"
-        Me.DsPresupuestos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'TxtIdProyecto
-        '
-        Me.TxtIdProyecto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Id_Proyecto", True))
-        Me.TxtIdProyecto.Location = New System.Drawing.Point(139, 27)
-        Me.TxtIdProyecto.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtIdProyecto.Name = "TxtIdProyecto"
-        Me.TxtIdProyecto.Size = New System.Drawing.Size(113, 22)
-        Me.TxtIdProyecto.TabIndex = 3
-        '
-        'TxtNombre
-        '
-        Me.TxtNombre.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Nombre_Proyecto", True))
-        Me.TxtNombre.Location = New System.Drawing.Point(139, 59)
-        Me.TxtNombre.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtNombre.Name = "TxtNombre"
-        Me.TxtNombre.Size = New System.Drawing.Size(320, 22)
-        Me.TxtNombre.TabIndex = 5
-        '
-        'Direccion_ProyectoTextBox
-        '
-        Me.Direccion_ProyectoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Direccion_Proyecto", True))
-        Me.Direccion_ProyectoTextBox.Location = New System.Drawing.Point(139, 94)
-        Me.Direccion_ProyectoTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.Direccion_ProyectoTextBox.Name = "Direccion_ProyectoTextBox"
-        Me.Direccion_ProyectoTextBox.Size = New System.Drawing.Size(320, 22)
-        Me.Direccion_ProyectoTextBox.TabIndex = 7
-        '
-        'Ciudad_ProyectoTextBox
-        '
-        Me.Ciudad_ProyectoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Ciudad_Proyecto", True))
-        Me.Ciudad_ProyectoTextBox.Location = New System.Drawing.Point(576, 94)
-        Me.Ciudad_ProyectoTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.Ciudad_ProyectoTextBox.Name = "Ciudad_ProyectoTextBox"
-        Me.Ciudad_ProyectoTextBox.Size = New System.Drawing.Size(403, 22)
-        Me.Ciudad_ProyectoTextBox.TabIndex = 9
-        '
-        'Pais_ProyectoTextBox
-        '
-        Me.Pais_ProyectoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProyectosBindingSource, "Pais_Proyecto", True))
-        Me.Pais_ProyectoTextBox.Location = New System.Drawing.Point(139, 130)
-        Me.Pais_ProyectoTextBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.Pais_ProyectoTextBox.Name = "Pais_ProyectoTextBox"
-        Me.Pais_ProyectoTextBox.Size = New System.Drawing.Size(320, 22)
-        Me.Pais_ProyectoTextBox.TabIndex = 11
-        '
-        'PresupuestoDetalleHerrajesBindingSource
-        '
-        Me.PresupuestoDetalleHerrajesBindingSource.DataMember = "PresupuestoDetalleHerrajes"
-        Me.PresupuestoDetalleHerrajesBindingSource.DataSource = Me.DsPresupuestoDetalleHerrajes
-        '
-        'DsPresupuestoDetalleHerrajes
-        '
-        Me.DsPresupuestoDetalleHerrajes.DataSetName = "DsPresupuestoDetalleHerrajes"
-        Me.DsPresupuestoDetalleHerrajes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'EmpresasBindingSource
-        '
-        Me.EmpresasBindingSource.DataMember = "Empresas"
-        Me.EmpresasBindingSource.DataSource = Me.DsEmpresas
-        '
-        'DsEmpresas
-        '
-        Me.DsEmpresas.DataSetName = "DsEmpresas"
-        Me.DsEmpresas.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'ProyectosTableAdapter
-        '
-        Me.ProyectosTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager
-        '
-        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager.Connection = Nothing
-        Me.TableAdapterManager.ProyectosTableAdapter = Nothing
-        Me.TableAdapterManager.UpdateOrder = ModuloGestion.DsProyectosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'ProyectosBindingNavigator
-        '
-        Me.ProyectosBindingNavigator.AddNewItem = Me.BindingNavigatorAddNewItem
-        Me.ProyectosBindingNavigator.BindingSource = Me.ProyectosBindingSource
-        Me.ProyectosBindingNavigator.CountItem = Me.BindingNavigatorCountItem
-        Me.ProyectosBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
-        Me.ProyectosBindingNavigator.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ProyectosBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.ProyectosBindingNavigatorSaveItem})
-        Me.ProyectosBindingNavigator.Location = New System.Drawing.Point(0, 0)
-        Me.ProyectosBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
-        Me.ProyectosBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
-        Me.ProyectosBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
-        Me.ProyectosBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.ProyectosBindingNavigator.Name = "ProyectosBindingNavigator"
-        Me.ProyectosBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.ProyectosBindingNavigator.Size = New System.Drawing.Size(1510, 27)
-        Me.ProyectosBindingNavigator.TabIndex = 1
-        Me.ProyectosBindingNavigator.Text = "BindingNavigator1"
-        '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(29, 24)
-        Me.BindingNavigatorAddNewItem.Text = "Agregar nuevo"
-        '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(48, 24)
-        Me.BindingNavigatorCountItem.Text = "de {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
-        '
-        'BindingNavigatorDeleteItem
-        '
-        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
-        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(29, 24)
-        Me.BindingNavigatorDeleteItem.Text = "Eliminar"
-        '
-        'BindingNavigatorMoveFirstItem
-        '
-        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
-        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 24)
-        Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
-        '
-        'BindingNavigatorMovePreviousItem
-        '
-        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
-        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 24)
-        Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
-        '
-        'BindingNavigatorSeparator
-        '
-        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 27)
-        '
-        'BindingNavigatorPositionItem
-        '
-        Me.BindingNavigatorPositionItem.AccessibleName = "Posición"
-        Me.BindingNavigatorPositionItem.AutoSize = False
-        Me.BindingNavigatorPositionItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
-        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(65, 27)
-        Me.BindingNavigatorPositionItem.Text = "0"
-        Me.BindingNavigatorPositionItem.ToolTipText = "Posición actual"
-        '
-        'BindingNavigatorSeparator1
-        '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 27)
-        '
-        'BindingNavigatorMoveNextItem
-        '
-        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
-        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 24)
-        Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
-        '
-        'BindingNavigatorMoveLastItem
-        '
-        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
-        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 24)
-        Me.BindingNavigatorMoveLastItem.Text = "Mover último"
-        '
-        'BindingNavigatorSeparator2
-        '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 27)
-        '
-        'ProyectosBindingNavigatorSaveItem
-        '
-        Me.ProyectosBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ProyectosBindingNavigatorSaveItem.Image = CType(resources.GetObject("ProyectosBindingNavigatorSaveItem.Image"), System.Drawing.Image)
-        Me.ProyectosBindingNavigatorSaveItem.Name = "ProyectosBindingNavigatorSaveItem"
-        Me.ProyectosBindingNavigatorSaveItem.Size = New System.Drawing.Size(29, 24)
-        Me.ProyectosBindingNavigatorSaveItem.Text = "Guardar datos"
-        '
-        'DsProyectosDetalleBindingSource
-        '
-        Me.DsProyectosDetalleBindingSource.DataSource = Me.DsProyectosDetalle
-        Me.DsProyectosDetalleBindingSource.Position = 0
-        '
-        'ProyectosDetalleTableAdapter
-        '
-        Me.ProyectosDetalleTableAdapter.ClearBeforeFill = True
-        '
-        'EmpresasTableAdapter
-        '
-        Me.EmpresasTableAdapter.ClearBeforeFill = True
-        '
-        'CmdGuardar
-        '
-        Me.CmdGuardar.Location = New System.Drawing.Point(376, 2)
-        Me.CmdGuardar.Margin = New System.Windows.Forms.Padding(4)
-        Me.CmdGuardar.Name = "CmdGuardar"
-        Me.CmdGuardar.Size = New System.Drawing.Size(100, 28)
-        Me.CmdGuardar.TabIndex = 20
-        Me.CmdGuardar.Text = "Guardar"
-        Me.CmdGuardar.UseVisualStyleBackColor = True
-        '
-        'CmdCerrar
-        '
-        Me.CmdCerrar.Location = New System.Drawing.Point(484, 2)
-        Me.CmdCerrar.Margin = New System.Windows.Forms.Padding(4)
-        Me.CmdCerrar.Name = "CmdCerrar"
-        Me.CmdCerrar.Size = New System.Drawing.Size(100, 28)
-        Me.CmdCerrar.TabIndex = 21
-        Me.CmdCerrar.Text = "Cerrar"
-        Me.CmdCerrar.UseVisualStyleBackColor = True
-        '
-        'CmdNuevoPresupuesto
-        '
-        Me.CmdNuevoPresupuesto.Location = New System.Drawing.Point(592, 2)
-        Me.CmdNuevoPresupuesto.Margin = New System.Windows.Forms.Padding(4)
-        Me.CmdNuevoPresupuesto.Name = "CmdNuevoPresupuesto"
-        Me.CmdNuevoPresupuesto.Size = New System.Drawing.Size(176, 28)
-        Me.CmdNuevoPresupuesto.TabIndex = 22
-        Me.CmdNuevoPresupuesto.Text = "Nuevo Presupuesto"
-        Me.CmdNuevoPresupuesto.UseVisualStyleBackColor = True
-        '
-        'PresupuestoTableAdapter
-        '
-        Me.PresupuestoTableAdapter.ClearBeforeFill = True
-        '
-        'BtnFacturas
-        '
-        Me.BtnFacturas.Location = New System.Drawing.Point(960, 2)
-        Me.BtnFacturas.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtnFacturas.Name = "BtnFacturas"
-        Me.BtnFacturas.Size = New System.Drawing.Size(176, 28)
-        Me.BtnFacturas.TabIndex = 29
-        Me.BtnFacturas.Text = "Facturas"
-        Me.BtnFacturas.UseVisualStyleBackColor = True
-        '
-        'BtnEstadoProyecto
-        '
-        Me.BtnEstadoProyecto.Location = New System.Drawing.Point(1144, 2)
-        Me.BtnEstadoProyecto.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtnEstadoProyecto.Name = "BtnEstadoProyecto"
-        Me.BtnEstadoProyecto.Size = New System.Drawing.Size(176, 28)
-        Me.BtnEstadoProyecto.TabIndex = 30
-        Me.BtnEstadoProyecto.Text = "Estado Proyecto"
-        Me.BtnEstadoProyecto.UseVisualStyleBackColor = True
-        '
-        'DsClientes
-        '
-        Me.DsClientes.DataSetName = "DsClientes"
-        Me.DsClientes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'ClientesBindingSource
-        '
-        Me.ClientesBindingSource.DataMember = "Clientes"
-        Me.ClientesBindingSource.DataSource = Me.DsClientes
-        '
-        'ClientesTableAdapter
-        '
-        Me.ClientesTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager1
-        '
-        Me.TableAdapterManager1.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager1.ClientesTableAdapter = Me.ClientesTableAdapter
-        Me.TableAdapterManager1.PresupuestoTableAdapter = Nothing
-        Me.TableAdapterManager1.UpdateOrder = ModuloGestion.DsClientesTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'BtnAnalisisProyecto
-        '
-        Me.BtnAnalisisProyecto.Location = New System.Drawing.Point(776, 2)
-        Me.BtnAnalisisProyecto.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtnAnalisisProyecto.Name = "BtnAnalisisProyecto"
-        Me.BtnAnalisisProyecto.Size = New System.Drawing.Size(176, 28)
-        Me.BtnAnalisisProyecto.TabIndex = 31
-        Me.BtnAnalisisProyecto.Text = "Analisis Proyecto"
-        Me.BtnAnalisisProyecto.UseVisualStyleBackColor = True
-        '
-        'TableAdapterManager2
-        '
-        Me.TableAdapterManager2.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager2.ProyectosDetalleTableAdapter = Me.ProyectosDetalleTableAdapter
-        Me.TableAdapterManager2.UpdateOrder = ModuloGestion.DsProyectosDetalleTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'DsPresupuestoDetalle
-        '
-        Me.DsPresupuestoDetalle.DataSetName = "DsPresupuestoDetalle"
-        Me.DsPresupuestoDetalle.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'PresupuestoDetalleBindingSource
-        '
-        Me.PresupuestoDetalleBindingSource.DataMember = "PresupuestoDetalle"
-        Me.PresupuestoDetalleBindingSource.DataSource = Me.DsPresupuestoDetalle
-        '
-        'PresupuestoDetalleTableAdapter
-        '
-        Me.PresupuestoDetalleTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager3
-        '
-        Me.TableAdapterManager3.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager3.PresupuestoDetalleTableAdapter = Me.PresupuestoDetalleTableAdapter
-        Me.TableAdapterManager3.UpdateOrder = ModuloGestion.DsPresupuestoDetalleTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'DsPresupuestoDetallePintura
-        '
-        Me.DsPresupuestoDetallePintura.DataSetName = "DsPresupuestoDetallePintura"
-        Me.DsPresupuestoDetallePintura.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'PresupuestoDetallePinturaBindingSource
-        '
-        Me.PresupuestoDetallePinturaBindingSource.DataMember = "PresupuestoDetallePintura"
-        Me.PresupuestoDetallePinturaBindingSource.DataSource = Me.DsPresupuestoDetallePintura
-        '
-        'PresupuestoDetallePinturaTableAdapter
-        '
-        Me.PresupuestoDetallePinturaTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager4
-        '
-        Me.TableAdapterManager4.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager4.PresupuestoDetallePinturaTableAdapter = Me.PresupuestoDetallePinturaTableAdapter
-        Me.TableAdapterManager4.UpdateOrder = ModuloGestion.DsPresupuestoDetallePinturaTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'PresupuestoDetalleHerrajesTableAdapter
-        '
-        Me.PresupuestoDetalleHerrajesTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager5
-        '
-        Me.TableAdapterManager5.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager5.PresupuestoDetalleHerrajesTableAdapter = Me.PresupuestoDetalleHerrajesTableAdapter
-        Me.TableAdapterManager5.UpdateOrder = ModuloGestion.DsPresupuestoDetalleHerrajesTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'DsPreciosCompraProyecto
-        '
-        Me.DsPreciosCompraProyecto.DataSetName = "DsPreciosCompraProyecto"
-        Me.DsPreciosCompraProyecto.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'PreciosCompraProyectoBindingSource
-        '
-        Me.PreciosCompraProyectoBindingSource.DataMember = "PreciosCompraProyecto"
-        Me.PreciosCompraProyectoBindingSource.DataSource = Me.DsPreciosCompraProyecto
-        '
-        'PreciosCompraProyectoTableAdapter
-        '
-        Me.PreciosCompraProyectoTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager6
-        '
-        Me.TableAdapterManager6.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager6.PreciosCompraProyectoTableAdapter = Me.PreciosCompraProyectoTableAdapter
-        Me.TableAdapterManager6.UpdateOrder = ModuloGestion.DsPreciosCompraProyectoTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(1328, 2)
-        Me.Button7.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(203, 28)
-        Me.Button7.TabIndex = 32
-        Me.Button7.Text = "Duplicar Precios Compra"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
-        'TableAdapterManager7
-        '
-        Me.TableAdapterManager7.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager7.PresupuestoTableAdapter = Me.PresupuestoTableAdapter
-        Me.TableAdapterManager7.UpdateOrder = ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
         'FrmProyectos
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1510, 615)
+        Me.ClientSize = New System.Drawing.Size(1699, 769)
         Me.ControlBox = False
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.BtnAnalisisProyecto)
@@ -1193,7 +1193,7 @@ Partial Class FrmProyectos
         Me.Controls.Add(Me.CmdGuardar)
         Me.Controls.Add(Me.ProyectosBindingNavigator)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmProyectos"
         Me.Text = "FrmProyectos"
         Me.GroupBox1.ResumeLayout(False)
@@ -1310,7 +1310,7 @@ Partial Class FrmProyectos
     Friend WithEvents ImpRD As System.Windows.Forms.TextBox
     Friend WithEvents TotRD As System.Windows.Forms.TextBox
     Friend WithEvents SubRD As System.Windows.Forms.TextBox
-    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents BtnNuevoPagoMontaje As System.Windows.Forms.Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label

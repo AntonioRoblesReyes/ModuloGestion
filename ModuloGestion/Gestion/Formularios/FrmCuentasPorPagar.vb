@@ -1,37 +1,20 @@
 ﻿Public Class FrmCuentasPorPagar
 
     Private Sub FrmCuentasPorPagar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AplicarEstiloFormulario(Me)
+        ' Evita ObjectDisposedException por iconos en MDI
+        Me.ShowIcon = False
+
+        AjustarColumnasPorMoneda()
 
         Try
-            ' Puedes poner esto para ver si el problema es en CompraMateriales también:
             Me.CompraMaterialesTableAdapter.FillByFacturasPendientes(Me.DsCompras.CompraMateriales)
 
-            ' Habilita la depuración de restricciones
             Me.DsCompras.EnforceConstraints = False
             Me.ProveedoresTableAdapter.FillByFacturasPendientes(Me.DsCompras.Proveedores)
-
-            ' Intenta reactivar restricciones para forzar la comprobación
             Me.DsCompras.EnforceConstraints = True
 
         Catch ex As ConstraintException
             MessageBox.Show("Error de restricciones en el DataSet: " & ex.Message, "ConstraintException")
-
-            ' Recorre las filas problemáticas y muestra el detalle
-            For Each row As DataRow In Me.DsCompras.Proveedores.Rows
-                If row.HasErrors Then
-                    Debug.Print("Fila con error: " & row.RowError)
-                    For Each col As DataColumn In Me.DsCompras.Proveedores.Columns
-                        If row.GetColumnError(col) <> "" Then
-                            Debug.Print("Columna: " & col.ColumnName & " - Error: " & row.GetColumnError(col))
-                            MessageBox.Show("Columna: " & col.ColumnName & vbCrLf &
-                                        "Valor: " & If(IsDBNull(row(col)), "NULL", row(col).ToString) & vbCrLf &
-                                        "Error: " & row.GetColumnError(col),
-                                        "Detalle de error en Proveedores")
-                        End If
-                    Next
-                End If
-            Next
             Exit Sub
         End Try
 
@@ -39,11 +22,45 @@
         LabelTotalGeneralUS.Visible = True
         LabelTotalSeleccionRD.Visible = False
         LabelTotalSeleccionUS.Visible = False
+
         LabelTotalSeleccionRD.Text = 0
         LabelTotalSeleccionUS.Text = 0
 
         CalcularTotalGeneral()
     End Sub
+
+    Private Sub AjustarColumnasPorMoneda()
+
+        ' Ocultar todas primero
+        For Each col As DataGridViewColumn In CompraMaterialesDataGridView.Columns
+            col.Visible = False
+        Next
+
+        ' Las que siempre deben verse
+        Mostrar("Id_Compra")
+        Mostrar("Fecha")
+        Mostrar("Factura")
+        Mostrar("Moneda")
+        Mostrar("Pagar")
+        Mostrar("TotalUS")
+        Mostrar("DataGridViewTextBoxColumn24") 'PagadoUS
+        Mostrar("PendienteUS")
+        Mostrar("TotalRD")
+        Mostrar("DataGridViewTextBoxColumn26") 'PagadoRD
+        Mostrar("PendienteRD")
+
+
+
+
+    End Sub
+
+    Private Sub Mostrar(nombre As String)
+        If CompraMaterialesDataGridView.Columns.Contains(nombre) Then
+            CompraMaterialesDataGridView.Columns(nombre).Visible = True
+        End If
+    End Sub
+
+
 
 
     Private Sub CalcularTotalGeneral()
@@ -242,6 +259,48 @@
         Dim hayUS As Boolean = Val(LabelTotalSeleccionUS.Text.Replace("Total Pago US:", "").Trim()) > 0
         Return hayRD AndAlso hayUS
     End Function
+    ' FILTRO EN TIEMPO REAL PARA PROVEEDORES
+    Private Sub TxtBuscarProveedor_TextChanged(sender As Object, e As EventArgs) Handles TxtBuscarProveedor.TextChanged
+        Try
+            Dim texto As String = TxtBuscarProveedor.Text.Trim()
+
+            If String.IsNullOrEmpty(texto) Then
+                ProveedoresBindingSource.RemoveFilter()
+            Else
+                Dim filtroSeguro As String = texto.Replace("'", "''")
+                ProveedoresBindingSource.Filter =
+                $"Convert(Id_Proveedor, 'System.String') LIKE '%{filtroSeguro}%' OR RazonSocial LIKE '%{filtroSeguro}%'"
+            End If
+
+            ActualizarComprasDelProveedorActual()
+
+        Catch ex As Exception
+            MsgBox("Error en el filtro: " & ex.Message)
+        End Try
+    End Sub
+
+
+    ' ACTUALIZA LAS COMPRAS CADA VEZ QUE SE FILTRA UN PROVEEDOR
+    Private Sub ActualizarComprasDelProveedorActual()
+        Try
+            If ProveedoresBindingSource.Count = 0 Then
+                DsCompras.CompraMateriales.Clear()
+                LabelTotalGeneralRD.Text = "Total RD: 0.00"
+                LabelTotalGeneralUS.Text = "Total US: 0.00"
+                Exit Sub
+            End If
+
+            Dim fila As DataRowView = CType(ProveedoresBindingSource.Current, DataRowView)
+            Dim idProveedor As String = fila("Id_Proveedor").ToString()
+
+            Me.CompraMaterialesTableAdapter.FillByPendientePorProveedor(Me.DsCompras.CompraMateriales, idProveedor)
+
+            CalcularTotalGeneral()
+
+        Catch ex As Exception
+            MsgBox("Error actualizando compras del proveedor: " & ex.Message)
+        End Try
+    End Sub
 
 
 End Class
