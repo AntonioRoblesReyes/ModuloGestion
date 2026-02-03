@@ -301,6 +301,8 @@ Partial Class FrmVerFacturas
         Me.FacturaDataGridView.AllowUserToAddRows = False
         Me.FacturaDataGridView.AllowUserToDeleteRows = False
         Me.FacturaDataGridView.AutoGenerateColumns = False
+        Me.FacturaDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FacturaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.FacturaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFactura, Me.IdProyecto, Me.IdCliente, Me.RazonSocial, Me.NCF, Me.Fecha, Me.Moneda, Me.TotalUS, Me.TotalRDS, Me.Aprobada, Me.Pagado, Me.Pendiente})
         Me.FacturaDataGridView.DataSource = Me.FacturaBindingSource
@@ -394,6 +396,7 @@ Partial Class FrmVerFacturas
         '
         Me.dgvPagosCandidatos.AllowUserToAddRows = False
         Me.dgvPagosCandidatos.AllowUserToDeleteRows = False
+        Me.dgvPagosCandidatos.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.dgvPagosCandidatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPagosCandidatos.Location = New System.Drawing.Point(18, 616)
         Me.dgvPagosCandidatos.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -427,6 +430,8 @@ Partial Class FrmVerFacturas
         '
         'dgvPagosAplicados
         '
+        Me.dgvPagosAplicados.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvPagosAplicados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPagosAplicados.Location = New System.Drawing.Point(1020, 616)
         Me.dgvPagosAplicados.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -574,6 +579,7 @@ Partial Class FrmVerFacturas
         '
         'FrmVerFacturas
         '
+        Me.AutoScroll = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(2172, 873)
@@ -595,6 +601,7 @@ Partial Class FrmVerFacturas
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmVerFacturas"
         Me.Text = "FrmVerFacturas"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DsEmpresas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmpresasBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmpresasBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
