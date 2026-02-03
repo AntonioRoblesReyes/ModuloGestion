@@ -31,6 +31,9 @@ Partial Class FrmVerFacturas
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DsEmpresas = New ModuloGestion.DsEmpresas()
         Me.EmpresasBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.EmpresasTableAdapter = New ModuloGestion.DsEmpresasTableAdapters.EmpresasTableAdapter()
@@ -270,6 +273,7 @@ Partial Class FrmVerFacturas
         '
         Me.Id_EmpresaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasBindingSource, "Id_Empresa", True))
         Me.Id_EmpresaTextBox.Enabled = False
+        Me.Id_EmpresaTextBox.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Id_EmpresaTextBox.Location = New System.Drawing.Point(117, 42)
         Me.Id_EmpresaTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Id_EmpresaTextBox.Name = "Id_EmpresaTextBox"
@@ -280,6 +284,7 @@ Partial Class FrmVerFacturas
         '
         Me.NombreTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasBindingSource, "Nombre", True))
         Me.NombreTextBox.Enabled = False
+        Me.NombreTextBox.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NombreTextBox.Location = New System.Drawing.Point(117, 82)
         Me.NombreTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.NombreTextBox.Name = "NombreTextBox"
@@ -290,6 +295,7 @@ Partial Class FrmVerFacturas
         '
         Me.Id_FiscalTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasBindingSource, "Id_Fiscal", True))
         Me.Id_FiscalTextBox.Enabled = False
+        Me.Id_FiscalTextBox.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Id_FiscalTextBox.Location = New System.Drawing.Point(278, 42)
         Me.Id_FiscalTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Id_FiscalTextBox.Name = "Id_FiscalTextBox"
@@ -300,12 +306,32 @@ Partial Class FrmVerFacturas
         '
         Me.FacturaDataGridView.AllowUserToAddRows = False
         Me.FacturaDataGridView.AllowUserToDeleteRows = False
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(246, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(251, Byte), Integer))
+        Me.FacturaDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.FacturaDataGridView.AutoGenerateColumns = False
         Me.FacturaDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FacturaDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.FacturaDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.FacturaDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.FacturaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.FacturaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFactura, Me.IdProyecto, Me.IdCliente, Me.RazonSocial, Me.NCF, Me.Fecha, Me.Moneda, Me.TotalUS, Me.TotalRDS, Me.Aprobada, Me.Pagado, Me.Pendiente})
         Me.FacturaDataGridView.DataSource = Me.FacturaBindingSource
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(245, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FacturaDataGridView.DefaultCellStyle = DataGridViewCellStyle7
+        Me.FacturaDataGridView.EnableHeadersVisualStyles = False
         Me.FacturaDataGridView.Location = New System.Drawing.Point(18, 122)
         Me.FacturaDataGridView.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FacturaDataGridView.Name = "FacturaDataGridView"
@@ -360,7 +386,12 @@ Partial Class FrmVerFacturas
         Me.BtnNuevaFactura.Size = New System.Drawing.Size(112, 35)
         Me.BtnNuevaFactura.TabIndex = 8
         Me.BtnNuevaFactura.Text = "Nueva Factura"
-        Me.BtnNuevaFactura.UseVisualStyleBackColor = True
+        Me.BtnNuevaFactura.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
+        Me.BtnNuevaFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(82, Byte), Integer), CType(CType(198, Byte), Integer))
+        Me.BtnNuevaFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnNuevaFactura.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnNuevaFactura.ForeColor = System.Drawing.Color.White
+        Me.BtnNuevaFactura.UseVisualStyleBackColor = False
         '
         'BtnVerFactura
         '
@@ -370,7 +401,12 @@ Partial Class FrmVerFacturas
         Me.BtnVerFactura.Size = New System.Drawing.Size(112, 35)
         Me.BtnVerFactura.TabIndex = 9
         Me.BtnVerFactura.Text = "Ver Factura"
-        Me.BtnVerFactura.UseVisualStyleBackColor = True
+        Me.BtnVerFactura.BackColor = System.Drawing.Color.White
+        Me.BtnVerFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
+        Me.BtnVerFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnVerFactura.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnVerFactura.ForeColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
+        Me.BtnVerFactura.UseVisualStyleBackColor = False
         '
         'BtnBuscarPagoDirecto
         '
@@ -380,7 +416,12 @@ Partial Class FrmVerFacturas
         Me.BtnBuscarPagoDirecto.Size = New System.Drawing.Size(168, 35)
         Me.BtnBuscarPagoDirecto.TabIndex = 10
         Me.BtnBuscarPagoDirecto.Text = "Buscar Pago Directo"
-        Me.BtnBuscarPagoDirecto.UseVisualStyleBackColor = True
+        Me.BtnBuscarPagoDirecto.BackColor = System.Drawing.Color.White
+        Me.BtnBuscarPagoDirecto.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
+        Me.BtnBuscarPagoDirecto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnBuscarPagoDirecto.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnBuscarPagoDirecto.ForeColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
+        Me.BtnBuscarPagoDirecto.UseVisualStyleBackColor = False
         '
         'BtnAsignarPago
         '
@@ -390,12 +431,23 @@ Partial Class FrmVerFacturas
         Me.BtnAsignarPago.Size = New System.Drawing.Size(154, 35)
         Me.BtnAsignarPago.TabIndex = 11
         Me.BtnAsignarPago.Text = "Asignar Pago"
-        Me.BtnAsignarPago.UseVisualStyleBackColor = True
+        Me.BtnAsignarPago.BackColor = System.Drawing.Color.FromArgb(CType(CType(16, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(129, Byte), Integer))
+        Me.BtnAsignarPago.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(105, Byte), Integer))
+        Me.BtnAsignarPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnAsignarPago.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnAsignarPago.ForeColor = System.Drawing.Color.White
+        Me.BtnAsignarPago.UseVisualStyleBackColor = False
         '
         'dgvPagosCandidatos
         '
         Me.dgvPagosCandidatos.AllowUserToAddRows = False
         Me.dgvPagosCandidatos.AllowUserToDeleteRows = False
+        Me.dgvPagosCandidatos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvPagosCandidatos.BackgroundColor = System.Drawing.Color.White
+        Me.dgvPagosCandidatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.dgvPagosCandidatos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvPagosCandidatos.DefaultCellStyle = DataGridViewCellStyle7
+        Me.dgvPagosCandidatos.EnableHeadersVisualStyles = False
         Me.dgvPagosCandidatos.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.dgvPagosCandidatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPagosCandidatos.Location = New System.Drawing.Point(18, 616)
@@ -432,7 +484,13 @@ Partial Class FrmVerFacturas
         '
         Me.dgvPagosAplicados.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvPagosAplicados.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvPagosAplicados.BackgroundColor = System.Drawing.Color.White
+        Me.dgvPagosAplicados.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.dgvPagosAplicados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvPagosAplicados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvPagosAplicados.DefaultCellStyle = DataGridViewCellStyle7
+        Me.dgvPagosAplicados.EnableHeadersVisualStyles = False
         Me.dgvPagosAplicados.Location = New System.Drawing.Point(1020, 616)
         Me.dgvPagosAplicados.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.dgvPagosAplicados.Name = "dgvPagosAplicados"
@@ -449,7 +507,12 @@ Partial Class FrmVerFacturas
         Me.BtnDesasignarPago.Size = New System.Drawing.Size(154, 35)
         Me.BtnDesasignarPago.TabIndex = 14
         Me.BtnDesasignarPago.Text = "Desasignar Pago"
-        Me.BtnDesasignarPago.UseVisualStyleBackColor = True
+        Me.BtnDesasignarPago.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.BtnDesasignarPago.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.BtnDesasignarPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnDesasignarPago.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnDesasignarPago.ForeColor = System.Drawing.Color.White
+        Me.BtnDesasignarPago.UseVisualStyleBackColor = False
         '
         'IdFactura
         '
@@ -580,6 +643,7 @@ Partial Class FrmVerFacturas
         'FrmVerFacturas
         '
         Me.AutoScroll = True
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(2172, 873)
