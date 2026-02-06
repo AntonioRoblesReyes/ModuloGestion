@@ -12,13 +12,15 @@ Public Class FrmVerFacturas
     End Sub
 
     Private Sub FrmVerFacturas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-     
-
-        Me.FacturaDetalleTableAdapter.Fill(Me.DsFacturas.FacturaDetalle)
-        Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
-        Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
-        Me.FacturaTableAdapter.FillByIdEmpresa(Me.DsFacturas.Factura, "IN")
-        Me.EmpresasTableAdapter.FillByIdEmpresa(Me.DsEmpresas.Empresas, "IN")
+        Try
+            Me.FacturaDetalleTableAdapter.Fill(Me.DsFacturas.FacturaDetalle)
+            Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
+            Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
+            Me.FacturaTableAdapter.FillByIdEmpresa(Me.DsFacturas.Factura, "IN")
+            Me.EmpresasTableAdapter.FillByIdEmpresa(Me.DsEmpresas.Empresas, "IN")
+        Catch ex As Exception
+            MsgBox("Error cargando datos: " & ex.Message, MsgBoxStyle.Critical)
+        End Try
     End Sub
 
     Private Sub FrmVerFacturas_FormClosing(
@@ -79,6 +81,8 @@ Public Class FrmVerFacturas
 
         Dim idFactura As String =
             FacturaDataGridView.CurrentRow.Cells("IdFactura").Value.ToString()
+
+        If String.IsNullOrWhiteSpace(idFactura) Then Exit Sub
 
         CargarPagosFactura(idFactura)
         EvaluarPagosCandidatosFactura()
@@ -379,8 +383,12 @@ Public Class FrmVerFacturas
         Dim filaActual As DataRowView =
         CType(FacturaBindingSource.Current, DataRowView)
 
-        Dim idProyecto As String =
-        filaActual("IdProyecto").ToString()
+        If filaActual.Row.IsNull("IdProyecto") Then
+            MsgBox("La factura no tiene proyecto asignado.", MsgBoxStyle.Exclamation)
+            Exit Sub
+        End If
+
+        Dim idProyecto As String = filaActual("IdProyecto").ToString()
 
         '===========================================================
         ' CARGAR PagosClientesDetalle POR IdProyecto
@@ -428,6 +436,8 @@ Public Class FrmVerFacturas
             dgvPagosCandidatos.Columns("Monto").DefaultCellStyle.Alignment =
             DataGridViewContentAlignment.MiddleRight
         End If
+
+        If filaActual.Row.IsNull("IdFactura") Then Exit Sub
 
         Dim idFactura As String = filaActual("IdFactura").ToString()
         CargarPagosFactura(idFactura)
@@ -491,6 +501,8 @@ Public Class FrmVerFacturas
         ' Validaciones básicas
         If FacturaDataGridView.CurrentRow Is Nothing Then Exit Sub
         If dgvPagosCandidatos.Rows.Count = 0 Then Exit Sub
+        If Not FacturaDataGridView.Columns.Contains("Pendiente") Then Exit Sub
+        If Not dgvPagosCandidatos.Columns.Contains("Monto") Then Exit Sub
 
         Dim filaFactura = FacturaDataGridView.CurrentRow
         If IsDBNull(filaFactura.Cells("Pendiente").Value) Then Exit Sub
@@ -506,6 +518,7 @@ Public Class FrmVerFacturas
         ' 1) Obtener montos de pagos candidatos
         '--------------------------------------------------
         Dim montos As New List(Of Decimal)
+        Dim filas = New List(Of DataGridViewRow)
 
         For Each r As DataGridViewRow In dgvPagosCandidatos.Rows
             If r.IsNewRow Then Continue For
@@ -514,6 +527,7 @@ Public Class FrmVerFacturas
             If v Is Nothing OrElse IsDBNull(v) Then Continue For
 
             montos.Add(Math.Round(Convert.ToDecimal(v), 2))
+            filas.Add(r)
         Next
 
         If montos.Count = 0 Then Exit Sub
@@ -528,14 +542,15 @@ Public Class FrmVerFacturas
         '--------------------------------------------------
         ' 3) Evaluar combinación exacta y pintar pagos
         '--------------------------------------------------
-        'Integer indices = 0
-        'Dim indices As List(Of Integer)
+        Dim indices As List(Of Integer)
 
-        'If ExisteCombinacionExacta(montos, pendiente, indices) Then
-        '    For Each i In indices
-        '        dgvPagosCandidatos.Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
-        '    Next
-        'End If
+        If ExisteCombinacionExacta(montos, pendiente, indices) Then
+            For Each i In indices
+                If i >= 0 AndAlso i < filas.Count Then
+                    filas(i).DefaultCellStyle.BackColor = Color.LightGreen
+                End If
+            Next
+        End If
 
     End Sub
 
