@@ -231,6 +231,9 @@ Partial Class FrmVerClientes
         'ClientesDataGridView
         '
         Me.ClientesDataGridView.AllowUserToAddRows = False
+        Me.ClientesDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ClientesDataGridView.AutoGenerateColumns = False
         Me.ClientesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ClientesDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10})
@@ -376,6 +379,7 @@ Partial Class FrmVerClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1163, 511)
         Me.Controls.Add(Me.BtnNuevoCliente)
         Me.Controls.Add(Me.BtnVerCliente)
@@ -386,6 +390,7 @@ Partial Class FrmVerClientes
         Me.Controls.Add(Me.CmdNuevoProyecto)
         Me.Controls.Add(Me.TxtBuscar)
         Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.MinimumSize = New System.Drawing.Size(900, 550)
         Me.Name = "FrmVerClientes"
         Me.Text = "Ver Clientes"
         CType(Me.ClientesBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
