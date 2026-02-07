@@ -100,10 +100,6 @@ Partial Class FrmAsignarPago
         Me.Impuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FechaTextBox = New System.Windows.Forms.TextBox()
         Me.PresupuestoDataGridView = New System.Windows.Forms.DataGridView()
-        Me.PresupuestoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsPresupuestos = New ModuloGestion.DsPresupuestos()
-        Me.PresupuestoTableAdapter = New ModuloGestion.DsPresupuestosTableAdapters.PresupuestoTableAdapter()
-        Me.TableAdapterManager3 = New ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager()
         Me.Proyecto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Presupuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -118,6 +114,10 @@ Partial Class FrmAsignarPago
         Me.Pagado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Pendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tasa = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PresupuestoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsPresupuestos = New ModuloGestion.DsPresupuestos()
+        Me.PresupuestoTableAdapter = New ModuloGestion.DsPresupuestosTableAdapters.PresupuestoTableAdapter()
+        Me.TableAdapterManager3 = New ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager()
         ID_CobroLabel = New System.Windows.Forms.Label()
         Id_FiscalLabel = New System.Windows.Forms.Label()
         ValorLabel = New System.Windows.Forms.Label()
@@ -145,50 +145,50 @@ Partial Class FrmAsignarPago
         'ID_CobroLabel
         '
         ID_CobroLabel.AutoSize = True
-        ID_CobroLabel.Location = New System.Drawing.Point(80, 57)
+        ID_CobroLabel.Location = New System.Drawing.Point(90, 71)
         ID_CobroLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         ID_CobroLabel.Name = "ID_CobroLabel"
-        ID_CobroLabel.Size = New System.Drawing.Size(63, 16)
+        ID_CobroLabel.Size = New System.Drawing.Size(77, 20)
         ID_CobroLabel.TabIndex = 1
         ID_CobroLabel.Text = "ID Cobro:"
         '
         'Id_FiscalLabel
         '
         Id_FiscalLabel.AutoSize = True
-        Id_FiscalLabel.Location = New System.Drawing.Point(84, 91)
+        Id_FiscalLabel.Location = New System.Drawing.Point(94, 114)
         Id_FiscalLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Id_FiscalLabel.Name = "Id_FiscalLabel"
-        Id_FiscalLabel.Size = New System.Drawing.Size(60, 16)
+        Id_FiscalLabel.Size = New System.Drawing.Size(72, 20)
         Id_FiscalLabel.TabIndex = 3
         Id_FiscalLabel.Text = "Id Fiscal:"
         '
         'ValorLabel
         '
         ValorLabel.AutoSize = True
-        ValorLabel.Location = New System.Drawing.Point(105, 123)
+        ValorLabel.Location = New System.Drawing.Point(118, 154)
         ValorLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         ValorLabel.Name = "ValorLabel"
-        ValorLabel.Size = New System.Drawing.Size(40, 16)
+        ValorLabel.Size = New System.Drawing.Size(46, 20)
         ValorLabel.TabIndex = 7
         ValorLabel.Text = "Pago"
         '
         'AsignadoLabel
         '
         AsignadoLabel.AutoSize = True
-        AsignadoLabel.Location = New System.Drawing.Point(85, 155)
+        AsignadoLabel.Location = New System.Drawing.Point(96, 194)
         AsignadoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         AsignadoLabel.Name = "AsignadoLabel"
-        AsignadoLabel.Size = New System.Drawing.Size(60, 16)
+        AsignadoLabel.Size = New System.Drawing.Size(80, 20)
         AsignadoLabel.TabIndex = 9
         AsignadoLabel.Text = "Asignado:"
         '
         'PendienteAsignarLabel
         '
         PendienteAsignarLabel.AutoSize = True
-        PendienteAsignarLabel.Location = New System.Drawing.Point(21, 186)
+        PendienteAsignarLabel.Location = New System.Drawing.Point(24, 232)
         PendienteAsignarLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         PendienteAsignarLabel.Name = "PendienteAsignarLabel"
-        PendienteAsignarLabel.Size = New System.Drawing.Size(120, 16)
+        PendienteAsignarLabel.Size = New System.Drawing.Size(143, 20)
         PendienteAsignarLabel.TabIndex = 11
         PendienteAsignarLabel.Text = "Pendiente Asignar:"
         '
@@ -196,20 +196,20 @@ Partial Class FrmAsignarPago
         '
         MonedaLabel.AutoSize = True
         MonedaLabel.Enabled = False
-        MonedaLabel.Location = New System.Drawing.Point(297, 191)
+        MonedaLabel.Location = New System.Drawing.Point(334, 239)
         MonedaLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         MonedaLabel.Name = "MonedaLabel"
-        MonedaLabel.Size = New System.Drawing.Size(60, 16)
+        MonedaLabel.Size = New System.Drawing.Size(71, 20)
         MonedaLabel.TabIndex = 19
         MonedaLabel.Text = "Moneda:"
         '
         'FechaLabel
         '
         FechaLabel.AutoSize = True
-        FechaLabel.Location = New System.Drawing.Point(327, 57)
+        FechaLabel.Location = New System.Drawing.Point(368, 71)
         FechaLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         FechaLabel.Name = "FechaLabel"
-        FechaLabel.Size = New System.Drawing.Size(48, 16)
+        FechaLabel.Size = New System.Drawing.Size(58, 20)
         FechaLabel.TabIndex = 23
         FechaLabel.Text = "Fecha:"
         '
@@ -250,7 +250,7 @@ Partial Class FrmAsignarPago
         Me.PagosClientesBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.PagosClientesBindingNavigator.Name = "PagosClientesBindingNavigator"
         Me.PagosClientesBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.PagosClientesBindingNavigator.Size = New System.Drawing.Size(1454, 27)
+        Me.PagosClientesBindingNavigator.Size = New System.Drawing.Size(1636, 31)
         Me.PagosClientesBindingNavigator.TabIndex = 0
         Me.PagosClientesBindingNavigator.Text = "BindingNavigator1"
         '
@@ -260,13 +260,13 @@ Partial Class FrmAsignarPago
         Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
         Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorAddNewItem.Text = "Agregar nuevo"
         '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(48, 24)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(57, 26)
         Me.BindingNavigatorCountItem.Text = "de {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
         '
@@ -276,7 +276,7 @@ Partial Class FrmAsignarPago
         Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
         Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorDeleteItem.Text = "Eliminar"
         '
         'BindingNavigatorMoveFirstItem
@@ -285,7 +285,7 @@ Partial Class FrmAsignarPago
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
         '
         'BindingNavigatorMovePreviousItem
@@ -294,13 +294,13 @@ Partial Class FrmAsignarPago
         Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
         '
         'BindingNavigatorSeparator
         '
         Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 31)
         '
         'BindingNavigatorPositionItem
         '
@@ -308,14 +308,14 @@ Partial Class FrmAsignarPago
         Me.BindingNavigatorPositionItem.AutoSize = False
         Me.BindingNavigatorPositionItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
-        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(65, 27)
+        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(73, 31)
         Me.BindingNavigatorPositionItem.Text = "0"
         Me.BindingNavigatorPositionItem.ToolTipText = "Posición actual"
         '
         'BindingNavigatorSeparator1
         '
         Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 31)
         '
         'BindingNavigatorMoveNextItem
         '
@@ -323,7 +323,7 @@ Partial Class FrmAsignarPago
         Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
         '
         'BindingNavigatorMoveLastItem
@@ -332,50 +332,50 @@ Partial Class FrmAsignarPago
         Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorMoveLastItem.Text = "Mover último"
         '
         'BindingNavigatorSeparator2
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 31)
         '
         'PagosClientesBindingNavigatorSaveItem
         '
         Me.PagosClientesBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.PagosClientesBindingNavigatorSaveItem.Image = CType(resources.GetObject("PagosClientesBindingNavigatorSaveItem.Image"), System.Drawing.Image)
         Me.PagosClientesBindingNavigatorSaveItem.Name = "PagosClientesBindingNavigatorSaveItem"
-        Me.PagosClientesBindingNavigatorSaveItem.Size = New System.Drawing.Size(29, 24)
+        Me.PagosClientesBindingNavigatorSaveItem.Size = New System.Drawing.Size(34, 26)
         Me.PagosClientesBindingNavigatorSaveItem.Text = "Guardar datos"
         '
         'ID_CobroTextBox
         '
         Me.ID_CobroTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PagosClientesBindingSource, "ID_Cobro", True))
         Me.ID_CobroTextBox.Enabled = False
-        Me.ID_CobroTextBox.Location = New System.Drawing.Point(157, 53)
-        Me.ID_CobroTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.ID_CobroTextBox.Location = New System.Drawing.Point(177, 66)
+        Me.ID_CobroTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ID_CobroTextBox.Name = "ID_CobroTextBox"
-        Me.ID_CobroTextBox.Size = New System.Drawing.Size(143, 22)
+        Me.ID_CobroTextBox.Size = New System.Drawing.Size(160, 26)
         Me.ID_CobroTextBox.TabIndex = 2
         '
         'Id_FiscalTextBox
         '
         Me.Id_FiscalTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PagosClientesBindingSource, "Id_Fiscal", True))
         Me.Id_FiscalTextBox.Enabled = False
-        Me.Id_FiscalTextBox.Location = New System.Drawing.Point(157, 87)
-        Me.Id_FiscalTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.Id_FiscalTextBox.Location = New System.Drawing.Point(177, 109)
+        Me.Id_FiscalTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Id_FiscalTextBox.Name = "Id_FiscalTextBox"
-        Me.Id_FiscalTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.Id_FiscalTextBox.Size = New System.Drawing.Size(148, 26)
         Me.Id_FiscalTextBox.TabIndex = 4
         '
         'ValorTextBox
         '
         Me.ValorTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PagosClientesBindingSource, "valor", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
         Me.ValorTextBox.Enabled = False
-        Me.ValorTextBox.Location = New System.Drawing.Point(157, 119)
-        Me.ValorTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.ValorTextBox.Location = New System.Drawing.Point(177, 149)
+        Me.ValorTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ValorTextBox.Name = "ValorTextBox"
-        Me.ValorTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.ValorTextBox.Size = New System.Drawing.Size(148, 26)
         Me.ValorTextBox.TabIndex = 8
         Me.ValorTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -383,10 +383,10 @@ Partial Class FrmAsignarPago
         '
         Me.AsignadoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PagosClientesBindingSource, "Asignado", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
         Me.AsignadoTextBox.Enabled = False
-        Me.AsignadoTextBox.Location = New System.Drawing.Point(157, 151)
-        Me.AsignadoTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.AsignadoTextBox.Location = New System.Drawing.Point(177, 189)
+        Me.AsignadoTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AsignadoTextBox.Name = "AsignadoTextBox"
-        Me.AsignadoTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.AsignadoTextBox.Size = New System.Drawing.Size(148, 26)
         Me.AsignadoTextBox.TabIndex = 10
         Me.AsignadoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -394,10 +394,10 @@ Partial Class FrmAsignarPago
         '
         Me.PendienteAsignarTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PagosClientesBindingSource, "PendienteAsignar", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
         Me.PendienteAsignarTextBox.Enabled = False
-        Me.PendienteAsignarTextBox.Location = New System.Drawing.Point(157, 182)
-        Me.PendienteAsignarTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.PendienteAsignarTextBox.Location = New System.Drawing.Point(177, 228)
+        Me.PendienteAsignarTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PendienteAsignarTextBox.Name = "PendienteAsignarTextBox"
-        Me.PendienteAsignarTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.PendienteAsignarTextBox.Size = New System.Drawing.Size(148, 26)
         Me.PendienteAsignarTextBox.TabIndex = 12
         Me.PendienteAsignarTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -444,10 +444,10 @@ Partial Class FrmAsignarPago
         '
         'BtnAsignar
         '
-        Me.BtnAsignar.Location = New System.Drawing.Point(49, 225)
-        Me.BtnAsignar.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnAsignar.Location = New System.Drawing.Point(55, 281)
+        Me.BtnAsignar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnAsignar.Name = "BtnAsignar"
-        Me.BtnAsignar.Size = New System.Drawing.Size(100, 28)
+        Me.BtnAsignar.Size = New System.Drawing.Size(112, 35)
         Me.BtnAsignar.TabIndex = 17
         Me.BtnAsignar.Text = "Asignar"
         Me.BtnAsignar.UseVisualStyleBackColor = True
@@ -512,10 +512,10 @@ Partial Class FrmAsignarPago
         'TextBox1
         '
         Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PagosClientesBindingSource, "Asignado", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.TextBox1.Location = New System.Drawing.Point(157, 225)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBox1.Location = New System.Drawing.Point(177, 281)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(132, 22)
+        Me.TextBox1.Size = New System.Drawing.Size(148, 26)
         Me.TextBox1.TabIndex = 19
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -523,10 +523,10 @@ Partial Class FrmAsignarPago
         '
         Me.MonedaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PagosClientesBindingSource, "Moneda", True))
         Me.MonedaTextBox.Enabled = False
-        Me.MonedaTextBox.Location = New System.Drawing.Point(371, 182)
-        Me.MonedaTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.MonedaTextBox.Location = New System.Drawing.Point(417, 228)
+        Me.MonedaTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MonedaTextBox.Name = "MonedaTextBox"
-        Me.MonedaTextBox.Size = New System.Drawing.Size(63, 22)
+        Me.MonedaTextBox.Size = New System.Drawing.Size(70, 26)
         Me.MonedaTextBox.TabIndex = 20
         '
         'DsPagosClientesDetalle
@@ -640,10 +640,10 @@ Partial Class FrmAsignarPago
         'FechaTextBox
         '
         Me.FechaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PagosClientesBindingSource, "Fecha", True))
-        Me.FechaTextBox.Location = New System.Drawing.Point(388, 53)
-        Me.FechaTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.FechaTextBox.Location = New System.Drawing.Point(436, 66)
+        Me.FechaTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FechaTextBox.Name = "FechaTextBox"
-        Me.FechaTextBox.Size = New System.Drawing.Size(132, 22)
+        Me.FechaTextBox.Size = New System.Drawing.Size(148, 26)
         Me.FechaTextBox.TabIndex = 24
         '
         'PresupuestoDataGridView
@@ -652,33 +652,13 @@ Partial Class FrmAsignarPago
         Me.PresupuestoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.PresupuestoDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Proyecto, Me.Presupuesto, Me.Descripcion, Me.Moneda, Me.TotalUS, Me.PagadoUS, Me.PendienteUS, Me.TotalRD, Me.PagadoRD, Me.PendienteRD, Me.Total, Me.Pagado, Me.Pendiente, Me.tasa})
         Me.PresupuestoDataGridView.DataSource = Me.PresupuestoBindingSource
-        Me.PresupuestoDataGridView.Location = New System.Drawing.Point(24, 272)
+        Me.PresupuestoDataGridView.Location = New System.Drawing.Point(27, 340)
+        Me.PresupuestoDataGridView.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PresupuestoDataGridView.Name = "PresupuestoDataGridView"
         Me.PresupuestoDataGridView.RowHeadersWidth = 51
         Me.PresupuestoDataGridView.RowTemplate.Height = 24
-        Me.PresupuestoDataGridView.Size = New System.Drawing.Size(812, 220)
+        Me.PresupuestoDataGridView.Size = New System.Drawing.Size(914, 275)
         Me.PresupuestoDataGridView.TabIndex = 24
-        '
-        'PresupuestoBindingSource
-        '
-        Me.PresupuestoBindingSource.DataMember = "Presupuesto"
-        Me.PresupuestoBindingSource.DataSource = Me.DsPresupuestos
-        '
-        'DsPresupuestos
-        '
-        Me.DsPresupuestos.DataSetName = "DsPresupuestos"
-        Me.DsPresupuestos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'PresupuestoTableAdapter
-        '
-        Me.PresupuestoTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager3
-        '
-        Me.TableAdapterManager3.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager3.Connection = Nothing
-        Me.TableAdapterManager3.PresupuestoTableAdapter = Nothing
-        Me.TableAdapterManager3.UpdateOrder = ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
         'Proyecto
         '
@@ -824,11 +804,32 @@ Partial Class FrmAsignarPago
         Me.tasa.Visible = False
         Me.tasa.Width = 125
         '
+        'PresupuestoBindingSource
+        '
+        Me.PresupuestoBindingSource.DataMember = "Presupuesto"
+        Me.PresupuestoBindingSource.DataSource = Me.DsPresupuestos
+        '
+        'DsPresupuestos
+        '
+        Me.DsPresupuestos.DataSetName = "DsPresupuestos"
+        Me.DsPresupuestos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'PresupuestoTableAdapter
+        '
+        Me.PresupuestoTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager3
+        '
+        Me.TableAdapterManager3.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager3.Connection = Nothing
+        Me.TableAdapterManager3.PresupuestoTableAdapter = Nothing
+        Me.TableAdapterManager3.UpdateOrder = ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
         'FrmAsignarPago
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1454, 598)
+        Me.ClientSize = New System.Drawing.Size(1636, 748)
         Me.Controls.Add(Me.PresupuestoDataGridView)
         Me.Controls.Add(FechaLabel)
         Me.Controls.Add(Me.FechaTextBox)
@@ -847,7 +848,7 @@ Partial Class FrmAsignarPago
         Me.Controls.Add(ID_CobroLabel)
         Me.Controls.Add(Me.ID_CobroTextBox)
         Me.Controls.Add(Me.PagosClientesBindingNavigator)
-        Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmAsignarPago"
         Me.Text = "FrmAsignarPago"
         CType(Me.DsPagosClientes, System.ComponentModel.ISupportInitialize).EndInit()

@@ -408,12 +408,12 @@ Public Class FrmGestion
     End Sub
 
     Private Sub GizelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GizelToolStripMenuItem.Click
-        Process.Start("\\PCShernia\d\Programas Visual\Gizeh\gizeh.application")
+        Process.Start("\\PCShernia\d\ProgramasVisual\Gizeh\gizeh.application")
 
     End Sub
 
     Private Sub SueldoAntonioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SueldoAntonioToolStripMenuItem.Click
-        Process.Start("\\PCShernia\d\Programas Visual\SueldoAntonio\SueldoAntonio.application")
+        Process.Start("\\PCShernia\d\ProgramasVisual\SueldoAntonio\SueldoAntonio.application")
 
     End Sub
 

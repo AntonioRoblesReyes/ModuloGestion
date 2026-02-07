@@ -133,7 +133,7 @@ Public Class FrmAsignarPago
             '---- generar ID siguiente ----
             Dim Siguiente As String = Me.PagosClientesDetalleTableAdapter.SiguienteAsignado(ID_CobroTextBox.Text)
 
-            Me.PagosClientesDetalleTableAdapter.AnexarPagpDetalle(Siguiente, ID_CobroTextBox.Text, proyecto, "", idPresupuesto, monedaPago, TextBox1.Text, FechaTextBox.Text)
+            Me.PagosClientesDetalleTableAdapter.AnexarPagpDetalle(Siguiente, ID_CobroTextBox.Text, proyecto, "Sin Factura", idPresupuesto, monedaPago, TextBox1.Text, FechaTextBox.Text)
 
 
 
