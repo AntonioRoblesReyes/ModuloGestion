@@ -179,7 +179,7 @@ Partial Class Form2
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(48, 16)
         Me.Label1.TabIndex = 108
-        Me.Label1.Text = "Label1"
+        Me.Label1.Text = ""
         '
         'ObservacionesTextBox
         '
@@ -269,7 +269,7 @@ Partial Class Form2
         Me.LblProyecto.Name = "LblProyecto"
         Me.LblProyecto.Size = New System.Drawing.Size(79, 16)
         Me.LblProyecto.TabIndex = 113
-        Me.LblProyecto.Text = "LblProyecto"
+        Me.LblProyecto.Text = ""
         '
         'LblPresupuesto
         '
@@ -279,7 +279,7 @@ Partial Class Form2
         Me.LblPresupuesto.Name = "LblPresupuesto"
         Me.LblPresupuesto.Size = New System.Drawing.Size(101, 16)
         Me.LblPresupuesto.TabIndex = 112
-        Me.LblPresupuesto.Text = "LblPresupuesto"
+        Me.LblPresupuesto.Text = ""
         '
         'LblProveedor
         '
@@ -289,7 +289,7 @@ Partial Class Form2
         Me.LblProveedor.Name = "LblProveedor"
         Me.LblProveedor.Size = New System.Drawing.Size(89, 16)
         Me.LblProveedor.TabIndex = 111
-        Me.LblProveedor.Text = "LblProveedor"
+        Me.LblProveedor.Text = ""
         '
         'Form2
         '
@@ -320,7 +320,7 @@ Partial Class Form2
         Me.Controls.Add(Me.Id_CompraTextBox)
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "Form2"
-        Me.Text = "Form2"
+        Me.Text = "Ingreso de Compras"
         CType(Me.CompraMaterialesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsCompras, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
