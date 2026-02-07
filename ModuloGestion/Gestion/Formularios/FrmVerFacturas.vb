@@ -12,13 +12,15 @@ Public Class FrmVerFacturas
     End Sub
 
     Private Sub FrmVerFacturas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-     
-
-        Me.FacturaDetalleTableAdapter.Fill(Me.DsFacturas.FacturaDetalle)
-        Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
-        Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
-        Me.FacturaTableAdapter.FillByIdEmpresa(Me.DsFacturas.Factura, "IN")
-        Me.EmpresasTableAdapter.FillByIdEmpresa(Me.DsEmpresas.Empresas, "IN")
+        Try
+            Me.FacturaDetalleTableAdapter.Fill(Me.DsFacturas.FacturaDetalle)
+            Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
+            Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
+            Me.FacturaTableAdapter.FillByIdEmpresa(Me.DsFacturas.Factura, "IN")
+            Me.EmpresasTableAdapter.FillByIdEmpresa(Me.DsEmpresas.Empresas, "IN")
+        Catch ex As Exception
+            MsgBox("Error cargando datos: " & ex.Message, MsgBoxStyle.Critical)
+        End Try
     End Sub
 
     Private Sub FrmVerFacturas_FormClosing(
@@ -79,6 +81,8 @@ Public Class FrmVerFacturas
 
         Dim idFactura As String =
             FacturaDataGridView.CurrentRow.Cells("IdFactura").Value.ToString()
+
+        If String.IsNullOrWhiteSpace(idFactura) Then Exit Sub
 
         CargarPagosFactura(idFactura)
         EvaluarPagosCandidatosFactura()
@@ -295,6 +299,7 @@ Public Class FrmVerFacturas
         ' BUSCAR PAGOS VERDES (AUTOMÁTICOS)
         '========================================
         Dim pagosAAsignar As New List(Of DataGridViewRow)
+        Dim idsProcesados As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
 
         For Each r As DataGridViewRow In dgvPagosCandidatos.Rows
             If r.IsNewRow Then Continue For
@@ -304,42 +309,80 @@ Public Class FrmVerFacturas
         Next
 
         '========================================
-        ' SI NO HAY VERDES → USAR SELECCIONADO
+        ' SI NO HAY VERDES → USAR SELECCIONADOS
         '========================================
         If pagosAAsignar.Count = 0 Then
-
-            If dgvPagosCandidatos.CurrentRow Is Nothing Then
-                MsgBox("Seleccione un pago para asignar.", MsgBoxStyle.Exclamation)
-                Exit Sub
+            If dgvPagosCandidatos.SelectedRows.Count > 0 Then
+                For Each filaSeleccionada As DataGridViewRow In dgvPagosCandidatos.SelectedRows
+                    If Not filaSeleccionada.IsNewRow Then
+                        pagosAAsignar.Add(filaSeleccionada)
+                    End If
+                Next
+            ElseIf dgvPagosCandidatos.CurrentRow IsNot Nothing Then
+                pagosAAsignar.Add(dgvPagosCandidatos.CurrentRow)
             End If
+        End If
 
-            pagosAAsignar.Add(dgvPagosCandidatos.CurrentRow)
-
+        If pagosAAsignar.Count = 0 Then
+            MsgBox("Seleccione uno o más pagos para asignar.", MsgBoxStyle.Exclamation)
+            Exit Sub
         End If
 
         '========================================
         ' ASIGNAR PAGOS
         '========================================
         Try
+            Dim pagosAsignados As Integer = 0
             Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
                 cn.Open()
 
                 For Each filaPago As DataGridViewRow In pagosAAsignar
+                    If filaPago.Cells("IdPagoClientesDetalle").Value Is Nothing _
+                        OrElse IsDBNull(filaPago.Cells("IdPagoClientesDetalle").Value) Then
+                        Continue For
+                    End If
 
                     Dim idDetalle As String =
                     filaPago.Cells("IdPagoClientesDetalle").Value.ToString()
 
-                    Using cmd As New SqlCommand("sp_AsignarPagoFactura", cn)
-                        cmd.CommandType = CommandType.StoredProcedure
-                        cmd.Parameters.AddWithValue("@IdFactura", idFactura)
-                        cmd.Parameters.AddWithValue("@IdPagoClientesDetalle", idDetalle)
-                        cmd.ExecuteNonQuery()
-                    End Using
+                    If String.IsNullOrWhiteSpace(idDetalle) Then
+                        Continue For
+                    End If
+
+                    If idsProcesados.Contains(idDetalle) Then
+                        Continue For
+                    End If
+
+                    idsProcesados.Add(idDetalle)
+
+                    Dim estadoFactura As String = String.Empty
+                    If filaPago.Cells("IdFactura").Value IsNot Nothing _
+                        AndAlso Not IsDBNull(filaPago.Cells("IdFactura").Value) Then
+                        estadoFactura = filaPago.Cells("IdFactura").Value.ToString().Trim()
+                    End If
+
+                    If estadoFactura <> String.Empty AndAlso estadoFactura <> "Sin Factura" Then
+                        MsgBox("El pago ya está asignado a otra factura.", MsgBoxStyle.Exclamation)
+                        Continue For
+                    End If
+
+                    Try
+                        Using cmd As New SqlCommand("sp_AsignarPagoFactura", cn)
+                            cmd.CommandType = CommandType.StoredProcedure
+                            cmd.Parameters.AddWithValue("@IdFactura", idFactura)
+                            cmd.Parameters.AddWithValue("@IdPagoClientesDetalle", idDetalle)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        pagosAsignados += 1
+                    Catch ex As SqlException
+                        MsgBox("El pago no existe o ya está asignado.", MsgBoxStyle.Exclamation)
+                    End Try
 
                 Next
             End Using
-
-            MsgBox("Pago(s) asignado(s) correctamente.", MsgBoxStyle.Information)
+            If pagosAsignados > 0 Then
+                MsgBox("Pago(s) asignado(s) correctamente.", MsgBoxStyle.Information)
+            End If
 
             '========================================
             ' REFRESCAR Y VOLVER A LA MISMA FILA
@@ -379,8 +422,12 @@ Public Class FrmVerFacturas
         Dim filaActual As DataRowView =
         CType(FacturaBindingSource.Current, DataRowView)
 
-        Dim idProyecto As String =
-        filaActual("IdProyecto").ToString()
+        If filaActual.Row.IsNull("IdProyecto") Then
+            MsgBox("La factura no tiene proyecto asignado.", MsgBoxStyle.Exclamation)
+            Exit Sub
+        End If
+
+        Dim idProyecto As String = filaActual("IdProyecto").ToString()
 
         '===========================================================
         ' CARGAR PagosClientesDetalle POR IdProyecto
@@ -428,6 +475,8 @@ Public Class FrmVerFacturas
             dgvPagosCandidatos.Columns("Monto").DefaultCellStyle.Alignment =
             DataGridViewContentAlignment.MiddleRight
         End If
+
+        If filaActual.Row.IsNull("IdFactura") Then Exit Sub
 
         Dim idFactura As String = filaActual("IdFactura").ToString()
         CargarPagosFactura(idFactura)
@@ -491,6 +540,8 @@ Public Class FrmVerFacturas
         ' Validaciones básicas
         If FacturaDataGridView.CurrentRow Is Nothing Then Exit Sub
         If dgvPagosCandidatos.Rows.Count = 0 Then Exit Sub
+        If Not FacturaDataGridView.Columns.Contains("Pendiente") Then Exit Sub
+        If Not dgvPagosCandidatos.Columns.Contains("Monto") Then Exit Sub
 
         Dim filaFactura = FacturaDataGridView.CurrentRow
         If IsDBNull(filaFactura.Cells("Pendiente").Value) Then Exit Sub
@@ -506,6 +557,7 @@ Public Class FrmVerFacturas
         ' 1) Obtener montos de pagos candidatos
         '--------------------------------------------------
         Dim montos As New List(Of Decimal)
+        Dim filas = New List(Of DataGridViewRow)
 
         For Each r As DataGridViewRow In dgvPagosCandidatos.Rows
             If r.IsNewRow Then Continue For
@@ -514,6 +566,7 @@ Public Class FrmVerFacturas
             If v Is Nothing OrElse IsDBNull(v) Then Continue For
 
             montos.Add(Math.Round(Convert.ToDecimal(v), 2))
+            filas.Add(r)
         Next
 
         If montos.Count = 0 Then Exit Sub
@@ -528,14 +581,15 @@ Public Class FrmVerFacturas
         '--------------------------------------------------
         ' 3) Evaluar combinación exacta y pintar pagos
         '--------------------------------------------------
-        'Integer indices = 0
-        'Dim indices As List(Of Integer)
+        Dim indices As List(Of Integer)
 
-        'If ExisteCombinacionExacta(montos, pendiente, indices) Then
-        '    For Each i In indices
-        '        dgvPagosCandidatos.Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
-        '    Next
-        'End If
+        If ExisteCombinacionExacta(montos, pendiente, indices) Then
+            For Each i In indices
+                If i >= 0 AndAlso i < filas.Count Then
+                    filas(i).DefaultCellStyle.BackColor = Color.LightGreen
+                End If
+            Next
+        End If
 
     End Sub
 
