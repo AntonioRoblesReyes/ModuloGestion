@@ -308,23 +308,17 @@ Public Class FrmVerFacturas
         Next
 
         '========================================
-        ' SI NO HAY VERDES → USAR SELECCIONADOS
+        ' SI NO HAY VERDES → USAR SELECCIONADO
         '========================================
         If pagosAAsignar.Count = 0 Then
-            If dgvPagosCandidatos.SelectedRows.Count > 0 Then
-                For Each filaSeleccionada As DataGridViewRow In dgvPagosCandidatos.SelectedRows
-                    If Not filaSeleccionada.IsNewRow Then
-                        pagosAAsignar.Add(filaSeleccionada)
-                    End If
-                Next
-            ElseIf dgvPagosCandidatos.CurrentRow IsNot Nothing Then
-                pagosAAsignar.Add(dgvPagosCandidatos.CurrentRow)
-            End If
-        End If
 
-        If pagosAAsignar.Count = 0 Then
-            MsgBox("Seleccione uno o más pagos para asignar.", MsgBoxStyle.Exclamation)
-            Exit Sub
+            If dgvPagosCandidatos.CurrentRow Is Nothing Then
+                MsgBox("Seleccione un pago para asignar.", MsgBoxStyle.Exclamation)
+                Exit Sub
+            End If
+
+            pagosAAsignar.Add(dgvPagosCandidatos.CurrentRow)
+
         End If
 
         '========================================

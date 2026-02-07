@@ -52,8 +52,20 @@ Partial Class FrmVerFacturas
         Me.NombreTextBox = New System.Windows.Forms.TextBox()
         Me.Id_FiscalTextBox = New System.Windows.Forms.TextBox()
         Me.FacturaDataGridView = New System.Windows.Forms.DataGridView()
+        Me.IdFactura = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdProyecto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdCliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RazonSocial = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.ClientesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsClientes = New ModuloGestion.DsClientes()
+        Me.NCF = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Moneda = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalRDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Aprobada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Pagado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FacturaBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsFacturas = New ModuloGestion.DsFacturas()
         Me.ProyectosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -70,18 +82,6 @@ Partial Class FrmVerFacturas
         Me.FacturaDetalleTableAdapter = New ModuloGestion.DsFacturasTableAdapters.FacturaDetalleTableAdapter()
         Me.dgvPagosAplicados = New System.Windows.Forms.DataGridView()
         Me.BtnDesasignarPago = New System.Windows.Forms.Button()
-        Me.IdFactura = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdProyecto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdCliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RazonSocial = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.NCF = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Moneda = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalRDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Aprobada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Pagado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Pendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Id_EmpresaLabel = New System.Windows.Forms.Label()
         NombreLabel = New System.Windows.Forms.Label()
         Id_FiscalLabel = New System.Windows.Forms.Label()
@@ -312,6 +312,48 @@ Partial Class FrmVerFacturas
         Me.FacturaDataGridView.Size = New System.Drawing.Size(1918, 485)
         Me.FacturaDataGridView.TabIndex = 7
         '
+        'IdFactura
+        '
+        Me.IdFactura.DataPropertyName = "IdFactura"
+        Me.IdFactura.HeaderText = "IdFactura"
+        Me.IdFactura.MinimumWidth = 6
+        Me.IdFactura.Name = "IdFactura"
+        Me.IdFactura.ReadOnly = True
+        Me.IdFactura.Width = 125
+        '
+        'IdProyecto
+        '
+        Me.IdProyecto.DataPropertyName = "IdProyecto"
+        Me.IdProyecto.HeaderText = "IdProyecto"
+        Me.IdProyecto.MinimumWidth = 8
+        Me.IdProyecto.Name = "IdProyecto"
+        Me.IdProyecto.ReadOnly = True
+        Me.IdProyecto.Width = 150
+        '
+        'IdCliente
+        '
+        Me.IdCliente.DataPropertyName = "IdCliente"
+        Me.IdCliente.HeaderText = "IdCliente"
+        Me.IdCliente.MinimumWidth = 6
+        Me.IdCliente.Name = "IdCliente"
+        Me.IdCliente.ReadOnly = True
+        Me.IdCliente.Width = 125
+        '
+        'RazonSocial
+        '
+        Me.RazonSocial.DataPropertyName = "IdCliente"
+        Me.RazonSocial.DataSource = Me.ClientesBindingSource
+        Me.RazonSocial.DisplayMember = "Nombre_Cliente"
+        Me.RazonSocial.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.RazonSocial.HeaderText = "IdProyecto"
+        Me.RazonSocial.MinimumWidth = 6
+        Me.RazonSocial.Name = "RazonSocial"
+        Me.RazonSocial.ReadOnly = True
+        Me.RazonSocial.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.RazonSocial.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.RazonSocial.ValueMember = "Id_Fiscal"
+        Me.RazonSocial.Width = 150
+        '
         'ClientesBindingSource
         '
         Me.ClientesBindingSource.DataMember = "Clientes"
@@ -321,6 +363,90 @@ Partial Class FrmVerFacturas
         '
         Me.DsClientes.DataSetName = "DsClientes"
         Me.DsClientes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'NCF
+        '
+        Me.NCF.DataPropertyName = "NCF"
+        Me.NCF.HeaderText = "NCF"
+        Me.NCF.MinimumWidth = 6
+        Me.NCF.Name = "NCF"
+        Me.NCF.ReadOnly = True
+        Me.NCF.Width = 125
+        '
+        'Fecha
+        '
+        Me.Fecha.DataPropertyName = "Fecha"
+        Me.Fecha.HeaderText = "Fecha"
+        Me.Fecha.MinimumWidth = 6
+        Me.Fecha.Name = "Fecha"
+        Me.Fecha.ReadOnly = True
+        Me.Fecha.Width = 60
+        '
+        'Moneda
+        '
+        Me.Moneda.DataPropertyName = "Moneda"
+        Me.Moneda.HeaderText = "Moneda"
+        Me.Moneda.MinimumWidth = 6
+        Me.Moneda.Name = "Moneda"
+        Me.Moneda.ReadOnly = True
+        Me.Moneda.Width = 60
+        '
+        'TotalUS
+        '
+        Me.TotalUS.DataPropertyName = "TotalUS$"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle1.Format = "n2"
+        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle1
+        Me.TotalUS.HeaderText = "TotalUS$"
+        Me.TotalUS.MinimumWidth = 6
+        Me.TotalUS.Name = "TotalUS"
+        Me.TotalUS.ReadOnly = True
+        Me.TotalUS.Width = 80
+        '
+        'TotalRDS
+        '
+        Me.TotalRDS.DataPropertyName = "TotalRDS"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle2.Format = "n2"
+        Me.TotalRDS.DefaultCellStyle = DataGridViewCellStyle2
+        Me.TotalRDS.HeaderText = "TotalRDS"
+        Me.TotalRDS.MinimumWidth = 6
+        Me.TotalRDS.Name = "TotalRDS"
+        Me.TotalRDS.ReadOnly = True
+        Me.TotalRDS.Width = 80
+        '
+        'Aprobada
+        '
+        Me.Aprobada.DataPropertyName = "Aprobada"
+        Me.Aprobada.HeaderText = "Aprobada"
+        Me.Aprobada.MinimumWidth = 6
+        Me.Aprobada.Name = "Aprobada"
+        Me.Aprobada.ReadOnly = True
+        Me.Aprobada.Width = 125
+        '
+        'Pagado
+        '
+        Me.Pagado.DataPropertyName = "Pagado"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle3.Format = "n2"
+        Me.Pagado.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Pagado.HeaderText = "Pagado"
+        Me.Pagado.MinimumWidth = 6
+        Me.Pagado.Name = "Pagado"
+        Me.Pagado.ReadOnly = True
+        Me.Pagado.Width = 125
+        '
+        'Pendiente
+        '
+        Me.Pendiente.DataPropertyName = "Pendiente"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle4.Format = "n2"
+        Me.Pendiente.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Pendiente.HeaderText = "Pendiente"
+        Me.Pendiente.MinimumWidth = 6
+        Me.Pendiente.Name = "Pendiente"
+        Me.Pendiente.ReadOnly = True
+        Me.Pendiente.Width = 125
         '
         'FacturaBindingSource
         '
@@ -446,132 +572,6 @@ Partial Class FrmVerFacturas
         Me.BtnDesasignarPago.Text = "Desasignar Pago"
         Me.BtnDesasignarPago.UseVisualStyleBackColor = True
         '
-        'IdFactura
-        '
-        Me.IdFactura.DataPropertyName = "IdFactura"
-        Me.IdFactura.HeaderText = "IdFactura"
-        Me.IdFactura.MinimumWidth = 6
-        Me.IdFactura.Name = "IdFactura"
-        Me.IdFactura.ReadOnly = True
-        Me.IdFactura.Width = 125
-        '
-        'IdProyecto
-        '
-        Me.IdProyecto.DataPropertyName = "IdProyecto"
-        Me.IdProyecto.HeaderText = "IdProyecto"
-        Me.IdProyecto.MinimumWidth = 8
-        Me.IdProyecto.Name = "IdProyecto"
-        Me.IdProyecto.ReadOnly = True
-        Me.IdProyecto.Width = 150
-        '
-        'IdCliente
-        '
-        Me.IdCliente.DataPropertyName = "IdCliente"
-        Me.IdCliente.HeaderText = "IdCliente"
-        Me.IdCliente.MinimumWidth = 6
-        Me.IdCliente.Name = "IdCliente"
-        Me.IdCliente.ReadOnly = True
-        Me.IdCliente.Width = 125
-        '
-        'RazonSocial
-        '
-        Me.RazonSocial.DataPropertyName = "IdCliente"
-        Me.RazonSocial.DataSource = Me.ClientesBindingSource
-        Me.RazonSocial.DisplayMember = "Nombre_Cliente"
-        Me.RazonSocial.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-        Me.RazonSocial.HeaderText = "IdProyecto"
-        Me.RazonSocial.MinimumWidth = 6
-        Me.RazonSocial.Name = "RazonSocial"
-        Me.RazonSocial.ReadOnly = True
-        Me.RazonSocial.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.RazonSocial.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.RazonSocial.ValueMember = "Id_Fiscal"
-        Me.RazonSocial.Width = 150
-        '
-        'NCF
-        '
-        Me.NCF.DataPropertyName = "NCF"
-        Me.NCF.HeaderText = "NCF"
-        Me.NCF.MinimumWidth = 6
-        Me.NCF.Name = "NCF"
-        Me.NCF.ReadOnly = True
-        Me.NCF.Width = 125
-        '
-        'Fecha
-        '
-        Me.Fecha.DataPropertyName = "Fecha"
-        Me.Fecha.HeaderText = "Fecha"
-        Me.Fecha.MinimumWidth = 6
-        Me.Fecha.Name = "Fecha"
-        Me.Fecha.ReadOnly = True
-        Me.Fecha.Width = 60
-        '
-        'Moneda
-        '
-        Me.Moneda.DataPropertyName = "Moneda"
-        Me.Moneda.HeaderText = "Moneda"
-        Me.Moneda.MinimumWidth = 6
-        Me.Moneda.Name = "Moneda"
-        Me.Moneda.ReadOnly = True
-        Me.Moneda.Width = 60
-        '
-        'TotalUS
-        '
-        Me.TotalUS.DataPropertyName = "TotalUS$"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle1.Format = "n2"
-        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle1
-        Me.TotalUS.HeaderText = "TotalUS$"
-        Me.TotalUS.MinimumWidth = 6
-        Me.TotalUS.Name = "TotalUS"
-        Me.TotalUS.ReadOnly = True
-        Me.TotalUS.Width = 80
-        '
-        'TotalRDS
-        '
-        Me.TotalRDS.DataPropertyName = "TotalRDS"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "n2"
-        Me.TotalRDS.DefaultCellStyle = DataGridViewCellStyle2
-        Me.TotalRDS.HeaderText = "TotalRDS"
-        Me.TotalRDS.MinimumWidth = 6
-        Me.TotalRDS.Name = "TotalRDS"
-        Me.TotalRDS.ReadOnly = True
-        Me.TotalRDS.Width = 80
-        '
-        'Aprobada
-        '
-        Me.Aprobada.DataPropertyName = "Aprobada"
-        Me.Aprobada.HeaderText = "Aprobada"
-        Me.Aprobada.MinimumWidth = 6
-        Me.Aprobada.Name = "Aprobada"
-        Me.Aprobada.ReadOnly = True
-        Me.Aprobada.Width = 125
-        '
-        'Pagado
-        '
-        Me.Pagado.DataPropertyName = "Pagado"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle3.Format = "n2"
-        Me.Pagado.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Pagado.HeaderText = "Pagado"
-        Me.Pagado.MinimumWidth = 6
-        Me.Pagado.Name = "Pagado"
-        Me.Pagado.ReadOnly = True
-        Me.Pagado.Width = 125
-        '
-        'Pendiente
-        '
-        Me.Pendiente.DataPropertyName = "Pendiente"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle4.Format = "n2"
-        Me.Pendiente.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Pendiente.HeaderText = "Pendiente"
-        Me.Pendiente.MinimumWidth = 6
-        Me.Pendiente.Name = "Pendiente"
-        Me.Pendiente.ReadOnly = True
-        Me.Pendiente.Width = 125
-        '
         'FrmVerFacturas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -594,7 +594,7 @@ Partial Class FrmVerFacturas
         Me.Controls.Add(Me.EmpresasBindingNavigator)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmVerFacturas"
-        Me.Text = "FrmVerFacturas"
+        Me.Text = "vet"
         CType(Me.DsEmpresas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmpresasBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmpresasBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
