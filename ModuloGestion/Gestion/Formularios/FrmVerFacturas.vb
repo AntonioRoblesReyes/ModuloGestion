@@ -299,6 +299,7 @@ Public Class FrmVerFacturas
         ' BUSCAR PAGOS VERDES (AUTOMÁTICOS)
         '========================================
         Dim pagosAAsignar As New List(Of DataGridViewRow)
+        Dim idsProcesados As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
 
         For Each r As DataGridViewRow In dgvPagosCandidatos.Rows
             If r.IsNewRow Then Continue For
@@ -325,25 +326,57 @@ Public Class FrmVerFacturas
         ' ASIGNAR PAGOS
         '========================================
         Try
+            Dim pagosAsignados As Integer = 0
             Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
                 cn.Open()
 
                 For Each filaPago As DataGridViewRow In pagosAAsignar
+                    If filaPago.Cells("IdPagoClientesDetalle").Value Is Nothing _
+                        OrElse IsDBNull(filaPago.Cells("IdPagoClientesDetalle").Value) Then
+                        Continue For
+                    End If
 
                     Dim idDetalle As String =
                     filaPago.Cells("IdPagoClientesDetalle").Value.ToString()
 
-                    Using cmd As New SqlCommand("sp_AsignarPagoFactura", cn)
-                        cmd.CommandType = CommandType.StoredProcedure
-                        cmd.Parameters.AddWithValue("@IdFactura", idFactura)
-                        cmd.Parameters.AddWithValue("@IdPagoClientesDetalle", idDetalle)
-                        cmd.ExecuteNonQuery()
-                    End Using
+                    If String.IsNullOrWhiteSpace(idDetalle) Then
+                        Continue For
+                    End If
+
+                    If idsProcesados.Contains(idDetalle) Then
+                        Continue For
+                    End If
+
+                    idsProcesados.Add(idDetalle)
+
+                    Dim estadoFactura As String = String.Empty
+                    If filaPago.Cells("IdFactura").Value IsNot Nothing _
+                        AndAlso Not IsDBNull(filaPago.Cells("IdFactura").Value) Then
+                        estadoFactura = filaPago.Cells("IdFactura").Value.ToString().Trim()
+                    End If
+
+                    If estadoFactura <> String.Empty AndAlso estadoFactura <> "Sin Factura" Then
+                        MsgBox("El pago ya está asignado a otra factura.", MsgBoxStyle.Exclamation)
+                        Continue For
+                    End If
+
+                    Try
+                        Using cmd As New SqlCommand("sp_AsignarPagoFactura", cn)
+                            cmd.CommandType = CommandType.StoredProcedure
+                            cmd.Parameters.AddWithValue("@IdFactura", idFactura)
+                            cmd.Parameters.AddWithValue("@IdPagoClientesDetalle", idDetalle)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        pagosAsignados += 1
+                    Catch ex As SqlException
+                        MsgBox("El pago no existe o ya está asignado.", MsgBoxStyle.Exclamation)
+                    End Try
 
                 Next
             End Using
-
-            MsgBox("Pago(s) asignado(s) correctamente.", MsgBoxStyle.Information)
+            If pagosAsignados > 0 Then
+                MsgBox("Pago(s) asignado(s) correctamente.", MsgBoxStyle.Information)
+            End If
 
             '========================================
             ' REFRESCAR Y VOLVER A LA MISMA FILA
