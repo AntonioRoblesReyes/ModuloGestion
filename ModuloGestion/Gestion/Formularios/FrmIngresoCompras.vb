@@ -297,6 +297,16 @@ Public Class FrmIngresoCompras
                 Double.TryParse(Convert.ToString(row.Cells(COL_PRECIOUS).Value), precioUS)
                 Double.TryParse(Convert.ToString(row.Cells(COL_PRECIORD).Value), precioRD)
 
+                If itbis < 0 Then
+                    itbis = 0
+                End If
+
+                If itbis > 1 Then
+                    itbis = itbis / 100
+                End If
+
+                row.Cells(COL_ITBIS).Value = itbis
+
                 If tasa <= 0 Then
                     MessageBox.Show("La tasa de cambio debe ser mayor que cero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Exit Sub
