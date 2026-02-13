@@ -499,7 +499,7 @@ Partial Class FrmGastosProyecto
         Me.PanelTotales.Location = New System.Drawing.Point(3, 593)
         Me.PanelTotales.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PanelTotales.Name = "PanelTotales"
-        Me.PanelTotales.Padding = New System.Windows.Forms.Padding(11, 12, 11, 12)
+        Me.PanelTotales.Padding = New System.Windows.Forms.Padding(8, 6, 8, 6)
         Me.PanelTotales.Size = New System.Drawing.Size(766, 379)
         Me.PanelTotales.TabIndex = 3
         '
@@ -511,11 +511,11 @@ Partial Class FrmGastosProyecto
         Me.tlpTotalesMain.Controls.Add(Me.tlpTotales, 0, 0)
         Me.tlpTotalesMain.Controls.Add(Me.PanelTotalesDerecha, 1, 0)
         Me.tlpTotalesMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpTotalesMain.Location = New System.Drawing.Point(11, 12)
+        Me.tlpTotalesMain.Location = New System.Drawing.Point(8, 6)
         Me.tlpTotalesMain.Name = "tlpTotalesMain"
         Me.tlpTotalesMain.RowCount = 1
         Me.tlpTotalesMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 355.0!))
-        Me.tlpTotalesMain.Size = New System.Drawing.Size(744, 355)
+        Me.tlpTotalesMain.Size = New System.Drawing.Size(750, 365)
         Me.tlpTotalesMain.TabIndex = 0
         '
         'tlpTotales
@@ -849,8 +849,8 @@ Partial Class FrmGastosProyecto
         Me.tlpResumenAcciones.Location = New System.Drawing.Point(0, 0)
         Me.tlpResumenAcciones.Name = "tlpResumenAcciones"
         Me.tlpResumenAcciones.RowCount = 2
-        Me.tlpResumenAcciones.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-        Me.tlpResumenAcciones.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.tlpResumenAcciones.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpResumenAcciones.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0.0!))
         Me.tlpResumenAcciones.Size = New System.Drawing.Size(292, 349)
         Me.tlpResumenAcciones.TabIndex = 0
         '
@@ -860,11 +860,12 @@ Partial Class FrmGastosProyecto
         Me.PanelResumen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PanelResumen.Controls.Add(Me.TableLayoutPanel1)
         Me.PanelResumen.Controls.Add(Me.Label4)
-        Me.PanelResumen.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelResumen.Location = New System.Drawing.Point(3, 3)
+        Me.PanelResumen.Dock = System.Windows.Forms.DockStyle.None
+        Me.PanelResumen.Location = New System.Drawing.Point(3, 103)
         Me.PanelResumen.Name = "PanelResumen"
-        Me.PanelResumen.Padding = New System.Windows.Forms.Padding(10)
-        Me.PanelResumen.Size = New System.Drawing.Size(286, 238)
+        Me.PanelResumen.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PanelResumen.Padding = New System.Windows.Forms.Padding(8, 6, 8, 6)
+        Me.PanelResumen.Size = New System.Drawing.Size(286, 136)
         Me.PanelResumen.TabIndex = 0
         '
         'TableLayoutPanel1
@@ -884,7 +885,7 @@ Partial Class FrmGastosProyecto
         Me.TableLayoutPanel1.Controls.Add(Me.Label9, 0, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.lblPorcentajeBeneficio, 1, 4)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(10, 38)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(8, 34)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 5
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
@@ -894,7 +895,7 @@ Partial Class FrmGastosProyecto
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(266, 150)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(266, 96)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'Label5
@@ -1030,7 +1031,7 @@ Partial Class FrmGastosProyecto
         '
         Me.splitCompras.Panel2.Controls.Add(Me.CompraMaterialesDetalleDataGridView)
         Me.splitCompras.Size = New System.Drawing.Size(1283, 259)
-        Me.splitCompras.SplitterDistance = 612
+        Me.splitCompras.SplitterDistance = 770
         Me.splitCompras.SplitterWidth = 7
         Me.splitCompras.TabIndex = 2
         '
@@ -1040,6 +1041,7 @@ Partial Class FrmGastosProyecto
         Me.CostoComprasProyectoDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.CostoComprasProyectoDataGridView.AllowUserToAddRows = False
         Me.CostoComprasProyectoDataGridView.AllowUserToDeleteRows = False
+        Me.CostoComprasProyectoDataGridView.AllowUserToResizeRows = False
         DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.CostoComprasProyectoDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
         Me.CostoComprasProyectoDataGridView.AutoGenerateColumns = False
@@ -1157,6 +1159,7 @@ Partial Class FrmGastosProyecto
         Me.CompraMaterialesDetalleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.CompraMaterialesDetalleDataGridView.AllowUserToAddRows = False
         Me.CompraMaterialesDetalleDataGridView.AllowUserToDeleteRows = False
+        Me.CompraMaterialesDetalleDataGridView.AllowUserToResizeRows = False
         DataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.CompraMaterialesDetalleDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle20
         Me.CompraMaterialesDetalleDataGridView.AutoGenerateColumns = False
@@ -1258,6 +1261,7 @@ Partial Class FrmGastosProyecto
         '
         'splitFacturas
         '
+        Me.splitFacturas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.splitFacturas.Location = New System.Drawing.Point(3, 59)
         Me.splitFacturas.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.splitFacturas.Name = "splitFacturas"
@@ -1269,8 +1273,8 @@ Partial Class FrmGastosProyecto
         'splitFacturas.Panel2
         '
         Me.splitFacturas.Panel2.Controls.Add(Me.FacturaMontajeDetalleDataGridView)
-        Me.splitFacturas.Size = New System.Drawing.Size(1174, 259)
-        Me.splitFacturas.SplitterDistance = 561
+        Me.splitFacturas.Size = New System.Drawing.Size(1283, 259)
+        Me.splitFacturas.SplitterDistance = 770
         Me.splitFacturas.SplitterWidth = 7
         Me.splitFacturas.TabIndex = 1
         '
@@ -1280,6 +1284,7 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.FacturaMontajeDataGridView.AllowUserToAddRows = False
         Me.FacturaMontajeDataGridView.AllowUserToDeleteRows = False
+        Me.FacturaMontajeDataGridView.AllowUserToResizeRows = False
         DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.FacturaMontajeDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle23
         Me.FacturaMontajeDataGridView.AutoGenerateColumns = False
@@ -1401,6 +1406,7 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeDetalleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.FacturaMontajeDetalleDataGridView.AllowUserToAddRows = False
         Me.FacturaMontajeDetalleDataGridView.AllowUserToDeleteRows = False
+        Me.FacturaMontajeDetalleDataGridView.AllowUserToResizeRows = False
         DataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.FacturaMontajeDetalleDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle26
         Me.FacturaMontajeDetalleDataGridView.AutoGenerateColumns = False
@@ -1509,9 +1515,9 @@ Partial Class FrmGastosProyecto
         Me.tlpMain.Name = "tlpMain"
         Me.tlpMain.RowCount = 5
         Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
-        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 408.0!))
+        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
+        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
+        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
         Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33.0!))
         Me.tlpMain.Size = New System.Drawing.Size(1289, 1031)
         Me.tlpMain.TabIndex = 0
