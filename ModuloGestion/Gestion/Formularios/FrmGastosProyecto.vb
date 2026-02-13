@@ -3,21 +3,64 @@
     Private Sub EstiloDGV(dgv As DataGridView)
         With dgv
             .EnableHeadersVisualStyles = False
-            .ColumnHeadersDefaultCellStyle.BackColor = Color.Gainsboro
-            .ColumnHeadersDefaultCellStyle.ForeColor = Color.Black
-            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+            .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
+            .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 31, 61)
+            .ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+            .ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(20, 31, 61)
+            .ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White
+            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI Semibold", 9.5!, FontStyle.Bold)
 
             .DefaultCellStyle.Font = New Font("Segoe UI", 9)
-            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 232, 250)
+            .DefaultCellStyle.SelectionForeColor = Color.FromArgb(20, 31, 61)
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 255)
 
             .BorderStyle = BorderStyle.None
-            .GridColor = Color.LightGray
+            .GridColor = Color.FromArgb(223, 228, 240)
 
             .RowHeadersVisible = False
             .MultiSelect = False
             .SelectionMode = DataGridViewSelectionMode.FullRowSelect
             .ReadOnly = True
+            .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
         End With
+    End Sub
+
+    Private Sub AplicarTemaPremium()
+        BackColor = Color.FromArgb(236, 240, 248)
+        Font = New Font("Segoe UI", 9)
+
+        PanelHeader.BackColor = Color.FromArgb(15, 28, 63)
+        Label1.ForeColor = Color.White
+        Label1.Font = New Font("Segoe UI Semibold", 12.0!, FontStyle.Bold)
+
+        PanelTotales.BackColor = Color.White
+        PanelTotales.BorderStyle = BorderStyle.FixedSingle
+        PanelResumen.BackColor = Color.White
+        PanelResumen.BorderStyle = BorderStyle.FixedSingle
+
+        Label4.ForeColor = Color.FromArgb(20, 31, 61)
+        Label4.Font = New Font("Segoe UI Semibold", 10.5!, FontStyle.Bold)
+
+        EstiloCajaResumen(TextBox1)
+        EstiloCajaResumen(TextBox2)
+        EstiloCajaResumen(TextBox3)
+        EstiloCajaResumen(TextBox4)
+        EstiloCajaResumen(TextBox5)
+        EstiloCajaResumen(TextBox6)
+        EstiloCajaResumen(TextBox7)
+        EstiloCajaResumen(TextBox8)
+        EstiloCajaResumen(TextBox9)
+        EstiloCajaResumen(TextBox10)
+        EstiloCajaResumen(TextBox11)
+        EstiloCajaResumen(txtTasaCambio, True)
+    End Sub
+
+    Private Sub EstiloCajaResumen(txt As TextBox, Optional editable As Boolean = False)
+        txt.BorderStyle = BorderStyle.FixedSingle
+        txt.BackColor = If(editable, Color.White, Color.FromArgb(248, 250, 255))
+        txt.ForeColor = Color.FromArgb(32, 42, 74)
+        txt.Font = New Font("Segoe UI Semibold", 9.5!, FontStyle.Bold)
     End Sub
 
 
@@ -115,6 +158,7 @@
         Me.CostoComprasProyectoTableAdapter.FillByIdProyecto(Me.DsCompras.CostoComprasProyecto, Label1.Text)
         txtTasaCambio.Text = My.Settings.TasaCambio.ToString("N2")
 
+        AplicarTemaPremium()
         ConfigurarAnchosColumnas()
 
         ' Realizar sumatorias
