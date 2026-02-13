@@ -57,6 +57,18 @@ Partial Class FrmGastosProyecto
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.IdproyectoPresupuestosDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdCompraDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -162,6 +174,9 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPagosMontaje = New ModuloGestion.DsPagosMontaje()
         Me.FacturaMontajeDetalleDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FacturaMontajeDetalleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PanelHeader = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -174,10 +189,6 @@ Partial Class FrmGastosProyecto
         Me.TableAdapterManager = New ModuloGestion.DsComprasTableAdapters.TableAdapterManager()
         Me.CostoComprasProyectoTableAdapter = New ModuloGestion.DsComprasTableAdapters.CostoComprasProyectoTableAdapter()
         Me.CompraMaterialesDetalleTableAdapter = New ModuloGestion.DsComprasTableAdapters.CompraMaterialesDetalleTableAdapter()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PanelTotales.SuspendLayout()
         Me.tlpTotalesMain.SuspendLayout()
         Me.tlpTotales.SuspendLayout()
@@ -482,6 +493,8 @@ Partial Class FrmGastosProyecto
         '
         'PanelTotales
         '
+        Me.PanelTotales.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.PanelTotales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PanelTotales.Controls.Add(Me.tlpTotalesMain)
         Me.PanelTotales.Location = New System.Drawing.Point(3, 593)
         Me.PanelTotales.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -507,6 +520,7 @@ Partial Class FrmGastosProyecto
         '
         'tlpTotales
         '
+        Me.tlpTotales.BackColor = System.Drawing.Color.White
         Me.tlpTotales.ColumnCount = 2
         Me.tlpTotales.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.0!))
         Me.tlpTotales.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.0!))
@@ -563,7 +577,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox1
         '
+        Me.TextBox1.BackColor = System.Drawing.Color.White
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox1.Location = New System.Drawing.Point(201, 4)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox1.Name = "TextBox1"
@@ -584,6 +601,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox2
         '
+        Me.TextBox2.BackColor = System.Drawing.Color.White
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox2.Location = New System.Drawing.Point(201, 34)
         Me.TextBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox2.Name = "TextBox2"
@@ -604,7 +625,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox3
         '
+        Me.TextBox3.BackColor = System.Drawing.Color.White
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox3.Location = New System.Drawing.Point(201, 64)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox3.Name = "TextBox3"
@@ -625,7 +649,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox8
         '
+        Me.TextBox8.BackColor = System.Drawing.Color.White
+        Me.TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox8.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox8.Location = New System.Drawing.Point(201, 94)
         Me.TextBox8.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox8.Name = "TextBox8"
@@ -646,7 +673,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox9
         '
+        Me.TextBox9.BackColor = System.Drawing.Color.White
+        Me.TextBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox9.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox9.Location = New System.Drawing.Point(201, 124)
         Me.TextBox9.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox9.Name = "TextBox9"
@@ -667,7 +697,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox4
         '
+        Me.TextBox4.BackColor = System.Drawing.Color.White
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox4.Location = New System.Drawing.Point(201, 154)
         Me.TextBox4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox4.Name = "TextBox4"
@@ -688,7 +721,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox5
         '
+        Me.TextBox5.BackColor = System.Drawing.Color.White
+        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox5.Location = New System.Drawing.Point(201, 184)
         Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox5.Name = "TextBox5"
@@ -709,7 +745,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox6
         '
+        Me.TextBox6.BackColor = System.Drawing.Color.White
+        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox6.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox6.Location = New System.Drawing.Point(201, 214)
         Me.TextBox6.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox6.Name = "TextBox6"
@@ -730,7 +769,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox10
         '
+        Me.TextBox10.BackColor = System.Drawing.Color.White
+        Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox10.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox10.Location = New System.Drawing.Point(201, 244)
         Me.TextBox10.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox10.Name = "TextBox10"
@@ -751,7 +793,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox7
         '
+        Me.TextBox7.BackColor = System.Drawing.Color.White
+        Me.TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox7.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox7.Location = New System.Drawing.Point(201, 274)
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox7.Name = "TextBox7"
@@ -772,7 +817,10 @@ Partial Class FrmGastosProyecto
         '
         'TextBox11
         '
+        Me.TextBox11.BackColor = System.Drawing.Color.White
+        Me.TextBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox11.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextBox11.Location = New System.Drawing.Point(201, 304)
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox11.Name = "TextBox11"
@@ -783,7 +831,8 @@ Partial Class FrmGastosProyecto
         '
         'PanelTotalesDerecha
         '
-        Me.PanelTotalesDerecha.BackColor = System.Drawing.Color.Gainsboro
+        Me.PanelTotalesDerecha.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.PanelTotalesDerecha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PanelTotalesDerecha.Controls.Add(Me.tlpResumenAcciones)
         Me.PanelTotalesDerecha.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelTotalesDerecha.Location = New System.Drawing.Point(449, 3)
@@ -808,6 +857,7 @@ Partial Class FrmGastosProyecto
         'PanelResumen
         '
         Me.PanelResumen.BackColor = System.Drawing.Color.White
+        Me.PanelResumen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PanelResumen.Controls.Add(Me.TableLayoutPanel1)
         Me.PanelResumen.Controls.Add(Me.Label4)
         Me.PanelResumen.Dock = System.Windows.Forms.DockStyle.Fill
@@ -859,7 +909,10 @@ Partial Class FrmGastosProyecto
         '
         'txtTasaCambio
         '
+        Me.txtTasaCambio.BackColor = System.Drawing.Color.White
+        Me.txtTasaCambio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtTasaCambio.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtTasaCambio.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtTasaCambio.Location = New System.Drawing.Point(162, 3)
         Me.txtTasaCambio.Name = "txtTasaCambio"
         Me.txtTasaCambio.Size = New System.Drawing.Size(101, 26)
@@ -955,7 +1008,7 @@ Partial Class FrmGastosProyecto
         '
         Me.Label4.AutoSize = True
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(10, 10)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(136, 28)
@@ -983,11 +1036,25 @@ Partial Class FrmGastosProyecto
         '
         'CostoComprasProyectoDataGridView
         '
+        Me.CostoComprasProyectoDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.CostoComprasProyectoDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.CostoComprasProyectoDataGridView.AllowUserToAddRows = False
         Me.CostoComprasProyectoDataGridView.AllowUserToDeleteRows = False
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CostoComprasProyectoDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
         Me.CostoComprasProyectoDataGridView.AutoGenerateColumns = False
         Me.CostoComprasProyectoDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.CostoComprasProyectoDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(90, Byte), Integer))
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle18.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(90, Byte), Integer))
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.CostoComprasProyectoDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle18
         Me.CostoComprasProyectoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.CostoComprasProyectoDataGridView.EnableHeadersVisualStyles = False
         Me.CostoComprasProyectoDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdproyectoPresupuestosDataGridViewTextBoxColumn, Me.IdCompraDataGridViewTextBoxColumn, Me.RazonSocialDataGridViewTextBoxColumn, Me.SubtotalDataGridViewTextBoxColumn, Me.ItebisDataGridViewTextBoxColumn, Me.TotalDataGridViewTextBoxColumn, Me.PagadoRD})
         Me.CostoComprasProyectoDataGridView.DataSource = Me.CostoComprasProyectoBindingSource
         Me.CostoComprasProyectoDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
@@ -998,6 +1065,9 @@ Partial Class FrmGastosProyecto
         Me.CostoComprasProyectoDataGridView.ReadOnly = True
         Me.CostoComprasProyectoDataGridView.RowHeadersVisible = False
         Me.CostoComprasProyectoDataGridView.RowHeadersWidth = 51
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black
+        Me.CostoComprasProyectoDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle19
         Me.CostoComprasProyectoDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.CostoComprasProyectoDataGridView.Size = New System.Drawing.Size(612, 259)
         Me.CostoComprasProyectoDataGridView.TabIndex = 0
@@ -1083,11 +1153,25 @@ Partial Class FrmGastosProyecto
         '
         'CompraMaterialesDetalleDataGridView
         '
+        Me.CompraMaterialesDetalleDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.CompraMaterialesDetalleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.CompraMaterialesDetalleDataGridView.AllowUserToAddRows = False
         Me.CompraMaterialesDetalleDataGridView.AllowUserToDeleteRows = False
+        DataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CompraMaterialesDetalleDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle20
         Me.CompraMaterialesDetalleDataGridView.AutoGenerateColumns = False
         Me.CompraMaterialesDetalleDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.CompraMaterialesDetalleDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(90, Byte), Integer))
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(90, Byte), Integer))
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.CompraMaterialesDetalleDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle21
         Me.CompraMaterialesDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.CompraMaterialesDetalleDataGridView.EnableHeadersVisualStyles = False
         Me.CompraMaterialesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id_Compra, Me.DataGridViewTextBoxColumn32, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn24, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn26})
         Me.CompraMaterialesDetalleDataGridView.DataSource = Me.CompraMaterialesDetalleBindingSource
         Me.CompraMaterialesDetalleDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1098,6 +1182,9 @@ Partial Class FrmGastosProyecto
         Me.CompraMaterialesDetalleDataGridView.ReadOnly = True
         Me.CompraMaterialesDetalleDataGridView.RowHeadersVisible = False
         Me.CompraMaterialesDetalleDataGridView.RowHeadersWidth = 51
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Black
+        Me.CompraMaterialesDetalleDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle22
         Me.CompraMaterialesDetalleDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.CompraMaterialesDetalleDataGridView.Size = New System.Drawing.Size(664, 259)
         Me.CompraMaterialesDetalleDataGridView.TabIndex = 0
@@ -1171,7 +1258,6 @@ Partial Class FrmGastosProyecto
         '
         'splitFacturas
         '
-        Me.splitFacturas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.splitFacturas.Location = New System.Drawing.Point(3, 59)
         Me.splitFacturas.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.splitFacturas.Name = "splitFacturas"
@@ -1183,18 +1269,32 @@ Partial Class FrmGastosProyecto
         'splitFacturas.Panel2
         '
         Me.splitFacturas.Panel2.Controls.Add(Me.FacturaMontajeDetalleDataGridView)
-        Me.splitFacturas.Size = New System.Drawing.Size(1283, 259)
-        Me.splitFacturas.SplitterDistance = 613
+        Me.splitFacturas.Size = New System.Drawing.Size(1174, 259)
+        Me.splitFacturas.SplitterDistance = 561
         Me.splitFacturas.SplitterWidth = 7
         Me.splitFacturas.TabIndex = 1
         '
         'FacturaMontajeDataGridView
         '
+        Me.FacturaMontajeDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.FacturaMontajeDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.FacturaMontajeDataGridView.AllowUserToAddRows = False
         Me.FacturaMontajeDataGridView.AllowUserToDeleteRows = False
+        DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.FacturaMontajeDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle23
         Me.FacturaMontajeDataGridView.AutoGenerateColumns = False
         Me.FacturaMontajeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.FacturaMontajeDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(90, Byte), Integer))
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(90, Byte), Integer))
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.FacturaMontajeDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle24
         Me.FacturaMontajeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.FacturaMontajeDataGridView.EnableHeadersVisualStyles = False
         Me.FacturaMontajeDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.SubTotal, Me.Itebis, Me.Total, Me.Pagado, Me.Pendiente, Me.TotalIrs})
         Me.FacturaMontajeDataGridView.DataSource = Me.FacturaMontajeBindingSource
         Me.FacturaMontajeDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1205,8 +1305,11 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeDataGridView.ReadOnly = True
         Me.FacturaMontajeDataGridView.RowHeadersVisible = False
         Me.FacturaMontajeDataGridView.RowHeadersWidth = 51
+        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black
+        Me.FacturaMontajeDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle25
         Me.FacturaMontajeDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(613, 259)
+        Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(561, 259)
         Me.FacturaMontajeDataGridView.TabIndex = 0
         '
         'DataGridViewTextBoxColumn1
@@ -1294,14 +1397,27 @@ Partial Class FrmGastosProyecto
         '
         'FacturaMontajeDetalleDataGridView
         '
+        Me.FacturaMontajeDetalleDataGridView.BackgroundColor = System.Drawing.Color.White
+        Me.FacturaMontajeDetalleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.FacturaMontajeDetalleDataGridView.AllowUserToAddRows = False
         Me.FacturaMontajeDetalleDataGridView.AllowUserToDeleteRows = False
+        DataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.FacturaMontajeDetalleDataGridView.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle26
         Me.FacturaMontajeDetalleDataGridView.AutoGenerateColumns = False
         Me.FacturaMontajeDetalleDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.FacturaMontajeDetalleDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(90, Byte), Integer))
+        DataGridViewCellStyle27.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle27.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(90, Byte), Integer))
+        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.FacturaMontajeDetalleDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle27
         Me.FacturaMontajeDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaMontajeDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Descripcion, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17})
+        Me.FacturaMontajeDetalleDataGridView.EnableHeadersVisualStyles = False
+        Me.FacturaMontajeDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17})
         Me.FacturaMontajeDetalleDataGridView.DataSource = Me.FacturaMontajeDetalleBindingSource
-        Me.FacturaMontajeDetalleDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FacturaMontajeDetalleDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.FacturaMontajeDetalleDataGridView.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.FacturaMontajeDetalleDataGridView.MultiSelect = False
@@ -1309,9 +1425,45 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeDetalleDataGridView.ReadOnly = True
         Me.FacturaMontajeDetalleDataGridView.RowHeadersVisible = False
         Me.FacturaMontajeDetalleDataGridView.RowHeadersWidth = 51
+        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black
+        Me.FacturaMontajeDetalleDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle28
         Me.FacturaMontajeDetalleDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(663, 259)
+        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(712, 259)
         Me.FacturaMontajeDetalleDataGridView.TabIndex = 0
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Cantidad"
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle14.Format = "n2"
+        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle14
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Cantidad"
+        Me.DataGridViewTextBoxColumn15.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        Me.DataGridViewTextBoxColumn15.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn16
+        '
+        Me.DataGridViewTextBoxColumn16.DataPropertyName = "Precio"
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle15.Format = "n2"
+        Me.DataGridViewTextBoxColumn16.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DataGridViewTextBoxColumn16.HeaderText = "Precio"
+        Me.DataGridViewTextBoxColumn16.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        Me.DataGridViewTextBoxColumn16.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn17
+        '
+        Me.DataGridViewTextBoxColumn17.DataPropertyName = "TotalPartida"
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle16.Format = "n2"
+        Me.DataGridViewTextBoxColumn17.DefaultCellStyle = DataGridViewCellStyle16
+        Me.DataGridViewTextBoxColumn17.HeaderText = "TotalPartida"
+        Me.DataGridViewTextBoxColumn17.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        Me.DataGridViewTextBoxColumn17.ReadOnly = True
         '
         'FacturaMontajeDetalleBindingSource
         '
@@ -1320,6 +1472,7 @@ Partial Class FrmGastosProyecto
         '
         'PanelHeader
         '
+        Me.PanelHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.PanelHeader.Controls.Add(Me.Label1)
         Me.PanelHeader.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelHeader.Location = New System.Drawing.Point(3, 4)
@@ -1333,7 +1486,8 @@ Partial Class FrmGastosProyecto
         '
         Me.Label1.AutoSize = True
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(11, 10)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(200, 28)
@@ -1409,56 +1563,16 @@ Partial Class FrmGastosProyecto
         '
         Me.CompraMaterialesDetalleTableAdapter.ClearBeforeFill = True
         '
-        'Descripcion
-        '
-        Me.Descripcion.DataPropertyName = "Descripcion"
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.MinimumWidth = 8
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn15
-        '
-        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle14.Format = "n2"
-        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle14
-        Me.DataGridViewTextBoxColumn15.HeaderText = "Cantidad"
-        Me.DataGridViewTextBoxColumn15.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
-        Me.DataGridViewTextBoxColumn15.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn16
-        '
-        Me.DataGridViewTextBoxColumn16.DataPropertyName = "Precio"
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle15.Format = "n2"
-        Me.DataGridViewTextBoxColumn16.DefaultCellStyle = DataGridViewCellStyle15
-        Me.DataGridViewTextBoxColumn16.HeaderText = "Precio"
-        Me.DataGridViewTextBoxColumn16.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
-        Me.DataGridViewTextBoxColumn16.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn17
-        '
-        Me.DataGridViewTextBoxColumn17.DataPropertyName = "TotalPartida"
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle16.Format = "n2"
-        Me.DataGridViewTextBoxColumn17.DefaultCellStyle = DataGridViewCellStyle16
-        Me.DataGridViewTextBoxColumn17.HeaderText = "TotalPartida"
-        Me.DataGridViewTextBoxColumn17.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
-        Me.DataGridViewTextBoxColumn17.ReadOnly = True
-        '
         'FrmGastosProyecto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(238, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1289, 1031)
         Me.Controls.Add(Me.tlpMain)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmGastosProyecto"
-        Me.Text = "FrmGastosProyecto"
+        Me.Text = "Gastos del Proyecto"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.PanelTotales.ResumeLayout(False)
         Me.tlpTotalesMain.ResumeLayout(False)
@@ -1576,6 +1690,9 @@ Partial Class FrmGastosProyecto
     Friend WithEvents Pendiente As DataGridViewTextBoxColumn
     Friend WithEvents TotalIrs As DataGridViewTextBoxColumn
     Friend WithEvents FacturaMontajeDetalleDataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
     Friend WithEvents PanelHeader As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents tlpMain As TableLayoutPanel
@@ -1599,8 +1716,4 @@ Partial Class FrmGastosProyecto
     Friend WithEvents DataGridViewTextBoxColumn24 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn25 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn26 As DataGridViewTextBoxColumn
-    Friend WithEvents Descripcion As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
 End Class

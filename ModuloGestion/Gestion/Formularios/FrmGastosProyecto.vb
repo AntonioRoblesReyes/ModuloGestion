@@ -114,6 +114,9 @@
         Me.FacturaMontajeTableAdapter.FillByIdProyrcto(Me.DsPagosMontaje.FacturaMontaje, Label1.Text)
         Me.CostoComprasProyectoTableAdapter.FillByIdProyecto(Me.DsCompras.CostoComprasProyecto, Label1.Text)
         txtTasaCambio.Text = My.Settings.TasaCambio.ToString("N2")
+
+        ConfigurarAnchosColumnas()
+
         ' Realizar sumatorias
         EstiloDGV(FacturaMontajeDataGridView)
         EstiloDGV(FacturaMontajeDetalleDataGridView)
@@ -237,5 +240,64 @@
 
     End Sub
 
+
+    Private Sub ConfigurarAnchosColumnas()
+        ConfigurarGrid(
+            CostoComprasProyectoDataGridView,
+            New Dictionary(Of String, Integer) From {
+                {"RazonSocialDataGridViewTextBoxColumn", 220},
+                {"SubtotalDataGridViewTextBoxColumn", 110},
+                {"ItebisDataGridViewTextBoxColumn", 100},
+                {"TotalDataGridViewTextBoxColumn", 110},
+                {"PagadoRD", 110}
+            }
+        )
+
+        ConfigurarGrid(
+            CompraMaterialesDetalleDataGridView,
+            New Dictionary(Of String, Integer) From {
+                {"DataGridViewTextBoxColumn32", 240},
+                {"DataGridViewTextBoxColumn10", 95},
+                {"DataGridViewTextBoxColumn24", 110},
+                {"DataGridViewTextBoxColumn25", 100},
+                {"DataGridViewTextBoxColumn26", 110}
+            }
+        )
+
+        ConfigurarGrid(
+            FacturaMontajeDataGridView,
+            New Dictionary(Of String, Integer) From {
+                {"DataGridViewTextBoxColumn1", 110},
+                {"SubTotal", 105},
+                {"Itebis", 95},
+                {"Total", 105},
+                {"Pagado", 105},
+                {"Pendiente", 105},
+                {"TotalIrs", 95}
+            }
+        )
+
+        ConfigurarGrid(
+            FacturaMontajeDetalleDataGridView,
+            New Dictionary(Of String, Integer) From {
+                {"DataGridViewTextBoxColumn15", 240},
+                {"DataGridViewTextBoxColumn16", 110},
+                {"DataGridViewTextBoxColumn17", 110}
+            }
+        )
+    End Sub
+
+    Private Sub ConfigurarGrid(grid As DataGridView, anchos As Dictionary(Of String, Integer))
+        grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
+        grid.AllowUserToResizeColumns = True
+
+        For Each column As DataGridViewColumn In grid.Columns
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+
+            If anchos.ContainsKey(column.Name) Then
+                column.Width = anchos(column.Name)
+            End If
+        Next
+    End Sub
 
 End Class
