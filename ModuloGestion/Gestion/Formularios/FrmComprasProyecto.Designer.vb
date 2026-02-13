@@ -22,10 +22,10 @@ Partial Class FrmComprasProyecto
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -57,10 +57,20 @@ Partial Class FrmComprasProyecto
         Me.DsProveedores = New ModuloGestion.DsProveedores()
         Me.CompraMaterialesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CompraMaterialesDetalleDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DescripcionProveedorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CantidadDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MonedaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrecioUSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrecioRDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Asignar = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.CompraMaterialesDetalleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PresupuestoDataGridView = New System.Windows.Forms.DataGridView()
+        Me.Id_proyecto_Presupuestos = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.ProyectosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsProyectos = New ModuloGestion.DsProyectos()
+        Me.IdPresupuestoDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DescripcionPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PresupuestoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPresupuestos = New ModuloGestion.DsPresupuestos()
         Me.CompraMaterialesDetalleTableAdapter = New ModuloGestion.DsComprasTableAdapters.CompraMaterialesDetalleTableAdapter()
@@ -85,16 +95,7 @@ Partial Class FrmComprasProyecto
         Me.LblSubTotal = New System.Windows.Forms.Label()
         Me.LblImpuesto = New System.Windows.Forms.Label()
         Me.LblTotal = New System.Windows.Forms.Label()
-        Me.Id_proyecto_Presupuestos = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.IdPresupuestoDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DescripcionPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DescripcionProveedorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CantidadDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MonedaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrecioUSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrecioRDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdPresupuestoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Asignar = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Id_Compra = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdProveedorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Id_Proveedor = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.FechaCompraDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -132,7 +133,15 @@ Partial Class FrmComprasProyecto
         Me.DsCompras.DataSetName = "DsCompras"
         Me.DsCompras.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.CompraMaterialesDetalleTableAdapter = Nothing
+        Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.PagoProveedorDetalleTableAdapter = Nothing
+        Me.TableAdapterManager.PagoProveedorTableAdapter = Nothing
+        Me.TableAdapterManager.UpdateOrder = ModuloGestion.DsComprasTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
         'lblempresa
         '
         Me.lblempresa.Location = New System.Drawing.Point(0, 0)
@@ -194,7 +203,7 @@ Partial Class FrmComprasProyecto
         '
         Me.TxtBuscar.Location = New System.Drawing.Point(93, 27)
         Me.TxtBuscar.Name = "TxtBuscar"
-        Me.TxtBuscar.Size = New System.Drawing.Size(132, 30)
+        Me.TxtBuscar.Size = New System.Drawing.Size(132, 34)
         Me.TxtBuscar.TabIndex = 1
         '
         'Label10
@@ -209,7 +218,7 @@ Partial Class FrmComprasProyecto
         '
         Me.TxtValor.Location = New System.Drawing.Point(296, 27)
         Me.TxtValor.Name = "TxtValor"
-        Me.TxtValor.Size = New System.Drawing.Size(100, 30)
+        Me.TxtValor.Size = New System.Drawing.Size(100, 34)
         Me.TxtValor.TabIndex = 3
         '
         'Label11
@@ -225,7 +234,7 @@ Partial Class FrmComprasProyecto
         Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateTimePicker3.Location = New System.Drawing.Point(520, 27)
         Me.DateTimePicker3.Name = "DateTimePicker3"
-        Me.DateTimePicker3.Size = New System.Drawing.Size(131, 30)
+        Me.DateTimePicker3.Size = New System.Drawing.Size(131, 34)
         Me.DateTimePicker3.TabIndex = 5
         '
         'BtnFiltrarFecha
@@ -312,7 +321,7 @@ Partial Class FrmComprasProyecto
         Me.ComprasPorProyectoDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.ComprasPorProyectoDataGridView.BackgroundColor = System.Drawing.Color.White
         Me.ComprasPorProyectoDataGridView.ColumnHeadersHeight = 29
-        Me.ComprasPorProyectoDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdProveedorDataGridViewTextBoxColumn, Me.Id_Proveedor, Me.FechaCompraDataGridViewTextBoxColumn, Me.FacturaProveedorDataGridViewTextBoxColumn, Me.MonedaDataGridViewTextBoxColumn1, Me.TasaDataGridViewTextBoxColumn, Me.SubTotalCompraUSDataGridViewTextBoxColumn, Me.ImpuestoCompraUSDataGridViewTextBoxColumn, Me.TotalCompraUSDataGridViewTextBoxColumn, Me.SubTotalCompraRDDataGridViewTextBoxColumn, Me.ImpuestoCompraRDDataGridViewTextBoxColumn, Me.TotalCompraRDDataGridViewTextBoxColumn})
+        Me.ComprasPorProyectoDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id_Compra, Me.IdProveedorDataGridViewTextBoxColumn, Me.Id_Proveedor, Me.FechaCompraDataGridViewTextBoxColumn, Me.FacturaProveedorDataGridViewTextBoxColumn, Me.MonedaDataGridViewTextBoxColumn1, Me.TasaDataGridViewTextBoxColumn, Me.SubTotalCompraUSDataGridViewTextBoxColumn, Me.ImpuestoCompraUSDataGridViewTextBoxColumn, Me.TotalCompraUSDataGridViewTextBoxColumn, Me.SubTotalCompraRDDataGridViewTextBoxColumn, Me.ImpuestoCompraRDDataGridViewTextBoxColumn, Me.TotalCompraRDDataGridViewTextBoxColumn})
         Me.ComprasPorProyectoDataGridView.DataSource = Me.CompraMaterialesBindingSource
         Me.ComprasPorProyectoDataGridView.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.ComprasPorProyectoDataGridView.Location = New System.Drawing.Point(20, 144)
@@ -362,6 +371,83 @@ Partial Class FrmComprasProyecto
         Me.CompraMaterialesDetalleDataGridView.Size = New System.Drawing.Size(870, 200)
         Me.CompraMaterialesDetalleDataGridView.TabIndex = 8
         '
+        'DescripcionProveedorDataGridViewTextBoxColumn
+        '
+        Me.DescripcionProveedorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DescripcionProveedorDataGridViewTextBoxColumn.DataPropertyName = "DescripcionProveedor"
+        Me.DescripcionProveedorDataGridViewTextBoxColumn.FillWeight = 1.0!
+        Me.DescripcionProveedorDataGridViewTextBoxColumn.HeaderText = "Descripcion"
+        Me.DescripcionProveedorDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.DescripcionProveedorDataGridViewTextBoxColumn.Name = "DescripcionProveedorDataGridViewTextBoxColumn"
+        '
+        'CantidadDataGridViewTextBoxColumn
+        '
+        Me.CantidadDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.CantidadDataGridViewTextBoxColumn.DataPropertyName = "Cantidad"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle9.Format = "n2"
+        Me.CantidadDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle9
+        Me.CantidadDataGridViewTextBoxColumn.FillWeight = 1.0!
+        Me.CantidadDataGridViewTextBoxColumn.HeaderText = "Cantidad"
+        Me.CantidadDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.CantidadDataGridViewTextBoxColumn.Name = "CantidadDataGridViewTextBoxColumn"
+        Me.CantidadDataGridViewTextBoxColumn.Width = 127
+        '
+        'MonedaDataGridViewTextBoxColumn
+        '
+        Me.MonedaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.MonedaDataGridViewTextBoxColumn.DataPropertyName = "Moneda"
+        Me.MonedaDataGridViewTextBoxColumn.FillWeight = 1.0!
+        Me.MonedaDataGridViewTextBoxColumn.HeaderText = "Moneda"
+        Me.MonedaDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.MonedaDataGridViewTextBoxColumn.Name = "MonedaDataGridViewTextBoxColumn"
+        Me.MonedaDataGridViewTextBoxColumn.Width = 121
+        '
+        'PrecioUSDataGridViewTextBoxColumn
+        '
+        Me.PrecioUSDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.PrecioUSDataGridViewTextBoxColumn.DataPropertyName = "PrecioUS"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle10.Format = "n2"
+        Me.PrecioUSDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle10
+        Me.PrecioUSDataGridViewTextBoxColumn.FillWeight = 1.0!
+        Me.PrecioUSDataGridViewTextBoxColumn.HeaderText = "PrecioUS"
+        Me.PrecioUSDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.PrecioUSDataGridViewTextBoxColumn.Name = "PrecioUSDataGridViewTextBoxColumn"
+        Me.PrecioUSDataGridViewTextBoxColumn.Width = 127
+        '
+        'PrecioRDDataGridViewTextBoxColumn
+        '
+        Me.PrecioRDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.PrecioRDDataGridViewTextBoxColumn.DataPropertyName = "PrecioRD"
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle11.Format = "n2"
+        Me.PrecioRDDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle11
+        Me.PrecioRDDataGridViewTextBoxColumn.FillWeight = 1.0!
+        Me.PrecioRDDataGridViewTextBoxColumn.HeaderText = "PrecioRD"
+        Me.PrecioRDDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.PrecioRDDataGridViewTextBoxColumn.Name = "PrecioRDDataGridViewTextBoxColumn"
+        Me.PrecioRDDataGridViewTextBoxColumn.Width = 128
+        '
+        'IdPresupuestoDataGridViewTextBoxColumn
+        '
+        Me.IdPresupuestoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.IdPresupuestoDataGridViewTextBoxColumn.DataPropertyName = "Id_Presupuesto"
+        Me.IdPresupuestoDataGridViewTextBoxColumn.FillWeight = 1.0!
+        Me.IdPresupuestoDataGridViewTextBoxColumn.HeaderText = "Presupuesto"
+        Me.IdPresupuestoDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.IdPresupuestoDataGridViewTextBoxColumn.Name = "IdPresupuestoDataGridViewTextBoxColumn"
+        Me.IdPresupuestoDataGridViewTextBoxColumn.Width = 155
+        '
+        'Asignar
+        '
+        Me.Asignar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.Asignar.FillWeight = 1.0!
+        Me.Asignar.HeaderText = "Asignar"
+        Me.Asignar.MinimumWidth = 6
+        Me.Asignar.Name = "Asignar"
+        Me.Asignar.Width = 84
+        '
         'CompraMaterialesDetalleBindingSource
         '
         Me.CompraMaterialesDetalleBindingSource.DataMember = "CompraMaterialesDetalle"
@@ -389,6 +475,20 @@ Partial Class FrmComprasProyecto
         Me.PresupuestoDataGridView.Size = New System.Drawing.Size(491, 200)
         Me.PresupuestoDataGridView.TabIndex = 9
         '
+        'Id_proyecto_Presupuestos
+        '
+        Me.Id_proyecto_Presupuestos.DataPropertyName = "Id_proyecto_Presupuestos"
+        Me.Id_proyecto_Presupuestos.DataSource = Me.ProyectosBindingSource
+        Me.Id_proyecto_Presupuestos.DisplayMember = "Nombre_Proyecto"
+        Me.Id_proyecto_Presupuestos.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.Id_proyecto_Presupuestos.FillWeight = 59.34568!
+        Me.Id_proyecto_Presupuestos.HeaderText = "Proyecto"
+        Me.Id_proyecto_Presupuestos.MinimumWidth = 6
+        Me.Id_proyecto_Presupuestos.Name = "Id_proyecto_Presupuestos"
+        Me.Id_proyecto_Presupuestos.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Id_proyecto_Presupuestos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Id_proyecto_Presupuestos.ValueMember = "Id_Proyecto"
+        '
         'ProyectosBindingSource
         '
         Me.ProyectosBindingSource.DataMember = "Proyectos"
@@ -398,6 +498,23 @@ Partial Class FrmComprasProyecto
         '
         Me.DsProyectos.DataSetName = "DsProyectos"
         Me.DsProyectos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'IdPresupuestoDataGridViewTextBoxColumn1
+        '
+        Me.IdPresupuestoDataGridViewTextBoxColumn1.DataPropertyName = "Id_Presupuesto"
+        Me.IdPresupuestoDataGridViewTextBoxColumn1.FillWeight = 57.726!
+        Me.IdPresupuestoDataGridViewTextBoxColumn1.HeaderText = "Presupuesto"
+        Me.IdPresupuestoDataGridViewTextBoxColumn1.MinimumWidth = 6
+        Me.IdPresupuestoDataGridViewTextBoxColumn1.Name = "IdPresupuestoDataGridViewTextBoxColumn1"
+        '
+        'DescripcionPresupuestoDataGridViewTextBoxColumn
+        '
+        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.DataPropertyName = "Descripcion_Presupuesto"
+        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.FillWeight = 98.82355!
+        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.HeaderText = "Descripcion"
+        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.Name = "DescripcionPresupuestoDataGridViewTextBoxColumn"
         '
         'PresupuestoBindingSource
         '
@@ -544,124 +661,25 @@ Partial Class FrmComprasProyecto
         Me.LblTotal.Size = New System.Drawing.Size(100, 23)
         Me.LblTotal.TabIndex = 5
         '
-        'Id_proyecto_Presupuestos
+        'Id_Compra
         '
-        Me.Id_proyecto_Presupuestos.DataPropertyName = "Id_proyecto_Presupuestos"
-        Me.Id_proyecto_Presupuestos.DataSource = Me.ProyectosBindingSource
-        Me.Id_proyecto_Presupuestos.DisplayMember = "Nombre_Proyecto"
-        Me.Id_proyecto_Presupuestos.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-        Me.Id_proyecto_Presupuestos.FillWeight = 59.34568!
-        Me.Id_proyecto_Presupuestos.HeaderText = "Proyecto"
-        Me.Id_proyecto_Presupuestos.MinimumWidth = 6
-        Me.Id_proyecto_Presupuestos.Name = "Id_proyecto_Presupuestos"
-        Me.Id_proyecto_Presupuestos.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Id_proyecto_Presupuestos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Id_proyecto_Presupuestos.ValueMember = "Id_Proyecto"
-        '
-        'IdPresupuestoDataGridViewTextBoxColumn1
-        '
-        Me.IdPresupuestoDataGridViewTextBoxColumn1.DataPropertyName = "Id_Presupuesto"
-        Me.IdPresupuestoDataGridViewTextBoxColumn1.FillWeight = 57.726!
-        Me.IdPresupuestoDataGridViewTextBoxColumn1.HeaderText = "Presupuesto"
-        Me.IdPresupuestoDataGridViewTextBoxColumn1.MinimumWidth = 6
-        Me.IdPresupuestoDataGridViewTextBoxColumn1.Name = "IdPresupuestoDataGridViewTextBoxColumn1"
-        '
-        'DescripcionPresupuestoDataGridViewTextBoxColumn
-        '
-        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.DataPropertyName = "Descripcion_Presupuesto"
-        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.FillWeight = 98.82355!
-        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.HeaderText = "Descripcion"
-        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.DescripcionPresupuestoDataGridViewTextBoxColumn.Name = "DescripcionPresupuestoDataGridViewTextBoxColumn"
-        '
-        'DescripcionProveedorDataGridViewTextBoxColumn
-        '
-        Me.DescripcionProveedorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DescripcionProveedorDataGridViewTextBoxColumn.DataPropertyName = "DescripcionProveedor"
-        Me.DescripcionProveedorDataGridViewTextBoxColumn.FillWeight = 1.0!
-        Me.DescripcionProveedorDataGridViewTextBoxColumn.HeaderText = "Descripcion"
-        Me.DescripcionProveedorDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.DescripcionProveedorDataGridViewTextBoxColumn.Name = "DescripcionProveedorDataGridViewTextBoxColumn"
-        '
-        'CantidadDataGridViewTextBoxColumn
-        '
-        Me.CantidadDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.CantidadDataGridViewTextBoxColumn.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle9.Format = "n2"
-        Me.CantidadDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle9
-        Me.CantidadDataGridViewTextBoxColumn.FillWeight = 1.0!
-        Me.CantidadDataGridViewTextBoxColumn.HeaderText = "Cantidad"
-        Me.CantidadDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.CantidadDataGridViewTextBoxColumn.Name = "CantidadDataGridViewTextBoxColumn"
-        Me.CantidadDataGridViewTextBoxColumn.Width = 108
-        '
-        'MonedaDataGridViewTextBoxColumn
-        '
-        Me.MonedaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.MonedaDataGridViewTextBoxColumn.DataPropertyName = "Moneda"
-        Me.MonedaDataGridViewTextBoxColumn.FillWeight = 1.0!
-        Me.MonedaDataGridViewTextBoxColumn.HeaderText = "Moneda"
-        Me.MonedaDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.MonedaDataGridViewTextBoxColumn.Name = "MonedaDataGridViewTextBoxColumn"
-        Me.MonedaDataGridViewTextBoxColumn.Width = 102
-        '
-        'PrecioUSDataGridViewTextBoxColumn
-        '
-        Me.PrecioUSDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.PrecioUSDataGridViewTextBoxColumn.DataPropertyName = "PrecioUS"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle10.Format = "n2"
-        Me.PrecioUSDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle10
-        Me.PrecioUSDataGridViewTextBoxColumn.FillWeight = 1.0!
-        Me.PrecioUSDataGridViewTextBoxColumn.HeaderText = "PrecioUS"
-        Me.PrecioUSDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.PrecioUSDataGridViewTextBoxColumn.Name = "PrecioUSDataGridViewTextBoxColumn"
-        Me.PrecioUSDataGridViewTextBoxColumn.Width = 107
-        '
-        'PrecioRDDataGridViewTextBoxColumn
-        '
-        Me.PrecioRDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.PrecioRDDataGridViewTextBoxColumn.DataPropertyName = "PrecioRD"
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle11.Format = "n2"
-        Me.PrecioRDDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle11
-        Me.PrecioRDDataGridViewTextBoxColumn.FillWeight = 1.0!
-        Me.PrecioRDDataGridViewTextBoxColumn.HeaderText = "PrecioRD"
-        Me.PrecioRDDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.PrecioRDDataGridViewTextBoxColumn.Name = "PrecioRDDataGridViewTextBoxColumn"
-        Me.PrecioRDDataGridViewTextBoxColumn.Width = 108
-        '
-        'IdPresupuestoDataGridViewTextBoxColumn
-        '
-        Me.IdPresupuestoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.IdPresupuestoDataGridViewTextBoxColumn.DataPropertyName = "Id_Presupuesto"
-        Me.IdPresupuestoDataGridViewTextBoxColumn.FillWeight = 1.0!
-        Me.IdPresupuestoDataGridViewTextBoxColumn.HeaderText = "Presupuesto"
-        Me.IdPresupuestoDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.IdPresupuestoDataGridViewTextBoxColumn.Name = "IdPresupuestoDataGridViewTextBoxColumn"
-        Me.IdPresupuestoDataGridViewTextBoxColumn.Width = 133
-        '
-        'Asignar
-        '
-        Me.Asignar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.Asignar.FillWeight = 1.0!
-        Me.Asignar.HeaderText = "Asignar"
-        Me.Asignar.MinimumWidth = 6
-        Me.Asignar.Name = "Asignar"
-        Me.Asignar.Width = 73
+        Me.Id_Compra.DataPropertyName = "Id_Compra"
+        Me.Id_Compra.FillWeight = 40.0!
+        Me.Id_Compra.HeaderText = "Id_Compra"
+        Me.Id_Compra.MinimumWidth = 8
+        Me.Id_Compra.Name = "Id_Compra"
+        Me.Id_Compra.ReadOnly = True
         '
         'IdProveedorDataGridViewTextBoxColumn
         '
         Me.IdProveedorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
         Me.IdProveedorDataGridViewTextBoxColumn.DataPropertyName = "Id_Proveedor"
-        Me.IdProveedorDataGridViewTextBoxColumn.FillWeight = 144.8834!
+        Me.IdProveedorDataGridViewTextBoxColumn.FillWeight = 60.0!
         Me.IdProveedorDataGridViewTextBoxColumn.HeaderText = "RNC"
         Me.IdProveedorDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.IdProveedorDataGridViewTextBoxColumn.Name = "IdProveedorDataGridViewTextBoxColumn"
         Me.IdProveedorDataGridViewTextBoxColumn.ReadOnly = True
-        Me.IdProveedorDataGridViewTextBoxColumn.Width = 73
+        Me.IdProveedorDataGridViewTextBoxColumn.Width = 87
         '
         'Id_Proveedor
         '
@@ -681,12 +699,12 @@ Partial Class FrmComprasProyecto
         '
         Me.FechaCompraDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.FechaCompraDataGridViewTextBoxColumn.DataPropertyName = "Fecha_Compra"
-        Me.FechaCompraDataGridViewTextBoxColumn.FillWeight = 96.25668!
+        Me.FechaCompraDataGridViewTextBoxColumn.FillWeight = 40.0!
         Me.FechaCompraDataGridViewTextBoxColumn.HeaderText = "Fecha"
         Me.FechaCompraDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.FechaCompraDataGridViewTextBoxColumn.Name = "FechaCompraDataGridViewTextBoxColumn"
         Me.FechaCompraDataGridViewTextBoxColumn.ReadOnly = True
-        Me.FechaCompraDataGridViewTextBoxColumn.Width = 83
+        Me.FechaCompraDataGridViewTextBoxColumn.Width = 98
         '
         'FacturaProveedorDataGridViewTextBoxColumn
         '
@@ -697,7 +715,7 @@ Partial Class FrmComprasProyecto
         Me.FacturaProveedorDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.FacturaProveedorDataGridViewTextBoxColumn.Name = "FacturaProveedorDataGridViewTextBoxColumn"
         Me.FacturaProveedorDataGridViewTextBoxColumn.ReadOnly = True
-        Me.FacturaProveedorDataGridViewTextBoxColumn.Width = 94
+        Me.FacturaProveedorDataGridViewTextBoxColumn.Width = 111
         '
         'MonedaDataGridViewTextBoxColumn1
         '
@@ -708,7 +726,7 @@ Partial Class FrmComprasProyecto
         Me.MonedaDataGridViewTextBoxColumn1.MinimumWidth = 6
         Me.MonedaDataGridViewTextBoxColumn1.Name = "MonedaDataGridViewTextBoxColumn1"
         Me.MonedaDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.MonedaDataGridViewTextBoxColumn1.Width = 102
+        Me.MonedaDataGridViewTextBoxColumn1.Width = 121
         '
         'TasaDataGridViewTextBoxColumn
         '
@@ -719,7 +737,7 @@ Partial Class FrmComprasProyecto
         Me.TasaDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.TasaDataGridViewTextBoxColumn.Name = "TasaDataGridViewTextBoxColumn"
         Me.TasaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TasaDataGridViewTextBoxColumn.Width = 71
+        Me.TasaDataGridViewTextBoxColumn.Width = 84
         '
         'SubTotalCompraUSDataGridViewTextBoxColumn
         '
@@ -733,7 +751,7 @@ Partial Class FrmComprasProyecto
         Me.SubTotalCompraUSDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.SubTotalCompraUSDataGridViewTextBoxColumn.Name = "SubTotalCompraUSDataGridViewTextBoxColumn"
         Me.SubTotalCompraUSDataGridViewTextBoxColumn.ReadOnly = True
-        Me.SubTotalCompraUSDataGridViewTextBoxColumn.Width = 94
+        Me.SubTotalCompraUSDataGridViewTextBoxColumn.Width = 112
         '
         'ImpuestoCompraUSDataGridViewTextBoxColumn
         '
@@ -747,7 +765,7 @@ Partial Class FrmComprasProyecto
         Me.ImpuestoCompraUSDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.ImpuestoCompraUSDataGridViewTextBoxColumn.Name = "ImpuestoCompraUSDataGridViewTextBoxColumn"
         Me.ImpuestoCompraUSDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ImpuestoCompraUSDataGridViewTextBoxColumn.Width = 95
+        Me.ImpuestoCompraUSDataGridViewTextBoxColumn.Width = 112
         '
         'TotalCompraUSDataGridViewTextBoxColumn
         '
@@ -761,7 +779,7 @@ Partial Class FrmComprasProyecto
         Me.TotalCompraUSDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.TotalCompraUSDataGridViewTextBoxColumn.Name = "TotalCompraUSDataGridViewTextBoxColumn"
         Me.TotalCompraUSDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TotalCompraUSDataGridViewTextBoxColumn.Width = 101
+        Me.TotalCompraUSDataGridViewTextBoxColumn.Width = 120
         '
         'SubTotalCompraRDDataGridViewTextBoxColumn
         '
@@ -789,7 +807,7 @@ Partial Class FrmComprasProyecto
         Me.ImpuestoCompraRDDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.ImpuestoCompraRDDataGridViewTextBoxColumn.Name = "ImpuestoCompraRDDataGridViewTextBoxColumn"
         Me.ImpuestoCompraRDDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ImpuestoCompraRDDataGridViewTextBoxColumn.Width = 96
+        Me.ImpuestoCompraRDDataGridViewTextBoxColumn.Width = 113
         '
         'TotalCompraRDDataGridViewTextBoxColumn
         '
@@ -803,11 +821,11 @@ Partial Class FrmComprasProyecto
         Me.TotalCompraRDDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.TotalCompraRDDataGridViewTextBoxColumn.Name = "TotalCompraRDDataGridViewTextBoxColumn"
         Me.TotalCompraRDDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TotalCompraRDDataGridViewTextBoxColumn.Width = 102
+        Me.TotalCompraRDDataGridViewTextBoxColumn.Width = 121
         '
         'FrmComprasProyecto
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 23.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 28.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(1408, 922)
@@ -924,6 +942,7 @@ Partial Class FrmComprasProyecto
     Friend WithEvents PrecioRDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents IdPresupuestoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Asignar As DataGridViewButtonColumn
+    Friend WithEvents Id_Compra As DataGridViewTextBoxColumn
     Friend WithEvents IdProveedorDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Id_Proveedor As DataGridViewComboBoxColumn
     Friend WithEvents FechaCompraDataGridViewTextBoxColumn As DataGridViewTextBoxColumn

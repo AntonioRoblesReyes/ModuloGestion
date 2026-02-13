@@ -162,9 +162,6 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPagosMontaje = New ModuloGestion.DsPagosMontaje()
         Me.FacturaMontajeDetalleDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FacturaMontajeDetalleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PanelHeader = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -177,6 +174,10 @@ Partial Class FrmGastosProyecto
         Me.TableAdapterManager = New ModuloGestion.DsComprasTableAdapters.TableAdapterManager()
         Me.CostoComprasProyectoTableAdapter = New ModuloGestion.DsComprasTableAdapters.CostoComprasProyectoTableAdapter()
         Me.CompraMaterialesDetalleTableAdapter = New ModuloGestion.DsComprasTableAdapters.CompraMaterialesDetalleTableAdapter()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PanelTotales.SuspendLayout()
         Me.tlpTotalesMain.SuspendLayout()
         Me.tlpTotales.SuspendLayout()
@@ -1170,6 +1171,7 @@ Partial Class FrmGastosProyecto
         '
         'splitFacturas
         '
+        Me.splitFacturas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.splitFacturas.Location = New System.Drawing.Point(3, 59)
         Me.splitFacturas.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.splitFacturas.Name = "splitFacturas"
@@ -1181,8 +1183,8 @@ Partial Class FrmGastosProyecto
         'splitFacturas.Panel2
         '
         Me.splitFacturas.Panel2.Controls.Add(Me.FacturaMontajeDetalleDataGridView)
-        Me.splitFacturas.Size = New System.Drawing.Size(1174, 259)
-        Me.splitFacturas.SplitterDistance = 561
+        Me.splitFacturas.Size = New System.Drawing.Size(1283, 259)
+        Me.splitFacturas.SplitterDistance = 613
         Me.splitFacturas.SplitterWidth = 7
         Me.splitFacturas.TabIndex = 1
         '
@@ -1204,7 +1206,7 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeDataGridView.RowHeadersVisible = False
         Me.FacturaMontajeDataGridView.RowHeadersWidth = 51
         Me.FacturaMontajeDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(561, 259)
+        Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(613, 259)
         Me.FacturaMontajeDataGridView.TabIndex = 0
         '
         'DataGridViewTextBoxColumn1
@@ -1297,8 +1299,9 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeDetalleDataGridView.AutoGenerateColumns = False
         Me.FacturaMontajeDetalleDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.FacturaMontajeDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaMontajeDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17})
+        Me.FacturaMontajeDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Descripcion, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17})
         Me.FacturaMontajeDetalleDataGridView.DataSource = Me.FacturaMontajeDetalleBindingSource
+        Me.FacturaMontajeDetalleDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FacturaMontajeDetalleDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.FacturaMontajeDetalleDataGridView.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.FacturaMontajeDetalleDataGridView.MultiSelect = False
@@ -1307,41 +1310,8 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeDetalleDataGridView.RowHeadersVisible = False
         Me.FacturaMontajeDetalleDataGridView.RowHeadersWidth = 51
         Me.FacturaMontajeDetalleDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(712, 259)
+        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(663, 259)
         Me.FacturaMontajeDetalleDataGridView.TabIndex = 0
-        '
-        'DataGridViewTextBoxColumn15
-        '
-        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle14.Format = "n2"
-        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle14
-        Me.DataGridViewTextBoxColumn15.HeaderText = "Cantidad"
-        Me.DataGridViewTextBoxColumn15.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
-        Me.DataGridViewTextBoxColumn15.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn16
-        '
-        Me.DataGridViewTextBoxColumn16.DataPropertyName = "Precio"
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle15.Format = "n2"
-        Me.DataGridViewTextBoxColumn16.DefaultCellStyle = DataGridViewCellStyle15
-        Me.DataGridViewTextBoxColumn16.HeaderText = "Precio"
-        Me.DataGridViewTextBoxColumn16.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
-        Me.DataGridViewTextBoxColumn16.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn17
-        '
-        Me.DataGridViewTextBoxColumn17.DataPropertyName = "TotalPartida"
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle16.Format = "n2"
-        Me.DataGridViewTextBoxColumn17.DefaultCellStyle = DataGridViewCellStyle16
-        Me.DataGridViewTextBoxColumn17.HeaderText = "TotalPartida"
-        Me.DataGridViewTextBoxColumn17.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
-        Me.DataGridViewTextBoxColumn17.ReadOnly = True
         '
         'FacturaMontajeDetalleBindingSource
         '
@@ -1438,6 +1408,47 @@ Partial Class FrmGastosProyecto
         'CompraMaterialesDetalleTableAdapter
         '
         Me.CompraMaterialesDetalleTableAdapter.ClearBeforeFill = True
+        '
+        'Descripcion
+        '
+        Me.Descripcion.DataPropertyName = "Descripcion"
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.MinimumWidth = 8
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Cantidad"
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle14.Format = "n2"
+        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle14
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Cantidad"
+        Me.DataGridViewTextBoxColumn15.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        Me.DataGridViewTextBoxColumn15.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn16
+        '
+        Me.DataGridViewTextBoxColumn16.DataPropertyName = "Precio"
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle15.Format = "n2"
+        Me.DataGridViewTextBoxColumn16.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DataGridViewTextBoxColumn16.HeaderText = "Precio"
+        Me.DataGridViewTextBoxColumn16.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        Me.DataGridViewTextBoxColumn16.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn17
+        '
+        Me.DataGridViewTextBoxColumn17.DataPropertyName = "TotalPartida"
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle16.Format = "n2"
+        Me.DataGridViewTextBoxColumn17.DefaultCellStyle = DataGridViewCellStyle16
+        Me.DataGridViewTextBoxColumn17.HeaderText = "TotalPartida"
+        Me.DataGridViewTextBoxColumn17.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        Me.DataGridViewTextBoxColumn17.ReadOnly = True
         '
         'FrmGastosProyecto
         '
@@ -1565,9 +1576,6 @@ Partial Class FrmGastosProyecto
     Friend WithEvents Pendiente As DataGridViewTextBoxColumn
     Friend WithEvents TotalIrs As DataGridViewTextBoxColumn
     Friend WithEvents FacturaMontajeDetalleDataGridView As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
     Friend WithEvents PanelHeader As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents tlpMain As TableLayoutPanel
@@ -1591,4 +1599,8 @@ Partial Class FrmGastosProyecto
     Friend WithEvents DataGridViewTextBoxColumn24 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn25 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn26 As DataGridViewTextBoxColumn
+    Friend WithEvents Descripcion As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
 End Class

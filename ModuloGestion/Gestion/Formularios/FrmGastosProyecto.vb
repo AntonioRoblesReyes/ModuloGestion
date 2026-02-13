@@ -1,5 +1,24 @@
 ﻿Public Class FrmGastosProyecto
 
+    Private Sub EstiloDGV(dgv As DataGridView)
+        With dgv
+            .EnableHeadersVisualStyles = False
+            .ColumnHeadersDefaultCellStyle.BackColor = Color.Gainsboro
+            .ColumnHeadersDefaultCellStyle.ForeColor = Color.Black
+            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+
+            .DefaultCellStyle.Font = New Font("Segoe UI", 9)
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+
+            .BorderStyle = BorderStyle.None
+            .GridColor = Color.LightGray
+
+            .RowHeadersVisible = False
+            .MultiSelect = False
+            .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            .ReadOnly = True
+        End With
+    End Sub
 
 
 
@@ -96,6 +115,11 @@
         Me.CostoComprasProyectoTableAdapter.FillByIdProyecto(Me.DsCompras.CostoComprasProyecto, Label1.Text)
         txtTasaCambio.Text = My.Settings.TasaCambio.ToString("N2")
         ' Realizar sumatorias
+        EstiloDGV(FacturaMontajeDataGridView)
+        EstiloDGV(FacturaMontajeDetalleDataGridView)
+        EstiloDGV(CostoComprasProyectoDataGridView)
+        EstiloDGV(CompraMaterialesDetalleDataGridView)
+
         Sumas()
         CalcularResumenFinal()
     End Sub
