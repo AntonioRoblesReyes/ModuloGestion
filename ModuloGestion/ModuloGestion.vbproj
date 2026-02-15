@@ -1727,6 +1727,9 @@
     <Compile Include="Gestion\Formularios\FrmPagosClientes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Gestion\Formularios\FrmEstadoPagosPresupuesto.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Gestion\Formularios\FrmPintura.Designer.vb">
       <DependentUpon>FrmPintura.vb</DependentUpon>
     </Compile>

@@ -80,6 +80,7 @@ Partial Class FrmPagosClientes
         Me.PresupuestoTableAdapter = New ModuloGestion.DsPresupuestosTableAdapters.PresupuestoTableAdapter()
         Me.TableAdapterManager3 = New ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.PagosClientesTableAdapter = New ModuloGestion.DsPagosClientesTableAdapters.PagosClientesTableAdapter()
         Me.TableAdapterManager1 = New ModuloGestion.DsPagosClientesTableAdapters.TableAdapterManager()
         Me.cmbFiltroMonto = New System.Windows.Forms.ComboBox()
@@ -528,6 +529,16 @@ Partial Class FrmPagosClientes
         Me.Button3.Text = "Modificar Pago"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(1441, 41)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(196, 28)
+        Me.Button4.TabIndex = 16
+        Me.Button4.Text = "Estado Presupuesto"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
         'PagosClientesTableAdapter
         '
         Me.PagosClientesTableAdapter.ClearBeforeFill = True
@@ -675,6 +686,7 @@ Partial Class FrmPagosClientes
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1649, 624)
         Me.Controls.Add(Me.cmbFiltroMonto)
+        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.TextBox4)
@@ -758,6 +770,7 @@ End Sub
     Friend WithEvents PresupuestoTableAdapter As ModuloGestion.DsPresupuestosTableAdapters.PresupuestoTableAdapter
     Friend WithEvents TableAdapterManager3 As ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
     Friend WithEvents cmbFiltroMonto As ComboBox
     Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn

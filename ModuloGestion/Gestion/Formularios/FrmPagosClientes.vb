@@ -275,6 +275,26 @@
         My.Forms.FormPagoClienteModificar.Show()
 
     End Sub
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Try
+            If PagosClientesDetalleDataGridView.CurrentRow Is Nothing OrElse PagosClientesDetalleDataGridView.CurrentRow.IsNewRow Then
+                MsgBox("Seleccione un detalle de pago con presupuesto.")
+                Exit Sub
+            End If
+
+            Dim idPresupuesto As String = Convert.ToString(PagosClientesDetalleDataGridView.CurrentRow.Cells(3).Value)
+            If String.IsNullOrWhiteSpace(idPresupuesto) Then
+                MsgBox("El detalle seleccionado no tiene presupuesto asignado.")
+                Exit Sub
+            End If
+
+            Dim frm As New FrmEstadoPagosPresupuesto(idPresupuesto)
+            frm.Show()
+        Catch ex As Exception
+            MsgBox("No se pudo abrir el estado de presupuesto: " & ex.Message)
+        End Try
+    End Sub
+
     Private Sub CargarValoresMonto()
         ' Limpiar los ítems existentes
         cmbFiltroMonto.Items.Clear()

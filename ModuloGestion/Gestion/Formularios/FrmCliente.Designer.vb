@@ -138,6 +138,7 @@ Partial Class FrmCliente
         Me.BtnEstadoCliente = New System.Windows.Forms.Button()
         Me.BtnPagos = New System.Windows.Forms.Button()
         Me.CmdNuevoProyecto = New System.Windows.Forms.Button()
+        Me.BtnEstadoPresupuesto = New System.Windows.Forms.Button()
         Me.BtnGuardarCliente = New System.Windows.Forms.Button()
         Me.LabelTotalUSAsignado = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -1139,17 +1140,31 @@ Partial Class FrmCliente
         Me.CmdNuevoProyecto.Text = "Nuevo Proyecto"
         Me.CmdNuevoProyecto.UseVisualStyleBackColor = False
         '
+        'BtnEstadoPresupuesto
+        '
+        Me.BtnEstadoPresupuesto.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.BtnEstadoPresupuesto.FlatAppearance.BorderSize = 0
+        Me.BtnEstadoPresupuesto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnEstadoPresupuesto.ForeColor = System.Drawing.Color.White
+        Me.BtnEstadoPresupuesto.Location = New System.Drawing.Point(409, 315)
+        Me.BtnEstadoPresupuesto.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnEstadoPresupuesto.Name = "BtnEstadoPresupuesto"
+        Me.BtnEstadoPresupuesto.Size = New System.Drawing.Size(177, 28)
+        Me.BtnEstadoPresupuesto.TabIndex = 75
+        Me.BtnEstadoPresupuesto.Text = "Pagos/Facturas Presup."
+        Me.BtnEstadoPresupuesto.UseVisualStyleBackColor = False
+        '
         'BtnGuardarCliente
         '
         Me.BtnGuardarCliente.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.BtnGuardarCliente.FlatAppearance.BorderSize = 0
         Me.BtnGuardarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnGuardarCliente.ForeColor = System.Drawing.Color.White
-        Me.BtnGuardarCliente.Location = New System.Drawing.Point(409, 315)
+        Me.BtnGuardarCliente.Location = New System.Drawing.Point(594, 315)
         Me.BtnGuardarCliente.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnGuardarCliente.Name = "BtnGuardarCliente"
         Me.BtnGuardarCliente.Size = New System.Drawing.Size(124, 28)
-        Me.BtnGuardarCliente.TabIndex = 75
+        Me.BtnGuardarCliente.TabIndex = 76
         Me.BtnGuardarCliente.Text = "Guardar "
         Me.BtnGuardarCliente.UseVisualStyleBackColor = False
         '
@@ -1185,6 +1200,7 @@ Partial Class FrmCliente
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.LabelTotalUSAsignado)
         Me.Controls.Add(Me.BtnGuardarCliente)
+        Me.Controls.Add(Me.BtnEstadoPresupuesto)
         Me.Controls.Add(Me.CmdNuevoProyecto)
         Me.Controls.Add(Me.BtnPagos)
         Me.Controls.Add(Me.BtnEstadoCliente)
@@ -1298,6 +1314,7 @@ Partial Class FrmCliente
     Friend WithEvents BtnEstadoCliente As Button
     Friend WithEvents BtnPagos As Button
     Friend WithEvents CmdNuevoProyecto As Button
+    Friend WithEvents BtnEstadoPresupuesto As Button
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents Ver As DataGridViewButtonColumn

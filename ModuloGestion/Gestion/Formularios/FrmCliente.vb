@@ -263,6 +263,33 @@ Public Class FrmCliente
             MsgBox("Error al seleccionar presupuesto: " & ex.Message, MsgBoxStyle.Critical)
         End Try
     End Sub
+
+    Private Function ObtenerPresupuestoSeleccionado() As String
+        If PresupuestoDataGridView.CurrentRow Is Nothing OrElse PresupuestoDataGridView.CurrentRow.IsNewRow Then
+            Return String.Empty
+        End If
+
+        Dim idPresObj As Object = PresupuestoDataGridView.CurrentRow.Cells("IdPresupuesto").Value
+        If idPresObj Is Nothing OrElse IsDBNull(idPresObj) Then
+            Return String.Empty
+        End If
+
+        Return idPresObj.ToString().Trim()
+    End Function
+
+    Private Sub BtnEstadoPresupuesto_Click(sender As Object, e As EventArgs) Handles BtnEstadoPresupuesto.Click
+        Dim idPres As String = ObtenerPresupuestoSeleccionado()
+
+        If String.IsNullOrWhiteSpace(idPres) Then
+            MsgBox("Seleccione un presupuesto para ver su estado de pagos/facturas.", MsgBoxStyle.Exclamation)
+            Exit Sub
+        End If
+
+        Dim frm As New FrmEstadoPagosPresupuesto(idPres)
+        frm.Show()
+        frm.BringToFront()
+    End Sub
+
     Public Sub CrearNuevoCliente()
         Try
             ' Oculta todo menos GrbClientes
