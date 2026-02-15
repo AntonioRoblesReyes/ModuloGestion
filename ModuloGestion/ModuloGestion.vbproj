@@ -28,11 +28,11 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\Pcshernia\d\ProgramasVisual\Ejecutable\</InstallUrl>
-    <UpdateUrl>\\Portatil-dell\c\Ejecutable\</UpdateUrl>
+    <UpdateUrl>\\PCShernia\D\ProgramasVisual\Ejecutable\</UpdateUrl>
     <MinimumRequiredVersion>0.0.0.27</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>36</ApplicationRevision>
+    <ApplicationRevision>39</ApplicationRevision>
     <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
