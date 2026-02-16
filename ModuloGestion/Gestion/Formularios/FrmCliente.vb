@@ -105,7 +105,15 @@ Public Class FrmCliente
                 PresupuestoTableAdapter.FillByIdProyecto(DsPresupuestos.Presupuesto, proyectoId, "aprobado", "entregado", "entregado")
                 PagosClientesDetalleTableAdapter.FillByProyectoPagos(DsPagosClientesDetalle.PagosClientesDetalle, proyectoId)
             End If
+
             Rellearpresupuesto()
+
+            If PresupuestoDataGridView.Rows.Count > 0 Then
+                CargarDetalleFacturasPorPresupuesto(PresupuestoDataGridView.Rows(0))
+            Else
+                DsPagosClientesDetalle.PagosClientesDetalle.Clear()
+            End If
+
             SumarAsignadoPorMoneda()
             SumarPresupuestoPorMoneda()
 
@@ -232,12 +240,9 @@ Public Class FrmCliente
 
             Dim idPresObj As Object = filaActual.Cells("IdPresupuesto").Value
             If idPresObj Is Nothing OrElse IsDBNull(idPresObj) Then Exit Sub
-
             Dim idPres As String = idPresObj.ToString()
 
-            ' Filtrar los detalles del presupuesto seleccionado
-            PagosClientesDetalleTableAdapter.FillByIdPresupuesto(DsPagosClientesDetalle.PagosClientesDetalle, idPres)
-
+            CargarDetalleFacturasPorPresupuesto(filaActual)
 
             Dim colName As String = PresupuestoDataGridView.Columns(e.ColumnIndex).Name
 
@@ -263,6 +268,24 @@ Public Class FrmCliente
             MsgBox("Error al seleccionar presupuesto: " & ex.Message, MsgBoxStyle.Critical)
         End Try
     End Sub
+    Private Sub CargarDetalleFacturasPorPresupuesto(fila As DataGridViewRow)
+        If fila Is Nothing Then Exit Sub
+
+        Dim idPresObj As Object = fila.Cells("IdPresupuesto").Value
+        If idPresObj Is Nothing OrElse IsDBNull(idPresObj) Then
+            DsPagosClientesDetalle.PagosClientesDetalle.Clear()
+            Exit Sub
+        End If
+
+        Dim idPres As String = idPresObj.ToString().Trim()
+        If String.IsNullOrWhiteSpace(idPres) Then
+            DsPagosClientesDetalle.PagosClientesDetalle.Clear()
+            Exit Sub
+        End If
+
+        PagosClientesDetalleTableAdapter.FillByIdPresupuesto(DsPagosClientesDetalle.PagosClientesDetalle, idPres)
+    End Sub
+
     Public Sub CrearNuevoCliente()
         Try
             ' Oculta todo menos GrbClientes
