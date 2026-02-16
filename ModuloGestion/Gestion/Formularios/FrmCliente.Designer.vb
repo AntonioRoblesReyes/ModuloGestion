@@ -88,6 +88,7 @@ Partial Class FrmCliente
         Me.TableAdapterManager3 = New ModuloGestion.DsPagosClientesDetalleTableAdapters.TableAdapterManager()
         Me.PagosClientesDetalleDataGridView = New System.Windows.Forms.DataGridView()
         Me.IdPrespuestoPd = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdFacturaPd = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalAsignado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Divisa1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -601,7 +602,7 @@ Partial Class FrmCliente
         Me.PagosClientesDetalleDataGridView.BackgroundColor = System.Drawing.Color.White
         Me.PagosClientesDetalleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PagosClientesDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.PagosClientesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPrespuestoPd, Me.TotalAsignado, Me.Divisa1, Me.Fecha})
+        Me.PagosClientesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPrespuestoPd, Me.IdFacturaPd, Me.TotalAsignado, Me.Divisa1, Me.Fecha})
         Me.PagosClientesDetalleDataGridView.DataSource = Me.PagosClientesDetalleBindingSource
         Me.PagosClientesDetalleDataGridView.Location = New System.Drawing.Point(1129, 42)
         Me.PagosClientesDetalleDataGridView.Name = "PagosClientesDetalleDataGridView"
@@ -619,6 +620,15 @@ Partial Class FrmCliente
         Me.IdPrespuestoPd.MinimumWidth = 6
         Me.IdPrespuestoPd.Name = "IdPrespuestoPd"
         Me.IdPrespuestoPd.ReadOnly = True
+        '
+        'IdFacturaPd
+        '
+        Me.IdFacturaPd.DataPropertyName = "IdFactura"
+        Me.IdFacturaPd.HeaderText = "Factura"
+        Me.IdFacturaPd.MinimumWidth = 6
+        Me.IdFacturaPd.Name = "IdFacturaPd"
+        Me.IdFacturaPd.ReadOnly = True
+        Me.IdFacturaPd.Width = 90
         '
         'TotalAsignado
         '
@@ -1308,6 +1318,7 @@ Partial Class FrmCliente
     Friend WithEvents Divisa As DataGridViewTextBoxColumn
     Friend WithEvents Valor As DataGridViewTextBoxColumn
     Friend WithEvents IdPrespuestoPd As DataGridViewTextBoxColumn
+    Friend WithEvents IdFacturaPd As DataGridViewTextBoxColumn
     Friend WithEvents TotalAsignado As DataGridViewTextBoxColumn
     Friend WithEvents Divisa1 As DataGridViewTextBoxColumn
     Friend WithEvents Fecha As DataGridViewTextBoxColumn
