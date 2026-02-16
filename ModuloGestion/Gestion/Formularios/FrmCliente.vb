@@ -279,6 +279,14 @@ Public Class FrmCliente
 
             Dim idFactura As String = idFacturaObj.ToString().Trim()
 
+            Dim frmFacturas As FrmFacturas = My.Forms.FrmFacturas
+
+            If frmFacturas.IsDisposed Then
+                frmFacturas = New FrmFacturas()
+            End If
+
+            frmFacturas.Label2.Text = idFactura
+            frmFacturas.VerFActura()
             With My.Forms.FrmFacturas
                 .Close()
                 .Label2.Text = idFactura
