@@ -604,6 +604,7 @@ Partial Class FrmCliente
         Me.PagosClientesDetalleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PagosClientesDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.PagosClientesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPrespuestoPd, Me.IdFacturaPd, Me.IdCobroPd, Me.TotalAsignado, Me.Divisa1, Me.Fecha})
+        Me.PagosClientesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPrespuestoPd, Me.IdFacturaPd, Me.TotalAsignado, Me.Divisa1, Me.Fecha})
         Me.PagosClientesDetalleDataGridView.DataSource = Me.PagosClientesDetalleBindingSource
         Me.PagosClientesDetalleDataGridView.Location = New System.Drawing.Point(605, 576)
         Me.PagosClientesDetalleDataGridView.Name = "PagosClientesDetalleDataGridView"

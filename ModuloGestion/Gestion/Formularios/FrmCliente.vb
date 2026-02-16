@@ -287,6 +287,11 @@ Public Class FrmCliente
 
             frmFacturas.Label2.Text = idFactura
             frmFacturas.VerFActura()
+            With My.Forms.FrmFacturas
+                .Close()
+                .Label2.Text = idFactura
+                .VerFActura()
+            End With
 
         Catch ex As Exception
             MsgBox("Error al abrir la factura asociada: " & ex.Message, MsgBoxStyle.Critical)
