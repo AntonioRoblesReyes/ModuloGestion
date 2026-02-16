@@ -8,7 +8,7 @@
   <Shapes>
     <Shape ID="DesignTable:Clientes" ZOrder="16" X="440" Y="407" Height="324" Width="274" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:Empresas" ZOrder="15" X="810" Y="70" Height="324" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:Factura" ZOrder="1" X="72" Y="70" Height="695" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignTable:Factura" ZOrder="1" X="72" Y="70" Height="533" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:FacturaDetalle" ZOrder="4" X="1180" Y="70" Height="388" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="283" />
     <Shape ID="DesignTable:Proyectos" ZOrder="14" X="440" Y="70" Height="267" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="197" />
     <Shape ID="DesignTable:ComprobantesFiscales" ZOrder="2" X="440" Y="801" Height="267" Width="278" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
@@ -44,7 +44,7 @@
       <RoutePoints>
         <Point>
           <X>355</X>
-          <Y>765</Y>
+          <Y>603</Y>
         </Point>
         <Point>
           <X>355</X>
@@ -68,7 +68,7 @@
         </Point>
         <Point>
           <X>347</X>
-          <Y>765</Y>
+          <Y>603</Y>
         </Point>
       </RoutePoints>
     </Connector>
