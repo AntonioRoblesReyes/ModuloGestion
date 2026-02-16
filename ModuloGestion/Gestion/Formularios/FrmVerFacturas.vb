@@ -263,16 +263,32 @@ Public Class FrmVerFacturas
 
     Private Sub RecalcularFacturaVB(idFactura As String)
 
-        Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
+        If String.IsNullOrWhiteSpace(idFactura) Then
+            Throw New ArgumentException("IdFactura no puede estar vacío.")
+        End If
 
-            Dim cmd As New SqlCommand("dbo.RecalcularFacturaPagos", cn)
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Parameters.Add("@IdFactura", SqlDbType.NVarChar, 15).Value = idFactura
+        Try
+            Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
+                Using cmd As New SqlCommand("dbo.RecalcularFacturaPagos", cn)
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.Parameters.Add("@IdFactura", SqlDbType.NVarChar, 15).Value = idFactura.Trim()
 
-            cn.Open()
-            cmd.ExecuteNonQuery()
-        End Using
+                    cn.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+        Catch ex As SqlException
+            MsgBox("Error SQL al recalcular la factura:" & vbCrLf & ex.Message,
+               MsgBoxStyle.Critical)
+
+        Catch ex As Exception
+            MsgBox("Error al recalcular la factura:" & vbCrLf & ex.Message,
+               MsgBoxStyle.Critical)
+        End Try
+
     End Sub
+
 
     Private Sub BtnAsignarPago_Click(
     sender As Object,
@@ -575,7 +591,7 @@ Public Class FrmVerFacturas
         '--------------------------------------------------
         ' 3) Evaluar combinación exacta y pintar pagos
         '--------------------------------------------------
-        Dim indices As List(Of Integer)
+        Dim indices As New List(Of Integer)
 
         If ExisteCombinacionExacta(montos, pendiente, indices) Then
             For Each i In indices

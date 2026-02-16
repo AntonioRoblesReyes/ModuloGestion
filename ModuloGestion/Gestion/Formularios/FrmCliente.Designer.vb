@@ -33,21 +33,21 @@ Partial Class FrmCliente
         Dim Label1 As System.Windows.Forms.Label
         Dim Nombre_ClienteLabel As System.Windows.Forms.Label
         Dim Id_FiscalLabel As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GrbClientes = New System.Windows.Forms.GroupBox()
         Me.Id_FiscalTextBox = New System.Windows.Forms.TextBox()
         Me.ClientesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -273,6 +273,7 @@ Partial Class FrmCliente
         '
         'GrbClientes
         '
+        Me.GrbClientes.BackColor = System.Drawing.Color.White
         Me.GrbClientes.Controls.Add(EMail__ClienteLabel)
         Me.GrbClientes.Controls.Add(Me.Id_FiscalTextBox)
         Me.GrbClientes.Controls.Add(Me.Nombre_ClienteTextBox)
@@ -294,7 +295,6 @@ Partial Class FrmCliente
         Me.GrbClientes.Controls.Add(Nombre_ClienteLabel)
         Me.GrbClientes.Controls.Add(Id_FiscalLabel)
         Me.GrbClientes.Controls.Add(Me.TipoComprobanteTextBox)
-        Me.GrbClientes.BackColor = System.Drawing.Color.White
         Me.GrbClientes.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GrbClientes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.GrbClientes.Location = New System.Drawing.Point(13, 26)
@@ -311,7 +311,7 @@ Partial Class FrmCliente
         Me.Id_FiscalTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "Id_Fiscal", True))
         Me.Id_FiscalTextBox.Location = New System.Drawing.Point(141, 24)
         Me.Id_FiscalTextBox.Name = "Id_FiscalTextBox"
-        Me.Id_FiscalTextBox.Size = New System.Drawing.Size(158, 22)
+        Me.Id_FiscalTextBox.Size = New System.Drawing.Size(158, 31)
         Me.Id_FiscalTextBox.TabIndex = 33
         '
         'ClientesBindingSource
@@ -329,7 +329,7 @@ Partial Class FrmCliente
         Me.Nombre_ClienteTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "Nombre_Cliente", True))
         Me.Nombre_ClienteTextBox.Location = New System.Drawing.Point(141, 57)
         Me.Nombre_ClienteTextBox.Name = "Nombre_ClienteTextBox"
-        Me.Nombre_ClienteTextBox.Size = New System.Drawing.Size(413, 22)
+        Me.Nombre_ClienteTextBox.Size = New System.Drawing.Size(413, 31)
         Me.Nombre_ClienteTextBox.TabIndex = 35
         '
         'Direccion_ClienteTextBox
@@ -337,7 +337,7 @@ Partial Class FrmCliente
         Me.Direccion_ClienteTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "Direccion_Cliente", True))
         Me.Direccion_ClienteTextBox.Location = New System.Drawing.Point(141, 92)
         Me.Direccion_ClienteTextBox.Name = "Direccion_ClienteTextBox"
-        Me.Direccion_ClienteTextBox.Size = New System.Drawing.Size(413, 22)
+        Me.Direccion_ClienteTextBox.Size = New System.Drawing.Size(413, 31)
         Me.Direccion_ClienteTextBox.TabIndex = 37
         '
         'Ciudad_ClienteTextBox
@@ -345,7 +345,7 @@ Partial Class FrmCliente
         Me.Ciudad_ClienteTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "Ciudad_Cliente", True))
         Me.Ciudad_ClienteTextBox.Location = New System.Drawing.Point(141, 124)
         Me.Ciudad_ClienteTextBox.Name = "Ciudad_ClienteTextBox"
-        Me.Ciudad_ClienteTextBox.Size = New System.Drawing.Size(413, 22)
+        Me.Ciudad_ClienteTextBox.Size = New System.Drawing.Size(413, 31)
         Me.Ciudad_ClienteTextBox.TabIndex = 39
         '
         'Pais_ClienteTextBox
@@ -353,7 +353,7 @@ Partial Class FrmCliente
         Me.Pais_ClienteTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "Pais_Cliente", True))
         Me.Pais_ClienteTextBox.Location = New System.Drawing.Point(141, 156)
         Me.Pais_ClienteTextBox.Name = "Pais_ClienteTextBox"
-        Me.Pais_ClienteTextBox.Size = New System.Drawing.Size(413, 22)
+        Me.Pais_ClienteTextBox.Size = New System.Drawing.Size(413, 31)
         Me.Pais_ClienteTextBox.TabIndex = 41
         '
         'NumeroTellfono_ClienteTextBox
@@ -361,7 +361,7 @@ Partial Class FrmCliente
         Me.NumeroTellfono_ClienteTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "NumeroTellfono_Cliente", True))
         Me.NumeroTellfono_ClienteTextBox.Location = New System.Drawing.Point(141, 187)
         Me.NumeroTellfono_ClienteTextBox.Name = "NumeroTellfono_ClienteTextBox"
-        Me.NumeroTellfono_ClienteTextBox.Size = New System.Drawing.Size(158, 22)
+        Me.NumeroTellfono_ClienteTextBox.Size = New System.Drawing.Size(158, 31)
         Me.NumeroTellfono_ClienteTextBox.TabIndex = 43
         '
         'NumeroFax_ClienteTextBox
@@ -369,7 +369,7 @@ Partial Class FrmCliente
         Me.NumeroFax_ClienteTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "NumeroFax_Cliente", True))
         Me.NumeroFax_ClienteTextBox.Location = New System.Drawing.Point(413, 182)
         Me.NumeroFax_ClienteTextBox.Name = "NumeroFax_ClienteTextBox"
-        Me.NumeroFax_ClienteTextBox.Size = New System.Drawing.Size(141, 22)
+        Me.NumeroFax_ClienteTextBox.Size = New System.Drawing.Size(141, 31)
         Me.NumeroFax_ClienteTextBox.TabIndex = 45
         '
         'Button1
@@ -391,7 +391,7 @@ Partial Class FrmCliente
         Me.EMail__ClienteTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "EMail_ Cliente", True))
         Me.EMail__ClienteTextBox.Location = New System.Drawing.Point(141, 215)
         Me.EMail__ClienteTextBox.Name = "EMail__ClienteTextBox"
-        Me.EMail__ClienteTextBox.Size = New System.Drawing.Size(413, 22)
+        Me.EMail__ClienteTextBox.Size = New System.Drawing.Size(413, 31)
         Me.EMail__ClienteTextBox.TabIndex = 47
         '
         'CarpetaDatosTextBox
@@ -399,7 +399,7 @@ Partial Class FrmCliente
         Me.CarpetaDatosTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "CarpetaDatos", True))
         Me.CarpetaDatosTextBox.Location = New System.Drawing.Point(141, 244)
         Me.CarpetaDatosTextBox.Name = "CarpetaDatosTextBox"
-        Me.CarpetaDatosTextBox.Size = New System.Drawing.Size(306, 22)
+        Me.CarpetaDatosTextBox.Size = New System.Drawing.Size(306, 31)
         Me.CarpetaDatosTextBox.TabIndex = 53
         '
         'TipoComprobanteTextBox
@@ -407,7 +407,7 @@ Partial Class FrmCliente
         Me.TipoComprobanteTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ClientesBindingSource, "TipoComprobante", True))
         Me.TipoComprobanteTextBox.Location = New System.Drawing.Point(454, 26)
         Me.TipoComprobanteTextBox.Name = "TipoComprobanteTextBox"
-        Me.TipoComprobanteTextBox.Size = New System.Drawing.Size(100, 22)
+        Me.TipoComprobanteTextBox.Size = New System.Drawing.Size(100, 31)
         Me.TipoComprobanteTextBox.TabIndex = 55
         '
         'ClientesTableAdapter
@@ -447,7 +447,6 @@ Partial Class FrmCliente
         Me.ProyectosDataGridView.AllowUserToDeleteRows = False
         Me.ProyectosDataGridView.AutoGenerateColumns = False
         Me.ProyectosDataGridView.BackgroundColor = System.Drawing.Color.White
-        Me.ProyectosDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ProyectosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ProyectosDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.Ver, Me.Estado})
         Me.ProyectosDataGridView.DataSource = Me.ProyectosBindingSource
@@ -521,7 +520,6 @@ Partial Class FrmCliente
         Me.DvgPagoCliente.AllowUserToDeleteRows = False
         Me.DvgPagoCliente.AutoGenerateColumns = False
         Me.DvgPagoCliente.BackgroundColor = System.Drawing.Color.White
-        Me.DvgPagoCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.DvgPagoCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DvgPagoCliente.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn5, Me.Divisa, Me.Valor})
         Me.DvgPagoCliente.DataSource = Me.PagosClientesBindingSource
@@ -545,9 +543,9 @@ Partial Class FrmCliente
         'DataGridViewTextBoxColumn5
         '
         Me.DataGridViewTextBoxColumn5.DataPropertyName = "Fecha"
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle16.Format = "d"
+        DataGridViewCellStyle16.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridViewTextBoxColumn5.HeaderText = "Fecha"
         Me.DataGridViewTextBoxColumn5.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
@@ -566,9 +564,9 @@ Partial Class FrmCliente
         'Valor
         '
         Me.Valor.DataPropertyName = "valor"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "n2"
-        Me.Valor.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle17.Format = "n2"
+        Me.Valor.DefaultCellStyle = DataGridViewCellStyle17
         Me.Valor.HeaderText = "valor"
         Me.Valor.MinimumWidth = 6
         Me.Valor.Name = "Valor"
@@ -601,17 +599,15 @@ Partial Class FrmCliente
         Me.PagosClientesDetalleDataGridView.AllowUserToDeleteRows = False
         Me.PagosClientesDetalleDataGridView.AutoGenerateColumns = False
         Me.PagosClientesDetalleDataGridView.BackgroundColor = System.Drawing.Color.White
-        Me.PagosClientesDetalleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PagosClientesDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.PagosClientesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPrespuestoPd, Me.IdFacturaPd, Me.IdCobroPd, Me.TotalAsignado, Me.Divisa1, Me.Fecha})
-        Me.PagosClientesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPrespuestoPd, Me.IdFacturaPd, Me.TotalAsignado, Me.Divisa1, Me.Fecha})
         Me.PagosClientesDetalleDataGridView.DataSource = Me.PagosClientesDetalleBindingSource
-        Me.PagosClientesDetalleDataGridView.Location = New System.Drawing.Point(605, 576)
+        Me.PagosClientesDetalleDataGridView.Location = New System.Drawing.Point(1129, 42)
         Me.PagosClientesDetalleDataGridView.Name = "PagosClientesDetalleDataGridView"
         Me.PagosClientesDetalleDataGridView.ReadOnly = True
         Me.PagosClientesDetalleDataGridView.RowHeadersWidth = 51
         Me.PagosClientesDetalleDataGridView.RowTemplate.Height = 24
-        Me.PagosClientesDetalleDataGridView.Size = New System.Drawing.Size(450, 110)
+        Me.PagosClientesDetalleDataGridView.Size = New System.Drawing.Size(579, 227)
         Me.PagosClientesDetalleDataGridView.TabIndex = 33
         '
         'IdPrespuestoPd
@@ -644,9 +640,9 @@ Partial Class FrmCliente
         'TotalAsignado
         '
         Me.TotalAsignado.DataPropertyName = "TotalPagado"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle3.Format = "n2"
-        Me.TotalAsignado.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle18.Format = "n2"
+        Me.TotalAsignado.DefaultCellStyle = DataGridViewCellStyle18
         Me.TotalAsignado.HeaderText = "Total"
         Me.TotalAsignado.MinimumWidth = 6
         Me.TotalAsignado.Name = "TotalAsignado"
@@ -706,7 +702,6 @@ Partial Class FrmCliente
         Me.PresupuestoDataGridView.AllowUserToDeleteRows = False
         Me.PresupuestoDataGridView.AutoGenerateColumns = False
         Me.PresupuestoDataGridView.BackgroundColor = System.Drawing.Color.White
-        Me.PresupuestoDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PresupuestoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.PresupuestoDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPresupuesto, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn11, Me.Moneda, Me.TotalUS, Me.PagadoUS, Me.PendienteUS, Me.TotalRd, Me.PagadoRd, Me.PendienteRD, Me.Total, Me.Pagado, Me.Pendiente, Me.Ejecutado, Me.PagadoP, Me.Ir, Me.EstadoP})
         Me.PresupuestoDataGridView.DataSource = Me.PresupuestoBindingSource
@@ -715,7 +710,7 @@ Partial Class FrmCliente
         Me.PresupuestoDataGridView.ReadOnly = True
         Me.PresupuestoDataGridView.RowHeadersWidth = 51
         Me.PresupuestoDataGridView.RowTemplate.Height = 24
-        Me.PresupuestoDataGridView.Size = New System.Drawing.Size(974, 220)
+        Me.PresupuestoDataGridView.Size = New System.Drawing.Size(1103, 220)
         Me.PresupuestoDataGridView.TabIndex = 33
         '
         'IdPresupuesto
@@ -739,9 +734,9 @@ Partial Class FrmCliente
         'DataGridViewTextBoxColumn11
         '
         Me.DataGridViewTextBoxColumn11.DataPropertyName = "Estado_Presupuesto"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle4.Format = "p2"
-        Me.DataGridViewTextBoxColumn11.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle19.Format = "p2"
+        Me.DataGridViewTextBoxColumn11.DefaultCellStyle = DataGridViewCellStyle19
         Me.DataGridViewTextBoxColumn11.HeaderText = "Estado"
         Me.DataGridViewTextBoxColumn11.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
@@ -760,9 +755,9 @@ Partial Class FrmCliente
         'TotalUS
         '
         Me.TotalUS.DataPropertyName = "TotalPresupuestoUS"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle5.Format = "n2"
-        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle20.Format = "n2"
+        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle20
         Me.TotalUS.HeaderText = "TotalPresupuestoUS"
         Me.TotalUS.MinimumWidth = 6
         Me.TotalUS.Name = "TotalUS"
@@ -773,9 +768,9 @@ Partial Class FrmCliente
         'PagadoUS
         '
         Me.PagadoUS.DataPropertyName = "PagadopresupuestoUS"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle6.Format = "n2"
-        Me.PagadoUS.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle21.Format = "n2"
+        Me.PagadoUS.DefaultCellStyle = DataGridViewCellStyle21
         Me.PagadoUS.HeaderText = "PagadopresupuestoUS"
         Me.PagadoUS.MinimumWidth = 6
         Me.PagadoUS.Name = "PagadoUS"
@@ -786,9 +781,9 @@ Partial Class FrmCliente
         'PendienteUS
         '
         Me.PendienteUS.DataPropertyName = "EstadoUS"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle7.Format = "n2"
-        Me.PendienteUS.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle22.Format = "n2"
+        Me.PendienteUS.DefaultCellStyle = DataGridViewCellStyle22
         Me.PendienteUS.HeaderText = "Pendiente US"
         Me.PendienteUS.MinimumWidth = 6
         Me.PendienteUS.Name = "PendienteUS"
@@ -799,9 +794,9 @@ Partial Class FrmCliente
         'TotalRd
         '
         Me.TotalRd.DataPropertyName = "TotalPresupuestoRD"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle8.Format = "n2"
-        Me.TotalRd.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle23.Format = "n2"
+        Me.TotalRd.DefaultCellStyle = DataGridViewCellStyle23
         Me.TotalRd.HeaderText = "TotalPresupuestoRD"
         Me.TotalRd.MinimumWidth = 6
         Me.TotalRd.Name = "TotalRd"
@@ -812,9 +807,9 @@ Partial Class FrmCliente
         'PagadoRd
         '
         Me.PagadoRd.DataPropertyName = "PagadoRD"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle9.Format = "n2"
-        Me.PagadoRd.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle24.Format = "n2"
+        Me.PagadoRd.DefaultCellStyle = DataGridViewCellStyle24
         Me.PagadoRd.HeaderText = "PagadoRD"
         Me.PagadoRd.MinimumWidth = 6
         Me.PagadoRd.Name = "PagadoRd"
@@ -825,9 +820,9 @@ Partial Class FrmCliente
         'PendienteRD
         '
         Me.PendienteRD.DataPropertyName = "PendienteRDS"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle10.Format = "n2"
-        Me.PendienteRD.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle25.Format = "n2"
+        Me.PendienteRD.DefaultCellStyle = DataGridViewCellStyle25
         Me.PendienteRD.HeaderText = "PendienteRDS"
         Me.PendienteRD.MinimumWidth = 6
         Me.PendienteRD.Name = "PendienteRD"
@@ -837,10 +832,10 @@ Partial Class FrmCliente
         '
         'Total
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle11.Format = "N2"
-        DataGridViewCellStyle11.NullValue = Nothing
-        Me.Total.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle26.Format = "N2"
+        DataGridViewCellStyle26.NullValue = Nothing
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle26
         Me.Total.HeaderText = "Total"
         Me.Total.MinimumWidth = 6
         Me.Total.Name = "Total"
@@ -849,9 +844,9 @@ Partial Class FrmCliente
         '
         'Pagado
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle12.Format = "N2"
-        Me.Pagado.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle27.Format = "N2"
+        Me.Pagado.DefaultCellStyle = DataGridViewCellStyle27
         Me.Pagado.HeaderText = "Pagado"
         Me.Pagado.MinimumWidth = 6
         Me.Pagado.Name = "Pagado"
@@ -860,9 +855,9 @@ Partial Class FrmCliente
         '
         'Pendiente
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        DataGridViewCellStyle13.Format = "N2"
-        Me.Pendiente.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        DataGridViewCellStyle28.Format = "N2"
+        Me.Pendiente.DefaultCellStyle = DataGridViewCellStyle28
         Me.Pendiente.HeaderText = "Pendiente"
         Me.Pendiente.MinimumWidth = 6
         Me.Pendiente.Name = "Pendiente"
@@ -872,9 +867,9 @@ Partial Class FrmCliente
         'Ejecutado
         '
         Me.Ejecutado.DataPropertyName = "Ejecutado"
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle14.Format = "P2"
-        Me.Ejecutado.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle29.Format = "P2"
+        Me.Ejecutado.DefaultCellStyle = DataGridViewCellStyle29
         Me.Ejecutado.HeaderText = "Ejecutado"
         Me.Ejecutado.MinimumWidth = 6
         Me.Ejecutado.Name = "Ejecutado"
@@ -884,9 +879,9 @@ Partial Class FrmCliente
         'PagadoP
         '
         Me.PagadoP.DataPropertyName = "PorcientoPago"
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle15.Format = "P2"
-        Me.PagadoP.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle30.Format = "P2"
+        Me.PagadoP.DefaultCellStyle = DataGridViewCellStyle30
         Me.PagadoP.HeaderText = "Pagado%"
         Me.PagadoP.MinimumWidth = 6
         Me.PagadoP.Name = "PagadoP"
@@ -917,7 +912,7 @@ Partial Class FrmCliente
         Me.Label23.Location = New System.Drawing.Point(1446, 583)
         Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(70, 16)
+        Me.Label23.Size = New System.Drawing.Size(94, 25)
         Me.Label23.TabIndex = 65
         Me.Label23.Text = "% pagado"
         '
@@ -927,7 +922,7 @@ Partial Class FrmCliente
         Me.Label21.Location = New System.Drawing.Point(1506, 632)
         Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(14, 16)
+        Me.Label21.Size = New System.Drawing.Size(22, 25)
         Me.Label21.TabIndex = 64
         Me.Label21.Text = "0"
         '
@@ -937,7 +932,7 @@ Partial Class FrmCliente
         Me.Label22.Location = New System.Drawing.Point(1506, 607)
         Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(14, 16)
+        Me.Label22.Size = New System.Drawing.Size(22, 25)
         Me.Label22.TabIndex = 63
         Me.Label22.Text = "0"
         '
@@ -947,7 +942,7 @@ Partial Class FrmCliente
         Me.Label20.Location = New System.Drawing.Point(1414, 632)
         Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(34, 16)
+        Me.Label20.Size = New System.Drawing.Size(46, 25)
         Me.Label20.TabIndex = 62
         Me.Label20.Text = "RD$"
         '
@@ -957,7 +952,7 @@ Partial Class FrmCliente
         Me.Label19.Location = New System.Drawing.Point(1414, 607)
         Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(33, 16)
+        Me.Label19.Size = New System.Drawing.Size(44, 25)
         Me.Label19.TabIndex = 61
         Me.Label19.Text = "US$"
         '
@@ -967,7 +962,7 @@ Partial Class FrmCliente
         Me.Label18.Location = New System.Drawing.Point(1064, 583)
         Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(38, 16)
+        Me.Label18.Size = New System.Drawing.Size(49, 25)
         Me.Label18.TabIndex = 60
         Me.Label18.Text = "Total"
         '
@@ -977,7 +972,7 @@ Partial Class FrmCliente
         Me.Label17.Location = New System.Drawing.Point(1194, 632)
         Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(14, 16)
+        Me.Label17.Size = New System.Drawing.Size(22, 25)
         Me.Label17.TabIndex = 59
         Me.Label17.Text = "0"
         '
@@ -987,7 +982,7 @@ Partial Class FrmCliente
         Me.Label16.Location = New System.Drawing.Point(1088, 632)
         Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(14, 16)
+        Me.Label16.Size = New System.Drawing.Size(22, 25)
         Me.Label16.TabIndex = 58
         Me.Label16.Text = "0"
         '
@@ -997,7 +992,7 @@ Partial Class FrmCliente
         Me.Label15.Location = New System.Drawing.Point(1194, 607)
         Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(14, 16)
+        Me.Label15.Size = New System.Drawing.Size(22, 25)
         Me.Label15.TabIndex = 57
         Me.Label15.Text = "0"
         '
@@ -1007,7 +1002,7 @@ Partial Class FrmCliente
         Me.Label14.Location = New System.Drawing.Point(1088, 607)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(14, 16)
+        Me.Label14.Size = New System.Drawing.Size(22, 25)
         Me.Label14.TabIndex = 56
         Me.Label14.Text = "0"
         '
@@ -1017,7 +1012,7 @@ Partial Class FrmCliente
         Me.Label12.Location = New System.Drawing.Point(1322, 632)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(14, 16)
+        Me.Label12.Size = New System.Drawing.Size(22, 25)
         Me.Label12.TabIndex = 55
         Me.Label12.Text = "0"
         '
@@ -1027,7 +1022,7 @@ Partial Class FrmCliente
         Me.Label13.Location = New System.Drawing.Point(1162, 583)
         Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(56, 16)
+        Me.Label13.Size = New System.Drawing.Size(72, 25)
         Me.Label13.TabIndex = 54
         Me.Label13.Text = "Pagado"
         '
@@ -1037,7 +1032,7 @@ Partial Class FrmCliente
         Me.Label6.Location = New System.Drawing.Point(1322, 607)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(14, 16)
+        Me.Label6.Size = New System.Drawing.Size(22, 25)
         Me.Label6.TabIndex = 53
         Me.Label6.Text = "0"
         '
@@ -1047,7 +1042,7 @@ Partial Class FrmCliente
         Me.Label7.Location = New System.Drawing.Point(1303, 583)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(71, 16)
+        Me.Label7.Size = New System.Drawing.Size(94, 25)
         Me.Label7.TabIndex = 52
         Me.Label7.Text = "Pendiente "
         '
@@ -1057,7 +1052,7 @@ Partial Class FrmCliente
         Me.LabelTotalRDAsignado.Location = New System.Drawing.Point(1476, 315)
         Me.LabelTotalRDAsignado.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelTotalRDAsignado.Name = "LabelTotalRDAsignado"
-        Me.LabelTotalRDAsignado.Size = New System.Drawing.Size(14, 16)
+        Me.LabelTotalRDAsignado.Size = New System.Drawing.Size(22, 25)
         Me.LabelTotalRDAsignado.TabIndex = 67
         Me.LabelTotalRDAsignado.Text = "0"
         Me.LabelTotalRDAsignado.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -1068,7 +1063,7 @@ Partial Class FrmCliente
         Me.Label5.Location = New System.Drawing.Point(1303, 282)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(121, 16)
+        Me.Label5.Size = New System.Drawing.Size(157, 25)
         Me.Label5.TabIndex = 66
         Me.Label5.Text = "Total Asignado US"
         '
@@ -1078,7 +1073,7 @@ Partial Class FrmCliente
         Me.Label11.Location = New System.Drawing.Point(952, 282)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(68, 16)
+        Me.Label11.Size = New System.Drawing.Size(88, 25)
         Me.Label11.TabIndex = 71
         Me.Label11.Tag = ""
         Me.Label11.Text = "Total RD$"
@@ -1090,7 +1085,7 @@ Partial Class FrmCliente
         Me.Label10.Location = New System.Drawing.Point(782, 282)
         Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(67, 16)
+        Me.Label10.Size = New System.Drawing.Size(86, 25)
         Me.Label10.TabIndex = 70
         Me.Label10.Tag = ""
         Me.Label10.Text = "Total US$"
@@ -1102,7 +1097,7 @@ Partial Class FrmCliente
         Me.Label9.Location = New System.Drawing.Point(877, 282)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(68, 16)
+        Me.Label9.Size = New System.Drawing.Size(88, 25)
         Me.Label9.TabIndex = 69
         Me.Label9.Tag = ""
         Me.Label9.Text = "Total RD$"
@@ -1113,7 +1108,7 @@ Partial Class FrmCliente
         Me.Label8.Location = New System.Drawing.Point(707, 282)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(67, 16)
+        Me.Label8.Size = New System.Drawing.Size(86, 25)
         Me.Label8.TabIndex = 68
         Me.Label8.Tag = ""
         Me.Label8.Text = "Total US$"
@@ -1180,7 +1175,7 @@ Partial Class FrmCliente
         Me.LabelTotalUSAsignado.Location = New System.Drawing.Point(1476, 282)
         Me.LabelTotalUSAsignado.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelTotalUSAsignado.Name = "LabelTotalUSAsignado"
-        Me.LabelTotalUSAsignado.Size = New System.Drawing.Size(14, 16)
+        Me.LabelTotalUSAsignado.Size = New System.Drawing.Size(22, 25)
         Me.LabelTotalUSAsignado.TabIndex = 76
         Me.LabelTotalUSAsignado.Text = "0"
         Me.LabelTotalUSAsignado.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -1191,18 +1186,16 @@ Partial Class FrmCliente
         Me.Label3.Location = New System.Drawing.Point(1303, 315)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(122, 16)
+        Me.Label3.Size = New System.Drawing.Size(159, 25)
         Me.Label3.TabIndex = 77
         Me.Label3.Text = "Total Asignado RD"
         '
         'FrmCliente
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(1587, 699)
-        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(1786, 699)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.LabelTotalUSAsignado)
         Me.Controls.Add(Me.BtnGuardarCliente)
@@ -1234,6 +1227,8 @@ Partial Class FrmCliente
         Me.Controls.Add(Me.DvgPagoCliente)
         Me.Controls.Add(Me.ProyectosDataGridView)
         Me.Controls.Add(Me.GrbClientes)
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.Name = "FrmCliente"
         Me.Text = "FrmCliente"
         Me.GrbClientes.ResumeLayout(False)

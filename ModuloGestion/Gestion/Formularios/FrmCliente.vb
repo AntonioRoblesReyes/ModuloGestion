@@ -361,7 +361,7 @@ Public Class FrmCliente
         End Try
     End Sub
 
-    Public Sub verCliente()
+    Public Sub VerCliente()
 
         Dim Cliente As String = My.Forms.FrmVerClientes.DsClientes.Clientes(My.Forms.FrmVerClientes.ClientesBindingSource.Position).Id_Fiscal
 

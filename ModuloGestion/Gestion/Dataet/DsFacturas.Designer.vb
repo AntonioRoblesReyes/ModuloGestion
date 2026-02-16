@@ -13728,10 +13728,10 @@ Namespace DsFacturasTableAdapters
 
                 Return root
             End Function
-            
-            <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-             Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-            Public Function Compare(ByVal row1 As Global.System.Data.DataRow, ByVal row2 As Global.System.Data.DataRow) As Integer Implements Global.System.Collections.Generic.IComparer(Of Global.System.Data.DataRow).Compare
+
+            Public Function Compare(ByVal row1 As Global.System.Data.DataRow, ByVal row2 As Global.System.Data.DataRow) _
+       As Integer Implements Global.System.Collections.Generic.IComparer(Of Global.System.Data.DataRow).Compare
+
                 If Object.ReferenceEquals(row1, row2) Then
                     Return 0
                 End If
@@ -13751,8 +13751,10 @@ Namespace DsFacturasTableAdapters
                 If Object.ReferenceEquals(root1, root2) Then
                     Return (Me._childFirst * distance1.CompareTo(distance2))
                 Else
-                    Global.System.Diagnostics.Debug.Assert(((Not (root1.Table) Is Nothing)  _
-                                    AndAlso (Not (root2.Table) Is Nothing)))
+                    Global.System.Diagnostics.Debug.Assert(
+                        (Not root1.Table Is Nothing) AndAlso (Not root2.Table Is Nothing)
+                    )
+
                     If (root1.Table.Rows.IndexOf(root1) < root2.Table.Rows.IndexOf(root2)) Then
                         Return -1
                     Else
@@ -13760,6 +13762,7 @@ Namespace DsFacturasTableAdapters
                     End If
                 End If
             End Function
+
         End Class
     End Class
 End Namespace
