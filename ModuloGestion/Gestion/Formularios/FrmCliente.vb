@@ -263,6 +263,33 @@ Public Class FrmCliente
             MsgBox("Error al seleccionar presupuesto: " & ex.Message, MsgBoxStyle.Critical)
         End Try
     End Sub
+
+
+    Private Sub PagosClientesDetalleDataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles PagosClientesDetalleDataGridView.CellDoubleClick
+        Try
+            If e.RowIndex < 0 Then Exit Sub
+
+            Dim fila As DataGridViewRow = PagosClientesDetalleDataGridView.Rows(e.RowIndex)
+            Dim idFacturaObj As Object = fila.Cells("IdFacturaPd").Value
+
+            If idFacturaObj Is Nothing OrElse IsDBNull(idFacturaObj) OrElse String.IsNullOrWhiteSpace(idFacturaObj.ToString()) Then
+                MsgBox("El pago seleccionado no tiene factura asociada.", MsgBoxStyle.Exclamation)
+                Exit Sub
+            End If
+
+            Dim idFactura As String = idFacturaObj.ToString().Trim()
+
+            With My.Forms.FrmFacturas
+                .Close()
+                .Label2.Text = idFactura
+                .VerFActura()
+            End With
+
+        Catch ex As Exception
+            MsgBox("Error al abrir la factura asociada: " & ex.Message, MsgBoxStyle.Critical)
+        End Try
+    End Sub
+
     Public Sub CrearNuevoCliente()
         Try
             ' Oculta todo menos GrbClientes
