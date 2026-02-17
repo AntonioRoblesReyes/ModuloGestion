@@ -91,12 +91,13 @@
         For Each row As DataGridViewRow In FacturaMontajeDataGridView.Rows
             If row.IsNewRow Then Continue For
 
-            SM += SafeSum(row.Cells(1).Value)
-            IM += SafeSum(row.Cells(2).Value)
-            TM += SafeSum(row.Cells(3).Value)
-            PM += SafeSum(row.Cells(4).Value)
+            ' El subtotal de montaje para análisis se toma con IRS.
+            SM += SafeSum(row.Cells("TotalIrs").Value)
+            IM += SafeSum(row.Cells("Itebis").Value)
+            TM += SafeSum(row.Cells("Total").Value)
+            PM += SafeSum(row.Cells("Pagado").Value)
             PEM += SafeSum(row.Cells("Pendiente").Value)
-            PEMF += SafeSum(row.Cells("SubTotal").Value) - SafeSum(row.Cells("Pagado").Value)
+            PEMF += SafeSum(row.Cells("TotalIrs").Value) - SafeSum(row.Cells("Pagado").Value)
         Next
 
         '==========================================================
@@ -221,15 +222,18 @@
 
     Private Sub CalcularResumenFinal()
 
-        Dim totalMontaje As Decimal
-        Dim totalCompras As Decimal
+        Dim subtotalMontaje As Decimal
+        Dim subtotalCompras As Decimal
         Dim totalGastosRD As Decimal
         Dim tasa As Decimal
         Dim subtotalProyecto As Decimal
 
-        Decimal.TryParse(TextBox3.Text, totalMontaje)
-        Decimal.TryParse(TextBox6.Text, totalCompras)
-        Decimal.TryParse(TextBox7.Text, totalGastosRD)
+        ' Para beneficio se comparan valores sin ITBIS,
+        ' porque el subtotal del proyecto (lblSubTotalProyecto)
+        ' también viene antes de ITBIS.
+        Decimal.TryParse(TextBox1.Text, subtotalMontaje)
+        Decimal.TryParse(TextBox4.Text, subtotalCompras)
+        totalGastosRD = subtotalMontaje + subtotalCompras
         Decimal.TryParse(txtTasaCambio.Text, tasa)
         Decimal.TryParse(lblSubTotalProyecto.Text, subtotalProyecto)
 
