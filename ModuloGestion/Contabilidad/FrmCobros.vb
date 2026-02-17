@@ -1,84 +1,58 @@
 ﻿
 Imports System.IO
-
+Imports System.Globalization
 
 Public Class FrmCobros
+    Private Const MonedaPeso As String = "RD$"
+    Private Const MonedaDolar As String = "US$"
+
     Sub PagoMoneda()
-        Dim iTotal As Integer = Me.PagosClientesDataGridView.Rows.Count
-        Try
+        Dim totalRD As Decimal = 0D
+        Dim totalUS As Decimal = 0D
 
-            Me.PagosClientesBindingSource.MoveFirst()
-            Dim i As Integer
+        For Each row As DataGridViewRow In Me.PagosClientesDataGridView.Rows
+            If row.IsNewRow Then Continue For
 
-            For i = 0 To iTotal - 1
-                If Me.PagosClientesDataGridView.CurrentRow.Cells(5).Value = "RD$" Then
-                    Me.PagosClientesDataGridView.CurrentRow.Cells(6).Value = Me.PagosClientesDataGridView.CurrentRow.Cells(4).Value
-                    Me.PagosClientesDataGridView.CurrentRow.Cells(7).Value = 0
-                ElseIf Me.PagosClientesDataGridView.CurrentRow.Cells(5).Value = "US$" Then
-                    Me.PagosClientesDataGridView.CurrentRow.Cells(6).Value = 0
-                    Me.PagosClientesDataGridView.CurrentRow.Cells(7).Value = Me.PagosClientesDataGridView.CurrentRow.Cells(4).Value
-                End If
-                'MsgBox(Me.PagosClientesDataGridView.CurrentRow.Cells(5).Value & "_" & Me.PagosClientesDataGridView.CurrentRow.Cells(4).Value)
-                Me.PagosClientesBindingSource.MoveNext()
-            Next
+            Dim valor As Decimal = ObtenerDecimal(row.Cells(4).Value)
+            Dim moneda As String = Convert.ToString(row.Cells(5).Value)
 
-            Dim TotalRD As Double = 0
-            Dim TotalUS As Double = 0
-            Dim eTotal As Integer = Me.PagosClientesDataGridView.Rows.Count
-
-            If eTotal <> 0 Then
-
-                Try
-
-
-
-                    For Each row As DataGridViewRow In Me.PagosClientesDataGridView.Rows
-                        TotalRD += Val(row.Cells("RD").Value)
-                        TotalUS += Val(row.Cells("US").Value)
-
-                    Next
-                    'Mostramos el total en la caja de texto TxtTotal, en este caso la caja de texto tiene definido un formato como se mostrara el resultado, como dinero..
-
-                    Me.Label2.Text = Format(TotalRD, "#,##0.00")
-                    Me.Label4.Text = Format(TotalUS, "#,##0.00")
-
-
-
-                Catch ex As Exception
-                    MsgBox(ex.Message & "     este")
-
-                End Try
+            If moneda = MonedaPeso Then
+                row.Cells("RD").Value = valor
+                row.Cells("US").Value = 0D
+            ElseIf moneda = MonedaDolar Then
+                row.Cells("RD").Value = 0D
+                row.Cells("US").Value = valor
+            Else
+                row.Cells("RD").Value = 0D
+                row.Cells("US").Value = 0D
             End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
 
-        End Try
+            totalRD += ObtenerDecimal(row.Cells("RD").Value)
+            totalUS += ObtenerDecimal(row.Cells("US").Value)
+        Next
+
+        Me.Label2.Text = FormatearMonto(totalRD)
+        Me.Label4.Text = FormatearMonto(totalUS)
     End Sub
+
     Private Sub PagosClientesBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles PagosClientesBindingNavigatorSaveItem.Click
         Me.Validate()
         Me.PagosClientesBindingSource.EndEdit()
         Me.TableAdapterManager.UpdateAll(Me.DsPagosClientes)
-
     End Sub
 
     Private Sub FrmCobros_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
         Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
-        'TODO: esta línea de código carga datos en la tabla 'DsPagosClientesDetalle.PagosClientesDetalle' Puede moverla o quitarla según sea necesario.
         Me.PagosClientesDetalleTableAdapter.Fill(Me.DsPagosClientesDetalle.PagosClientesDetalle)
-        'TODO: esta línea de código carga datos en la tabla 'DsPagosClientes.PagosClientes' Puede moverla o quitarla según sea necesario.
         Me.PagosClientesTableAdapter.Fill(Me.DsPagosClientes.PagosClientes)
 
         LlenarComboAño()
-        'AplicarFiltroSoloAño()
-
         LlenarComboMesPorAño()
 
         PagoMoneda()
+        AplicarEstiloPremium()
+        Label5.Visible = False
     End Sub
-
-
-
 
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
         My.Forms.InfReciboImgresos.Close()
@@ -92,21 +66,26 @@ Public Class FrmCobros
         CerrarGrill(Me)
     End Sub
 
-
-
     Private Sub PagosClientesDataGridView_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles PagosClientesDataGridView.CellClick
-        Dim Pago As String = Me.DsPagosClientes.PagosClientes(Me.PagosClientesBindingSource.Position).ID_Cobro
-        Me.PagosClientesDetalleTableAdapter.FillByIdCobro(Me.DsPagosClientesDetalle.PagosClientesDetalle, Pago)
-        Dim total As Double = 0
+        If e.RowIndex < 0 Then Exit Sub
+
+        Dim pago As String = Me.DsPagosClientes.PagosClientes(Me.PagosClientesBindingSource.Position).ID_Cobro
+        Me.PagosClientesDetalleTableAdapter.FillByIdCobro(Me.DsPagosClientesDetalle.PagosClientesDetalle, pago)
+
+        Dim total As Decimal = 0D
         For Each row As DataGridViewRow In Me.PagosClientesDetalleDataGridView.Rows
-            total += Val(row.Cells(4).Value)
+            If row.IsNewRow Then Continue For
+            total += ObtenerDecimal(row.Cells(4).Value)
         Next
-        Me.Label5.Text = total.ToString
-        Dim ValorPago As Double = Me.PagosClientesDataGridView.CurrentRow.Cells(4).Value.ToString
-        If ValorPago <> Me.Label5.Text Then
-            MsgBox("el registro no cuadra")
+
+        Me.Label5.Text = FormatearMonto(total)
+
+        Dim valorPago As Decimal = ObtenerDecimal(Me.PagosClientesDataGridView.CurrentRow.Cells(4).Value)
+        If Math.Abs(valorPago - total) > 0.01D Then
+            MsgBox("El cobro seleccionado no cuadra con su detalle. Verifique la asignación.", MsgBoxStyle.Exclamation, "Validación de cobros")
         End If
     End Sub
+
     Private Sub CmbAño_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAño.SelectedIndexChanged
         AplicarFiltroSoloAño()
         LlenarComboMesPorAño()
@@ -134,17 +113,16 @@ Public Class FrmCobros
         Next
         CalcularTotalesFiltrados()
     End Sub
+
     Private Sub LlenarComboMesPorAño()
         Dim añoSeleccionado As String = cmbAño.Text
         Dim mesesDisponibles As New HashSet(Of Integer)
 
-        ' Recorre solo las filas visibles y no nuevas
         For Each fila As DataGridViewRow In PagosClientesDataGridView.Rows
             If fila.IsNewRow OrElse Not fila.Visible Then Continue For
 
             Dim fecha As Date
             If Date.TryParse(fila.Cells("Fecha").Value?.ToString(), fecha) Then
-                ' Si el año coincide o es "Todos", agrega el mes
                 If añoSeleccionado = "Todos" OrElse fecha.Year.ToString() = añoSeleccionado Then
                     mesesDisponibles.Add(fecha.Month)
                 End If
@@ -153,12 +131,14 @@ Public Class FrmCobros
 
         cmbMes.Items.Clear()
         cmbMes.Items.Add("Todos")
-        ' Agrega los meses ordenados por número
+
         For Each mes As Integer In mesesDisponibles.OrderBy(Function(x) x)
-            cmbMes.Items.Add(MonthName(mes, False)) ' False para nombre completo
+            cmbMes.Items.Add(MonthName(mes, False))
         Next
+
         cmbMes.SelectedIndex = 0
     End Sub
+
     Private Sub cmbMes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbMes.SelectedIndexChanged
         AplicarFiltroAñoYMes()
     End Sub
@@ -185,7 +165,7 @@ Public Class FrmCobros
                 mostrar = False
             End If
 
-            If mesSeleccionado <> "Todos" AndAlso MonthName(fecha.Month) <> mesSeleccionado Then
+            If mesSeleccionado <> "Todos" AndAlso MonthName(fecha.Month, False) <> mesSeleccionado Then
                 mostrar = False
             End If
 
@@ -193,9 +173,9 @@ Public Class FrmCobros
                 fila.Visible = mostrar
             End If
         Next
+
         CalcularTotalesFiltrados()
     End Sub
-
 
     Private Sub LlenarComboAño()
         Dim añosDisponibles As New HashSet(Of Integer)
@@ -211,31 +191,112 @@ Public Class FrmCobros
 
         cmbAño.Items.Clear()
         cmbAño.Items.Add("Todos")
+
         For Each año As Integer In añosDisponibles.OrderBy(Function(x) x)
             cmbAño.Items.Add(año.ToString())
         Next
+
         cmbAño.SelectedIndex = 0
     End Sub
+
     Private Sub CalcularTotalesFiltrados()
-        Dim totalRD As Double = 0
-        Dim totalUS As Double = 0
+        Dim totalRD As Decimal = 0D
+        Dim totalUS As Decimal = 0D
 
         For Each fila As DataGridViewRow In PagosClientesDataGridView.Rows
             If fila.IsNewRow OrElse Not fila.Visible Then Continue For
 
-            totalRD += Val(fila.Cells("RD").Value)
-            totalUS += Val(fila.Cells("US").Value)
-
+            totalRD += ObtenerDecimal(fila.Cells("RD").Value)
+            totalUS += ObtenerDecimal(fila.Cells("US").Value)
         Next
 
-        Label2.Text = Format(totalRD, "#,##0.00") ' Total RD$
-        Label4.Text = Format(totalUS, "#,##0.00") ' Total US$
-
+        Label2.Text = FormatearMonto(totalRD)
+        Label4.Text = FormatearMonto(totalUS)
     End Sub
 
-
-
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If PagosClientesDataGridView.Rows.Count = 0 Then Exit Sub
 
+        PagosClientesDataGridView.Sort(Fecha, System.ComponentModel.ListSortDirection.Descending)
+        MsgBox("Listado ordenado por fecha descendente.", MsgBoxStyle.Information, "Cobros")
+    End Sub
+
+    Private Function ObtenerDecimal(valor As Object) As Decimal
+        If valor Is Nothing Then Return 0D
+
+        Dim texto As String = valor.ToString().Trim()
+        If String.IsNullOrWhiteSpace(texto) Then Return 0D
+
+        Dim resultado As Decimal
+        If Decimal.TryParse(texto, NumberStyles.Any, CultureInfo.CurrentCulture, resultado) Then Return resultado
+        If Decimal.TryParse(texto, NumberStyles.Any, CultureInfo.InvariantCulture, resultado) Then Return resultado
+
+        Return 0D
+    End Function
+
+    Private Function FormatearMonto(monto As Decimal) As String
+        Return monto.ToString("N2")
+    End Function
+
+    Private Sub AplicarEstiloPremium()
+        Me.Text = "Cobros - Vista Premium"
+        Me.BackColor = Color.FromArgb(245, 248, 252)
+        Me.Font = New Font("Segoe UI", 9.0F, FontStyle.Regular)
+
+        ConfigurarGridPrincipal()
+        ConfigurarGridDetalle()
+        ConfigurarEtiquetasResumen()
+        ConfigurarFiltrosYAcciones()
+    End Sub
+
+    Private Sub ConfigurarGridPrincipal()
+        With PagosClientesDataGridView
+            .BackgroundColor = Color.White
+            .BorderStyle = BorderStyle.None
+            .EnableHeadersVisualStyles = False
+            .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(35, 48, 68)
+            .ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
+            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(227, 240, 255)
+            .DefaultCellStyle.SelectionForeColor = Color.FromArgb(28, 39, 58)
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
+            .RowHeadersVisible = False
+        End With
+    End Sub
+
+    Private Sub ConfigurarGridDetalle()
+        With PagosClientesDetalleDataGridView
+            .BackgroundColor = Color.White
+            .BorderStyle = BorderStyle.None
+            .EnableHeadersVisualStyles = False
+            .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(53, 70, 97)
+            .ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
+            .RowHeadersVisible = False
+            .ReadOnly = True
+        End With
+    End Sub
+
+    Private Sub ConfigurarEtiquetasResumen()
+        Label1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+        Label3.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+        Label2.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
+        Label4.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
+        Label2.ForeColor = Color.FromArgb(13, 110, 253)
+        Label4.ForeColor = Color.FromArgb(25, 135, 84)
+    End Sub
+
+    Private Sub ConfigurarFiltrosYAcciones()
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.BackColor = Color.FromArgb(13, 110, 253)
+        Button1.ForeColor = Color.White
+
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.BackColor = Color.FromArgb(108, 117, 125)
+        Button3.ForeColor = Color.White
+
+        cmbAño.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbMes.DropDownStyle = ComboBoxStyle.DropDownList
     End Sub
 End Class
