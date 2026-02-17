@@ -3,6 +3,8 @@ Imports System.IO
 Imports System.Globalization
 
 Public Class FrmCobros
+    Private ReadOnly MonedasPeso As String() = {"RD$", "RDS", "RD", "DOP"}
+    Private ReadOnly MonedasDolar As String() = {"US$", "USS", "US", "USD"}
     Private Const MonedaPeso As String = "RD$"
     Private Const MonedaDolar As String = "US$"
 
@@ -14,6 +16,12 @@ Public Class FrmCobros
             If row.IsNewRow Then Continue For
 
             Dim valor As Decimal = ObtenerDecimal(row.Cells(4).Value)
+            Dim moneda As String = NormalizarMoneda(Convert.ToString(row.Cells(5).Value))
+
+            If MonedasPeso.Contains(moneda) Then
+                row.Cells("RD").Value = valor
+                row.Cells("US").Value = 0D
+            ElseIf MonedasDolar.Contains(moneda) Then
             Dim moneda As String = Convert.ToString(row.Cells(5).Value)
 
             If moneda = MonedaPeso Then
@@ -51,6 +59,8 @@ Public Class FrmCobros
 
         PagoMoneda()
         AplicarEstiloPremium()
+        Label5.Visible = True
+        Label5.Text = "Seleccione un cobro para validar el detalle."
         Label5.Visible = False
     End Sub
 
@@ -78,6 +88,15 @@ Public Class FrmCobros
             total += ObtenerDecimal(row.Cells(4).Value)
         Next
 
+        Me.Label5.Text = "Detalle: " & FormatearMonto(total)
+
+        Dim valorPago As Decimal = ObtenerDecimal(Me.PagosClientesDataGridView.CurrentRow.Cells(4).Value)
+        If Math.Abs(valorPago - total) > 0.01D Then
+            Me.Label5.Text = "Diferencia detectada: " & FormatearMonto(valorPago - total)
+            Me.Label5.ForeColor = Color.FromArgb(176, 42, 55)
+        Else
+            Me.Label5.Text = "Detalle cuadrado correctamente."
+            Me.Label5.ForeColor = Color.FromArgb(25, 135, 84)
         Me.Label5.Text = FormatearMonto(total)
 
         Dim valorPago As Decimal = ObtenerDecimal(Me.PagosClientesDataGridView.CurrentRow.Cells(4).Value)
@@ -217,6 +236,10 @@ Public Class FrmCobros
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         If PagosClientesDataGridView.Rows.Count = 0 Then Exit Sub
 
+        AplicarFiltroAñoYMes()
+        PagosClientesDataGridView.Sort(Fecha, System.ComponentModel.ListSortDirection.Descending)
+        Label5.Text = "Listado ordenado por fecha descendente."
+        Label5.ForeColor = Color.FromArgb(13, 110, 253)
         PagosClientesDataGridView.Sort(Fecha, System.ComponentModel.ListSortDirection.Descending)
         MsgBox("Listado ordenado por fecha descendente.", MsgBoxStyle.Information, "Cobros")
     End Sub
@@ -238,10 +261,17 @@ Public Class FrmCobros
         Return monto.ToString("N2")
     End Function
 
+    Private Function NormalizarMoneda(moneda As String) As String
+        If String.IsNullOrWhiteSpace(moneda) Then Return String.Empty
+
+        Return moneda.Trim().ToUpperInvariant()
+    End Function
+
     Private Sub AplicarEstiloPremium()
         Me.Text = "Cobros - Vista Premium"
         Me.BackColor = Color.FromArgb(245, 248, 252)
         Me.Font = New Font("Segoe UI", 9.0F, FontStyle.Regular)
+        Me.StartPosition = FormStartPosition.CenterScreen
 
         ConfigurarGridPrincipal()
         ConfigurarGridDetalle()
@@ -253,10 +283,24 @@ Public Class FrmCobros
         With PagosClientesDataGridView
             .BackgroundColor = Color.White
             .BorderStyle = BorderStyle.None
+            .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+            .AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None
             .EnableHeadersVisualStyles = False
             .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(35, 48, 68)
             .ColumnHeadersDefaultCellStyle.ForeColor = Color.White
             .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
+            .ColumnHeadersHeight = 34
+            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(227, 240, 255)
+            .DefaultCellStyle.SelectionForeColor = Color.FromArgb(28, 39, 58)
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
+            .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+            .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            .RowHeadersVisible = False
+        End With
+
+        If PagosClientesDataGridView.Columns.Contains("ID_Cobro") Then PagosClientesDataGridView.Columns("ID_Cobro").HeaderText = "No. Cobro"
+        If PagosClientesDataGridView.Columns.Contains("Id_Fiscal") Then PagosClientesDataGridView.Columns("Id_Fiscal").HeaderText = "RNC / Cédula"
+        If PagosClientesDataGridView.Columns.Contains("FormaDePago") Then PagosClientesDataGridView.Columns("FormaDePago").HeaderText = "Forma de pago"
             .DefaultCellStyle.SelectionBackColor = Color.FromArgb(227, 240, 255)
             .DefaultCellStyle.SelectionForeColor = Color.FromArgb(28, 39, 58)
             .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
@@ -268,10 +312,15 @@ Public Class FrmCobros
         With PagosClientesDetalleDataGridView
             .BackgroundColor = Color.White
             .BorderStyle = BorderStyle.None
+            .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             .EnableHeadersVisualStyles = False
             .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(53, 70, 97)
             .ColumnHeadersDefaultCellStyle.ForeColor = Color.White
             .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
+            .ColumnHeadersHeight = 32
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
+            .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+            .SelectionMode = DataGridViewSelectionMode.FullRowSelect
             .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
             .RowHeadersVisible = False
             .ReadOnly = True
@@ -285,6 +334,27 @@ Public Class FrmCobros
         Label4.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
         Label2.ForeColor = Color.FromArgb(13, 110, 253)
         Label4.ForeColor = Color.FromArgb(25, 135, 84)
+        Label5.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+        Label5.ForeColor = Color.FromArgb(108, 117, 125)
+    End Sub
+
+    Private Sub ConfigurarFiltrosYAcciones()
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.BackColor = Color.FromArgb(13, 110, 253)
+        Button1.ForeColor = Color.White
+        Button1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.FlatAppearance.BorderSize = 0
+        Button3.BackColor = Color.FromArgb(108, 117, 125)
+        Button3.ForeColor = Color.White
+        Button3.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+
+        cmbAño.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbMes.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbAño.FlatStyle = FlatStyle.Flat
+        cmbMes.FlatStyle = FlatStyle.Flat
     End Sub
 
     Private Sub ConfigurarFiltrosYAcciones()
