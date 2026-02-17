@@ -102,14 +102,6 @@
         My.Forms.FrmCliente.verCliente()
         Me.Close()
     End Sub
-    Private Sub BtnNuevoCliente_Click(sender As Object, e As EventArgs) Handles BtnNuevoCliente.Click
-        ' Cerrar instancia previa si existe
-        If My.Forms.FrmCliente.Visible Then My.Forms.FrmCliente.Close()
 
-        ' Llamar al método personalizado en FrmCliente
-        My.Forms.FrmCliente.CrearNuevoCliente()
-        My.Forms.FrmCliente.MostrarComoHijoMDI()
-        Me.Close()
-    End Sub
 
 End Class

@@ -16,7 +16,11 @@ Public Class FrmCliente
 
     Private Sub FrmCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-     
+
+        Me.ArticulosTableAdapter.Fill(Me.DsArticulos.Articulos)
+
+
+
         ProyectosDataGridView.Columns("ver").Width = 50
 
     End Sub
@@ -262,61 +266,56 @@ Public Class FrmCliente
         Catch ex As Exception
             MsgBox("Error al seleccionar presupuesto: " & ex.Message, MsgBoxStyle.Critical)
         End Try
+        SumarAsignadoPorMoneda()
+        FiltrarPresupuesto()
+    End Sub
+
+    Private Sub FiltrarFactura()
+
+        ' Validar fila actual
+        If PagosClientesDetalleDataGridView.CurrentRow Is Nothing Then Exit Sub
+
+        ' Validar columna
+        If Not PagosClientesDetalleDataGridView.Columns.Contains("IdFacturaPd") Then Exit Sub
+
+        ' Obtener IdFactura
+        Dim idFactura As String =
+        PagosClientesDetalleDataGridView.CurrentRow.Cells("IdFacturaPd").Value?.ToString()
+
+        If String.IsNullOrWhiteSpace(idFactura) Then Exit Sub
+
+        ' Cargar detalle de factura
+        FacturaDetalleTableAdapter.FillByIdFactura(
+        DsFacturas.FacturaDetalle,
+        idFactura
+    )
+
     End Sub
 
 
-    Private Sub PagosClientesDetalleDataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles PagosClientesDetalleDataGridView.CellDoubleClick
-        Try
-            If e.RowIndex < 0 Then Exit Sub
+    Private Sub FiltrarPresupuesto()
 
-            Dim fila As DataGridViewRow = PagosClientesDetalleDataGridView.Rows(e.RowIndex)
-            Dim idFacturaObj As Object = fila.Cells("IdFacturaPd").Value
+        ' Validar fila actual
+        If PresupuestoDataGridView.CurrentRow Is Nothing Then Exit Sub
 
-            If idFacturaObj Is Nothing OrElse IsDBNull(idFacturaObj) OrElse String.IsNullOrWhiteSpace(idFacturaObj.ToString()) Then
-                MsgBox("El pago seleccionado no tiene factura asociada.", MsgBoxStyle.Exclamation)
-                Exit Sub
-            End If
+        ' Validar columna
+        If Not PresupuestoDataGridView.Columns.Contains("IdPresupuesto") Then Exit Sub
 
-            Dim idFactura As String = idFacturaObj.ToString().Trim()
+        ' Obtener IdPresupuesto
+        Dim idPresupuesto As String =
+        PresupuestoDataGridView.CurrentRow.Cells("IdPresupuesto").Value?.ToString()
 
-            Dim frmFacturas As FrmFacturas = My.Forms.FrmFacturas
+        If String.IsNullOrWhiteSpace(idPresupuesto) Then Exit Sub
 
-            If frmFacturas.IsDisposed Then
-                frmFacturas = New FrmFacturas()
-            End If
+        ' Cargar detalle del presupuesto
+        PresupuestoDetalleTableAdapter.FillByIdPresupuesto(
+        DsPresupuestoDetalle.PresupuestoDetalle,
+        idPresupuesto
+    )
 
-            frmFacturas.Label2.Text = idFactura
-            frmFacturas.VerFActura()
-            With My.Forms.FrmFacturas
-                .Close()
-                .Label2.Text = idFactura
-                .VerFActura()
-            End With
-
-        Catch ex As Exception
-            MsgBox("Error al abrir la factura asociada: " & ex.Message, MsgBoxStyle.Critical)
-        End Try
     End Sub
 
-    Public Sub CrearNuevoCliente()
-        Try
-            ' Oculta todo menos GrbClientes
-            For Each ctrl As Control In Me.Controls
-                ctrl.Visible = (ctrl Is GrbClientes)
-            Next
 
-            ' Elimina todos los registros actuales del DataTable
-            Me.DsClientes.Clientes.Clear()
-
-            ' Ahora el BindingSource está vacío y AddNew será 100% en blanco
-            Me.ClientesBindingSource.AddNew()
-            Me.Id_FiscalTextBox.ReadOnly = False
-            Me.Id_FiscalTextBox.Focus()
-            BtnGuardarCliente.Visible = True
-        Catch ex As Exception
-            MsgBox("Error al crear nuevo cliente: " & ex.Message, MsgBoxStyle.Critical)
-        End Try
-    End Sub
 
     Private Sub BtnGuardarCliente_Click(sender As Object, e As EventArgs) Handles BtnGuardarCliente.Click
         Try
@@ -592,7 +591,7 @@ Public Class FrmCliente
         End Try
     End Sub
 
-
-
-
+    Private Sub PagosClientesDetalleDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles PagosClientesDetalleDataGridView.CellClick
+        FiltrarFActura()
+    End Sub
 End Class

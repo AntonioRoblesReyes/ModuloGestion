@@ -28,11 +28,13 @@ Partial Class FrmVerFacturas
         Dim Id_FiscalLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmVerFacturas))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DsEmpresas = New ModuloGestion.DsEmpresas()
         Me.EmpresasBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.EmpresasTableAdapter = New ModuloGestion.DsEmpresasTableAdapters.EmpresasTableAdapter()
@@ -79,12 +81,13 @@ Partial Class FrmVerFacturas
         Me.NCF = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Moneda = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SubtotalUSF = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImpuestoUSF = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalRDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Aprobada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Pagado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Pendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Presupuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Id_EmpresaLabel = New System.Windows.Forms.Label()
         NombreLabel = New System.Windows.Forms.Label()
         Id_FiscalLabel = New System.Windows.Forms.Label()
@@ -171,7 +174,7 @@ Partial Class FrmVerFacturas
         Me.EmpresasBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.EmpresasBindingNavigator.Name = "EmpresasBindingNavigator"
         Me.EmpresasBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.EmpresasBindingNavigator.Size = New System.Drawing.Size(2172, 31)
+        Me.EmpresasBindingNavigator.Size = New System.Drawing.Size(2172, 38)
         Me.EmpresasBindingNavigator.TabIndex = 0
         Me.EmpresasBindingNavigator.Text = "BindingNavigator1"
         '
@@ -181,13 +184,13 @@ Partial Class FrmVerFacturas
         Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
         Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(34, 33)
         Me.BindingNavigatorAddNewItem.Text = "Agregar nuevo"
         '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(57, 26)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(57, 33)
         Me.BindingNavigatorCountItem.Text = "de {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
         '
@@ -197,7 +200,7 @@ Partial Class FrmVerFacturas
         Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
         Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(34, 33)
         Me.BindingNavigatorDeleteItem.Text = "Eliminar"
         '
         'BindingNavigatorMoveFirstItem
@@ -206,7 +209,7 @@ Partial Class FrmVerFacturas
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(34, 33)
         Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
         '
         'BindingNavigatorMovePreviousItem
@@ -215,13 +218,13 @@ Partial Class FrmVerFacturas
         Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(34, 33)
         Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
         '
         'BindingNavigatorSeparator
         '
         Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 38)
         '
         'BindingNavigatorPositionItem
         '
@@ -236,7 +239,7 @@ Partial Class FrmVerFacturas
         'BindingNavigatorSeparator1
         '
         Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 38)
         '
         'BindingNavigatorMoveNextItem
         '
@@ -244,7 +247,7 @@ Partial Class FrmVerFacturas
         Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(34, 33)
         Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
         '
         'BindingNavigatorMoveLastItem
@@ -253,20 +256,20 @@ Partial Class FrmVerFacturas
         Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(34, 26)
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(34, 33)
         Me.BindingNavigatorMoveLastItem.Text = "Mover último"
         '
         'BindingNavigatorSeparator2
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 38)
         '
         'EmpresasBindingNavigatorSaveItem
         '
         Me.EmpresasBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.EmpresasBindingNavigatorSaveItem.Image = CType(resources.GetObject("EmpresasBindingNavigatorSaveItem.Image"), System.Drawing.Image)
         Me.EmpresasBindingNavigatorSaveItem.Name = "EmpresasBindingNavigatorSaveItem"
-        Me.EmpresasBindingNavigatorSaveItem.Size = New System.Drawing.Size(34, 26)
+        Me.EmpresasBindingNavigatorSaveItem.Size = New System.Drawing.Size(34, 33)
         Me.EmpresasBindingNavigatorSaveItem.Text = "Guardar datos"
         '
         'Id_EmpresaTextBox
@@ -314,16 +317,16 @@ Partial Class FrmVerFacturas
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.FacturaDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.FacturaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFactura, Me.IdProyecto, Me.IdCliente, Me.RazonSocial, Me.NCF, Me.Fecha, Me.Moneda, Me.TotalUS, Me.TotalRDS, Me.Aprobada, Me.Pagado, Me.Pendiente, Me.Presupuesto})
+        Me.FacturaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFactura, Me.IdProyecto, Me.IdCliente, Me.RazonSocial, Me.NCF, Me.Fecha, Me.Moneda, Me.SubtotalUSF, Me.ImpuestoUSF, Me.TotalUS, Me.TotalRDS, Me.Aprobada, Me.Pagado, Me.Pendiente})
         Me.FacturaDataGridView.DataSource = Me.FacturaBindingSource
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(230, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FacturaDataGridView.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(230, Byte), Integer))
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FacturaDataGridView.DefaultCellStyle = DataGridViewCellStyle8
         Me.FacturaDataGridView.EnableHeadersVisualStyles = False
         Me.FacturaDataGridView.Location = New System.Drawing.Point(18, 122)
         Me.FacturaDataGridView.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -438,7 +441,7 @@ Partial Class FrmVerFacturas
         Me.dgvPagosCandidatos.BackgroundColor = System.Drawing.Color.White
         Me.dgvPagosCandidatos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvPagosCandidatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPagosCandidatos.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvPagosCandidatos.DefaultCellStyle = DataGridViewCellStyle8
         Me.dgvPagosCandidatos.EnableHeadersVisualStyles = False
         Me.dgvPagosCandidatos.Location = New System.Drawing.Point(18, 616)
         Me.dgvPagosCandidatos.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -475,7 +478,7 @@ Partial Class FrmVerFacturas
         Me.dgvPagosAplicados.BackgroundColor = System.Drawing.Color.White
         Me.dgvPagosAplicados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvPagosAplicados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPagosAplicados.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvPagosAplicados.DefaultCellStyle = DataGridViewCellStyle8
         Me.dgvPagosAplicados.EnableHeadersVisualStyles = False
         Me.dgvPagosAplicados.Location = New System.Drawing.Point(1020, 616)
         Me.dgvPagosAplicados.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -507,7 +510,7 @@ Partial Class FrmVerFacturas
         Me.IdFactura.MinimumWidth = 6
         Me.IdFactura.Name = "IdFactura"
         Me.IdFactura.ReadOnly = True
-        Me.IdFactura.Width = 125
+        Me.IdFactura.Width = 90
         '
         'IdProyecto
         '
@@ -516,7 +519,7 @@ Partial Class FrmVerFacturas
         Me.IdProyecto.MinimumWidth = 8
         Me.IdProyecto.Name = "IdProyecto"
         Me.IdProyecto.ReadOnly = True
-        Me.IdProyecto.Width = 150
+        Me.IdProyecto.Width = 60
         '
         'IdCliente
         '
@@ -525,7 +528,7 @@ Partial Class FrmVerFacturas
         Me.IdCliente.MinimumWidth = 6
         Me.IdCliente.Name = "IdCliente"
         Me.IdCliente.ReadOnly = True
-        Me.IdCliente.Width = 125
+        Me.IdCliente.Width = 90
         '
         'RazonSocial
         '
@@ -549,7 +552,6 @@ Partial Class FrmVerFacturas
         Me.NCF.MinimumWidth = 6
         Me.NCF.Name = "NCF"
         Me.NCF.ReadOnly = True
-        Me.NCF.Width = 125
         '
         'Fecha
         '
@@ -569,12 +571,36 @@ Partial Class FrmVerFacturas
         Me.Moneda.ReadOnly = True
         Me.Moneda.Width = 60
         '
+        'SubtotalUSF
+        '
+        Me.SubtotalUSF.DataPropertyName = "SubtotalUS$"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle2.NullValue = "n2"
+        Me.SubtotalUSF.DefaultCellStyle = DataGridViewCellStyle2
+        Me.SubtotalUSF.HeaderText = "SubtotalUS$"
+        Me.SubtotalUSF.MinimumWidth = 8
+        Me.SubtotalUSF.Name = "SubtotalUSF"
+        Me.SubtotalUSF.ReadOnly = True
+        Me.SubtotalUSF.Width = 90
+        '
+        'ImpuestoUSF
+        '
+        Me.ImpuestoUSF.DataPropertyName = "ImpuestoUS$"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle3.Format = "n2"
+        Me.ImpuestoUSF.DefaultCellStyle = DataGridViewCellStyle3
+        Me.ImpuestoUSF.HeaderText = "ImpuestoUS$"
+        Me.ImpuestoUSF.MinimumWidth = 8
+        Me.ImpuestoUSF.Name = "ImpuestoUSF"
+        Me.ImpuestoUSF.ReadOnly = True
+        Me.ImpuestoUSF.Width = 90
+        '
         'TotalUS
         '
         Me.TotalUS.DataPropertyName = "TotalUS$"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "n2"
-        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle4.Format = "n2"
+        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle4
         Me.TotalUS.HeaderText = "TotalUS$"
         Me.TotalUS.MinimumWidth = 6
         Me.TotalUS.Name = "TotalUS"
@@ -584,9 +610,9 @@ Partial Class FrmVerFacturas
         'TotalRDS
         '
         Me.TotalRDS.DataPropertyName = "TotalRDS"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle3.Format = "n2"
-        Me.TotalRDS.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle5.Format = "n2"
+        Me.TotalRDS.DefaultCellStyle = DataGridViewCellStyle5
         Me.TotalRDS.HeaderText = "TotalRDS"
         Me.TotalRDS.MinimumWidth = 6
         Me.TotalRDS.Name = "TotalRDS"
@@ -600,40 +626,31 @@ Partial Class FrmVerFacturas
         Me.Aprobada.MinimumWidth = 6
         Me.Aprobada.Name = "Aprobada"
         Me.Aprobada.ReadOnly = True
-        Me.Aprobada.Width = 125
+        Me.Aprobada.Width = 50
         '
         'Pagado
         '
         Me.Pagado.DataPropertyName = "Pagado"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle4.Format = "n2"
-        Me.Pagado.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle6.Format = "n2"
+        Me.Pagado.DefaultCellStyle = DataGridViewCellStyle6
         Me.Pagado.HeaderText = "Pagado"
         Me.Pagado.MinimumWidth = 6
         Me.Pagado.Name = "Pagado"
         Me.Pagado.ReadOnly = True
-        Me.Pagado.Width = 125
+        Me.Pagado.Width = 90
         '
         'Pendiente
         '
         Me.Pendiente.DataPropertyName = "Pendiente"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle5.Format = "n2"
-        Me.Pendiente.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle7.Format = "n2"
+        Me.Pendiente.DefaultCellStyle = DataGridViewCellStyle7
         Me.Pendiente.HeaderText = "Pendiente"
         Me.Pendiente.MinimumWidth = 6
         Me.Pendiente.Name = "Pendiente"
         Me.Pendiente.ReadOnly = True
-        Me.Pendiente.Width = 125
-        '
-        'Presupuesto
-        '
-        Me.Presupuesto.DataPropertyName = "Notas"
-        Me.Presupuesto.HeaderText = "Presupuesto"
-        Me.Presupuesto.MinimumWidth = 8
-        Me.Presupuesto.Name = "Presupuesto"
-        Me.Presupuesto.ReadOnly = True
-        Me.Presupuesto.Width = 150
+        Me.Pendiente.Width = 90
         '
         'FrmVerFacturas
         '
@@ -728,10 +745,11 @@ Partial Class FrmVerFacturas
     Friend WithEvents NCF As DataGridViewTextBoxColumn
     Friend WithEvents Fecha As DataGridViewTextBoxColumn
     Friend WithEvents Moneda As DataGridViewTextBoxColumn
+    Friend WithEvents SubtotalUSF As DataGridViewTextBoxColumn
+    Friend WithEvents ImpuestoUSF As DataGridViewTextBoxColumn
     Friend WithEvents TotalUS As DataGridViewTextBoxColumn
     Friend WithEvents TotalRDS As DataGridViewTextBoxColumn
     Friend WithEvents Aprobada As DataGridViewCheckBoxColumn
     Friend WithEvents Pagado As DataGridViewTextBoxColumn
     Friend WithEvents Pendiente As DataGridViewTextBoxColumn
-    Friend WithEvents Presupuesto As DataGridViewTextBoxColumn
 End Class
