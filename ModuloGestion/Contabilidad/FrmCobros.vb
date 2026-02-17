@@ -112,24 +112,11 @@ Public Class FrmCobros
 
     Private Sub AplicarFiltroSoloAño()
         Dim añoSeleccionado As String = cmbAño.Text
-        Dim bs As BindingSource = PagosClientesDataGridView.DataSource
 
-        For Each fila As DataGridViewRow In PagosClientesDataGridView.Rows
-            If fila.IsNewRow Then Continue For
+        AplicarVisibilidadFilas(Function(fecha)
+                                   Return (añoSeleccionado = "Todos") OrElse (fecha.Year.ToString() = añoSeleccionado)
+                               End Function)
 
-            Dim fecha As Date
-            If Not Date.TryParse(fila.Cells("Fecha").Value?.ToString(), fecha) Then
-                If bs Is Nothing OrElse bs.Position <> fila.Index Then
-                    fila.Visible = False
-                End If
-                Continue For
-            End If
-
-            Dim visible As Boolean = (añoSeleccionado = "Todos") OrElse (fecha.Year.ToString() = añoSeleccionado)
-            If bs Is Nothing OrElse bs.Position <> fila.Index Then
-                fila.Visible = visible
-            End If
-        Next
         CalcularTotalesFiltrados()
     End Sub
 
@@ -165,32 +152,58 @@ Public Class FrmCobros
     Private Sub AplicarFiltroAñoYMes()
         Dim añoSeleccionado As String = cmbAño.Text
         Dim mesSeleccionado As String = cmbMes.Text
-        Dim bs As BindingSource = TryCast(PagosClientesDataGridView.DataSource, BindingSource)
+
+        AplicarVisibilidadFilas(Function(fecha)
+                                   Dim mostrar As Boolean = True
+
+                                   If añoSeleccionado <> "Todos" AndAlso fecha.Year.ToString() <> añoSeleccionado Then
+                                       mostrar = False
+                                   End If
+
+                                   If mesSeleccionado <> "Todos" AndAlso MonthName(fecha.Month, False) <> mesSeleccionado Then
+                                       mostrar = False
+                                   End If
+
+                                   Return mostrar
+                               End Function)
+
+        CalcularTotalesFiltrados()
+    End Sub
+
+
+    Private Sub AplicarVisibilidadFilas(criterio As Func(Of Date, Boolean))
+        Dim primerIndiceVisible As Integer = -1
 
         For Each fila As DataGridViewRow In PagosClientesDataGridView.Rows
             If fila.IsNewRow Then Continue For
 
             Dim fecha As Date
-            If Not Date.TryParse(fila.Cells("Fecha").Value?.ToString(), fecha) Then
-                If bs Is Nothing OrElse bs.Position <> fila.Index Then
-                    fila.Visible = False
-                End If
-                Continue For
+            Dim mostrar As Boolean = Date.TryParse(fila.Cells("Fecha").Value?.ToString(), fecha) AndAlso criterio(fecha)
+
+            If mostrar AndAlso primerIndiceVisible = -1 Then
+                primerIndiceVisible = fila.Index
             End If
 
-            Dim mostrar As Boolean = True
+            fila.Tag = mostrar
+        Next
 
-            If añoSeleccionado <> "Todos" AndAlso fecha.Year.ToString() <> añoSeleccionado Then
-                mostrar = False
+        Dim bs As BindingSource = TryCast(PagosClientesDataGridView.DataSource, BindingSource)
+        If bs IsNot Nothing AndAlso primerIndiceVisible >= 0 Then
+            Dim filaActual As DataGridViewRow = PagosClientesDataGridView.CurrentRow
+            If filaActual IsNot Nothing AndAlso Not CBool(filaActual.Tag) Then
+                bs.Position = primerIndiceVisible
             End If
+        End If
 
+        For Each fila As DataGridViewRow In PagosClientesDataGridView.Rows
+            If fila.IsNewRow Then Continue For
             If mesSeleccionado <> "Todos" AndAlso MonthName(fecha.Month, False) <> mesSeleccionado Then
                 mostrar = False
             End If
 
-            If bs Is Nothing OrElse bs.Position <> fila.Index Then
-                fila.Visible = mostrar
-            End If
+            Dim mostrar As Boolean = TypeOf fila.Tag Is Boolean AndAlso CBool(fila.Tag)
+            fila.Visible = mostrar
+            fila.Tag = Nothing
         Next
 
         CalcularTotalesFiltrados()
@@ -337,6 +350,24 @@ Public Class FrmCobros
         Label5.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
         Label5.ForeColor = Color.FromArgb(108, 117, 125)
     End Sub
+
+    Private Sub ConfigurarFiltrosYAcciones()
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.BackColor = Color.FromArgb(13, 110, 253)
+        Button1.ForeColor = Color.White
+        Button1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.FlatAppearance.BorderSize = 0
+        Button3.BackColor = Color.FromArgb(108, 117, 125)
+        Button3.ForeColor = Color.White
+        Button3.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+
+        cmbAño.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbMes.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbAño.FlatStyle = FlatStyle.Flat
+        cmbMes.FlatStyle = FlatStyle.Flat
 
     Private Sub ConfigurarFiltrosYAcciones()
         Button1.FlatStyle = FlatStyle.Flat
