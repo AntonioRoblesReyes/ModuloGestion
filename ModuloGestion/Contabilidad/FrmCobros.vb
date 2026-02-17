@@ -5,6 +5,8 @@ Imports System.Globalization
 Public Class FrmCobros
     Private ReadOnly MonedasPeso As String() = {"RD$", "RDS", "RD", "DOP"}
     Private ReadOnly MonedasDolar As String() = {"US$", "USS", "US", "USD"}
+    Private Const MonedaPeso As String = "RD$"
+    Private Const MonedaDolar As String = "US$"
 
     Sub PagoMoneda()
         Dim totalRD As Decimal = 0D
@@ -20,6 +22,12 @@ Public Class FrmCobros
                 row.Cells("RD").Value = valor
                 row.Cells("US").Value = 0D
             ElseIf MonedasDolar.Contains(moneda) Then
+            Dim moneda As String = Convert.ToString(row.Cells(5).Value)
+
+            If moneda = MonedaPeso Then
+                row.Cells("RD").Value = valor
+                row.Cells("US").Value = 0D
+            ElseIf moneda = MonedaDolar Then
                 row.Cells("RD").Value = 0D
                 row.Cells("US").Value = valor
             Else
@@ -53,6 +61,7 @@ Public Class FrmCobros
         AplicarEstiloPremium()
         Label5.Visible = True
         Label5.Text = "Seleccione un cobro para validar el detalle."
+        Label5.Visible = False
     End Sub
 
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
@@ -88,6 +97,11 @@ Public Class FrmCobros
         Else
             Me.Label5.Text = "Detalle cuadrado correctamente."
             Me.Label5.ForeColor = Color.FromArgb(25, 135, 84)
+        Me.Label5.Text = FormatearMonto(total)
+
+        Dim valorPago As Decimal = ObtenerDecimal(Me.PagosClientesDataGridView.CurrentRow.Cells(4).Value)
+        If Math.Abs(valorPago - total) > 0.01D Then
+            MsgBox("El cobro seleccionado no cuadra con su detalle. Verifique la asignación.", MsgBoxStyle.Exclamation, "Validación de cobros")
         End If
     End Sub
 
@@ -183,11 +197,16 @@ Public Class FrmCobros
 
         For Each fila As DataGridViewRow In PagosClientesDataGridView.Rows
             If fila.IsNewRow Then Continue For
+            If mesSeleccionado <> "Todos" AndAlso MonthName(fecha.Month, False) <> mesSeleccionado Then
+                mostrar = False
+            End If
 
             Dim mostrar As Boolean = TypeOf fila.Tag Is Boolean AndAlso CBool(fila.Tag)
             fila.Visible = mostrar
             fila.Tag = Nothing
         Next
+
+        CalcularTotalesFiltrados()
     End Sub
 
     Private Sub LlenarComboAño()
@@ -234,6 +253,8 @@ Public Class FrmCobros
         PagosClientesDataGridView.Sort(Fecha, System.ComponentModel.ListSortDirection.Descending)
         Label5.Text = "Listado ordenado por fecha descendente."
         Label5.ForeColor = Color.FromArgb(13, 110, 253)
+        PagosClientesDataGridView.Sort(Fecha, System.ComponentModel.ListSortDirection.Descending)
+        MsgBox("Listado ordenado por fecha descendente.", MsgBoxStyle.Information, "Cobros")
     End Sub
 
     Private Function ObtenerDecimal(valor As Object) As Decimal
@@ -293,6 +314,11 @@ Public Class FrmCobros
         If PagosClientesDataGridView.Columns.Contains("ID_Cobro") Then PagosClientesDataGridView.Columns("ID_Cobro").HeaderText = "No. Cobro"
         If PagosClientesDataGridView.Columns.Contains("Id_Fiscal") Then PagosClientesDataGridView.Columns("Id_Fiscal").HeaderText = "RNC / Cédula"
         If PagosClientesDataGridView.Columns.Contains("FormaDePago") Then PagosClientesDataGridView.Columns("FormaDePago").HeaderText = "Forma de pago"
+            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(227, 240, 255)
+            .DefaultCellStyle.SelectionForeColor = Color.FromArgb(28, 39, 58)
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
+            .RowHeadersVisible = False
+        End With
     End Sub
 
     Private Sub ConfigurarGridDetalle()
@@ -308,6 +334,7 @@ Public Class FrmCobros
             .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
             .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
             .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 254)
             .RowHeadersVisible = False
             .ReadOnly = True
         End With
@@ -341,5 +368,36 @@ Public Class FrmCobros
         cmbMes.DropDownStyle = ComboBoxStyle.DropDownList
         cmbAño.FlatStyle = FlatStyle.Flat
         cmbMes.FlatStyle = FlatStyle.Flat
+
+    Private Sub ConfigurarFiltrosYAcciones()
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.BackColor = Color.FromArgb(13, 110, 253)
+        Button1.ForeColor = Color.White
+        Button1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.FlatAppearance.BorderSize = 0
+        Button3.BackColor = Color.FromArgb(108, 117, 125)
+        Button3.ForeColor = Color.White
+        Button3.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+
+        cmbAño.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbMes.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbAño.FlatStyle = FlatStyle.Flat
+        cmbMes.FlatStyle = FlatStyle.Flat
+    End Sub
+
+    Private Sub ConfigurarFiltrosYAcciones()
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.BackColor = Color.FromArgb(13, 110, 253)
+        Button1.ForeColor = Color.White
+
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.BackColor = Color.FromArgb(108, 117, 125)
+        Button3.ForeColor = Color.White
+
+        cmbAño.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbMes.DropDownStyle = ComboBoxStyle.DropDownList
     End Sub
 End Class
