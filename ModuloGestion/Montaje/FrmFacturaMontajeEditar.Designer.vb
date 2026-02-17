@@ -48,6 +48,8 @@ Partial Class FrmFacturaMontajeEditar
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Telefono1TextBox = New System.Windows.Forms.TextBox()
         Me.EmpresasContratadasMontajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPagosMontaje = New ModuloGestion.DsPagosMontaje()
@@ -131,6 +133,8 @@ Partial Class FrmFacturaMontajeEditar
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrecioConIrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalConIrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         IdEmpresaMontajeLabel = New System.Windows.Forms.Label()
         RazonSocialLabel = New System.Windows.Forms.Label()
         Telefono1Label = New System.Windows.Forms.Label()
@@ -220,7 +224,7 @@ Partial Class FrmFacturaMontajeEditar
         'TotalLabel
         '
         TotalLabel.AutoSize = True
-        TotalLabel.Location = New System.Drawing.Point(1073, 662)
+        TotalLabel.Location = New System.Drawing.Point(1306, 676)
         TotalLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         TotalLabel.Name = "TotalLabel"
         TotalLabel.Size = New System.Drawing.Size(53, 25)
@@ -250,7 +254,7 @@ Partial Class FrmFacturaMontajeEditar
         'ItebisLabel
         '
         ItebisLabel.AutoSize = True
-        ItebisLabel.Location = New System.Drawing.Point(1072, 628)
+        ItebisLabel.Location = New System.Drawing.Point(1300, 631)
         ItebisLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         ItebisLabel.Name = "ItebisLabel"
         ItebisLabel.Size = New System.Drawing.Size(59, 25)
@@ -289,7 +293,7 @@ Partial Class FrmFacturaMontajeEditar
         'TotalIrsLabel
         '
         TotalIrsLabel.AutoSize = True
-        TotalIrsLabel.Location = New System.Drawing.Point(816, 615)
+        TotalIrsLabel.Location = New System.Drawing.Point(804, 602)
         TotalIrsLabel.Name = "TotalIrsLabel"
         TotalIrsLabel.Size = New System.Drawing.Size(77, 25)
         TotalIrsLabel.TabIndex = 31
@@ -298,11 +302,11 @@ Partial Class FrmFacturaMontajeEditar
         'TotalConIrsLabel
         '
         TotalConIrsLabel.AutoSize = True
-        TotalConIrsLabel.Location = New System.Drawing.Point(786, 648)
+        TotalConIrsLabel.Location = New System.Drawing.Point(1266, 598)
         TotalConIrsLabel.Name = "TotalConIrsLabel"
-        TotalConIrsLabel.Size = New System.Drawing.Size(114, 25)
+        TotalConIrsLabel.Size = New System.Drawing.Size(93, 25)
         TotalConIrsLabel.TabIndex = 33
-        TotalConIrsLabel.Text = "Total Con Irs:"
+        TotalConIrsLabel.Text = "Total C Irs:"
         '
         'PendienteInstaladorLabel
         '
@@ -685,7 +689,7 @@ Partial Class FrmFacturaMontajeEditar
         Me.EmpresasContratadasMontajeBindingNavigator.Name = "EmpresasContratadasMontajeBindingNavigator"
         Me.EmpresasContratadasMontajeBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
         Me.EmpresasContratadasMontajeBindingNavigator.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.EmpresasContratadasMontajeBindingNavigator.Size = New System.Drawing.Size(1348, 30)
+        Me.EmpresasContratadasMontajeBindingNavigator.Size = New System.Drawing.Size(1722, 30)
         Me.EmpresasContratadasMontajeBindingNavigator.TabIndex = 20
         Me.EmpresasContratadasMontajeBindingNavigator.Text = "BindingNavigator1"
         '
@@ -799,15 +803,15 @@ Partial Class FrmFacturaMontajeEditar
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.FacturaMontajeDetalleDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.FacturaMontajeDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaMontajeDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn5, Me.IdFacturaMontajeDetalle, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.Descripcion, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn18})
+        Me.FacturaMontajeDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn5, Me.IdFacturaMontajeDetalle, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.Descripcion, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn18, Me.PrecioConIrs, Me.TotalConIrs})
         Me.FacturaMontajeDetalleDataGridView.DataSource = Me.FacturaMontajeDetalleBindingSource
         Me.FacturaMontajeDetalleDataGridView.EnableHeadersVisualStyles = False
         Me.FacturaMontajeDetalleDataGridView.GridColor = System.Drawing.Color.Gainsboro
-        Me.FacturaMontajeDetalleDataGridView.Location = New System.Drawing.Point(61, 314)
+        Me.FacturaMontajeDetalleDataGridView.Location = New System.Drawing.Point(34, 321)
         Me.FacturaMontajeDetalleDataGridView.Margin = New System.Windows.Forms.Padding(4)
         Me.FacturaMontajeDetalleDataGridView.Name = "FacturaMontajeDetalleDataGridView"
         Me.FacturaMontajeDetalleDataGridView.RowHeadersWidth = 51
-        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(1185, 271)
+        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(1474, 271)
         Me.FacturaMontajeDetalleDataGridView.TabIndex = 20
         '
         'FacturaMontajeDetalleBindingSource
@@ -843,7 +847,7 @@ Partial Class FrmFacturaMontajeEditar
         'TotalTextBox
         '
         Me.TotalTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "Total", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.TotalTextBox.Location = New System.Drawing.Point(1127, 658)
+        Me.TotalTextBox.Location = New System.Drawing.Point(1376, 670)
         Me.TotalTextBox.Margin = New System.Windows.Forms.Padding(4)
         Me.TotalTextBox.Name = "TotalTextBox"
         Me.TotalTextBox.Size = New System.Drawing.Size(132, 31)
@@ -879,7 +883,7 @@ Partial Class FrmFacturaMontajeEditar
         'ItebisTextBox
         '
         Me.ItebisTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "Itebis", True))
-        Me.ItebisTextBox.Location = New System.Drawing.Point(1127, 624)
+        Me.ItebisTextBox.Location = New System.Drawing.Point(1376, 631)
         Me.ItebisTextBox.Margin = New System.Windows.Forms.Padding(4)
         Me.ItebisTextBox.Name = "ItebisTextBox"
         Me.ItebisTextBox.Size = New System.Drawing.Size(132, 31)
@@ -922,7 +926,7 @@ Partial Class FrmFacturaMontajeEditar
         'TotalIrsTextBox
         '
         Me.TotalIrsTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "TotalIrs", True))
-        Me.TotalIrsTextBox.Location = New System.Drawing.Point(886, 612)
+        Me.TotalIrsTextBox.Location = New System.Drawing.Point(899, 596)
         Me.TotalIrsTextBox.Name = "TotalIrsTextBox"
         Me.TotalIrsTextBox.Size = New System.Drawing.Size(100, 31)
         Me.TotalIrsTextBox.TabIndex = 32
@@ -931,9 +935,9 @@ Partial Class FrmFacturaMontajeEditar
         'TotalConIrsTextBox
         '
         Me.TotalConIrsTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "TotalConIrs", True))
-        Me.TotalConIrsTextBox.Location = New System.Drawing.Point(886, 645)
+        Me.TotalConIrsTextBox.Location = New System.Drawing.Point(1376, 593)
         Me.TotalConIrsTextBox.Name = "TotalConIrsTextBox"
-        Me.TotalConIrsTextBox.Size = New System.Drawing.Size(100, 31)
+        Me.TotalConIrsTextBox.Size = New System.Drawing.Size(132, 31)
         Me.TotalConIrsTextBox.TabIndex = 34
         Me.TotalConIrsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1083,12 +1087,36 @@ Partial Class FrmFacturaMontajeEditar
         Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
         Me.DataGridViewTextBoxColumn18.Width = 90
         '
+        'PrecioConIrs
+        '
+        Me.PrecioConIrs.DataPropertyName = "PrecioConIrs"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle9.Format = "n2"
+        Me.PrecioConIrs.DefaultCellStyle = DataGridViewCellStyle9
+        Me.PrecioConIrs.HeaderText = "PrecioConIrs"
+        Me.PrecioConIrs.MinimumWidth = 8
+        Me.PrecioConIrs.Name = "PrecioConIrs"
+        Me.PrecioConIrs.ReadOnly = True
+        Me.PrecioConIrs.Width = 90
+        '
+        'TotalConIrs
+        '
+        Me.TotalConIrs.DataPropertyName = "TotalConIrs"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle10.Format = "n2"
+        Me.TotalConIrs.DefaultCellStyle = DataGridViewCellStyle10
+        Me.TotalConIrs.HeaderText = "TotalConIrs"
+        Me.TotalConIrs.MinimumWidth = 8
+        Me.TotalConIrs.Name = "TotalConIrs"
+        Me.TotalConIrs.ReadOnly = True
+        Me.TotalConIrs.Width = 90
+        '
         'FrmFacturaMontajeEditar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1348, 708)
+        Me.ClientSize = New System.Drawing.Size(1722, 708)
         Me.Controls.Add(PendientefacturaLabel)
         Me.Controls.Add(Me.PendientefacturaTextBox)
         Me.Controls.Add(PendienteInstaladorLabel)
@@ -1241,4 +1269,6 @@ Partial Class FrmFacturaMontajeEditar
     Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
+    Friend WithEvents PrecioConIrs As DataGridViewTextBoxColumn
+    Friend WithEvents TotalConIrs As DataGridViewTextBoxColumn
 End Class

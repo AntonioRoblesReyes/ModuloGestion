@@ -92,9 +92,9 @@
             If row.IsNewRow Then Continue For
 
             ' El subtotal de montaje para análisis se toma con IRS.
-            SM += SafeSum(row.Cells("TotalIrs").Value)
+            SM += SafeSum(row.Cells("SubTotalIrs").Value)
             IM += SafeSum(row.Cells("Itebis").Value)
-            TM += SafeSum(row.Cells("Total").Value)
+            TM += SafeSum(row.Cells("SubTotalIrs").Value) + SafeSum(row.Cells("Itebis").Value)
             PM += SafeSum(row.Cells("Pagado").Value)
             PEM += SafeSum(row.Cells("Pendiente").Value)
             PEMF += SafeSum(row.Cells("TotalIrs").Value) - SafeSum(row.Cells("Pagado").Value)
@@ -154,7 +154,6 @@
         Me.DsCompras.CostoComprasProyecto.Clear()
 
         ' Cargar compras y facturas
-        Me.CostoComprasProyectoTableAdapter.Fill(Me.DsCompras.CostoComprasProyecto)
         Me.FacturaMontajeTableAdapter.FillByIdProyrcto(Me.DsPagosMontaje.FacturaMontaje, Label1.Text)
         Me.CostoComprasProyectoTableAdapter.FillByIdProyecto(Me.DsCompras.CostoComprasProyecto, Label1.Text)
         txtTasaCambio.Text = My.Settings.TasaCambio.ToString("N2")
@@ -347,5 +346,6 @@
             End If
         Next
     End Sub
+
 
 End Class

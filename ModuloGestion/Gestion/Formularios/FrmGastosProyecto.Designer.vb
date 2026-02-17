@@ -165,7 +165,7 @@ Partial Class FrmGastosProyecto
         Me.splitFacturas = New System.Windows.Forms.SplitContainer()
         Me.FacturaMontajeDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SubTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SubTotalIrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Itebis = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Pagado = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -1295,7 +1295,7 @@ Partial Class FrmGastosProyecto
         DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.FacturaMontajeDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle16
         Me.FacturaMontajeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaMontajeDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.SubTotal, Me.Itebis, Me.Total, Me.Pagado, Me.Pendiente, Me.TotalIrs})
+        Me.FacturaMontajeDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.SubTotalIrs, Me.Itebis, Me.Total, Me.Pagado, Me.Pendiente, Me.TotalIrs})
         Me.FacturaMontajeDataGridView.DataSource = Me.FacturaMontajeBindingSource
         Me.FacturaMontajeDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FacturaMontajeDataGridView.EnableHeadersVisualStyles = False
@@ -1321,16 +1321,16 @@ Partial Class FrmGastosProyecto
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
         '
-        'SubTotal
+        'SubTotalIrs
         '
-        Me.SubTotal.DataPropertyName = "SubTotalIrs"
+        Me.SubTotalIrs.DataPropertyName = "SubTotalIrs"
         DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
         DataGridViewCellStyle17.Format = "n2"
-        Me.SubTotal.DefaultCellStyle = DataGridViewCellStyle17
-        Me.SubTotal.HeaderText = "SubTotal"
-        Me.SubTotal.MinimumWidth = 6
-        Me.SubTotal.Name = "SubTotal"
-        Me.SubTotal.ReadOnly = True
+        Me.SubTotalIrs.DefaultCellStyle = DataGridViewCellStyle17
+        Me.SubTotalIrs.HeaderText = "SubTotal"
+        Me.SubTotalIrs.MinimumWidth = 6
+        Me.SubTotalIrs.Name = "SubTotalIrs"
+        Me.SubTotalIrs.ReadOnly = True
         '
         'Itebis
         '
@@ -1693,13 +1693,6 @@ Partial Class FrmGastosProyecto
     Friend WithEvents CompraMaterialesDetalleDataGridView As DataGridView
     Friend WithEvents splitFacturas As SplitContainer
     Friend WithEvents FacturaMontajeDataGridView As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents SubTotal As DataGridViewTextBoxColumn
-    Friend WithEvents Itebis As DataGridViewTextBoxColumn
-    Friend WithEvents Total As DataGridViewTextBoxColumn
-    Friend WithEvents Pagado As DataGridViewTextBoxColumn
-    Friend WithEvents Pendiente As DataGridViewTextBoxColumn
-    Friend WithEvents TotalIrs As DataGridViewTextBoxColumn
     Friend WithEvents FacturaMontajeDetalleDataGridView As DataGridView
     Friend WithEvents PanelHeader As Panel
     Friend WithEvents Label1 As Label
@@ -1728,4 +1721,11 @@ Partial Class FrmGastosProyecto
     Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents SubTotalIrs As DataGridViewTextBoxColumn
+    Friend WithEvents Itebis As DataGridViewTextBoxColumn
+    Friend WithEvents Total As DataGridViewTextBoxColumn
+    Friend WithEvents Pagado As DataGridViewTextBoxColumn
+    Friend WithEvents Pendiente As DataGridViewTextBoxColumn
+    Friend WithEvents TotalIrs As DataGridViewTextBoxColumn
 End Class
