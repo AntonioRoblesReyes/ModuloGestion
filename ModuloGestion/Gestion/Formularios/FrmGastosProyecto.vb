@@ -201,7 +201,7 @@
         Me.CompraMaterialesDetalleTableAdapter.FillByIdCompra(Me.DsCompras.CompraMaterialesDetalle, IdCompra)
 
     End Sub
-    Private Sub txtTasaCambio_Leave(sender As Object, e As EventArgs) Handles txtTasaCambio.Leave
+    Private Sub TxtTasaCambio_Leave(sender As Object, e As EventArgs) Handles txtTasaCambio.Leave
 
         Dim tasa As Decimal
 
