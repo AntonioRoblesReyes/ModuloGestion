@@ -676,6 +676,9 @@
     <Compile Include="Contabilidad\FrmCobros.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Contabilidad\FrmPagoFacturasClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Montaje\FrmEmpresaMontaje.Designer.vb">
       <DependentUpon>FrmEmpresaMontaje.vb</DependentUpon>
     </Compile>
