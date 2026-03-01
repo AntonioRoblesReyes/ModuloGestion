@@ -8,19 +8,35 @@
 
     Sub Totales()
         Dim totalFacturas As Double = 0.0
+        Dim totalFacturasSinPago As Double = 0.0
 
         For Each row As DataGridViewRow In Me.FacturaProveedorDataGridView.Rows
             If Not row.IsNewRow Then
                 Dim valorCelda As Object = row.Cells("TotalDataGridViewTextBoxColumn").Value
+                Dim formaDePago As String = String.Empty
+
+                If row.Cells("FormaDePagoDataGridViewTextBoxColumn").Value IsNot Nothing AndAlso
+                   Not IsDBNull(row.Cells("FormaDePagoDataGridViewTextBoxColumn").Value) Then
+                    formaDePago = row.Cells("FormaDePagoDataGridViewTextBoxColumn").Value.ToString().Trim().ToUpperInvariant()
+                End If
 
                 ' Verificar si la celda no es nula y es un número válido
                 If Not IsDBNull(valorCelda) AndAlso IsNumeric(valorCelda) Then
-                    totalFacturas += Convert.ToDouble(valorCelda)
+                    Dim totalFila As Double = Convert.ToDouble(valorCelda)
+                    totalFacturas += totalFila
+
+                    If String.IsNullOrWhiteSpace(formaDePago) OrElse
+                        formaDePago = "SIN PAGO" OrElse
+                        formaDePago = "PENDIENTE" OrElse
+                        formaDePago = "CREDITO" Then
+                        totalFacturasSinPago += totalFila
+                    End If
                 End If
             End If
         Next
 
         Me.TxtTotales.Text = totalFacturas.ToString("N2")
+        Me.TxtTotalSinPago.Text = totalFacturasSinPago.ToString("N2")
     End Sub
 
     Sub Filtrar()

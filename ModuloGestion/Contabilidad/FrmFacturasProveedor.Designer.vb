@@ -54,8 +54,10 @@ Partial Class FrmFacturasProveedor
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TxtBuscar = New System.Windows.Forms.TextBox()
         Me.TxtTotales = New System.Windows.Forms.TextBox()
+        Me.TxtTotalSinPago = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.DateTimeInicio = New System.Windows.Forms.DateTimePicker()
         Me.FacturaProveedorTableAdapter = New ModuloGestion.DsContabilidadTableAdapters.FacturaProveedorTableAdapter()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -305,6 +307,16 @@ Partial Class FrmFacturasProveedor
         Me.TxtTotales.TabIndex = 6
         Me.TxtTotales.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'TxtTotalSinPago
+        '
+        Me.TxtTotalSinPago.Enabled = False
+        Me.TxtTotalSinPago.Location = New System.Drawing.Point(1444, 66)
+        Me.TxtTotalSinPago.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TxtTotalSinPago.Name = "TxtTotalSinPago"
+        Me.TxtTotalSinPago.Size = New System.Drawing.Size(132, 22)
+        Me.TxtTotalSinPago.TabIndex = 14
+        Me.TxtTotalSinPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -320,12 +332,23 @@ Partial Class FrmFacturasProveedor
         '
         Me.Label3.AutoSize = True
         Me.Label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label3.Location = New System.Drawing.Point(1392, 96)
+        Me.Label3.Location = New System.Drawing.Point(1368, 96)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(40, 18)
         Me.Label3.TabIndex = 9
         Me.Label3.Text = "Total"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label4.Location = New System.Drawing.Point(1310, 68)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(122, 18)
+        Me.Label4.TabIndex = 15
+        Me.Label4.Text = "Total sin pago"
         '
         'DateTimeInicio
         '
@@ -399,6 +422,8 @@ Partial Class FrmFacturasProveedor
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1805, 814)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.TxtTotalSinPago)
         Me.Controls.Add(Me.BtnRecargar)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.DateTimeFinal)
@@ -441,6 +466,7 @@ End Sub
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents TxtBuscar As System.Windows.Forms.TextBox
     Friend WithEvents TxtTotales As System.Windows.Forms.TextBox
+    Friend WithEvents TxtTotalSinPago As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents DateTimeInicio As System.Windows.Forms.DateTimePicker
@@ -465,4 +491,5 @@ End Sub
     Friend WithEvents Contabilizada As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents CodigoUnico As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BtnRecargar As Button
+    Friend WithEvents Label4 As Label
 End Class
