@@ -376,4 +376,10 @@ Public Class FrmCobros
         cmbMes.SelectedIndex = 0
     End Sub
 
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim frm As New FrmPagoFacturasClientes()
+        frm.ShowDialog(Me)
+    End Sub
+
 End Class
