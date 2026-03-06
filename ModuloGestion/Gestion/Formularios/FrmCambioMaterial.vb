@@ -36,6 +36,19 @@ Public Class FrmCambioMaterial
 
 
     Sub FiltrarPorMaterial()
+        Dim currentRow As DataGridViewRow = Nothing
+        If Not TryGetCurrentMaterialRow(currentRow) Then
+            Exit Sub
+        End If
+
+        If Not Me.DataGridView1.Columns.Contains("Id_Material_Detalle") Then
+            Exit Sub
+        End If
+
+        Dim material As String = Convert.ToString(currentRow.Cells("Id_Material_Detalle").Value)
+        If String.IsNullOrWhiteSpace(material) OrElse material.Length < 7 Then
+            Exit Sub
+        End If
 
         Dim currentRow As DataGridViewRow = Nothing
         If Not TryGetCurrentMaterialRow(currentRow) Then Exit Sub
@@ -78,12 +91,14 @@ Public Class FrmCambioMaterial
             Dim da As New SqlDataAdapter(cmd)
 
             Dim ds As New DataSet
-            da.Fill(ds, "Material")
+            Const tableName As String = "Material"
+            da.Fill(ds, tableName)
 
-            If Not ds.Tables.Contains("Material") Then Exit Sub
+            If Not ds.Tables.Contains(tableName) Then
+                Exit Sub
+            End If
 
-            Me.DataGridView1.DataSource = ds.Tables("Material")
-
+            Me.DataGridView1.DataSource = ds.Tables(tableName)
             Me.DataGridView1.AutoResizeColumns()
 
             If Me.DataGridView1.Columns.Count > 0 Then
@@ -102,7 +117,6 @@ Public Class FrmCambioMaterial
             If Me.DataGridView1.Columns.Contains("Descripcion") Then
                 Me.DataGridView1.Columns("Descripcion").Width = 300
             End If
-
             Me.Show()
 
         Catch ex As Exception
@@ -143,13 +157,12 @@ Public Class FrmCambioMaterial
 
     End Sub
 
+    Private Sub DataGridView1_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        If e.RowIndex < 0 Then
+            Exit Sub
+        End If
 
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-
-        If e.RowIndex < 0 Then Exit Sub
-
-        FiltrarPorMaterial()
-
+        filtrarPorMaterial()
     End Sub
 
 
@@ -165,11 +178,25 @@ Public Class FrmCambioMaterial
 
             If Not Me.DataGridView1.Columns.Contains("Id_Material_Detalle") Then Exit Sub
 
+            If Me.MaterilaesDetalleBindingSource.Position < 0 OrElse
+                Me.MaterilaesDetalleBindingSource.Position >= Me.DsMaterialDetalle.MaterilaesDetalle.Count Then
+                Exit Sub
+            End If
+
+            Dim currentRow As DataGridViewRow = Nothing
+            If Not TryGetCurrentMaterialRow(currentRow) Then
+                Exit Sub
+            End If
+
+            If Not Me.DataGridView1.Columns.Contains("Id_Material_Detalle") Then
+                Exit Sub
+            End If
+
             Dim NuevoMaterial As String = Me.DsMaterialDetalle.MaterilaesDetalle(Me.MaterilaesDetalleBindingSource.Position).Id_Material_Detalle
             Dim material As String = Convert.ToString(currentRow.Cells("Id_Material_Detalle").Value)
-
-            If String.IsNullOrWhiteSpace(material) Then Exit Sub
-
+            If String.IsNullOrWhiteSpace(material) Then
+                Exit Sub
+            End If
             Me.SubArticulosDetalleTableAdapter.CambiarMaterial(NuevoMaterial, LblIdSubArticulo.Text, material)
 
             Me.SubArticulosDetalleTableAdapter.FillByPorMaterial(Me.DsSubArticulosDetalle.SubArticulosDetalle, LblIdSubArticulo.Text, NuevoMaterial)
@@ -190,5 +217,4 @@ Public Class FrmCambioMaterial
     Private Sub BtnRefrescarMaterilales_Click(sender As Object, e As EventArgs) Handles BtnRefrescarMaterilales.Click
         Cambio()
     End Sub
-
 End Class
