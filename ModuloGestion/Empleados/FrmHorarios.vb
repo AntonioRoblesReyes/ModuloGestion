@@ -15,9 +15,18 @@ Public Class FrmHorarios
             For Each row As DataGridViewRow In Me.HorariosEmpleadosDataGridView.Rows
                 TotaLHoras += Val(row.Cells("TotalView").Value)
                 TotalNomina += Val(row.Cells("TotalrdView").Value)
-                TotalExtra1 += Val(row.Cells("TotalrdView").Value)
-                TotalExtra2 += Val(row.Cells("TotalrdView").Value)
-                TotalExtra3 += Val(row.Cells("TotalrdView").Value)
+
+                If Me.HorariosEmpleadosDataGridView.Columns.Contains("TotalExtra1View") Then
+                    TotalExtra1 += Val(row.Cells("TotalExtra1View").Value)
+                End If
+
+                If Me.HorariosEmpleadosDataGridView.Columns.Contains("TotalExtra2View") Then
+                    TotalExtra2 += Val(row.Cells("TotalExtra2View").Value)
+                End If
+
+                If Me.HorariosEmpleadosDataGridView.Columns.Contains("TotalExtra3View") Then
+                    TotalExtra3 += Val(row.Cells("TotalExtra3View").Value)
+                End If
 
             Next
         Catch ex As Exception

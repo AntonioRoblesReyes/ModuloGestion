@@ -1,21 +1,46 @@
 ﻿Public Class FrmPreciosCompras
 
+    Private Function TryGetCurrentPrecioRow(ByRef row As DataGridViewRow) As Boolean
+        row = Me.PreciosCompraProyectoDataGridView.CurrentRow
+        Return row IsNot Nothing AndAlso Not row.IsNewRow
+    End Function
 
+    Private Function ToDoubleSafe(value As Object) As Double
+        If value Is Nothing OrElse IsDBNull(value) Then
+            Return 0
+        End If
 
+        Dim parsed As Double
+        If Double.TryParse(value.ToString(), parsed) Then
+            Return parsed
+        End If
+
+        Return 0
+    End Function
 
     Sub ActulizarPrecios()
+        Dim row As DataGridViewRow = Nothing
+        If Not TryGetCurrentPrecioRow(row) Then
+            Exit Sub
+        End If
+
+        If Me.PreciosCompraProyectoBindingSource.Position < 0 OrElse
+            Me.PreciosCompraProyectoBindingSource.Position >= Me.DsPreciosCompraProyecto.PreciosCompraProyecto.Count Then
+            Exit Sub
+        End If
+
         Dim Proyecto As String = My.Forms.FrmPresupuestos.TxtIdProyecto.Text
         Dim Material As String = Me.DsPreciosCompraProyecto.PreciosCompraProyecto(Me.PreciosCompraProyectoBindingSource.Position).Id_material
         Dim IdEmpresa As String = My.Forms.FrmPresupuestos.TxtIdEmpresa.Text
         Dim Codigo As String = Me.DsPreciosCompraProyecto.PreciosCompraProyecto(Me.PreciosCompraProyectoBindingSource.Position).IdPrecioCopmra
 
-        Dim Precio As Double = Me.PreciosCompraProyectoDataGridView.CurrentRow.Cells(2).Value
+        Dim Precio As Double = ToDoubleSafe(row.Cells(2).Value)
 
-        Dim Cantidad As Double = Me.PreciosCompraProyectoDataGridView.CurrentRow.Cells(4).Value
+        Dim Cantidad As Double = ToDoubleSafe(row.Cells(4).Value)
 
         Dim totalDeTall As Double = Precio * Cantidad
 
-        Me.PreciosCompraProyectoDataGridView.CurrentRow.Cells(6).Value = Me.PreciosCompraProyectoDataGridView.CurrentRow.Cells(2).Value * Me.PreciosCompraProyectoDataGridView.CurrentRow.Cells(4).Value
+        row.Cells(6).Value = totalDeTall
         Try
 
 
@@ -165,6 +190,10 @@
 
 
     Private Sub PreciosCompraProyectoDataGridView_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles PreciosCompraProyectoDataGridView.CellClick
+        If e.RowIndex < 0 Then
+            Exit Sub
+        End If
+
         Precios()
     End Sub
 
@@ -181,6 +210,10 @@
 
     Private Sub BtnActualizarPrecios_Click(sender As System.Object, e As System.EventArgs) Handles BtnActualizarPrecios.Click
 
+        If PreciosCompraProyectoDataGridView.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
         Me.PreciosCompraProyectoBindingSource.MoveFirst()
 
         Dim iTotal As Integer = PreciosCompraProyectoDataGridView.Rows.Count 'ITotal toma el valor del numero de registros k tiene latabla
@@ -193,14 +226,21 @@
             Dim precioCompra As Double = Me.DsPreciosCompraProyecto.PreciosCompraProyecto(Me.PreciosCompraProyectoBindingSource.Position).Precio_Compra
             If precioCompra = 0 Then
                 MsgBox("No puede haber un material sin precio, Modifica el valor")
-                PreciosCompraProyectoDataGridView.CurrentRow.Cells(2).Selected = True
+                Dim currentRow As DataGridViewRow = Nothing
+                If TryGetCurrentPrecioRow(currentRow) Then
+                    currentRow.Cells(2).Selected = True
+                End If
 
                 Exit For
 
             End If
             Me.PreciosCompraProyectoBindingSource.MoveNext()
         Next
-        Dim valor As Double = PreciosCompraProyectoDataGridView.CurrentRow.Cells(2).Value
+        Dim valor As Double = 0
+        Dim lastRow As DataGridViewRow = Nothing
+        If TryGetCurrentPrecioRow(lastRow) Then
+            valor = ToDoubleSafe(lastRow.Cells(2).Value)
+        End If
         If iTotal = contador And valor <> 0 Then
             Me.Close()
 
@@ -233,10 +273,20 @@
     End Sub
 
     Private Sub PreciosCompraDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles PreciosCompraDataGridView.CellClick
+        If e.RowIndex < 0 Then
+            Exit Sub
+        End If
+
+        If Me.CompraMaterialesDetalleBindingSource.Position < 0 OrElse
+            Me.CompraMaterialesDetalleBindingSource.Position >= Me.DsCompras.CompraMaterialesDetalle.Count Then
+            Exit Sub
+        End If
+
         Me.Label5.Text = Me.DsCompras.CompraMaterialesDetalle(Me.CompraMaterialesDetalleBindingSource.Position).Id_Compra
-        Dim Itebis As Double = Me.DsCompras.CompraMaterialesDetalle(Me.CompraMaterialesDetalleBindingSource.Position).Itebis
-        Me.Label7.Text = Format(Me.DsCompras.CompraMaterialesDetalle(Me.CompraMaterialesDetalleBindingSource.Position).PrecioUS * 0.18, "#,##0.00")
-        Me.Label9.Text = Format(Me.Label7.Text + Me.DsCompras.CompraMaterialesDetalle(Me.CompraMaterialesDetalleBindingSource.Position).PrecioUS, "#,##0.00")
+        Dim precioUS As Double = Me.DsCompras.CompraMaterialesDetalle(Me.CompraMaterialesDetalleBindingSource.Position).PrecioUS
+        Dim itebisValor As Double = precioUS * 0.18
+        Me.Label7.Text = Format(itebisValor, "#,##0.00")
+        Me.Label9.Text = Format(itebisValor + precioUS, "#,##0.00")
     End Sub
 
     Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
