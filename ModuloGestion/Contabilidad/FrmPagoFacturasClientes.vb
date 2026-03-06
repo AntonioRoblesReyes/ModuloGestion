@@ -1,44 +1,21 @@
-<<<<<<< HEAD
-﻿Imports System.Reflection
+Imports System.Reflection
 Imports System.Drawing
 
 Public Class FrmPagoFacturasClientes
 
-    '========================
-    ' DATA
-    '========================
     Private ReadOnly _origen As New BindingSource()
     Private _tablaVisual As DataTable
-=======
-﻿Imports System.Globalization
-
-Public Class FrmPagoFacturasClientes
-    Inherits Form
-
-    Private ReadOnly _grid As New DataGridView()
-    Private ReadOnly _cmbClientes As New ComboBox()
-    Private ReadOnly _txtFactura As New TextBox()
-    Private ReadOnly _lblTotal As New Label()
-    Private ReadOnly _origen As New BindingSource()
->>>>>>> 2fa65666bb2c94444c9d39831d5e72a66cb9cfd5
 
     Private ReadOnly _dsPagos As New DsPagosClientes()
     Private ReadOnly _dsDetalle As New DsPagosClientesDetalle()
     Private ReadOnly _dsClientes As New DsClientes()
-<<<<<<< HEAD
     Private ReadOnly _dsFacturas As New DsFacturas()
-=======
->>>>>>> 2fa65666bb2c94444c9d39831d5e72a66cb9cfd5
 
     Private ReadOnly _taPagos As New DsPagosClientesTableAdapters.PagosClientesTableAdapter()
     Private ReadOnly _taDetalle As New DsPagosClientesDetalleTableAdapters.PagosClientesDetalleTableAdapter()
     Private ReadOnly _taClientes As New DsClientesTableAdapters.ClientesTableAdapter()
-<<<<<<< HEAD
     Private ReadOnly _taFacturas As New DsFacturasTableAdapters.FacturaTableAdapter()
 
-    '========================
-    ' LOAD
-    '========================
     Private Sub FrmPagoFacturasClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         _taClientes.Fill(_dsClientes.Clientes)
@@ -58,18 +35,13 @@ Public Class FrmPagoFacturasClientes
         CargarAnios()
 
         _origen.Sort = "Factura ASC, FechaPago ASC"
+
     End Sub
 
-    '========================
-    ' TABLA VISUAL
-    '========================
     Private Function ConstruirTablaVisual() As DataTable
 
         Dim t As New DataTable()
 
-        '========================
-        ' Columnas visuales
-        '========================
         t.Columns.Add("FechaPago", GetType(Date))
         t.Columns.Add("IdFiscal", GetType(String))
         t.Columns.Add("Cliente", GetType(String))
@@ -80,21 +52,16 @@ Public Class FrmPagoFacturasClientes
         t.Columns.Add("TotalFactura", GetType(Decimal))
         t.Columns.Add("BalanceFactura", GetType(Decimal))
 
-        '========================
-        ' Clientes por IdFiscal
-        '========================
         Dim clientes As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
+
         For Each c As DsClientes.ClientesRow In _dsClientes.Clientes
             Dim id As String = c.Id_Fiscal.Trim()
+
             If id <> "" AndAlso Not clientes.ContainsKey(id) Then
                 clientes(id) = c.Nombre_Cliente.Trim()
             End If
         Next
 
-        '========================
-        ' TOTAL ORIGINAL DE FACTURA (SEGÚN MONEDA)
-        ' Clave: IdFactura|Moneda
-        '========================
         Dim totalFacturaPorKey As New Dictionary(Of String, Decimal)(StringComparer.OrdinalIgnoreCase)
 
         For Each f As DataRow In _dsFacturas.Factura.Rows
@@ -111,22 +78,19 @@ Public Class FrmPagoFacturasClientes
             End If
 
             Dim key As String = idFactura & "|" & moneda
+
             If Not totalFacturaPorKey.ContainsKey(key) Then
                 totalFacturaPorKey(key) = totalFactura
             End If
+
         Next
 
-        '========================
-        ' Pagos por cobro
-        '========================
         Dim pagosPorCobro As New Dictionary(Of String, DsPagosClientes.PagosClientesRow)(StringComparer.OrdinalIgnoreCase)
+
         For Each p As DsPagosClientes.PagosClientesRow In _dsPagos.PagosClientes
             pagosPorCobro(p.ID_Cobro.Trim()) = p
         Next
 
-        '========================
-        ' Construir filas base
-        '========================
         For Each d As DsPagosClientesDetalle.PagosClientesDetalleRow In _dsDetalle.PagosClientesDetalle
 
             Dim pago As DsPagosClientes.PagosClientesRow = Nothing
@@ -134,32 +98,35 @@ Public Class FrmPagoFacturasClientes
 
             Dim monedaDetalle As String = d.Moneda.Trim()
             Dim monedaPago As String = If(pago IsNot Nothing, pago.Moneda.Trim(), "")
+
             Dim monedaFinal As String =
-            If(monedaDetalle <> "", monedaDetalle,
-               If(monedaPago <> "", monedaPago, "RDS"))
+                If(monedaDetalle <> "", monedaDetalle,
+                   If(monedaPago <> "", monedaPago, "RDS"))
 
             Dim idFiscal As String = If(pago IsNot Nothing, pago.Id_Fiscal.Trim(), "")
-            Dim cliente As String = If(clientes.ContainsKey(idFiscal), clientes(idFiscal), "")
+
+            Dim cliente As String = ""
+            If clientes.ContainsKey(idFiscal) Then
+                cliente = clientes(idFiscal)
+            End If
 
             Dim monto As Decimal =
-            If(d("TotalPagado") Is DBNull.Value, 0D, Convert.ToDecimal(d("TotalPagado")))
+                If(d("TotalPagado") Is DBNull.Value, 0D, Convert.ToDecimal(d("TotalPagado")))
 
             t.Rows.Add(
-            If(pago IsNot Nothing, pago.Fecha, d.Fecha),
-            idFiscal,
-            cliente,
-            d.IdFactura.Trim(),
-            monedaFinal,
-            monto,
-            0D,
-            0D,
-            0D
-        )
+                If(pago IsNot Nothing, pago.Fecha, d.Fecha),
+                idFiscal,
+                cliente,
+                d.IdFactura.Trim(),
+                monedaFinal,
+                monto,
+                0D,
+                0D,
+                0D
+            )
+
         Next
 
-        '========================
-        ' TOTAL PAGADO POR FACTURA + MONEDA
-        '========================
         Dim totalPagadoPorKey As New Dictionary(Of String, Decimal)(StringComparer.OrdinalIgnoreCase)
 
         For Each r As DataRow In t.Rows
@@ -168,7 +135,6 @@ Public Class FrmPagoFacturasClientes
             Dim moneda As String = r("Moneda").ToString().Trim().ToUpper()
             Dim monto As Decimal = Convert.ToDecimal(r("MontoPagado"))
 
-            ' Pagos sin factura NO se agrupan
             If factura = "" OrElse factura.Equals("Sin Factura", StringComparison.OrdinalIgnoreCase) Then
                 r("TotalPagadoFactura") = monto
                 r("TotalFactura") = 0D
@@ -177,311 +143,44 @@ Public Class FrmPagoFacturasClientes
             End If
 
             Dim key As String = factura & "|" & moneda
+
             If Not totalPagadoPorKey.ContainsKey(key) Then
                 totalPagadoPorKey(key) = 0D
             End If
+
             totalPagadoPorKey(key) += monto
+
         Next
 
-        '========================
-        ' ASIGNAR TOTAL FACTURA Y BALANCE
-        '========================
         For Each r As DataRow In t.Rows
 
             Dim factura As String = r("Factura").ToString().Trim()
+
             If factura = "" OrElse factura.Equals("Sin Factura", StringComparison.OrdinalIgnoreCase) Then Continue For
 
             Dim moneda As String = r("Moneda").ToString().Trim().ToUpper()
             Dim key As String = factura & "|" & moneda
 
             Dim totalPagado As Decimal =
-            If(totalPagadoPorKey.ContainsKey(key), totalPagadoPorKey(key), 0D)
+                If(totalPagadoPorKey.ContainsKey(key), totalPagadoPorKey(key), 0D)
 
             Dim totalFactura As Decimal =
-            If(totalFacturaPorKey.ContainsKey(key), totalFacturaPorKey(key), 0D)
+                If(totalFacturaPorKey.ContainsKey(key), totalFacturaPorKey(key), 0D)
 
             r("TotalPagadoFactura") = totalPagado
             r("TotalFactura") = totalFactura
             r("BalanceFactura") = totalFactura - totalPagado
+
         Next
 
         Return t
+
     End Function
 
-    '========================
-    ' FILTROS
-    '========================
-    Private Sub CargarClientesFiltro()
-=======
-
-    Public Sub New()
-        Me.Text = "Pagos de facturas por cliente"
-        Me.StartPosition = FormStartPosition.CenterParent
-        Me.Width = 1200
-        Me.Height = 700
-
-        ConstruirInterfaz()
-        AddHandler Me.Load, AddressOf FrmPagoFacturasClientes_Load
-    End Sub
-
-    Private Sub ConstruirInterfaz()
-        Dim panelSuperior As New FlowLayoutPanel() With {
-            .Dock = DockStyle.Top,
-            .AutoSize = True,
-            .Padding = New Padding(10),
-            .WrapContents = True
-        }
-
-        panelSuperior.Controls.Add(New Label() With {.Text = "Cliente:", .AutoSize = True, .Margin = New Padding(0, 8, 6, 0)})
-
-        _cmbClientes.DropDownStyle = ComboBoxStyle.DropDownList
-        _cmbClientes.Width = 300
-        AddHandler _cmbClientes.SelectedIndexChanged, AddressOf FiltrosCambiaron
-        panelSuperior.Controls.Add(_cmbClientes)
-
-        panelSuperior.Controls.Add(New Label() With {.Text = "Factura:", .AutoSize = True, .Margin = New Padding(20, 8, 6, 0)})
-
-        _txtFactura.Width = 180
-        AddHandler _txtFactura.TextChanged, AddressOf FiltrosCambiaron
-        panelSuperior.Controls.Add(_txtFactura)
-
-        Dim btnLimpiar As New Button() With {.Text = "Limpiar filtros", .AutoSize = True, .Margin = New Padding(20, 3, 0, 3)}
-        AddHandler btnLimpiar.Click,
-            Sub()
-                _cmbClientes.SelectedIndex = 0
-                _txtFactura.Clear()
-            End Sub
-        panelSuperior.Controls.Add(btnLimpiar)
-
-        _grid.Dock = DockStyle.Fill
-        _grid.ReadOnly = True
-        _grid.AllowUserToAddRows = False
-        _grid.AllowUserToDeleteRows = False
-        _grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        _grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        _grid.MultiSelect = False
-
-        Dim panelInferior As New Panel() With {.Dock = DockStyle.Bottom, .Height = 40}
-        _lblTotal.Dock = DockStyle.Right
-        _lblTotal.AutoSize = True
-        _lblTotal.Padding = New Padding(0, 10, 10, 0)
-        panelInferior.Controls.Add(_lblTotal)
-
-        Me.Controls.Add(_grid)
-        Me.Controls.Add(panelInferior)
-        Me.Controls.Add(panelSuperior)
-    End Sub
-
-    Private Sub FrmPagoFacturasClientes_Load(sender As Object, e As EventArgs)
-        _taClientes.Fill(_dsClientes.Clientes)
-        _taPagos.Fill(_dsPagos.PagosClientes)
-        _taDetalle.Fill(_dsDetalle.PagosClientesDetalle)
-
-        Dim tabla As DataTable = ConstruirTablaVisual()
-        _origen.DataSource = tabla
-        _grid.DataSource = _origen
-
-        CargarClientesEnFiltro(tabla)
-        ActualizarTotal()
-    End Sub
-
-    Private Function ConstruirTablaVisual() As DataTable
-        Dim resultado As New DataTable("PagosFacturaCliente")
-
-        resultado.Columns.Add("FechaPago", GetType(Date))
-        resultado.Columns.Add("IdFiscal", GetType(String))
-        resultado.Columns.Add("Cliente", GetType(String))
-        resultado.Columns.Add("Factura", GetType(String))
-        resultado.Columns.Add("Presupuesto", GetType(String))
-        resultado.Columns.Add("Moneda", GetType(String))
-        resultado.Columns.Add("FormaPago", GetType(String))
-        resultado.Columns.Add("MontoPagado", GetType(Decimal))
-        resultado.Columns.Add("Cobro", GetType(String))
-
-        Dim clientesPorId As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
-        For Each filaCliente As DsClientes.ClientesRow In _dsClientes.Clientes.Rows
-            Dim idFiscal As String = ValorTextoSeguro(filaCliente("Id_Fiscal"))
-            If idFiscal = "" Then Continue For
-
-            If Not clientesPorId.ContainsKey(idFiscal) Then
-                clientesPorId(idFiscal) = ValorTextoSeguro(filaCliente("Nombre_Cliente"))
-            End If
-        Next
-
-        Dim pagoPorCobro As New Dictionary(Of String, DsPagosClientes.PagosClientesRow)(StringComparer.OrdinalIgnoreCase)
-        For Each filaPago As DsPagosClientes.PagosClientesRow In _dsPagos.PagosClientes.Rows
-            Dim idCobro As String = ValorTextoSeguro(filaPago("ID_Cobro"))
-            If idCobro = "" Then Continue For
-            If Not pagoPorCobro.ContainsKey(idCobro) Then
-                pagoPorCobro(idCobro) = filaPago
-            End If
-        Next
-
-        For Each filaDetalle As DsPagosClientesDetalle.PagosClientesDetalleRow In _dsDetalle.PagosClientesDetalle.Rows
-            Dim idCobro As String = ValorTextoSeguro(filaDetalle("ID_Cobro"))
-            Dim filaPago As DsPagosClientes.PagosClientesRow = Nothing
-            If idCobro <> "" AndAlso pagoPorCobro.ContainsKey(idCobro) Then
-                filaPago = pagoPorCobro(idCobro)
-            End If
-
-            Dim idFiscal As String = ""
-            Dim cliente As String = ""
-            Dim moneda As String = ValorTextoSeguro(filaDetalle("Moneda"))
-            Dim formaPago As String = ""
-            Dim fechaPago As Date = Date.Today
-
-            If filaPago IsNot Nothing Then
-                idFiscal = ValorTextoSeguro(filaPago("Id_Fiscal"))
-                formaPago = ValorTextoSeguro(filaPago("FormaDePago"))
-                moneda = If(moneda = "", ValorTextoSeguro(filaPago("Moneda")), moneda)
-                fechaPago = CType(filaPago("Fecha"), Date)
-            ElseIf Not filaDetalle.IsFechaNull() Then
-                fechaPago = filaDetalle.Fecha
-            End If
-
-            If idFiscal <> "" AndAlso clientesPorId.ContainsKey(idFiscal) Then
-                cliente = clientesPorId(idFiscal)
-            End If
-
-            Dim nueva As DataRow = resultado.NewRow()
-            nueva("FechaPago") = fechaPago
-            nueva("IdFiscal") = idFiscal
-            nueva("Cliente") = cliente
-            nueva("Factura") = ValorTextoSeguro(filaDetalle("IdFactura"))
-            nueva("Presupuesto") = ValorTextoSeguro(filaDetalle("Id_Presupuesto"))
-            nueva("Moneda") = moneda
-            nueva("FormaPago") = formaPago
-            nueva("MontoPagado") = If(filaDetalle.IsTotalPagadoNull(), 0D, filaDetalle.TotalPagado)
-            nueva("Cobro") = idCobro
-
-            resultado.Rows.Add(nueva)
-        Next
-
-        Return resultado
-    End Function
-
-    Private Sub CargarClientesEnFiltro(tabla As DataTable)
-        Dim vista As DataView = tabla.DefaultView
-        Dim clientes As DataTable = vista.ToTable(True, "IdFiscal", "Cliente")
->>>>>>> 2fa65666bb2c94444c9d39831d5e72a66cb9cfd5
-
-        Dim tablaFiltro As New DataTable()
-        tablaFiltro.Columns.Add("IdFiscal", GetType(String))
-        tablaFiltro.Columns.Add("Cliente", GetType(String))
-        tablaFiltro.Rows.Add("", "Todos")
-
-<<<<<<< HEAD
-        For Each r As DataRow In _tablaVisual.DefaultView.
-            ToTable(True, "IdFiscal", "Cliente").
-            Select("Cliente <> ''", "Cliente ASC")
-
-            tablaFiltro.ImportRow(r)
-        Next
-
-        cmbClientes.DataSource = tablaFiltro
-        cmbClientes.DisplayMember = "Cliente"
-        cmbClientes.ValueMember = "IdFiscal"
-    End Sub
-
-    Private Sub cmbClientes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbClientes.SelectedIndexChanged
-        AplicarFiltros()
-    End Sub
-
-    Private Sub txtFactura_KeyDown(sender As Object, e As KeyEventArgs) Handles txtFactura.KeyDown
-        If e.KeyCode = Keys.Enter Then AplicarFiltros()
-    End Sub
-
-    Private Sub btnLimpiar_Click(
-    sender As Object,
-    e As EventArgs
-) Handles btnLimpiar.Click
-
-        cmbClientes.SelectedIndex = 0
-        cmbAnio.SelectedIndex = 0
-        txtFactura.Clear()
-
-        _origen.RemoveFilter()
-        ActualizarTotales()
-
-    End Sub
-
-    Private Sub AplicarFiltros()
-
-        Dim filtros As New List(Of String)
-
-        ' ======================
-        ' FILTRO CLIENTE
-        ' ======================
-        If cmbClientes.SelectedValue IsNot Nothing AndAlso
-       cmbClientes.SelectedValue.ToString() <> "" Then
-
-            filtros.Add($"IdFiscal = '{cmbClientes.SelectedValue}'")
-        End If
-
-        ' ======================
-        ' FILTRO FACTURA
-        ' ======================
-        If txtFactura.Text.Trim().Length >= 3 Then
-            filtros.Add($"Factura LIKE '%{txtFactura.Text.Trim().Replace("'", "''")}%'")
-        End If
-
-        ' ======================
-        ' FILTRO AÑO (CORRECTO – SIN YEAR)
-        ' ======================
-        If cmbAnio.SelectedItem IsNot Nothing AndAlso
-       TypeOf cmbAnio.SelectedItem Is DataRowView Then
-
-            Dim drv As DataRowView = CType(cmbAnio.SelectedItem, DataRowView)
-
-            If Not IsDBNull(drv("Anio")) Then
-
-                Dim anio As Integer = Convert.ToInt32(drv("Anio"))
-
-                If anio > 0 Then
-                    Dim desde As Date = New Date(anio, 1, 1)
-                    Dim hasta As Date = New Date(anio + 1, 1, 1)
-
-                    filtros.Add(
-                    $"FechaPago >= #{desde:MM/dd/yyyy}# AND FechaPago < #{hasta:MM/dd/yyyy}#"
-                )
-                End If
-
-            End If
-        End If
-
-        _origen.Filter = String.Join(" AND ", filtros)
-        ActualizarTotales()
-
-    End Sub
-
-    '========================
-    ' TOTALES POR MONEDA
-    '========================
-    Private Sub ActualizarTotales()
-
-        Dim totales As New Dictionary(Of String, Decimal)
-        Dim totalGeneral As Decimal = 0D
-
-        For Each r As DataRowView In _origen
-
-            Dim moneda As String = r("Moneda").ToString()
-            Dim monto As Decimal = Convert.ToDecimal(r("MontoPagado"))
-
-            totalGeneral += monto
-            If Not totales.ContainsKey(moneda) Then totales(moneda) = 0D
-            totales(moneda) += monto
-        Next
-
-        lblTotal.Text = $"Total general: {totalGeneral:#,##0.00}"
-        lblTotalesPorMoneda.Text =
-            String.Join(" | ", totales.Select(Function(x) $"{x.Key}: {x.Value:#,##0.00}"))
-    End Sub
-
-    '========================
-    ' GRID
-    '========================
     Private Sub ConfigurarGrid()
+
         With dgvPagos
+
             .Columns("MontoPagado").DefaultCellStyle.Format = "#,##0.00"
             .Columns("TotalPagadoFactura").DefaultCellStyle.Format = "#,##0.00"
             .Columns("TotalFactura").DefaultCellStyle.Format = "#,##0.00"
@@ -491,11 +190,10 @@ Public Class FrmPagoFacturasClientes
             .Columns("TotalPagadoFactura").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns("TotalFactura").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns("BalanceFactura").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
         End With
+
     End Sub
-
-
-
 
     Private Sub dgvPagos_CellFormatting(
         sender As Object,
@@ -507,19 +205,68 @@ Public Class FrmPagoFacturasClientes
 
             e.CellStyle.ForeColor = Color.Red
             e.CellStyle.Font = New Font(dgvPagos.Font, FontStyle.Bold)
+
         End If
+
     End Sub
 
     Private Sub ActivarDoubleBuffer(grid As DataGridView)
+
         Dim p = GetType(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic Or BindingFlags.Instance)
         p.SetValue(grid, True, Nothing)
+
     End Sub
+    Private Sub CargarClientesFiltro()
+
+        Dim tablaFiltro As New DataTable()
+
+        tablaFiltro.Columns.Add("IdFiscal", GetType(String))
+        tablaFiltro.Columns.Add("Cliente", GetType(String))
+
+        tablaFiltro.Rows.Add("", "Todos")
+
+        For Each r As DataRow In _tablaVisual.DefaultView.
+            ToTable(True, "IdFiscal", "Cliente").
+            Select("Cliente <> ''", "Cliente ASC")
+
+            tablaFiltro.ImportRow(r)
+
+        Next
+
+        cmbClientes.DataSource = tablaFiltro
+        cmbClientes.DisplayMember = "Cliente"
+        cmbClientes.ValueMember = "IdFiscal"
+
+    End Sub
+    Private Sub ActualizarTotales()
+
+        Dim totales As New Dictionary(Of String, Decimal)
+        Dim totalGeneral As Decimal = 0D
+
+        For Each r As DataRowView In _origen
+
+            Dim moneda As String = r("Moneda").ToString()
+            Dim monto As Decimal = Convert.ToDecimal(r("MontoPagado"))
+
+            totalGeneral += monto
+
+            If Not totales.ContainsKey(moneda) Then
+                totales(moneda) = 0D
+            End If
+
+            totales(moneda) += monto
+
+        Next
+
+        lblTotal.Text = $"Total general: {totalGeneral:#,##0.00}"
+
+    End Sub
+
     Private Sub CargarAnios()
 
         Dim tablaAnios As New DataTable()
         tablaAnios.Columns.Add("Anio", GetType(Integer))
 
-        ' Opción "Todos"
         tablaAnios.Rows.Add(0)
 
         Dim anios = _tablaVisual.AsEnumerable().
@@ -534,67 +281,10 @@ Public Class FrmPagoFacturasClientes
         cmbAnio.DataSource = tablaAnios
         cmbAnio.DisplayMember = "Anio"
         cmbAnio.ValueMember = "Anio"
-    End Sub
-    Private Sub cmbAnio_SelectedIndexChanged(
-    sender As Object,
-    e As EventArgs
-) Handles cmbAnio.SelectedIndexChanged
-
-        AplicarFiltros()
 
     End Sub
 
-    Private Sub BtnFacturas_Click(sender As Object, e As EventArgs) Handles BtnFacturas.Click
-        Dim frm As New FrmFacturasResumen(_tablaVisual)
-        frm.ShowDialog(Me)
-    End Sub
+
+
+
 End Class
-=======
-        For Each fila As DataRow In clientes.Select("Cliente <> ''", "Cliente ASC")
-            tablaFiltro.ImportRow(fila)
-        Next
-
-        _cmbClientes.DataSource = tablaFiltro
-        _cmbClientes.DisplayMember = "Cliente"
-        _cmbClientes.ValueMember = "IdFiscal"
-    End Sub
-
-    Private Sub FiltrosCambiaron(sender As Object, e As EventArgs)
-        Dim filtros As New List(Of String)()
-
-        Dim idFiscal As String = ""
-        If _cmbClientes.SelectedValue IsNot Nothing Then
-            idFiscal = _cmbClientes.SelectedValue.ToString().Trim()
-        End If
-
-        If idFiscal <> "" Then
-            filtros.Add($"IdFiscal = '{idFiscal.Replace("'", "''")}'")
-        End If
-
-        Dim factura As String = _txtFactura.Text.Trim()
-        If factura <> "" Then
-            filtros.Add($"Factura LIKE '%{factura.Replace("'", "''")}%'")
-        End If
-
-        _origen.Filter = String.Join(" AND ", filtros)
-        ActualizarTotal()
-    End Sub
-
-    Private Sub ActualizarTotal()
-        Dim total As Decimal = 0D
-
-        For Each item As Object In _origen.List
-            Dim vista As DataRowView = TryCast(item, DataRowView)
-            If vista Is Nothing Then Continue For
-            total += Convert.ToDecimal(vista("MontoPagado"), CultureInfo.InvariantCulture)
-        Next
-
-        _lblTotal.Text = $"Total mostrado: {total:#,##0.00}"
-    End Sub
-
-    Private Function ValorTextoSeguro(valor As Object) As String
-        If valor Is Nothing OrElse valor Is DBNull.Value Then Return ""
-        Return valor.ToString().Trim()
-    End Function
-End Class
->>>>>>> 2fa65666bb2c94444c9d39831d5e72a66cb9cfd5
