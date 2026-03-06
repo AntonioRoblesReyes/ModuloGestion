@@ -1,6 +1,11 @@
 ﻿Imports System.Data.SqlClient
 Public Class FrmCambioMaterial
 
+    Private Function TryGetCurrentMaterialRow(ByRef row As DataGridViewRow) As Boolean
+        row = Me.DataGridView1.CurrentRow
+        Return row IsNot Nothing AndAlso Not row.IsNewRow
+    End Function
+
     Sub FiltrarMaterial()
         Dim material As String
 
@@ -28,7 +33,19 @@ Public Class FrmCambioMaterial
 
 
     Sub FiltrarPorMaterial()
-        Dim material As String = Me.DataGridView1.CurrentRow.Cells("Id_Material_Detalle").Value
+        Dim currentRow As DataGridViewRow = Nothing
+        If Not TryGetCurrentMaterialRow(currentRow) Then
+            Exit Sub
+        End If
+
+        If Not Me.DataGridView1.Columns.Contains("Id_Material_Detalle") Then
+            Exit Sub
+        End If
+
+        Dim material As String = Convert.ToString(currentRow.Cells("Id_Material_Detalle").Value)
+        If String.IsNullOrWhiteSpace(material) OrElse material.Length < 7 Then
+            Exit Sub
+        End If
 
         Dim subString As String = Microsoft.VisualBasic.Left(material, 7)
 
@@ -73,13 +90,29 @@ Public Class FrmCambioMaterial
             Dim ds As New DataSet
             da.Fill(ds, "Material")
 
+            If Not ds.Tables.Contains("material") Then
+                Exit Sub
+            End If
+
             Me.DataGridView1.DataSource = ds.Tables("material")
             Me.DataGridView1.AutoResizeColumns()
-            Me.DataGridView1.Columns(0).Visible = False
-            Me.DataGridView1.Columns("Cuenta").Visible = False
-            Me.DataGridView1.Columns("Id_Material_Detalle").DisplayIndex = 0
-            Me.DataGridView1.Columns("Id_Material_Detalle").Width = 100
-            Me.DataGridView1.Columns("Descripcion").Width = 300
+
+            If Me.DataGridView1.Columns.Count > 0 Then
+                Me.DataGridView1.Columns(0).Visible = False
+            End If
+
+            If Me.DataGridView1.Columns.Contains("Cuenta") Then
+                Me.DataGridView1.Columns("Cuenta").Visible = False
+            End If
+
+            If Me.DataGridView1.Columns.Contains("Id_Material_Detalle") Then
+                Me.DataGridView1.Columns("Id_Material_Detalle").DisplayIndex = 0
+                Me.DataGridView1.Columns("Id_Material_Detalle").Width = 100
+            End If
+
+            If Me.DataGridView1.Columns.Contains("Descripcion") Then
+                Me.DataGridView1.Columns("Descripcion").Width = 300
+            End If
             Me.Show()
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -115,6 +148,10 @@ Public Class FrmCambioMaterial
     End Sub
 
     Private Sub DataGridView1_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        If e.RowIndex < 0 Then
+            Exit Sub
+        End If
+
         filtrarPorMaterial()
     End Sub
 
@@ -123,8 +160,25 @@ Public Class FrmCambioMaterial
 
 
 
+            If Me.MaterilaesDetalleBindingSource.Position < 0 OrElse
+                Me.MaterilaesDetalleBindingSource.Position >= Me.DsMaterialDetalle.MaterilaesDetalle.Count Then
+                Exit Sub
+            End If
+
+            Dim currentRow As DataGridViewRow = Nothing
+            If Not TryGetCurrentMaterialRow(currentRow) Then
+                Exit Sub
+            End If
+
+            If Not Me.DataGridView1.Columns.Contains("Id_Material_Detalle") Then
+                Exit Sub
+            End If
+
             Dim NuevoMaterial As String = Me.DsMaterialDetalle.MaterilaesDetalle(Me.MaterilaesDetalleBindingSource.Position).Id_Material_Detalle
-            Dim material As String = Me.DataGridView1.CurrentRow.Cells("Id_Material_Detalle").Value
+            Dim material As String = Convert.ToString(currentRow.Cells("Id_Material_Detalle").Value)
+            If String.IsNullOrWhiteSpace(material) Then
+                Exit Sub
+            End If
             Me.SubArticulosDetalleTableAdapter.CambiarMaterial(NuevoMaterial, LblIdSubArticulo.Text, material)
             Me.SubArticulosDetalleTableAdapter.FillByPorMaterial(Me.DsSubArticulosDetalle.SubArticulosDetalle, LblIdSubArticulo.Text, NuevoMaterial)
             'My.Forms.FrmSubArticulo.SubArticulosDetalleTableAdapter.FillByIdSubArticulo(My.Forms.FrmSubArticulo.DsSubArticulosDetalle.SubArticulosDetalle, My.Forms.FrmSubArticulo.TxtIdSubarticulo.Text)
