@@ -32,7 +32,7 @@
     <MinimumRequiredVersion>0.0.0.27</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>44</ApplicationRevision>
+    <ApplicationRevision>46</ApplicationRevision>
     <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -235,11 +235,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsContabilidad.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Contabilidad\FrmFacturasResumen.Designer.vb">
+      <DependentUpon>FrmFacturasResumen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Contabilidad\FrmFacturasResumen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contabilidad\FrmPagoFacturasClientes.Designer.vb">
+      <DependentUpon>FrmPagoFacturasClientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Contabilidad\FrmPagoFacturasClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Contabilidad\FrmPresupuestosCon.Designer.vb">
       <DependentUpon>FrmPresupuestosCon.vb</DependentUpon>
     </Compile>
     <Compile Include="Contabilidad\FrmPresupuestosCon.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contabilidad\FrmVisorCrystal.Designer.vb">
+      <DependentUpon>FrmVisorCrystal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Contabilidad\FrmVisorCrystal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contabilidad\RptFacturaPagosDetalle.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaPagosDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Contabilidad\RptFacturaResumen.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaResumen.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Empleados\FrmIngresoQuincena.Designer.vb">
       <DependentUpon>FrmIngresoQuincena.vb</DependentUpon>
@@ -2024,12 +2054,29 @@
     <EmbeddedResource Include="Contabilidad\FrmContabilidad.resx">
       <DependentUpon>FrmContabilidad.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contabilidad\FrmFacturasResumen.resx">
+      <DependentUpon>FrmFacturasResumen.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contabilidad\FrmListadoFactura.resx">
       <DependentUpon>FrmListadoFactura.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contabilidad\FrmPagoFacturasClientes.resx">
+      <DependentUpon>FrmPagoFacturasClientes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contabilidad\FrmPresupuestosCon.resx">
       <DependentUpon>FrmPresupuestosCon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contabilidad\FrmVisorCrystal.resx">
+      <DependentUpon>FrmVisorCrystal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contabilidad\RptFacturaPagosDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaPagosDetalle.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contabilidad\RptFacturaResumen.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaResumen.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Empleados\CryHorarioDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
