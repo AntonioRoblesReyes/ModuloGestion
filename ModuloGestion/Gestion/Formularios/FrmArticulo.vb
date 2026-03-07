@@ -1,7 +1,10 @@
 ﻿Public Class FrmArticulo
 
+    Private actualizandoHorasTrabajoTaller As Boolean = False
+
     Sub Sumardetalles()
         Try
+            actualizandoHorasTrabajoTaller = True
             Dim tHoras, tMetros, tMontaje As Double
 
             ' Iterar sobre cada fila en el DataTable
@@ -25,6 +28,8 @@
         Catch ex As Exception
             ' Manejar cualquier error que ocurra
             MsgBox("Error al sumar detalles: " & ex.Message)
+        Finally
+            actualizandoHorasTrabajoTaller = False
         End Try
     End Sub
 
@@ -294,6 +299,10 @@
     End Sub
 
     Private Sub HorasTrabajoTallerTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles HorasTrabajoTallerTextBox.TextChanged
+        If actualizandoHorasTrabajoTaller Then
+            Exit Sub
+        End If
+
         Try
             Me.Validate()
             Me.ArticulosBindingSource.EndEdit()
