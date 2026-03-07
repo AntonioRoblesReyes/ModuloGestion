@@ -1,0 +1,55 @@
+﻿
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+
+# Visual Studio cache
+*.cache
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Rider / VSCode
+.idea/
+.vscode/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Publish folders
+publish/
+*.publish.xml
+
+# Test results
+TestResults/
+
+# Crystal Reports temp
+*.rptproj.user
+
+# SQL Server
+*.mdf
+*.ldf
+
+# Backup files
+*.bak
+
+# Designer cache
+*.Designer.cs.cache
+*.Designer.vb.cache
+
+
