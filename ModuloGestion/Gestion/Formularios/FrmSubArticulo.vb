@@ -1,4 +1,28 @@
 ﻿Public Class FrmSubArticulo
+    Private Function ObtenerTextoSeguro(ByVal valor As Object) As String
+        If valor Is Nothing OrElse IsDBNull(valor) Then
+            Return String.Empty
+        End If
+
+        Return valor.ToString()
+    End Function
+
+    Private Function ObtenerDoubleSeguro(ByVal valor As Object) As Double
+        If valor Is Nothing OrElse IsDBNull(valor) Then
+            Return 0
+        End If
+
+        Return Val(valor)
+    End Function
+
+    Private Function ObtenerValorCeldaActual(ByVal nombreColumna As String) As Object
+        If DgwSubarticuloDetalle.CurrentRow Is Nothing Then
+            Return Nothing
+        End If
+
+        Return DgwSubarticuloDetalle.CurrentRow.Cells(nombreColumna).Value
+    End Function
+
     Sub VerificarArticulosDetalle()
         Try
 
@@ -7,7 +31,7 @@
 
             If Contar <> 0 Then
 
-                ArticulosDetalleTableAdapter.ActulizarTiempoPintura(TxtTiempoTrabajo.Text / 60, TxtM2Pintura.Text, TxtIdSubarticulo.Text)
+                ArticulosDetalleTableAdapter.ActulizarTiempoPintura(ObtenerDoubleSeguro(TxtTiempoTrabajo.Text) / 60, TxtM2Pintura.Text, TxtIdSubarticulo.Text)
                 Try
                     If EstaAbierto(FrmArticulo) Then
                         My.Forms.FrmArticulo.ArticulosDetalleTableAdapter.FillByIdArticulo(My.Forms.FrmArticulo.DsArticulosdetalle.ArticulosDetalle, My.Forms.FrmArticulo.TxtIdArticulo.Text)
@@ -76,15 +100,12 @@
             Dim TotalM2SubArticulo As Double = 0
 
             For Each row As DataGridViewRow In DgwSubarticuloDetalle.Rows
-                TotalM2SubArticulo += Val(row.Cells("SubM2PinuturaUnidadtotal").Value)
+                If row IsNot Nothing AndAlso Not row.IsNewRow Then
+                    TotalM2SubArticulo += ObtenerDoubleSeguro(row.Cells("SubM2PinuturaUnidadtotal").Value)
+                End If
 
             Next
-            If IsDBNull(TotalM2SubArticulo) Then
-                TxtM2Pintura.Text = 0
-            Else
-                TxtM2Pintura.Text = TotalM2SubArticulo
-
-            End If
+            TxtM2Pintura.Text = TotalM2SubArticulo
 
         Catch ex As Exception
             MsgBox("error en la suma de pintura " & ex.Message)
@@ -104,7 +125,7 @@
             SubArticulosTableAdapter.DuplicarRegistro(
             siguiente,
             TxtDescripcion.Text & " Registro Duplicado",
-            CDbl(TxtTiempoTrabajo.Text),
+            ObtenerDoubleSeguro(TxtTiempoTrabajo.Text),
             TxtIdGrupo.Text,
             TxtM2Pintura.Text,
             MontajeTextBox.Text
@@ -113,16 +134,20 @@
             ' Duplicar los detalles del subart culo
             Dim filas As Integer = DgwSubarticuloDetalle.RowCount()
             For i As Integer = 0 To filas - 1
+                If DgwSubarticuloDetalle.CurrentRow Is Nothing Then
+                    Exit For
+                End If
+
                 ' Obtener los valores del registro actual
                 Dim Subarticulo As String = siguiente
                 Dim idSubarticuloDetalle As String = SubArticulosDetalleTableAdapter.SiguienteDetalle(siguiente)
-                Dim Descripcion As String = DgwSubarticuloDetalle.CurrentRow.Cells("SubIddescripcionDetalle").Value
-                Dim Largo As Double = DgwSubarticuloDetalle.CurrentRow.Cells("SubLargo").Value
-                Dim Ancho As Double = DgwSubarticuloDetalle.CurrentRow.Cells("SubAncho").Value
-                Dim Grueso As Double = DgwSubarticuloDetalle.CurrentRow.Cells("SubGrueso").Value
-                Dim Cantidad As Double = DgwSubarticuloDetalle.CurrentRow.Cells("SubCantidad").Value
-                Dim Material As String = DgwSubarticuloDetalle.CurrentRow.Cells("SubidMaterialDetalle").Value
-                Dim Medida As String = DgwSubarticuloDetalle.CurrentRow.Cells("SubIdMedida").Value
+                Dim Descripcion As String = ObtenerTextoSeguro(ObtenerValorCeldaActual("SubIddescripcionDetalle"))
+                Dim Largo As Double = ObtenerDoubleSeguro(ObtenerValorCeldaActual("SubLargo"))
+                Dim Ancho As Double = ObtenerDoubleSeguro(ObtenerValorCeldaActual("SubAncho"))
+                Dim Grueso As Double = ObtenerDoubleSeguro(ObtenerValorCeldaActual("SubGrueso"))
+                Dim Cantidad As Double = ObtenerDoubleSeguro(ObtenerValorCeldaActual("SubCantidad"))
+                Dim Material As String = ObtenerTextoSeguro(ObtenerValorCeldaActual("SubidMaterialDetalle"))
+                Dim Medida As String = ObtenerTextoSeguro(ObtenerValorCeldaActual("SubIdMedida"))
 
                 ' Duplicar el detalle del subart culo
                 SubArticulosDetalleTableAdapter.DuplicarDetalleSubarticulo(
@@ -157,24 +182,39 @@
     Sub Actualizar()
         'Try
 
-        Dim Descripcion As String = DgwSubarticuloDetalle.CurrentRow.Cells("SubIddescripcionDetalle").Value
+        If DgwSubarticuloDetalle.CurrentRow Is Nothing Then
+            Exit Sub
+        End If
 
-        Dim Material As String = DgwSubarticuloDetalle.CurrentRow.Cells("SubidMaterialDetalle").Value
+        Dim Descripcion As String = ObtenerTextoSeguro(ObtenerValorCeldaActual("SubIddescripcionDetalle"))
+
+        Dim Material As String = ObtenerTextoSeguro(ObtenerValorCeldaActual("SubidMaterialDetalle"))
+
+        If Material = "" Then
+            Exit Sub
+        End If
 
         MaterilaesDetalleTableAdapter.FillByIdMaterial(DsMaterialDetalle.MaterilaesDetalle, Material)
+        If DsMaterialDetalle.MaterilaesDetalle.Count = 0 Then
+            Exit Sub
+        End If
+
         Dim desperdicio As Double = DsMaterialDetalle.MaterilaesDetalle(MaterilaesDetalleBindingSource.Position).Desperdicio
 
-        Dim Medida As String = DgwSubarticuloDetalle.CurrentRow.Cells("SubIdMedida").Value
+        Dim Medida As String = ObtenerTextoSeguro(ObtenerValorCeldaActual("SubIdMedida"))
 
         MaterilaesDetalleTableAdapter.Fill(DsMaterialDetalle.MaterilaesDetalle)
 
-        Dim largo As Double = DgwSubarticuloDetalle.CurrentRow.Cells("SubLargo").Value
+        Dim largo As Double = ObtenerDoubleSeguro(ObtenerValorCeldaActual("SubLargo"))
 
-        Dim Ancho As Double = DgwSubarticuloDetalle.CurrentRow.Cells("SubAncho").Value
-        Dim Grueso As Double = DgwSubarticuloDetalle.CurrentRow.Cells("SubGrueso").Value
-        Dim Cantidad As Double = DgwSubarticuloDetalle.CurrentRow.Cells("SubCantidad").Value
+        Dim Ancho As Double = ObtenerDoubleSeguro(ObtenerValorCeldaActual("SubAncho"))
+        Dim Grueso As Double = ObtenerDoubleSeguro(ObtenerValorCeldaActual("SubGrueso"))
+        Dim Cantidad As Double = ObtenerDoubleSeguro(ObtenerValorCeldaActual("SubCantidad"))
         'MsgBox("1")
         DescripcionesDetalleTableAdapter.FillByDescripcionDetalle(DsDescripcionesdetalle.DescripcionesDetalle, Descripcion)
+        If DsDescripcionesdetalle.DescripcionesDetalle.Count = 0 Then
+            Exit Sub
+        End If
         'MsgBox("2")
         Dim CaraPintada As Integer = DsDescripcionesdetalle.DescripcionesDetalle(DescripcionesDetalleBindingSource.Position).Pintura_Caras
         'MsgBox("CaraPintada " & CaraPintada)
@@ -961,7 +1001,11 @@
     End Sub
 
     Private Sub DgwSubarticuloDetalle_CellEndEdit(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DgwSubarticuloDetalle.CellEndEdit
-        If DgwSubarticuloDetalle.CurrentRow.Cells("SubLargo").Value.ToString <> "" And DgwSubarticuloDetalle.CurrentRow.Cells("Subancho").Value.ToString <> "" And DgwSubarticuloDetalle.CurrentRow.Cells("Subgrueso").Value.ToString <> "" Then
+        If DgwSubarticuloDetalle.CurrentRow Is Nothing Then
+            Exit Sub
+        End If
+
+        If ObtenerTextoSeguro(DgwSubarticuloDetalle.CurrentRow.Cells("SubLargo").Value) <> "" And ObtenerTextoSeguro(DgwSubarticuloDetalle.CurrentRow.Cells("Subancho").Value) <> "" And ObtenerTextoSeguro(DgwSubarticuloDetalle.CurrentRow.Cells("Subgrueso").Value) <> "" Then
             Actualizar()
         End If
 
