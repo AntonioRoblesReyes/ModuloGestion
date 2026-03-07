@@ -174,6 +174,7 @@ Partial Class FrmGastosProyecto
         Me.FacturaMontajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPagosMontaje = New ModuloGestion.DsPagosMontaje()
         Me.FacturaMontajeDetalleDataGridView = New System.Windows.Forms.DataGridView()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -1029,8 +1030,8 @@ Partial Class FrmGastosProyecto
         'splitCompras.Panel2
         '
         Me.splitCompras.Panel2.Controls.Add(Me.CompraMaterialesDetalleDataGridView)
-        Me.splitCompras.Size = New System.Drawing.Size(1283, 259)
-        Me.splitCompras.SplitterDistance = 612
+        Me.splitCompras.Size = New System.Drawing.Size(1595, 259)
+        Me.splitCompras.SplitterDistance = 760
         Me.splitCompras.SplitterWidth = 7
         Me.splitCompras.TabIndex = 2
         '
@@ -1069,7 +1070,7 @@ Partial Class FrmGastosProyecto
         DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
         Me.CostoComprasProyectoDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.CostoComprasProyectoDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.CostoComprasProyectoDataGridView.Size = New System.Drawing.Size(612, 259)
+        Me.CostoComprasProyectoDataGridView.Size = New System.Drawing.Size(760, 259)
         Me.CostoComprasProyectoDataGridView.TabIndex = 0
         '
         'IdproyectoPresupuestosDataGridViewTextBoxColumn
@@ -1186,7 +1187,7 @@ Partial Class FrmGastosProyecto
         DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black
         Me.CompraMaterialesDetalleDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle14
         Me.CompraMaterialesDetalleDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.CompraMaterialesDetalleDataGridView.Size = New System.Drawing.Size(664, 259)
+        Me.CompraMaterialesDetalleDataGridView.Size = New System.Drawing.Size(828, 259)
         Me.CompraMaterialesDetalleDataGridView.TabIndex = 0
         '
         'Id_Compra
@@ -1269,8 +1270,8 @@ Partial Class FrmGastosProyecto
         'splitFacturas.Panel2
         '
         Me.splitFacturas.Panel2.Controls.Add(Me.FacturaMontajeDetalleDataGridView)
-        Me.splitFacturas.Size = New System.Drawing.Size(1174, 259)
-        Me.splitFacturas.SplitterDistance = 561
+        Me.splitFacturas.Size = New System.Drawing.Size(1595, 259)
+        Me.splitFacturas.SplitterDistance = 760
         Me.splitFacturas.SplitterWidth = 7
         Me.splitFacturas.TabIndex = 1
         '
@@ -1309,7 +1310,7 @@ Partial Class FrmGastosProyecto
         DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Black
         Me.FacturaMontajeDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle22
         Me.FacturaMontajeDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(561, 259)
+        Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(760, 259)
         Me.FacturaMontajeDataGridView.TabIndex = 0
         '
         'DataGridViewTextBoxColumn1
@@ -1415,8 +1416,9 @@ Partial Class FrmGastosProyecto
         DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.FacturaMontajeDetalleDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle24
         Me.FacturaMontajeDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaMontajeDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17})
+        Me.FacturaMontajeDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Descripcion, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17})
         Me.FacturaMontajeDetalleDataGridView.DataSource = Me.FacturaMontajeDetalleBindingSource
+        Me.FacturaMontajeDetalleDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FacturaMontajeDetalleDataGridView.EnableHeadersVisualStyles = False
         Me.FacturaMontajeDetalleDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.FacturaMontajeDetalleDataGridView.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -1429,8 +1431,17 @@ Partial Class FrmGastosProyecto
         DataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black
         Me.FacturaMontajeDetalleDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle28
         Me.FacturaMontajeDetalleDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(712, 259)
+        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(828, 259)
         Me.FacturaMontajeDetalleDataGridView.TabIndex = 0
+        '
+        'Descripcion
+        '
+        Me.Descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Descripcion.DataPropertyName = "Descripcion"
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.MinimumWidth = 8
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
         '
         'DataGridViewTextBoxColumn15
         '
@@ -1479,7 +1490,7 @@ Partial Class FrmGastosProyecto
         Me.PanelHeader.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PanelHeader.Name = "PanelHeader"
         Me.PanelHeader.Padding = New System.Windows.Forms.Padding(11, 10, 11, 10)
-        Me.PanelHeader.Size = New System.Drawing.Size(1283, 47)
+        Me.PanelHeader.Size = New System.Drawing.Size(1595, 47)
         Me.PanelHeader.TabIndex = 0
         '
         'Label1
@@ -1499,8 +1510,8 @@ Partial Class FrmGastosProyecto
         Me.tlpMain.ColumnCount = 1
         Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpMain.Controls.Add(Me.PanelHeader, 0, 0)
         Me.tlpMain.Controls.Add(Me.splitFacturas, 0, 1)
+        Me.tlpMain.Controls.Add(Me.PanelHeader, 0, 0)
         Me.tlpMain.Controls.Add(Me.splitCompras, 0, 2)
         Me.tlpMain.Controls.Add(Me.PanelTotales, 0, 3)
         Me.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1513,7 +1524,7 @@ Partial Class FrmGastosProyecto
         Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 408.0!))
         Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33.0!))
-        Me.tlpMain.Size = New System.Drawing.Size(1289, 1031)
+        Me.tlpMain.Size = New System.Drawing.Size(1601, 1031)
         Me.tlpMain.TabIndex = 0
         '
         'FacturaMontajeTableAdapter
@@ -1568,7 +1579,7 @@ Partial Class FrmGastosProyecto
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(238, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1289, 1031)
+        Me.ClientSize = New System.Drawing.Size(1601, 1031)
         Me.Controls.Add(Me.tlpMain)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmGastosProyecto"
@@ -1690,9 +1701,6 @@ Partial Class FrmGastosProyecto
     Friend WithEvents Pendiente As DataGridViewTextBoxColumn
     Friend WithEvents TotalIrs As DataGridViewTextBoxColumn
     Friend WithEvents FacturaMontajeDetalleDataGridView As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
     Friend WithEvents PanelHeader As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents tlpMain As TableLayoutPanel
@@ -1716,4 +1724,8 @@ Partial Class FrmGastosProyecto
     Friend WithEvents DataGridViewTextBoxColumn24 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn25 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn26 As DataGridViewTextBoxColumn
+    Friend WithEvents Descripcion As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
 End Class

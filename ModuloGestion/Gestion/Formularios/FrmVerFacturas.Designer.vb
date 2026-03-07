@@ -28,11 +28,11 @@ Partial Class FrmVerFacturas
         Dim Id_FiscalLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmVerFacturas))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DsEmpresas = New ModuloGestion.DsEmpresas()
         Me.EmpresasBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.EmpresasTableAdapter = New ModuloGestion.DsEmpresasTableAdapters.EmpresasTableAdapter()
@@ -54,20 +54,8 @@ Partial Class FrmVerFacturas
         Me.NombreTextBox = New System.Windows.Forms.TextBox()
         Me.Id_FiscalTextBox = New System.Windows.Forms.TextBox()
         Me.FacturaDataGridView = New System.Windows.Forms.DataGridView()
-        Me.IdFactura = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdProyecto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdCliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RazonSocial = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.ClientesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsClientes = New ModuloGestion.DsClientes()
-        Me.NCF = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Moneda = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalRDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Aprobada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Pagado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Pendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FacturaBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsFacturas = New ModuloGestion.DsFacturas()
         Me.ProyectosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -84,6 +72,19 @@ Partial Class FrmVerFacturas
         Me.FacturaDetalleTableAdapter = New ModuloGestion.DsFacturasTableAdapters.FacturaDetalleTableAdapter()
         Me.dgvPagosAplicados = New System.Windows.Forms.DataGridView()
         Me.BtnDesasignarPago = New System.Windows.Forms.Button()
+        Me.IdFactura = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdProyecto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdCliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RazonSocial = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.NCF = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Moneda = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalUS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalRDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Aprobada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Pagado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Presupuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Id_EmpresaLabel = New System.Windows.Forms.Label()
         NombreLabel = New System.Windows.Forms.Label()
         Id_FiscalLabel = New System.Windows.Forms.Label()
@@ -109,7 +110,7 @@ Partial Class FrmVerFacturas
         Id_EmpresaLabel.Location = New System.Drawing.Point(14, 48)
         Id_EmpresaLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Id_EmpresaLabel.Name = "Id_EmpresaLabel"
-        Id_EmpresaLabel.Size = New System.Drawing.Size(95, 20)
+        Id_EmpresaLabel.Size = New System.Drawing.Size(105, 25)
         Id_EmpresaLabel.TabIndex = 1
         Id_EmpresaLabel.Text = "Id Empresa:"
         '
@@ -120,7 +121,7 @@ Partial Class FrmVerFacturas
         NombreLabel.Location = New System.Drawing.Point(14, 88)
         NombreLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         NombreLabel.Name = "NombreLabel"
-        NombreLabel.Size = New System.Drawing.Size(69, 20)
+        NombreLabel.Size = New System.Drawing.Size(82, 25)
         NombreLabel.TabIndex = 3
         NombreLabel.Text = "Nombre:"
         '
@@ -131,7 +132,7 @@ Partial Class FrmVerFacturas
         Id_FiscalLabel.Location = New System.Drawing.Point(202, 48)
         Id_FiscalLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Id_FiscalLabel.Name = "Id_FiscalLabel"
-        Id_FiscalLabel.Size = New System.Drawing.Size(72, 20)
+        Id_FiscalLabel.Size = New System.Drawing.Size(79, 25)
         Id_FiscalLabel.TabIndex = 5
         Id_FiscalLabel.Text = "Id Fiscal:"
         '
@@ -275,7 +276,7 @@ Partial Class FrmVerFacturas
         Me.Id_EmpresaTextBox.Location = New System.Drawing.Point(117, 42)
         Me.Id_EmpresaTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Id_EmpresaTextBox.Name = "Id_EmpresaTextBox"
-        Me.Id_EmpresaTextBox.Size = New System.Drawing.Size(64, 26)
+        Me.Id_EmpresaTextBox.Size = New System.Drawing.Size(64, 31)
         Me.Id_EmpresaTextBox.TabIndex = 2
         '
         'NombreTextBox
@@ -285,7 +286,7 @@ Partial Class FrmVerFacturas
         Me.NombreTextBox.Location = New System.Drawing.Point(117, 82)
         Me.NombreTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.NombreTextBox.Name = "NombreTextBox"
-        Me.NombreTextBox.Size = New System.Drawing.Size(309, 26)
+        Me.NombreTextBox.Size = New System.Drawing.Size(309, 31)
         Me.NombreTextBox.TabIndex = 4
         '
         'Id_FiscalTextBox
@@ -295,7 +296,7 @@ Partial Class FrmVerFacturas
         Me.Id_FiscalTextBox.Location = New System.Drawing.Point(278, 42)
         Me.Id_FiscalTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Id_FiscalTextBox.Name = "Id_FiscalTextBox"
-        Me.Id_FiscalTextBox.Size = New System.Drawing.Size(148, 26)
+        Me.Id_FiscalTextBox.Size = New System.Drawing.Size(148, 31)
         Me.Id_FiscalTextBox.TabIndex = 6
         '
         'FacturaDataGridView
@@ -304,21 +305,20 @@ Partial Class FrmVerFacturas
         Me.FacturaDataGridView.AllowUserToDeleteRows = False
         Me.FacturaDataGridView.AutoGenerateColumns = False
         Me.FacturaDataGridView.BackgroundColor = System.Drawing.Color.White
-        Me.FacturaDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(110, Byte), Integer), CType(CType(253, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.FacturaDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(110, Byte), Integer), CType(CType(253, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.FacturaDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.FacturaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFactura, Me.IdProyecto, Me.IdCliente, Me.RazonSocial, Me.NCF, Me.Fecha, Me.Moneda, Me.TotalUS, Me.TotalRDS, Me.Aprobada, Me.Pagado, Me.Pendiente})
+        Me.FacturaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFactura, Me.IdProyecto, Me.IdCliente, Me.RazonSocial, Me.NCF, Me.Fecha, Me.Moneda, Me.TotalUS, Me.TotalRDS, Me.Aprobada, Me.Pagado, Me.Pendiente, Me.Presupuesto})
         Me.FacturaDataGridView.DataSource = Me.FacturaBindingSource
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
         DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(230, Byte), Integer))
         DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
@@ -333,48 +333,6 @@ Partial Class FrmVerFacturas
         Me.FacturaDataGridView.Size = New System.Drawing.Size(1918, 485)
         Me.FacturaDataGridView.TabIndex = 7
         '
-        'IdFactura
-        '
-        Me.IdFactura.DataPropertyName = "IdFactura"
-        Me.IdFactura.HeaderText = "IdFactura"
-        Me.IdFactura.MinimumWidth = 6
-        Me.IdFactura.Name = "IdFactura"
-        Me.IdFactura.ReadOnly = True
-        Me.IdFactura.Width = 125
-        '
-        'IdProyecto
-        '
-        Me.IdProyecto.DataPropertyName = "IdProyecto"
-        Me.IdProyecto.HeaderText = "IdProyecto"
-        Me.IdProyecto.MinimumWidth = 8
-        Me.IdProyecto.Name = "IdProyecto"
-        Me.IdProyecto.ReadOnly = True
-        Me.IdProyecto.Width = 150
-        '
-        'IdCliente
-        '
-        Me.IdCliente.DataPropertyName = "IdCliente"
-        Me.IdCliente.HeaderText = "IdCliente"
-        Me.IdCliente.MinimumWidth = 6
-        Me.IdCliente.Name = "IdCliente"
-        Me.IdCliente.ReadOnly = True
-        Me.IdCliente.Width = 125
-        '
-        'RazonSocial
-        '
-        Me.RazonSocial.DataPropertyName = "IdCliente"
-        Me.RazonSocial.DataSource = Me.ClientesBindingSource
-        Me.RazonSocial.DisplayMember = "Nombre_Cliente"
-        Me.RazonSocial.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-        Me.RazonSocial.HeaderText = "IdProyecto"
-        Me.RazonSocial.MinimumWidth = 6
-        Me.RazonSocial.Name = "RazonSocial"
-        Me.RazonSocial.ReadOnly = True
-        Me.RazonSocial.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.RazonSocial.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.RazonSocial.ValueMember = "Id_Fiscal"
-        Me.RazonSocial.Width = 150
-        '
         'ClientesBindingSource
         '
         Me.ClientesBindingSource.DataMember = "Clientes"
@@ -384,90 +342,6 @@ Partial Class FrmVerFacturas
         '
         Me.DsClientes.DataSetName = "DsClientes"
         Me.DsClientes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'NCF
-        '
-        Me.NCF.DataPropertyName = "NCF"
-        Me.NCF.HeaderText = "NCF"
-        Me.NCF.MinimumWidth = 6
-        Me.NCF.Name = "NCF"
-        Me.NCF.ReadOnly = True
-        Me.NCF.Width = 125
-        '
-        'Fecha
-        '
-        Me.Fecha.DataPropertyName = "Fecha"
-        Me.Fecha.HeaderText = "Fecha"
-        Me.Fecha.MinimumWidth = 6
-        Me.Fecha.Name = "Fecha"
-        Me.Fecha.ReadOnly = True
-        Me.Fecha.Width = 60
-        '
-        'Moneda
-        '
-        Me.Moneda.DataPropertyName = "Moneda"
-        Me.Moneda.HeaderText = "Moneda"
-        Me.Moneda.MinimumWidth = 6
-        Me.Moneda.Name = "Moneda"
-        Me.Moneda.ReadOnly = True
-        Me.Moneda.Width = 60
-        '
-        'TotalUS
-        '
-        Me.TotalUS.DataPropertyName = "TotalUS$"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle1.Format = "n2"
-        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle1
-        Me.TotalUS.HeaderText = "TotalUS$"
-        Me.TotalUS.MinimumWidth = 6
-        Me.TotalUS.Name = "TotalUS"
-        Me.TotalUS.ReadOnly = True
-        Me.TotalUS.Width = 80
-        '
-        'TotalRDS
-        '
-        Me.TotalRDS.DataPropertyName = "TotalRDS"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "n2"
-        Me.TotalRDS.DefaultCellStyle = DataGridViewCellStyle2
-        Me.TotalRDS.HeaderText = "TotalRDS"
-        Me.TotalRDS.MinimumWidth = 6
-        Me.TotalRDS.Name = "TotalRDS"
-        Me.TotalRDS.ReadOnly = True
-        Me.TotalRDS.Width = 80
-        '
-        'Aprobada
-        '
-        Me.Aprobada.DataPropertyName = "Aprobada"
-        Me.Aprobada.HeaderText = "Aprobada"
-        Me.Aprobada.MinimumWidth = 6
-        Me.Aprobada.Name = "Aprobada"
-        Me.Aprobada.ReadOnly = True
-        Me.Aprobada.Width = 125
-        '
-        'Pagado
-        '
-        Me.Pagado.DataPropertyName = "Pagado"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle3.Format = "n2"
-        Me.Pagado.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Pagado.HeaderText = "Pagado"
-        Me.Pagado.MinimumWidth = 6
-        Me.Pagado.Name = "Pagado"
-        Me.Pagado.ReadOnly = True
-        Me.Pagado.Width = 125
-        '
-        'Pendiente
-        '
-        Me.Pendiente.DataPropertyName = "Pendiente"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle4.Format = "n2"
-        Me.Pendiente.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Pendiente.HeaderText = "Pendiente"
-        Me.Pendiente.MinimumWidth = 6
-        Me.Pendiente.Name = "Pendiente"
-        Me.Pendiente.ReadOnly = True
-        Me.Pendiente.Width = 125
         '
         'FacturaBindingSource
         '
@@ -516,7 +390,6 @@ Partial Class FrmVerFacturas
         '
         Me.BtnVerFactura.BackColor = System.Drawing.Color.White
         Me.BtnVerFactura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(110, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.BtnVerFactura.FlatAppearance.BorderSize = 1
         Me.BtnVerFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnVerFactura.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnVerFactura.ForeColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(110, Byte), Integer), CType(CType(253, Byte), Integer))
@@ -563,8 +436,7 @@ Partial Class FrmVerFacturas
         Me.dgvPagosCandidatos.AllowUserToAddRows = False
         Me.dgvPagosCandidatos.AllowUserToDeleteRows = False
         Me.dgvPagosCandidatos.BackgroundColor = System.Drawing.Color.White
-        Me.dgvPagosCandidatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.dgvPagosCandidatos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvPagosCandidatos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvPagosCandidatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPagosCandidatos.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvPagosCandidatos.EnableHeadersVisualStyles = False
@@ -601,8 +473,7 @@ Partial Class FrmVerFacturas
         'dgvPagosAplicados
         '
         Me.dgvPagosAplicados.BackgroundColor = System.Drawing.Color.White
-        Me.dgvPagosAplicados.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.dgvPagosAplicados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvPagosAplicados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvPagosAplicados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPagosAplicados.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvPagosAplicados.EnableHeadersVisualStyles = False
@@ -618,7 +489,6 @@ Partial Class FrmVerFacturas
         '
         Me.BtnDesasignarPago.BackColor = System.Drawing.Color.White
         Me.BtnDesasignarPago.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(69, Byte), Integer))
-        Me.BtnDesasignarPago.FlatAppearance.BorderSize = 1
         Me.BtnDesasignarPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnDesasignarPago.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnDesasignarPago.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(69, Byte), Integer))
@@ -630,15 +500,147 @@ Partial Class FrmVerFacturas
         Me.BtnDesasignarPago.Text = "Desasignar Pago"
         Me.BtnDesasignarPago.UseVisualStyleBackColor = False
         '
+        'IdFactura
+        '
+        Me.IdFactura.DataPropertyName = "IdFactura"
+        Me.IdFactura.HeaderText = "IdFactura"
+        Me.IdFactura.MinimumWidth = 6
+        Me.IdFactura.Name = "IdFactura"
+        Me.IdFactura.ReadOnly = True
+        Me.IdFactura.Width = 125
+        '
+        'IdProyecto
+        '
+        Me.IdProyecto.DataPropertyName = "IdProyecto"
+        Me.IdProyecto.HeaderText = "IdProyecto"
+        Me.IdProyecto.MinimumWidth = 8
+        Me.IdProyecto.Name = "IdProyecto"
+        Me.IdProyecto.ReadOnly = True
+        Me.IdProyecto.Width = 150
+        '
+        'IdCliente
+        '
+        Me.IdCliente.DataPropertyName = "IdCliente"
+        Me.IdCliente.HeaderText = "IdCliente"
+        Me.IdCliente.MinimumWidth = 6
+        Me.IdCliente.Name = "IdCliente"
+        Me.IdCliente.ReadOnly = True
+        Me.IdCliente.Width = 125
+        '
+        'RazonSocial
+        '
+        Me.RazonSocial.DataPropertyName = "IdCliente"
+        Me.RazonSocial.DataSource = Me.ClientesBindingSource
+        Me.RazonSocial.DisplayMember = "Nombre_Cliente"
+        Me.RazonSocial.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.RazonSocial.HeaderText = "IdProyecto"
+        Me.RazonSocial.MinimumWidth = 6
+        Me.RazonSocial.Name = "RazonSocial"
+        Me.RazonSocial.ReadOnly = True
+        Me.RazonSocial.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.RazonSocial.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.RazonSocial.ValueMember = "Id_Fiscal"
+        Me.RazonSocial.Width = 150
+        '
+        'NCF
+        '
+        Me.NCF.DataPropertyName = "NCF"
+        Me.NCF.HeaderText = "NCF"
+        Me.NCF.MinimumWidth = 6
+        Me.NCF.Name = "NCF"
+        Me.NCF.ReadOnly = True
+        Me.NCF.Width = 125
+        '
+        'Fecha
+        '
+        Me.Fecha.DataPropertyName = "Fecha"
+        Me.Fecha.HeaderText = "Fecha"
+        Me.Fecha.MinimumWidth = 6
+        Me.Fecha.Name = "Fecha"
+        Me.Fecha.ReadOnly = True
+        Me.Fecha.Width = 60
+        '
+        'Moneda
+        '
+        Me.Moneda.DataPropertyName = "Moneda"
+        Me.Moneda.HeaderText = "Moneda"
+        Me.Moneda.MinimumWidth = 6
+        Me.Moneda.Name = "Moneda"
+        Me.Moneda.ReadOnly = True
+        Me.Moneda.Width = 60
+        '
+        'TotalUS
+        '
+        Me.TotalUS.DataPropertyName = "TotalUS$"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle2.Format = "n2"
+        Me.TotalUS.DefaultCellStyle = DataGridViewCellStyle2
+        Me.TotalUS.HeaderText = "TotalUS$"
+        Me.TotalUS.MinimumWidth = 6
+        Me.TotalUS.Name = "TotalUS"
+        Me.TotalUS.ReadOnly = True
+        Me.TotalUS.Width = 80
+        '
+        'TotalRDS
+        '
+        Me.TotalRDS.DataPropertyName = "TotalRDS"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle3.Format = "n2"
+        Me.TotalRDS.DefaultCellStyle = DataGridViewCellStyle3
+        Me.TotalRDS.HeaderText = "TotalRDS"
+        Me.TotalRDS.MinimumWidth = 6
+        Me.TotalRDS.Name = "TotalRDS"
+        Me.TotalRDS.ReadOnly = True
+        Me.TotalRDS.Width = 80
+        '
+        'Aprobada
+        '
+        Me.Aprobada.DataPropertyName = "Aprobada"
+        Me.Aprobada.HeaderText = "Aprobada"
+        Me.Aprobada.MinimumWidth = 6
+        Me.Aprobada.Name = "Aprobada"
+        Me.Aprobada.ReadOnly = True
+        Me.Aprobada.Width = 125
+        '
+        'Pagado
+        '
+        Me.Pagado.DataPropertyName = "Pagado"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle4.Format = "n2"
+        Me.Pagado.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Pagado.HeaderText = "Pagado"
+        Me.Pagado.MinimumWidth = 6
+        Me.Pagado.Name = "Pagado"
+        Me.Pagado.ReadOnly = True
+        Me.Pagado.Width = 125
+        '
+        'Pendiente
+        '
+        Me.Pendiente.DataPropertyName = "Pendiente"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle5.Format = "n2"
+        Me.Pendiente.DefaultCellStyle = DataGridViewCellStyle5
+        Me.Pendiente.HeaderText = "Pendiente"
+        Me.Pendiente.MinimumWidth = 6
+        Me.Pendiente.Name = "Pendiente"
+        Me.Pendiente.ReadOnly = True
+        Me.Pendiente.Width = 125
+        '
+        'Presupuesto
+        '
+        Me.Presupuesto.DataPropertyName = "Notas"
+        Me.Presupuesto.HeaderText = "Presupuesto"
+        Me.Presupuesto.MinimumWidth = 8
+        Me.Presupuesto.Name = "Presupuesto"
+        Me.Presupuesto.ReadOnly = True
+        Me.Presupuesto.Width = 150
+        '
         'FrmVerFacturas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(2172, 873)
-        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.MaximizeBox = False
         Me.Controls.Add(Me.BtnDesasignarPago)
         Me.Controls.Add(Me.dgvPagosAplicados)
         Me.Controls.Add(Me.dgvPagosCandidatos)
@@ -654,12 +656,13 @@ Partial Class FrmVerFacturas
         Me.Controls.Add(Id_FiscalLabel)
         Me.Controls.Add(Me.Id_FiscalTextBox)
         Me.Controls.Add(Me.EmpresasBindingNavigator)
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.MaximizeBox = False
         Me.Name = "FrmVerFacturas"
-
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Facturas"
-
         CType(Me.DsEmpresas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmpresasBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmpresasBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
@@ -730,4 +733,5 @@ Partial Class FrmVerFacturas
     Friend WithEvents Aprobada As DataGridViewCheckBoxColumn
     Friend WithEvents Pagado As DataGridViewTextBoxColumn
     Friend WithEvents Pendiente As DataGridViewTextBoxColumn
+    Friend WithEvents Presupuesto As DataGridViewTextBoxColumn
 End Class
