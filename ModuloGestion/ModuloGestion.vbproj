@@ -706,6 +706,9 @@
     <Compile Include="Montaje\FrmFacturaMontajeEditar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Montaje\FrmFacturaMontajeB11.Designer.vb">
+      <DependentUpon>FrmFacturaMontajeB11.vb</DependentUpon>
+    </Compile>
     <Compile Include="Montaje\FrmFacturaMontajeB11.vb">
       <SubType>Form</SubType>
     </Compile>
