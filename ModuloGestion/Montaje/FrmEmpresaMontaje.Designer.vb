@@ -31,6 +31,9 @@ Partial Class FrmEmpresaMontaje
         Dim BancoLabel As System.Windows.Forms.Label
         Dim CuentaLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmEmpresaMontaje))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -40,9 +43,6 @@ Partial Class FrmEmpresaMontaje
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.EmpresasContratadasMontajeBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
         Me.EmpresasContratadasMontajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -87,6 +87,12 @@ Partial Class FrmEmpresaMontaje
         Me.DsArticulos = New ModuloGestion.DsArticulos()
         Me.ArticulosTableAdapter = New ModuloGestion.DsArticulosTableAdapters.ArticulosTableAdapter()
         Me.FacturaMontajeDetalleDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Precio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalPartida = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -138,12 +144,7 @@ Partial Class FrmEmpresaMontaje
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Precio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalPartida = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BtnFacturaB11 = New System.Windows.Forms.Button()
         EmailLabel = New System.Windows.Forms.Label()
         Telefono2Label = New System.Windows.Forms.Label()
         Telefono1Label = New System.Windows.Forms.Label()
@@ -547,6 +548,69 @@ Partial Class FrmEmpresaMontaje
         Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(1160, 355)
         Me.FacturaMontajeDetalleDataGridView.TabIndex = 33
         '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.DataPropertyName = "IdFacturaMontajeDetalle"
+        Me.DataGridViewTextBoxColumn12.HeaderText = "IdFacturaMontajeDetalle"
+        Me.DataGridViewTextBoxColumn12.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        Me.DataGridViewTextBoxColumn12.ReadOnly = True
+        Me.DataGridViewTextBoxColumn12.Width = 125
+        '
+        'DataGridViewTextBoxColumn31
+        '
+        Me.DataGridViewTextBoxColumn31.DataPropertyName = "IdArticulo"
+        Me.DataGridViewTextBoxColumn31.HeaderText = "IdArticulo"
+        Me.DataGridViewTextBoxColumn31.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn31.Name = "DataGridViewTextBoxColumn31"
+        Me.DataGridViewTextBoxColumn31.ReadOnly = True
+        Me.DataGridViewTextBoxColumn31.Width = 125
+        '
+        'Descripcion
+        '
+        Me.Descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Descripcion.DataPropertyName = "Descripcion"
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.MinimumWidth = 8
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn33
+        '
+        Me.DataGridViewTextBoxColumn33.DataPropertyName = "Cantidad"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle1.Format = "n2"
+        Me.DataGridViewTextBoxColumn33.DefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridViewTextBoxColumn33.HeaderText = "Cantidad"
+        Me.DataGridViewTextBoxColumn33.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumn33.Name = "DataGridViewTextBoxColumn33"
+        Me.DataGridViewTextBoxColumn33.ReadOnly = True
+        Me.DataGridViewTextBoxColumn33.Width = 125
+        '
+        'Precio
+        '
+        Me.Precio.DataPropertyName = "Precio"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle2.Format = "n2"
+        Me.Precio.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Precio.HeaderText = "Precio"
+        Me.Precio.MinimumWidth = 6
+        Me.Precio.Name = "Precio"
+        Me.Precio.ReadOnly = True
+        Me.Precio.Width = 125
+        '
+        'TotalPartida
+        '
+        Me.TotalPartida.DataPropertyName = "TotalPartida"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle3.Format = "n2"
+        Me.TotalPartida.DefaultCellStyle = DataGridViewCellStyle3
+        Me.TotalPartida.HeaderText = "Total"
+        Me.TotalPartida.MinimumWidth = 6
+        Me.TotalPartida.Name = "TotalPartida"
+        Me.TotalPartida.ReadOnly = True
+        Me.TotalPartida.Width = 125
+        '
         'DataGridViewTextBoxColumn28
         '
         Me.DataGridViewTextBoxColumn28.DataPropertyName = "Moneda"
@@ -807,6 +871,7 @@ Partial Class FrmEmpresaMontaje
         '
         'pnlCabecera
         '
+        Me.pnlCabecera.Controls.Add(Me.BtnFacturaB11)
         Me.pnlCabecera.Controls.Add(Me.BtnModificarFactura)
         Me.pnlCabecera.Controls.Add(IdEmpresaMontajeLabel)
         Me.pnlCabecera.Controls.Add(Me.BtnResumenPagos)
@@ -1143,68 +1208,15 @@ Partial Class FrmEmpresaMontaje
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(2124, 911)
         Me.TableLayoutPanel1.TabIndex = 41
         '
-        'DataGridViewTextBoxColumn12
+        'BtnFacturaB11
         '
-        Me.DataGridViewTextBoxColumn12.DataPropertyName = "IdFacturaMontajeDetalle"
-        Me.DataGridViewTextBoxColumn12.HeaderText = "IdFacturaMontajeDetalle"
-        Me.DataGridViewTextBoxColumn12.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        Me.DataGridViewTextBoxColumn12.ReadOnly = True
-        Me.DataGridViewTextBoxColumn12.Width = 125
-        '
-        'DataGridViewTextBoxColumn31
-        '
-        Me.DataGridViewTextBoxColumn31.DataPropertyName = "IdArticulo"
-        Me.DataGridViewTextBoxColumn31.HeaderText = "IdArticulo"
-        Me.DataGridViewTextBoxColumn31.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn31.Name = "DataGridViewTextBoxColumn31"
-        Me.DataGridViewTextBoxColumn31.ReadOnly = True
-        Me.DataGridViewTextBoxColumn31.Width = 125
-        '
-        'Descripcion
-        '
-        Me.Descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Descripcion.DataPropertyName = "Descripcion"
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.MinimumWidth = 8
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn33
-        '
-        Me.DataGridViewTextBoxColumn33.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle1.Format = "n2"
-        Me.DataGridViewTextBoxColumn33.DefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridViewTextBoxColumn33.HeaderText = "Cantidad"
-        Me.DataGridViewTextBoxColumn33.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumn33.Name = "DataGridViewTextBoxColumn33"
-        Me.DataGridViewTextBoxColumn33.ReadOnly = True
-        Me.DataGridViewTextBoxColumn33.Width = 125
-        '
-        'Precio
-        '
-        Me.Precio.DataPropertyName = "Precio"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "n2"
-        Me.Precio.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Precio.HeaderText = "Precio"
-        Me.Precio.MinimumWidth = 6
-        Me.Precio.Name = "Precio"
-        Me.Precio.ReadOnly = True
-        Me.Precio.Width = 125
-        '
-        'TotalPartida
-        '
-        Me.TotalPartida.DataPropertyName = "TotalPartida"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle3.Format = "n2"
-        Me.TotalPartida.DefaultCellStyle = DataGridViewCellStyle3
-        Me.TotalPartida.HeaderText = "Total"
-        Me.TotalPartida.MinimumWidth = 6
-        Me.TotalPartida.Name = "TotalPartida"
-        Me.TotalPartida.ReadOnly = True
-        Me.TotalPartida.Width = 125
+        Me.BtnFacturaB11.Location = New System.Drawing.Point(1120, 58)
+        Me.BtnFacturaB11.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnFacturaB11.Name = "BtnFacturaB11"
+        Me.BtnFacturaB11.Size = New System.Drawing.Size(159, 31)
+        Me.BtnFacturaB11.TabIndex = 41
+        Me.BtnFacturaB11.Text = "Nueva Factura B11"
+        Me.BtnFacturaB11.UseVisualStyleBackColor = True
         '
         'FrmEmpresaMontaje
         '
@@ -1360,4 +1372,5 @@ Partial Class FrmEmpresaMontaje
     Friend WithEvents DataGridViewTextBoxColumn33 As DataGridViewTextBoxColumn
     Friend WithEvents Precio As DataGridViewTextBoxColumn
     Friend WithEvents TotalPartida As DataGridViewTextBoxColumn
+    Friend WithEvents BtnFacturaB11 As Button
 End Class

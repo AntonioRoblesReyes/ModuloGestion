@@ -1,14 +1,21 @@
 ﻿Imports System.Data.SqlClient
+Partial Public Class FrmFacturaMontajeB11
 
-Public Partial Class FrmFacturaMontajeB11
 
+    Public IdEmpresaSeleccionada As String
     Private Sub FrmFacturaMontajeB11_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             EmpresasContratadasMontajeTableAdapter.FillByActivas(DsPagosMontaje.EmpresasContratadasMontaje)
+
+            If Not String.IsNullOrEmpty(IdEmpresaSeleccionada) Then
+                cboEmpresa.SelectedValue = IdEmpresaSeleccionada
+            End If
+
             LimpiarPantallaNuevaFactura()
+
         Catch ex As Exception
             MessageBox.Show("Error cargando formulario B11: " & ex.Message,
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

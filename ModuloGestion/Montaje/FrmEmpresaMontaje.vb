@@ -133,5 +133,19 @@
                             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub BtnFacturaB11_Click(sender As Object, e As EventArgs) Handles BtnFacturaB11.Click
 
+        If EmpresasContratadasMontajeBindingSource.Current Is Nothing Then
+            MsgBox("Seleccione una empresa.", MsgBoxStyle.Exclamation)
+            Exit Sub
+        End If
+
+        Dim idEmpresa As String =
+        CType(EmpresasContratadasMontajeBindingSource.Current, DataRowView)("IdEmpresaMontaje").ToString()
+
+        Dim f As New FrmFacturaMontajeB11
+        f.IdEmpresaSeleccionada = idEmpresa
+        f.ShowDialog()
+
+    End Sub
 End Class

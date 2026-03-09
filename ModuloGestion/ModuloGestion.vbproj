@@ -532,6 +532,12 @@
       <DependentUpon>CrysResumenPagos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Montaje\FrmFacturaMontajeB11.Designer.vb">
+      <DependentUpon>FrmFacturaMontajeB11.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Montaje\FrmFacturaMontajeB11.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Montaje\FrmNuevaEmpresaMontaje.Designer.vb">
       <DependentUpon>FrmNuevaEmpresaMontaje.vb</DependentUpon>
     </Compile>
@@ -704,12 +710,6 @@
       <DependentUpon>FrmFacturaMontajeEditar.vb</DependentUpon>
     </Compile>
     <Compile Include="Montaje\FrmFacturaMontajeEditar.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Montaje\FrmFacturaMontajeB11.Designer.vb">
-      <DependentUpon>FrmFacturaMontajeB11.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Montaje\FrmFacturaMontajeB11.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gestion\Reportes\CryFactura.vb">
@@ -2178,6 +2178,9 @@
     <EmbeddedResource Include="Montaje\CrysResumenPagos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrysResumenPagos.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Montaje\FrmFacturaMontajeB11.resx">
+      <DependentUpon>FrmFacturaMontajeB11.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Montaje\FrmNuevaEmpresaMontaje.resx">
       <DependentUpon>FrmNuevaEmpresaMontaje.vb</DependentUpon>
