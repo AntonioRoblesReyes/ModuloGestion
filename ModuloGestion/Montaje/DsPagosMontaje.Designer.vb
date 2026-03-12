@@ -14797,7 +14797,7 @@ Namespace DsPagosMontajeTableAdapters
                 "haPAgo, Id_Proyecto, Id_Presupuesto, SubTotal, Itebis, Total, Observaciones, Pag"& _ 
                 "ado, PendienteInstalador, Impuesto, RetencionIRS)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES (@IdFacturaMontaje,@Id"& _ 
                 "EmpresaMontaje,@FechaPAgo,@Id_Proyecto,@Id_Presupuesto,@SubTotal,@Itebis,@Total,"& _ 
-                "@Observaciones,@Pagado,@Pendiente, 0.18, .1);      "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+                "@Observaciones,@Pagado,@Pendiente, 0.18, .02);       "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaMontaje", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
