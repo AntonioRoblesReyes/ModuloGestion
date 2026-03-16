@@ -90,4 +90,19 @@ Public Class FrmMainShellNext
         Me.Text = "ModuloGestion.Next - Principal"
         Me.WindowState = FormWindowState.Maximized
     End Sub
+    Private Sub BtnEntrar_Click(sender As Object, e As EventArgs) Handles BtnEntrar.Click
+
+        'aquí luego pondrás validación de usuario
+        Me.DialogResult = DialogResult.OK
+        Me.Close()
+
+    End Sub
+
+    Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
+
+        Me.DialogResult = DialogResult.Cancel
+        Me.Close()
+
+    End Sub
+
 End Class
