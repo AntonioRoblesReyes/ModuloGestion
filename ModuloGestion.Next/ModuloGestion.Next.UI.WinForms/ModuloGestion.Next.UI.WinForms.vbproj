@@ -12,4 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ModuloGestion.Next.Application\ModuloGestion.Next.Application.vbproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Auth\" />
+  </ItemGroup>
 </Project>
