@@ -57,7 +57,6 @@
 
         Dim proyecto As String = My.Forms.FrmPresupuestos.TxtIdProyecto.Text
         Dim presupuesto As String = My.Forms.FrmPresupuestos.TxtIdPresupuesto.Text
-        Me.PrecioCompraConsultaTableAdapter.FillByIdProyecto(Me.DsPreciosCompraConsulta.PrecioCompraConsulta, proyecto)
         Me.PreciosCompraProyectoTableAdapter.FillByIdPresupuesto(Me.DsPreciosCompraProyecto.PreciosCompraProyecto, presupuesto)
         Me.Show()
         BeginInvoke(New MethodInvoker(AddressOf CargarComprasSiEsNecesario))
@@ -112,6 +111,10 @@
 
 
     Sub Precios()
+        If Me.PreciosCompraProyectoBindingSource.Position < 0 OrElse Me.DsPreciosCompraProyecto.PreciosCompraProyecto.Count = 0 Then
+            Exit Sub
+        End If
+
         Dim material As String = Me.DsPreciosCompraProyecto.PreciosCompraProyecto(Me.PreciosCompraProyectoBindingSource.Position).Id_material
 
         Me.PrecioCompraConsultaTableAdapter.FillByIdMaterial(Me.DsPreciosCompraConsulta.PrecioCompraConsulta, material)
