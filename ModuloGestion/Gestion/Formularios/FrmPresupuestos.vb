@@ -8,7 +8,6 @@ Public Class FrmPresupuestos
         TxtOrdenDeCompra.ReadOnly = True
         TxtOrdenDeCompra.BackColor = SystemColors.Window ' Fondo blanco como normal
         TxtOrdenDeCompra.Cursor = Cursors.Hand          ' Cambia el cursor para indicar clic
-        Carpeta_DatosTextBox.ReadOnly = True
         Carpeta_DatosTextBox.BackColor = SystemColors.Window ' Fondo blanco como normal
 
 
@@ -163,12 +162,15 @@ Public Class FrmPresupuestos
             ' Obtener valores asegurando que no sean nulos y sean numéricos
             Dim Cantidad As Double = GetNumericCellValue(Me.PresupuestoDetalleDataGridView.CurrentRow, "CantidadView")
             Dim Precio As Double = GetNumericCellValue(Me.PresupuestoDetalleDataGridView.CurrentRow, "Precioview")
-            Dim tasa As Double = Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).tasa
+            Dim tasa As Double = 0
+
+            If Me.PresupuestoBindingSource.Position < 0 OrElse Me.DsPresupuestos.Presupuesto.Count = 0 Then
+                Exit Sub
+            End If
 
             ' Validación de Tasa de Cambio
-            If Me.DsPresupuestos.Presupuesto.Count > 0 AndAlso
-           Not IsDBNull(Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).tasa) AndAlso
-           IsNumeric(Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).tasa) Then
+            If Not IsDBNull(Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).tasa) AndAlso
+               IsNumeric(Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).tasa) Then
                 tasa = CDbl(Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).tasa)
             End If
 
@@ -207,8 +209,8 @@ Public Class FrmPresupuestos
                 Continue For
             End If
 
-            SuBtotal += Val(row.Cells("TotalView").Value)
-            SuBtotalRD += Val(row.Cells("TotalrdView").Value)
+            SuBtotal += GetNumericCellValue(row, "TotalView")
+            SuBtotalRD += GetNumericCellValue(row, "TotalrdView")
         Next
 
         With DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position)
