@@ -1,23 +1,27 @@
+Option Strict On
+Option Infer On
+
 Imports System
+Imports System.Windows.Forms
+Imports ModuloGestion.Next.UI.WinForms.Forms.Auth
+Imports ModuloGestion.Next.UI.WinForms.Forms.Common
 
-Namespace Bootstrap
-    Friend Module Program
-        <STAThread>
-        Public Sub Main()
-            Global.System.Windows.Forms.Application.EnableVisualStyles()
-            Global.System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(False)
+Module Program
 
-            Using frmLogin As New Forms.Auth.FrmLoginNext()
-                If frmLogin.ShowDialog() <> Global.System.Windows.Forms.DialogResult.OK Then
-                    Return
-                End If
-            End Using
+    <STAThread>
+    Sub Main()
 
-            Global.System.Windows.Forms.Application.Run(New Forms.Common.FrmShell())
-            System.Windows.Forms.Application.EnableVisualStyles()
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(False)
+        System.Windows.Forms.Application.EnableVisualStyles()
+        System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(False)
 
-            System.Windows.Forms.Application.Run(New Forms.Common.FrmShell())
-        End Sub
-    End Module
-End Namespace
+        Dim authService As IAuthAppService = New AuthAppService()
+
+        Dim login As New FrmLoginNext(authService)
+
+        If login.ShowDialog() = DialogResult.OK Then
+            System.Windows.Forms.Application.Run(New FrmMainShellNext(login.Usuario))
+        End If
+
+    End Sub
+
+End Module
