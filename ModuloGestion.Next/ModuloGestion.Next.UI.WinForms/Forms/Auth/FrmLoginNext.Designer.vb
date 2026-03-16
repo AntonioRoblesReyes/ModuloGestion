@@ -29,60 +29,81 @@ Namespace Forms.Auth
 
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-
-            Me.lblUsuario = New Label()
-            Me.lblClave = New Label()
-            Me.txtUsuario = New TextBox()
-            Me.txtClave = New TextBox()
-            Me.btnEntrar = New Button()
-            Me.btnCancelar = New Button()
-
-            Me.SuspendLayout()
-
-            'lblUsuario
-            Me.lblUsuario.AutoSize = True
-            Me.lblUsuario.Location = New Point(24, 28)
-            Me.lblUsuario.Text = "Usuario"
-
-            'txtUsuario
-            Me.txtUsuario.Location = New Point(120, 24)
-            Me.txtUsuario.Size = New Size(220, 23)
-
-            'lblClave
-            Me.lblClave.AutoSize = True
-            Me.lblClave.Location = New Point(24, 72)
-            Me.lblClave.Text = "Clave"
-
-            'txtClave
-            Me.txtClave.Location = New Point(120, 68)
-            Me.txtClave.Size = New Size(220, 23)
-            Me.txtClave.UseSystemPasswordChar = True
-
-            'btnEntrar
-            Me.btnEntrar.DialogResult = DialogResult.OK
-            Me.btnEntrar.Location = New Point(184, 125)
-            Me.btnEntrar.Text = "Entrar"
-
-            'btnCancelar
-            Me.btnCancelar.DialogResult = DialogResult.Cancel
-            Me.btnCancelar.Location = New Point(265, 125)
-            Me.btnCancelar.Text = "Cancelar"
-
-            'FrmLoginNext
-            Me.AcceptButton = Me.btnEntrar
-            Me.CancelButton = Me.btnCancelar
-            Me.ClientSize = New Size(380, 190)
-            Me.Controls.Add(Me.lblUsuario)
-            Me.Controls.Add(Me.txtUsuario)
-            Me.Controls.Add(Me.lblClave)
-            Me.Controls.Add(Me.txtClave)
-            Me.Controls.Add(Me.btnEntrar)
-            Me.Controls.Add(Me.btnCancelar)
-            Me.StartPosition = FormStartPosition.CenterScreen
-            Me.Text = "Iniciar sesión"
-
-            Me.ResumeLayout(False)
-            Me.PerformLayout()
+            lblUsuario = New Label()
+            lblClave = New Label()
+            txtUsuario = New TextBox()
+            txtClave = New TextBox()
+            btnEntrar = New Button()
+            btnCancelar = New Button()
+            SuspendLayout()
+            ' 
+            ' lblUsuario
+            ' 
+            lblUsuario.AutoSize = True
+            lblUsuario.Location = New Point(24, 28)
+            lblUsuario.Name = "lblUsuario"
+            lblUsuario.Size = New Size(72, 25)
+            lblUsuario.TabIndex = 0
+            lblUsuario.Text = "Usuario"
+            ' 
+            ' lblClave
+            ' 
+            lblClave.AutoSize = True
+            lblClave.Location = New Point(24, 72)
+            lblClave.Name = "lblClave"
+            lblClave.Size = New Size(54, 25)
+            lblClave.TabIndex = 2
+            lblClave.Text = "Clave"
+            ' 
+            ' txtUsuario
+            ' 
+            txtUsuario.Location = New Point(120, 24)
+            txtUsuario.Name = "txtUsuario"
+            txtUsuario.Size = New Size(220, 31)
+            txtUsuario.TabIndex = 1
+            ' 
+            ' txtClave
+            ' 
+            txtClave.Location = New Point(120, 68)
+            txtClave.Name = "txtClave"
+            txtClave.Size = New Size(220, 31)
+            txtClave.TabIndex = 3
+            txtClave.UseSystemPasswordChar = True
+            ' 
+            ' btnEntrar
+            ' 
+            btnEntrar.DialogResult = DialogResult.OK
+            btnEntrar.Location = New Point(184, 125)
+            btnEntrar.Name = "btnEntrar"
+            btnEntrar.Size = New Size(75, 23)
+            btnEntrar.TabIndex = 4
+            btnEntrar.Text = "Entrar"
+            ' 
+            ' btnCancelar
+            ' 
+            btnCancelar.DialogResult = DialogResult.Cancel
+            btnCancelar.Location = New Point(265, 125)
+            btnCancelar.Name = "btnCancelar"
+            btnCancelar.Size = New Size(75, 23)
+            btnCancelar.TabIndex = 5
+            btnCancelar.Text = "Cancelar"
+            ' 
+            ' FrmLoginNext
+            ' 
+            AcceptButton = btnEntrar
+            CancelButton = btnCancelar
+            ClientSize = New Size(380, 190)
+            Controls.Add(lblUsuario)
+            Controls.Add(txtUsuario)
+            Controls.Add(lblClave)
+            Controls.Add(txtClave)
+            Controls.Add(btnEntrar)
+            Controls.Add(btnCancelar)
+            Name = "FrmLoginNext"
+            StartPosition = FormStartPosition.CenterScreen
+            Text = "Iniciar sesión"
+            ResumeLayout(False)
+            PerformLayout()
 
         End Sub
 
