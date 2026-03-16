@@ -2,8 +2,7 @@ Option Strict On
 Option Infer On
 
 Imports System.Windows.Forms
-Imports Microsoft.Data.SqlClient
-Imports ModuloGestion.Next.Infrastructure.SqlServer
+Imports ModuloGestion.Next.Application.Auth
 
 Namespace Forms.Auth
 
@@ -46,7 +45,6 @@ Namespace Forms.Auth
         Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
             Me.Close()
         End Sub
-
 
     End Class
 

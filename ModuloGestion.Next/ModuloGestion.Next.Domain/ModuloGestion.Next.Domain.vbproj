@@ -7,7 +7,4 @@
     <OptionInfer>On</OptionInfer>
     <OptionExplicit>On</OptionExplicit>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0-preview4.26064.3" />
-  </ItemGroup>
 </Project>
