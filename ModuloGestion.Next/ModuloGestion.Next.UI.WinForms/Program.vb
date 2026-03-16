@@ -3,6 +3,8 @@ Option Infer On
 
 Imports System
 Imports System.Windows.Forms
+Imports ModuloGestion.Next.Application.Auth
+Imports ModuloGestion.Next.Infrastructure.SqlServer
 Imports ModuloGestion.Next.UI.WinForms.Forms.Auth
 Imports ModuloGestion.Next.UI.WinForms.Forms.Common
 
@@ -14,7 +16,8 @@ Module Program
         System.Windows.Forms.Application.EnableVisualStyles()
         System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(False)
 
-        Dim authService As IAuthAppService = New AuthAppService()
+        Dim repository As IUserAuthRepository = New SqlUserAuthRepository()
+        Dim authService As IAuthAppService = New AuthAppService(repository)
 
         Dim login As New FrmLoginNext(authService)
 

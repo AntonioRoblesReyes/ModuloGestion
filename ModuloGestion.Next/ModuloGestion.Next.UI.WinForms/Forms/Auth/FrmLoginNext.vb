@@ -2,8 +2,7 @@ Option Strict On
 Option Infer On
 
 Imports System.Windows.Forms
-Imports Microsoft.Data.SqlClient
-Imports ModuloGestion.Next.Infrastructure.SqlServer
+Imports ModuloGestion.Next.Application.Auth
 
 Namespace Forms.Auth
 
@@ -50,6 +49,7 @@ Namespace Forms.Auth
         Private Sub FrmLoginNext_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         End Sub
+
     End Class
 
 End Namespace

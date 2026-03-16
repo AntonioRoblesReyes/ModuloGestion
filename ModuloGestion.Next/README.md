@@ -12,10 +12,11 @@ Estructura base inicial de la nueva solución con arquitectura en capas.
 ## Referencias
 
 - UI → Application
+- UI → Infrastructure.SqlServer (composición)
 - Application → Domain
-- Application → Infrastructure.SqlServer
-- Infrastructure.SqlServer → Domain
+- Infrastructure.SqlServer → Application
 
 ## Nota
 
-Esta iteración solo prepara la arquitectura base. No contiene lógica de negocio ni integración con el sistema legado aún.
+Esta iteración prepara la arquitectura base y el primer flujo de autenticación con puertos en `Application`.
+Aún no contiene módulos de negocio del sistema legado.
