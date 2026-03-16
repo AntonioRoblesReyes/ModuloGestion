@@ -8,11 +8,24 @@ Public Class FrmPresupuestos
         TxtOrdenDeCompra.ReadOnly = True
         TxtOrdenDeCompra.BackColor = SystemColors.Window ' Fondo blanco como normal
         TxtOrdenDeCompra.Cursor = Cursors.Hand          ' Cambia el cursor para indicar clic
-        Carpeta_DatosTextBox.Text = True
+        Carpeta_DatosTextBox.ReadOnly = True
         Carpeta_DatosTextBox.BackColor = SystemColors.Window ' Fondo blanco como normal
 
 
     End Sub
+
+    Private Function GetNumericCellValue(row As DataGridViewRow, cellName As String) As Double
+        Dim rawValue = row.Cells(cellName).Value
+        Dim parsedValue As Double
+
+        If rawValue IsNot Nothing AndAlso
+           rawValue IsNot DBNull.Value AndAlso
+           Double.TryParse(rawValue.ToString(), parsedValue) Then
+            Return parsedValue
+        End If
+
+        Return 0
+    End Function
 
 
 
@@ -148,21 +161,9 @@ Public Class FrmPresupuestos
             End If
 
             ' Obtener valores asegurando que no sean nulos y sean numéricos
-            Dim Cantidad As Double = 0
-            Dim Precio As Double = 0
+            Dim Cantidad As Double = GetNumericCellValue(Me.PresupuestoDetalleDataGridView.CurrentRow, "CantidadView")
+            Dim Precio As Double = GetNumericCellValue(Me.PresupuestoDetalleDataGridView.CurrentRow, "Precioview")
             Dim tasa As Double = Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).tasa
-
-            ' Validación de Cantidad
-            If Not IsDBNull(Me.PresupuestoDetalleDataGridView.CurrentRow.Cells("CantidadView").Value) AndAlso
-           IsNumeric(Me.PresupuestoDetalleDataGridView.CurrentRow.Cells("CantidadView").Value) Then
-                Cantidad = CDbl(Me.PresupuestoDetalleDataGridView.CurrentRow.Cells("CantidadView").Value)
-            End If
-
-            ' Validación de Precio
-            If Not IsDBNull(Me.PresupuestoDetalleDataGridView.CurrentRow.Cells("Precioview").Value) AndAlso
-           IsNumeric(Me.PresupuestoDetalleDataGridView.CurrentRow.Cells("Precioview").Value) Then
-                Precio = CDbl(Me.PresupuestoDetalleDataGridView.CurrentRow.Cells("Precioview").Value)
-            End If
 
             ' Validación de Tasa de Cambio
             If Me.DsPresupuestos.Presupuesto.Count > 0 AndAlso
@@ -194,10 +195,18 @@ Public Class FrmPresupuestos
 
 
     Sub Totales()
+        If Me.PresupuestoBindingSource.Position < 0 OrElse Me.DsPresupuestos.Presupuesto.Count = 0 Then
+            Exit Sub
+        End If
+
         Dim SuBtotal As Double = 0
         Dim SuBtotalRD As Double = 0
 
         For Each row As DataGridViewRow In Me.PresupuestoDetalleDataGridView.Rows
+            If row.IsNewRow Then
+                Continue For
+            End If
+
             SuBtotal += Val(row.Cells("TotalView").Value)
             SuBtotalRD += Val(row.Cells("TotalrdView").Value)
         Next
