@@ -1,7 +1,24 @@
 /*
     ModuloGestion.Next - Esquema mínimo de autenticación/sesión
     Objetivo: reemplazar login legado manteniendo comportamiento funcional por categoría.
+
+    Estrategia de base de datos:
+    - ModuloGestion.Next usa base de datos dedicada: GestionEmpresa_Next.
+    - No depende ni modifica la base de datos del ERP legado.
+    - Se mantiene separación por schemas (auth).
 */
+
+USE [master];
+GO
+
+IF DB_ID(N'GestionEmpresa_Next') IS NULL
+BEGIN
+    CREATE DATABASE [GestionEmpresa_Next];
+END
+GO
+
+USE [GestionEmpresa_Next];
+GO
 
 IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'auth')
 BEGIN
