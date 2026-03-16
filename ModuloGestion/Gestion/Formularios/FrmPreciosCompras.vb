@@ -55,10 +55,11 @@
 
         Me.MedidasCompraTableAdapter.Fill(Me.DsMedidasCompra.MedidasCompra)
 
+        Dim proyecto As String = My.Forms.FrmPresupuestos.TxtIdProyecto.Text
         Dim presupuesto As String = My.Forms.FrmPresupuestos.TxtIdPresupuesto.Text
         Me.PreciosCompraProyectoTableAdapter.FillByIdPresupuesto(Me.DsPreciosCompraProyecto.PreciosCompraProyecto, presupuesto)
         Me.Show()
-        Precios()
+        BeginInvoke(New MethodInvoker(AddressOf CargarComprasSiEsNecesario))
     End Sub
 
     Sub VerificarPrecios()
