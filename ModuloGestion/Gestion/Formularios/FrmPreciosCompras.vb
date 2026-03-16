@@ -1,7 +1,16 @@
 ﻿Public Class FrmPreciosCompras
 
+    Private comprasCargadas As Boolean = False
 
 
+    Private Sub CargarComprasSiEsNecesario()
+        If comprasCargadas Then
+            Exit Sub
+        End If
+
+        Me.CompraMaterialesDetalleTableAdapter.Fill(Me.DsCompras.CompraMaterialesDetalle)
+        comprasCargadas = True
+    End Sub
 
     Sub ActulizarPrecios()
         Dim Proyecto As String = My.Forms.FrmPresupuestos.TxtIdProyecto.Text
@@ -42,18 +51,14 @@
 
 
 
-        Me.PrecioCompraConsultaTableAdapter.Fill(Me.DsPreciosCompraConsulta.PrecioCompraConsulta)
-
         Me.UnionNombreMaterialesTableAdapter.Fill(Me.DsUnionMaterialesNombre.UnionNombreMateriales)
 
         Me.MedidasCompraTableAdapter.Fill(Me.DsMedidasCompra.MedidasCompra)
 
-        Me.PreciosCompraProyectoTableAdapter.Fill(Me.DsPreciosCompraProyecto.PreciosCompraProyecto)
-        Dim proyecto As String = My.Forms.FrmPresupuestos.TxtIdProyecto.Text
         Dim presupuesto As String = My.Forms.FrmPresupuestos.TxtIdPresupuesto.Text
-        Me.PrecioCompraConsultaTableAdapter.FillByIdProyecto(Me.DsPreciosCompraConsulta.PrecioCompraConsulta, proyecto)
         Me.PreciosCompraProyectoTableAdapter.FillByIdPresupuesto(Me.DsPreciosCompraProyecto.PreciosCompraProyecto, presupuesto)
         Me.Show()
+        Precios()
     End Sub
 
     Sub VerificarPrecios()
@@ -105,6 +110,10 @@
 
 
     Sub Precios()
+        If Me.PreciosCompraProyectoBindingSource.Position < 0 OrElse Me.DsPreciosCompraProyecto.PreciosCompraProyecto.Count = 0 Then
+            Exit Sub
+        End If
+
         Dim material As String = Me.DsPreciosCompraProyecto.PreciosCompraProyecto(Me.PreciosCompraProyectoBindingSource.Position).Id_material
 
         Me.PrecioCompraConsultaTableAdapter.FillByIdMaterial(Me.DsPreciosCompraConsulta.PrecioCompraConsulta, material)
@@ -144,12 +153,6 @@
 
 
     Private Sub FrmPreciosCompras_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: esta línea de código carga datos en la tabla 'DsCompras.CompraMaterialesDetalle' Puede moverla o quitarla según sea necesario.
-        Me.CompraMaterialesDetalleTableAdapter.Fill(Me.DsCompras.CompraMaterialesDetalle)
-
-
-
-
         Me.TxtPesos.Text = Format(0, "#,##0.00")
         Me.TxtTasa.Text = Format(47, "#,##0.00")
         Me.TxtDolares.Text = Format(0, "#,##0.00")
@@ -224,6 +227,7 @@
 
     Private Sub TextBox1_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox1.TextChanged
 
+        CargarComprasSiEsNecesario()
         Me.CompraMaterialesDetalleTableAdapter.FillByBuscar(Me.DsCompras.CompraMaterialesDetalle, "%" & TextBox1.Text & "%")
 
     End Sub
@@ -233,6 +237,12 @@
     End Sub
 
     Private Sub PreciosCompraDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles PreciosCompraDataGridView.CellClick
+        CargarComprasSiEsNecesario()
+
+        If Me.CompraMaterialesDetalleBindingSource.Position < 0 OrElse Me.DsCompras.CompraMaterialesDetalle.Count = 0 Then
+            Exit Sub
+        End If
+
         Me.Label5.Text = Me.DsCompras.CompraMaterialesDetalle(Me.CompraMaterialesDetalleBindingSource.Position).Id_Compra
         Dim Itebis As Double = Me.DsCompras.CompraMaterialesDetalle(Me.CompraMaterialesDetalleBindingSource.Position).Itebis
         Me.Label7.Text = Format(Me.DsCompras.CompraMaterialesDetalle(Me.CompraMaterialesDetalleBindingSource.Position).PrecioUS * 0.18, "#,##0.00")
