@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>ModuloGestion.Next.Infrastructure.SqlServer</RootNamespace>
+    <AssemblyName>ModuloGestion.Next.Infrastructure.SqlServer</AssemblyName>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModuloGestion.Next.Domain\ModuloGestion.Next.Domain.vbproj" />
+  </ItemGroup>
+</Project>

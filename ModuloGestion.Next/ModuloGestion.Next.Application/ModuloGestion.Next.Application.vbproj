@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>ModuloGestion.Next.Application</RootNamespace>
+    <AssemblyName>ModuloGestion.Next.Application</AssemblyName>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModuloGestion.Next.Domain\ModuloGestion.Next.Domain.vbproj" />
+    <ProjectReference Include="..\ModuloGestion.Next.Infrastructure.SqlServer\ModuloGestion.Next.Infrastructure.SqlServer.vbproj" />
+  </ItemGroup>
+</Project>
