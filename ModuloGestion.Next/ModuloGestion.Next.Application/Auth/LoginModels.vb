@@ -1,15 +1,12 @@
-﻿Option Strict On
+Option Strict On
 Option Infer On
 
-Namespace Forms.Auth
-
-    Public Interface IAuthAppService
-        Function Login(request As LoginRequest) As LoginResult
-    End Interface
+Namespace Auth
 
     Public Class LoginRequest
         Public Property Usuario As String
         Public Property Clave As String
+        Public Property NombreEquipo As String
     End Class
 
     Public Class LoginResult
@@ -18,6 +15,8 @@ Namespace Forms.Auth
         Public Property IdUsuario As Integer
         Public Property Usuario As String
         Public Property NombreCompleto As String
+        Public Property Categoria As Integer
+        Public Property DebeCambiarClave As Boolean
     End Class
 
 End Namespace

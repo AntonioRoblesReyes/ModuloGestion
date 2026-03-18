@@ -34,7 +34,8 @@ BEGIN
         ClaveHash            VARBINARY(64) NOT NULL,
         SalHash              VARBINARY(32) NOT NULL,
         NombreCompleto       NVARCHAR(150) NOT NULL,
-        Categoria            INT NOT NULL, -- compatibilidad con legado (1,2,3,4)
+        Categoria            INT NOT NULL,
+        DebeCambiarClave     BIT NOT NULL CONSTRAINT DF_Usuarios_DebeCambiarClave DEFAULT(1),
         Activo               BIT NOT NULL CONSTRAINT DF_Usuarios_Activo DEFAULT(1),
         IntentosFallidos     INT NOT NULL CONSTRAINT DF_Usuarios_Intentos DEFAULT(0),
         UltimoAccesoUtc      DATETIME2(0) NULL,
@@ -43,6 +44,13 @@ BEGIN
         CONSTRAINT UQ_Usuarios_Usuario UNIQUE (Usuario),
         CONSTRAINT CK_Usuarios_Categoria CHECK (Categoria IN (1,2,3,4))
     );
+END
+GO
+
+IF COL_LENGTH('auth.Usuarios', 'DebeCambiarClave') IS NULL
+BEGIN
+    ALTER TABLE auth.Usuarios
+    ADD DebeCambiarClave BIT NOT NULL CONSTRAINT DF_Usuarios_DebeCambiarClave DEFAULT(1);
 END
 GO
 
@@ -113,7 +121,6 @@ BEGIN
 END
 GO
 
-/* SP recomendado para login (sin exponer hash a UI) */
 CREATE OR ALTER PROCEDURE auth.sp_Login
     @Usuario NVARCHAR(50)
 AS
@@ -125,6 +132,7 @@ BEGIN
         u.Usuario,
         u.NombreCompleto,
         u.Categoria,
+        u.DebeCambiarClave,
         u.Activo,
         u.ClaveHash,
         u.SalHash,
@@ -159,6 +167,82 @@ BEGIN
         @NombreEquipo,
         @IpOrigen,
         @Observacion
+    );
+END
+GO
+
+CREATE OR ALTER PROCEDURE auth.sp_LoginSuccess
+    @IdUsuario INT,
+    @NombreEquipo NVARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE auth.Usuarios
+    SET IntentosFallidos = 0,
+        UltimoAccesoUtc = SYSUTCDATETIME(),
+        ModificadoEnUtc = SYSUTCDATETIME()
+    WHERE IdUsuario = @IdUsuario;
+
+    EXEC auth.sp_RegistrarSesion
+        @IdUsuario = @IdUsuario,
+        @Resultado = 'OK',
+        @NombreEquipo = @NombreEquipo,
+        @Observacion = N'Inicio de sesión correcto';
+END
+GO
+
+CREATE OR ALTER PROCEDURE auth.sp_LoginFailure
+    @IdUsuario INT,
+    @NombreEquipo NVARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE auth.Usuarios
+    SET IntentosFallidos = IntentosFallidos + 1,
+        ModificadoEnUtc = SYSUTCDATETIME()
+    WHERE IdUsuario = @IdUsuario;
+
+    EXEC auth.sp_RegistrarSesion
+        @IdUsuario = @IdUsuario,
+        @Resultado = 'FAIL',
+        @NombreEquipo = @NombreEquipo,
+        @Observacion = N'Credenciales inválidas';
+END
+GO
+
+DECLARE @AdminUsuario NVARCHAR(50) = N'admin';
+DECLARE @AdminNombre NVARCHAR(150) = N'Administrador del sistema';
+DECLARE @AdminPassword NVARCHAR(100) = N'Admin1234!';
+DECLARE @AdminCategoria INT = 1;
+
+IF NOT EXISTS (SELECT 1 FROM auth.Usuarios WHERE Usuario = @AdminUsuario)
+BEGIN
+    DECLARE @AdminSalt VARBINARY(32) = CRYPT_GEN_RANDOM(32);
+    DECLARE @AdminHash VARBINARY(64) = HASHBYTES('SHA2_512', @AdminSalt + CONVERT(VARBINARY(4000), @AdminPassword));
+
+    INSERT INTO auth.Usuarios
+    (
+        Usuario,
+        ClaveHash,
+        SalHash,
+        NombreCompleto,
+        Categoria,
+        DebeCambiarClave,
+        Activo,
+        IntentosFallidos
+    )
+    VALUES
+    (
+        @AdminUsuario,
+        @AdminHash,
+        @AdminSalt,
+        @AdminNombre,
+        @AdminCategoria,
+        1,
+        1,
+        0
     );
 END
 GO

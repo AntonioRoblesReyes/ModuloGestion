@@ -2,14 +2,14 @@ Option Strict On
 Option Infer On
 
 Imports System.Windows.Forms
-Imports Microsoft.Data.SqlClient
-Imports ModuloGestion.Next.Infrastructure.SqlServer
+Imports ModuloGestion.Next.Application.Auth
 
 Namespace Forms.Auth
 
     Partial Public Class FrmLoginNext
 
         Private ReadOnly _authService As IAuthAppService
+        Private _loginResult As LoginResult
 
         Public Sub New(authService As IAuthAppService)
 
@@ -20,7 +20,13 @@ Namespace Forms.Auth
 
         Public ReadOnly Property Usuario As String
             Get
-                Return txtUsuario.Text.Trim()
+                Return If(_loginResult?.Usuario, txtUsuario.Text.Trim())
+            End Get
+        End Property
+
+        Public ReadOnly Property ResultadoLogin As LoginResult
+            Get
+                Return _loginResult
             End Get
         End Property
 
@@ -28,7 +34,8 @@ Namespace Forms.Auth
 
             Dim request As New LoginRequest With {
                 .Usuario = txtUsuario.Text,
-                .Clave = txtClave.Text
+                .Clave = txtClave.Text,
+                .NombreEquipo = Environment.MachineName
             }
 
             Dim result = _authService.Login(request)
@@ -38,6 +45,7 @@ Namespace Forms.Auth
                 Exit Sub
             End If
 
+            _loginResult = result
             DialogResult = DialogResult.OK
             Close()
 
@@ -46,7 +54,6 @@ Namespace Forms.Auth
         Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
             Me.Close()
         End Sub
-
 
     End Class
 
