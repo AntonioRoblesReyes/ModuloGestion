@@ -141,10 +141,21 @@
         End If
 
         Dim idEmpresa As String =
-        CType(EmpresasContratadasMontajeBindingSource.Current, DataRowView)("IdEmpresaMontaje").ToString()
+    CType(EmpresasContratadasMontajeBindingSource.Current, DataRowView)("IdEmpresaMontaje").ToString()
 
+        ' 🔥 GENERAR ID DESDE LA FUNCIÓN SQL
+        Dim cn As New SqlClient.SqlConnection(My.Settings.GestionEmpresaConnectionString)
+        Dim cmd As New SqlClient.SqlCommand("SELECT dbo.SiguienteFacturaB11()", cn)
+
+        cn.Open()
+        Dim idFactura As String = cmd.ExecuteScalar().ToString()
+        cn.Close()
+
+        ' 🚀 ABRIR FORM Y PASAR DATOS
         Dim f As New FrmFacturaMontajeB11
         f.IdEmpresaSeleccionada = idEmpresa
+        f.IdFacturaGenerada = idFactura ' 👈 NUEVO
+
         f.ShowDialog()
 
     End Sub

@@ -241,6 +241,11 @@
     <Compile Include="Contabilidad\FrmPresupuestosCon.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DsMontajeB11.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsMontajeB11.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Empleados\FrmIngresoQuincena.Designer.vb">
       <DependentUpon>FrmIngresoQuincena.vb</DependentUpon>
     </Compile>
@@ -2678,6 +2683,17 @@
     </None>
     <None Include="Contabilidad\DsContabilidad.xss">
       <DependentUpon>DsContabilidad.xsd</DependentUpon>
+    </None>
+    <None Include="DsMontajeB11.xsc">
+      <DependentUpon>DsMontajeB11.xsd</DependentUpon>
+    </None>
+    <None Include="DsMontajeB11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsMontajeB11.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DsMontajeB11.xss">
+      <DependentUpon>DsMontajeB11.xsd</DependentUpon>
     </None>
     <None Include="GestionEmpresaDataSet.xsc">
       <DependentUpon>GestionEmpresaDataSet.xsd</DependentUpon>

@@ -1,6 +1,8 @@
 ﻿Imports System.Math
 
 Public Class FrmFacturas
+
+
     Sub NuevaNotaCredito()
         Try
             Dim empresa As String = My.Forms.FrmVerFacturas.Id_EmpresaTextBox.Text
@@ -348,5 +350,69 @@ Public Class FrmFacturas
 
     End Sub
 
+    Sub ComprobanteB11()
 
+        Try
+            Dim empresa As String = My.Forms.FrmVerFacturas.Id_EmpresaTextBox.Text
+
+            Me.Show()
+            Me.FacturaTableAdapter.Fill(Me.DsFacturas.Factura)
+            Me.FacturaBindingSource.AddNew()
+
+            ' 🔹 ID factura
+            Me.IdFacturaTextBox.Text = Me.FacturaTableAdapter.SiguienteFactura(empresa)
+
+            ' 🔹 Datos básicos
+            Me.IdEmpresaTextBox.Text = empresa
+            Me.IdClienteTextBox.Text = My.Forms.FrmProyectosFacturacion.DsPresupuestos.Presupuesto(My.Forms.FrmProyectosFacturacion.PresupuestoBindingSource.Position).Id_Fiscal
+            Me.IdProyectoTextBox.Text = My.Forms.FrmProyectosFacturacion.DsPresupuestos.Presupuesto(My.Forms.FrmProyectosFacturacion.PresupuestoBindingSource.Position).Id_proyecto_Presupuestos
+
+            ' 🔥 CLAVE → tipo comprobante
+            Me.TxtComprobante.Text = "B11"
+
+            ' 🔹 NCF según tipo
+            Me.NCFTextBox.Text = Me.ComprobantesFiscalesTableAdapter.Siguiente(empresa, "B11")
+
+            ' 🔹 Tasa
+            Me.TasaCambioRD_TextBox.Text = My.Forms.FrmProyectosFacturacion.DsPresupuestos.Presupuesto(My.Forms.FrmProyectosFacturacion.PresupuestoBindingSource.Position).tasa
+
+            ' 🔹 Inicializar montos
+            Me.SubtotalUS_TextBox.Text = 0
+            Me.ImpuestoUS_TextBox.Text = 0
+            Me.TotalUS_TextBox.Text = 0
+
+            Me.SubTotalRDSTextBox.Text = 0
+            Me.ImpuestolRDSTextBox.Text = 0
+            Me.TotalRDSTextBox.Text = 0
+
+            ' 🔹 Fecha e impuesto
+            Me.FechaDateTimePicker.Value = Date.Now
+            Me.ValorImpuestoTextBox.Text = My.Forms.FrmProyectosFacturacion.DsPresupuestos.Presupuesto(My.Forms.FrmProyectosFacturacion.PresupuestoBindingSource.Position).Impuesto
+
+            ' 🔹 Moneda
+            Me.MonedaTextBox.Text = My.Forms.FrmProyectosFacturacion.ComboBox1.Text
+
+            Me.AprobadaCheckBox.Checked = False
+
+            ' 🔹 Cargar detalle vacío
+            Me.FacturaDetalleTableAdapter.FillByIdFactura(Me.DsFacturas.FacturaDetalle, IdFacturaTextBox.Text)
+
+            ' 🔹 Ocultar columnas según moneda
+            If MonedaTextBox.Text = "US$" Then
+                Me.FacturaDetalleDataGridView.Columns(7).Visible = False
+                Me.FacturaDetalleDataGridView.Columns(8).Visible = False
+                Me.FacturaDetalleDataGridView.Columns(9).Visible = False
+            ElseIf MonedaTextBox.Text = "RD$" Then
+                Me.FacturaDetalleDataGridView.Columns(4).Visible = False
+                Me.FacturaDetalleDataGridView.Columns(5).Visible = False
+                Me.FacturaDetalleDataGridView.Columns(6).Visible = False
+            End If
+
+            My.Forms.FrmProyectosFacturacion.Close()
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
 End Class
