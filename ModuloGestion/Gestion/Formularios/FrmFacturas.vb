@@ -266,26 +266,24 @@ Public Class FrmFacturas
 
         If AprobadaCheckBox.Checked = False Then
             Dim a As Integer
-            a = MsgBox("¿Quieres Aprobar la factura, no podras hacer cambios?", vbYesNo + vbQuestion)
+            a = MsgBox("¿Quieres Aprobar la factura, no podrás hacer cambios?", vbYesNo + vbQuestion)
+
             If a = vbYes Then
                 AprobadaCheckBox.Checked = True
-                My.Forms.FrmImpFactura.Show()
-                My.Forms.FrmImpFactura.ImprimirFactura()
             Else
-                MsgBox("La Factura no esta aprobada")
-                My.Forms.FrmImpFactura.Show()
-                My.Forms.FrmImpFactura.ImprimirFactura()
-
+                MsgBox("La Factura no está aprobada")
             End If
-        Else
-
-
-
-            My.Forms.FrmImpFactura.Show()
-            My.Forms.FrmImpFactura.ImprimirFactura()
-            '
         End If
 
+        Dim tipoComprobante As String = If(TxtComprobante.Text, "").Trim().ToUpper()
+
+        My.Forms.FrmImpFactura.Show()
+
+        If tipoComprobante = "NC" Then
+            My.Forms.FrmImpFactura.ImprimirNotaCredito()
+        Else
+            My.Forms.FrmImpFactura.ImprimirFactura()
+        End If
 
     End Sub
 

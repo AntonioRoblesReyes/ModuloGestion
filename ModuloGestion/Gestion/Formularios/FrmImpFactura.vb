@@ -6,7 +6,12 @@
         rpt.SetDataSource(Me.DsFacturas)
         CrystalReportViewer1.ReportSource = rpt
     End Sub
-
+    Sub ImprimirNotaCredito()
+        Me.FacturaTableAdapter.FillByIdFactura(Me.DsFacturas.Factura, My.Forms.FrmFacturas.IdFacturaTextBox.Text)
+        Dim rpt As New Crynotacredito
+        rpt.SetDataSource(Me.DsFacturas)
+        CrystalReportViewer1.ReportSource = rpt
+    End Sub
 
 
 

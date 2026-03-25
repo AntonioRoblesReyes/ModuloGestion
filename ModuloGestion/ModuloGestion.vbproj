@@ -32,7 +32,7 @@
     <MinimumRequiredVersion>0.0.0.27</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>44</ApplicationRevision>
+    <ApplicationRevision>45</ApplicationRevision>
     <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -436,6 +436,12 @@
     </Compile>
     <Compile Include="Gestion\Formularios\FrmTotalesCompraProveedor.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gestion\Reportes\CryNotaCredito.vb">
+      <DependentUpon>CryNotaCredito.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Gestion\Reportes\CryFacturasContabilidad.vb">
       <AutoGen>True</AutoGen>
@@ -2123,6 +2129,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion\Formularios\FrmTotalesCompraProveedor.resx">
       <DependentUpon>FrmTotalesCompraProveedor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gestion\Reportes\CryNotaCredito.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CryNotaCredito.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion\Reportes\CryFacturasContabilidad.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
