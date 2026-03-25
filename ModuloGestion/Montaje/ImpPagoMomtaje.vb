@@ -1,4 +1,6 @@
-﻿Public Class ImpPagoMomtaje
+﻿Imports CrystalDecisions.CrystalReports.Engine
+
+Public Class ImpPagoMomtaje
 
     Public Property IdFacturaSeleccionada As String
 
@@ -31,15 +33,50 @@
     Sub ImprimirFacturaNfc()
         MsgBox(IdFacturaSeleccionada)
 
+        Me.DsMontajeB11.FacturaMontajeB11.Clear()
+        Me.DsMontajeB11.FacturaMontajeB11Detalle.Clear()
 
-        Me.EmpresasContratadasMontajeTableAdapter.Fill(Me.DsPagosMontaje.EmpresasContratadasMontaje)
-        Me.FacturaMontajeB11TableAdapter.FillByIdNCF(Me.DsMontajeB11.FacturaMontajeB11, IdFacturaSeleccionada)
-        Me.FacturaMontajeB11DetalleTableAdapter.FillByIdNCF(Me.DsMontajeB11.FacturaMontajeB11Detalle,IdFacturaSeleccionada)
+        Dim filasFactura As Integer = Me.FacturaMontajeB11TableAdapter.FillByIdNCF(Me.DsMontajeB11.FacturaMontajeB11, IdFacturaSeleccionada)
+        Dim filasDetalle As Integer = Me.FacturaMontajeB11DetalleTableAdapter.FillByIdNCF(Me.DsMontajeB11.FacturaMontajeB11Detalle, IdFacturaSeleccionada)
+
+        If filasFactura = 0 Then
+            MessageBox.Show("No se encontró la factura " & IdFacturaSeleccionada & ".", "Crystal Reports", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Me.DsPagosMontaje.EmpresasContratadasMontaje.Clear()
+        If Not IsDBNull(Me.DsMontajeB11.FacturaMontajeB11(0).IdEmpresaMontaje) Then
+            Me.EmpresasContratadasMontajeTableAdapter.FillById(Me.DsPagosMontaje.EmpresasContratadasMontaje, Me.DsMontajeB11.FacturaMontajeB11(0).IdEmpresaMontaje)
+        End If
 
         Dim rpt As New CryFacturaIns
-        rpt.SetDataSource(DsMontajeB11)
+        VincularTablaReporte(rpt, DsMontajeB11, DsPagosMontaje)
+
         CrystalReportViewer1.ReportSource = rpt
+        CrystalReportViewer1.RefreshReport()
+
+        If filasDetalle = 0 Then
+            MessageBox.Show("La factura " & IdFacturaSeleccionada & " no tiene líneas de detalle.", "Crystal Reports", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
         Me.Show()
+    End Sub
+
+    Private Sub VincularTablaReporte(rpt As ReportClass, ParamArray dataSets() As DataSet)
+        For Each tablaReporte As Table In rpt.Database.Tables
+            Dim tablaEncontrada As DataTable = Nothing
+
+            For Each ds As DataSet In dataSets
+                If ds IsNot Nothing AndAlso ds.Tables.Contains(tablaReporte.Name) Then
+                    tablaEncontrada = ds.Tables(tablaReporte.Name)
+                    Exit For
+                End If
+            Next
+
+            If tablaEncontrada IsNot Nothing Then
+                tablaReporte.SetDataSource(tablaEncontrada)
+            End If
+        Next
     End Sub
     Sub ImprimirResumenPagos()
         Me.EmpresasContratadasMontajeTableAdapter.Fill(Me.DsPagosMontaje.EmpresasContratadasMontaje)
