@@ -23,6 +23,9 @@ Partial Class FrmFacturaMontajeB11
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblEmpresa = New System.Windows.Forms.Label()
         Me.lblFactura = New System.Windows.Forms.Label()
         Me.lblFecha = New System.Windows.Forms.Label()
@@ -65,6 +68,9 @@ Partial Class FrmFacturaMontajeB11
         Me.FacturaMontajeB11DetalleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtTotalPagado = New System.Windows.Forms.TextBox()
         Me.txtRetencionITBIS = New System.Windows.Forms.TextBox()
+        Me.BtnAnular = New System.Windows.Forms.Button()
+        Me.TxtValorOriginal = New System.Windows.Forms.TextBox()
+        Me.TxtValorConIRS = New System.Windows.Forms.TextBox()
         CType(Me.EmpresasContratadasMontajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPagosMontaje, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FacturaMontajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -298,7 +304,7 @@ Partial Class FrmFacturaMontajeB11
         Me.dgvDetalle.Location = New System.Drawing.Point(28, 380)
         Me.dgvDetalle.Name = "dgvDetalle"
         Me.dgvDetalle.RowHeadersWidth = 51
-        Me.dgvDetalle.Size = New System.Drawing.Size(920, 260)
+        Me.dgvDetalle.Size = New System.Drawing.Size(1384, 260)
         Me.dgvDetalle.TabIndex = 22
         '
         'ColIdDetalle
@@ -313,6 +319,7 @@ Partial Class FrmFacturaMontajeB11
         Me.ColIdFactura.HeaderText = "IdFactura"
         Me.ColIdFactura.MinimumWidth = 6
         Me.ColIdFactura.Name = "ColIdFactura"
+        Me.ColIdFactura.Visible = False
         Me.ColIdFactura.Width = 110
         '
         'ColDescripcion
@@ -324,6 +331,9 @@ Partial Class FrmFacturaMontajeB11
         '
         'ColCantidad
         '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle4.Format = "n2"
+        Me.ColCantidad.DefaultCellStyle = DataGridViewCellStyle4
         Me.ColCantidad.HeaderText = "Cantidad"
         Me.ColCantidad.MinimumWidth = 6
         Me.ColCantidad.Name = "ColCantidad"
@@ -331,6 +341,9 @@ Partial Class FrmFacturaMontajeB11
         '
         'ColPrecio
         '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle5.Format = "n2"
+        Me.ColPrecio.DefaultCellStyle = DataGridViewCellStyle5
         Me.ColPrecio.HeaderText = "Precio"
         Me.ColPrecio.MinimumWidth = 6
         Me.ColPrecio.Name = "ColPrecio"
@@ -338,6 +351,9 @@ Partial Class FrmFacturaMontajeB11
         '
         'ColTotal
         '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle6.Format = "n2"
+        Me.ColTotal.DefaultCellStyle = DataGridViewCellStyle6
         Me.ColTotal.HeaderText = "Total"
         Me.ColTotal.MinimumWidth = 6
         Me.ColTotal.Name = "ColTotal"
@@ -399,11 +415,41 @@ Partial Class FrmFacturaMontajeB11
         Me.txtRetencionITBIS.TabIndex = 23
         Me.txtRetencionITBIS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'BtnAnular
+        '
+        Me.BtnAnular.Location = New System.Drawing.Point(865, 24)
+        Me.BtnAnular.Name = "BtnAnular"
+        Me.BtnAnular.Size = New System.Drawing.Size(150, 35)
+        Me.BtnAnular.TabIndex = 25
+        Me.BtnAnular.Text = "Anular"
+        Me.BtnAnular.UseVisualStyleBackColor = True
+        '
+        'TxtValorOriginal
+        '
+        Me.TxtValorOriginal.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "SubTotal", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
+        Me.TxtValorOriginal.Location = New System.Drawing.Point(968, 224)
+        Me.TxtValorOriginal.Name = "TxtValorOriginal"
+        Me.TxtValorOriginal.Size = New System.Drawing.Size(177, 26)
+        Me.TxtValorOriginal.TabIndex = 26
+        Me.TxtValorOriginal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TxtValorConIRS
+        '
+        Me.TxtValorConIRS.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "SubTotal", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
+        Me.TxtValorConIRS.Location = New System.Drawing.Point(968, 264)
+        Me.TxtValorConIRS.Name = "TxtValorConIRS"
+        Me.TxtValorConIRS.Size = New System.Drawing.Size(177, 26)
+        Me.TxtValorConIRS.TabIndex = 27
+        Me.TxtValorConIRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'FrmFacturaMontajeB11
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1058, 670)
+        Me.ClientSize = New System.Drawing.Size(1640, 670)
+        Me.Controls.Add(Me.TxtValorConIRS)
+        Me.Controls.Add(Me.TxtValorOriginal)
+        Me.Controls.Add(Me.BtnAnular)
         Me.Controls.Add(Me.txtTotalPagado)
         Me.Controls.Add(Me.txtRetencionITBIS)
         Me.Controls.Add(Me.dgvDetalle)
@@ -476,12 +522,6 @@ Partial Class FrmFacturaMontajeB11
     Friend WithEvents BtnNuevoDetalle As Button
 
     Friend WithEvents dgvDetalle As DataGridView
-    Friend WithEvents ColIdDetalle As DataGridViewTextBoxColumn
-    Friend WithEvents ColIdFactura As DataGridViewTextBoxColumn
-    Friend WithEvents ColDescripcion As DataGridViewTextBoxColumn
-    Friend WithEvents ColCantidad As DataGridViewTextBoxColumn
-    Friend WithEvents ColPrecio As DataGridViewTextBoxColumn
-    Friend WithEvents ColTotal As DataGridViewTextBoxColumn
     Friend WithEvents DsMontajeB11 As DsMontajeB11
     Friend WithEvents FacturaMontajeB11BindingSource As BindingSource
     Friend WithEvents FacturaMontajeB11TableAdapter As DsMontajeB11TableAdapters.FacturaMontajeB11TableAdapter
@@ -490,4 +530,13 @@ Partial Class FrmFacturaMontajeB11
     Friend WithEvents FacturaMontajeB11DetalleBindingSource As BindingSource
     Friend WithEvents txtTotalPagado As TextBox
     Friend WithEvents txtRetencionITBIS As TextBox
+    Friend WithEvents BtnAnular As Button
+    Friend WithEvents ColIdDetalle As DataGridViewTextBoxColumn
+    Friend WithEvents ColIdFactura As DataGridViewTextBoxColumn
+    Friend WithEvents ColDescripcion As DataGridViewTextBoxColumn
+    Friend WithEvents ColCantidad As DataGridViewTextBoxColumn
+    Friend WithEvents ColPrecio As DataGridViewTextBoxColumn
+    Friend WithEvents ColTotal As DataGridViewTextBoxColumn
+    Friend WithEvents TxtValorOriginal As TextBox
+    Friend WithEvents TxtValorConIRS As TextBox
 End Class

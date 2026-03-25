@@ -78,42 +78,86 @@ Partial Public Class FrmFacturaMontajeB11
         Try
             Dim idFactura As String = txtIdFactura.Text.Trim()
 
+            If String.IsNullOrWhiteSpace(idFactura) Then
+                MessageBox.Show("No hay número de factura.")
+                Exit Sub
+            End If
+
+            If cboEmpresa.SelectedValue Is Nothing Then
+                MessageBox.Show("Debe seleccionar una empresa.")
+                Exit Sub
+            End If
+
+            ' 🔹 CREAR DATATABLE PARA EL DETALLE (TVP)
+            Dim dtDetalle As New DataTable()
+            dtDetalle.Columns.Add("IdDetalle", GetType(String))
+            dtDetalle.Columns.Add("Descripcion", GetType(String))
+            dtDetalle.Columns.Add("Cantidad", GetType(Decimal))
+            dtDetalle.Columns.Add("Precio", GetType(Decimal))
+            dtDetalle.Columns.Add("Total", GetType(Decimal))
+
+            ' 🔹 LLENAR DESDE EL GRID
+            For Each row As DataGridViewRow In dgvDetalle.Rows
+
+                If row.IsNewRow Then Continue For
+
+                dtDetalle.Rows.Add(
+                Convert.ToString(row.Cells("ColIdDetalle").Value),
+                Convert.ToString(row.Cells("ColDescripcion").Value),
+                ObtenerDecimal(row.Cells("ColCantidad").Value),
+                ObtenerDecimal(row.Cells("ColPrecio").Value),
+                ObtenerDecimal(row.Cells("ColTotal").Value)
+            )
+
+            Next
+
+            ' 🔹 LLAMAR AL STORED PROCEDURE
             Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
-                Using cmd As New SqlCommand("
-                    UPDATE FacturaMontajeB11 SET
-                    IdEmpresaMontaje=@IdEmpresa,
-                    Fecha=@Fecha,
-                    NCF=@NCF,
-                    SubTotal=@SubTotal,
-                    ITBIS=@ITBIS,
-                    RetencionISR=@Retencion,
-                    Total=@Total
-                    WHERE IdFacturaB11=@IdFactura", cn)
+                Using cmd As New SqlCommand("sp_GuardarFacturaB11", cn)
 
-                    cmd.Parameters.AddWithValue("@IdEmpresa", cboEmpresa.SelectedValue)
-                    cmd.Parameters.AddWithValue("@Fecha", dtpFechaFactura.Value)
-                    cmd.Parameters.AddWithValue("@NCF", txtNCFB11.Text)
+                    cmd.CommandType = CommandType.StoredProcedure
 
-                    cmd.Parameters.AddWithValue("@SubTotal", ObtenerDecimal(txtSubTotal.Text))
-                    cmd.Parameters.AddWithValue("@ITBIS", ObtenerDecimal(txtImpuesto.Text))
-                    cmd.Parameters.AddWithValue("@Retencion", ObtenerDecimal(txtRetencionIRS.Text))
-                    cmd.Parameters.AddWithValue("@Total", ObtenerDecimal(txtTotal.Text))
+                    cmd.Parameters.Add("@IdFacturaB11", SqlDbType.NVarChar, 25).Value = idFactura
+                    cmd.Parameters.Add("@IdEmpresaMontaje", SqlDbType.NVarChar, 20).Value = cboEmpresa.SelectedValue
+                    cmd.Parameters.Add("@Fecha", SqlDbType.Date).Value = dtpFechaFactura.Value
+                    cmd.Parameters.Add("@NCF", SqlDbType.NVarChar, 20).Value = txtNCFB11.Text
 
-                    cmd.Parameters.AddWithValue("@IdFactura", idFactura)
+                    ' 🔹 DECIMALES (IMPORTANTE)
+                    Dim pSub As SqlParameter = cmd.Parameters.Add("@SubTotal", SqlDbType.Decimal)
+                    pSub.Precision = 18 : pSub.Scale = 2
+                    pSub.Value = ObtenerDecimal(txtSubTotal.Text)
+
+                    Dim pItbis As SqlParameter = cmd.Parameters.Add("@ITBIS", SqlDbType.Decimal)
+                    pItbis.Precision = 18 : pItbis.Scale = 2
+                    pItbis.Value = ObtenerDecimal(txtImpuesto.Text)
+
+                    Dim pRet As SqlParameter = cmd.Parameters.Add("@RetencionISR", SqlDbType.Decimal)
+                    pRet.Precision = 18 : pRet.Scale = 2
+                    pRet.Value = ObtenerDecimal(txtRetencionIRS.Text)
+
+                    Dim pTotal As SqlParameter = cmd.Parameters.Add("@Total", SqlDbType.Decimal)
+                    pTotal.Precision = 18 : pTotal.Scale = 2
+                    pTotal.Value = ObtenerDecimal(txtTotal.Text)
+
+                    ' 🔥 PARAMETRO TIPO TABLA (TVP)
+                    Dim pDetalle As New SqlParameter("@Detalle", SqlDbType.Structured)
+                    pDetalle.TypeName = "dbo.TipoDetalleFacturaB11"
+                    pDetalle.Value = dtDetalle
+                    cmd.Parameters.Add(pDetalle)
 
                     cn.Open()
                     cmd.ExecuteNonQuery()
+
                 End Using
             End Using
 
-            MessageBox.Show("Factura guardada.")
+            MessageBox.Show("Factura guardada correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
-            MessageBox.Show("Error guardando: " & ex.Message)
+            MessageBox.Show("Error guardando: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
-
     Private Sub LimpiarPantallaNuevaFactura()
         txtNCFB11.Text = ""
         txtImpuesto.Text = "0"
@@ -264,6 +308,92 @@ Partial Public Class FrmFacturaMontajeB11
             CalcularTotalesFactura()
         Catch ex As Exception
             MsgBox("Error al recalcular totales: " & ex.Message, MsgBoxStyle.Exclamation)
+        End Try
+    End Sub
+    Private Sub GuardarDetalle()
+
+        If String.IsNullOrWhiteSpace(txtIdFactura.Text) Then
+            Throw New Exception("No hay factura.")
+        End If
+
+        Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
+
+            cn.Open()
+
+            ' 🔥 BORRAR DETALLE ANTERIOR (para evitar duplicados)
+            Using cmdDelete As New SqlCommand("
+            DELETE FROM FacturaMontajeB11Detalle
+            WHERE IdFacturaB11 = @IdFactura", cn)
+
+                cmdDelete.Parameters.AddWithValue("@IdFactura", txtIdFactura.Text)
+                cmdDelete.ExecuteNonQuery()
+            End Using
+
+            ' 🔥 INSERTAR DETALLE NUEVO
+            For Each row As DataGridViewRow In dgvDetalle.Rows
+
+                If row.IsNewRow Then Continue For
+
+                Using cmd As New SqlCommand("
+                INSERT INTO FacturaMontajeB11Detalle
+                (IdDetalle, IdFacturaB11, Descripcion, Cantidad, Precio, Total)
+                VALUES
+                (@IdDetalle, @IdFactura, @Descripcion, @Cantidad, @Precio, @Total)", cn)
+
+                    cmd.Parameters.AddWithValue("@IdDetalle", row.Cells("ColIdDetalle").Value)
+                    cmd.Parameters.AddWithValue("@IdFactura", txtIdFactura.Text)
+                    cmd.Parameters.AddWithValue("@Descripcion", row.Cells("ColDescripcion").Value)
+                    cmd.Parameters.AddWithValue("@Cantidad", ObtenerDecimal(row.Cells("ColCantidad").Value))
+                    cmd.Parameters.AddWithValue("@Precio", ObtenerDecimal(row.Cells("ColPrecio").Value))
+                    cmd.Parameters.AddWithValue("@Total", ObtenerDecimal(row.Cells("ColTotal").Value))
+
+                    cmd.ExecuteNonQuery()
+                End Using
+
+            Next
+
+        End Using
+
+    End Sub
+    Private Sub BtnAnular_Click(sender As Object, e As EventArgs) Handles BtnAnular.Click
+
+        Dim id As String = txtIdFactura.Text
+
+        If MessageBox.Show("¿Seguro que desea anular esta factura?", "Confirmar", MessageBoxButtons.YesNo) = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
+            Using cmd As New SqlCommand("sp_AnularFacturaB11", cn)
+
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.Parameters.AddWithValue("@IdFacturaB11", id)
+
+                cn.Open()
+                cmd.ExecuteNonQuery()
+
+            End Using
+        End Using
+
+        MessageBox.Show("Factura anulada correctamente.")
+
+    End Sub
+
+    Private Sub TxtValorOriginal_TextChanged(sender As Object, e As EventArgs) Handles TxtValorOriginal.TextChanged
+        Try
+            If TxtValorOriginal.Text.Trim <> "" Then
+                Dim valorOriginal As Decimal
+
+                If Decimal.TryParse(TxtValorOriginal.Text, valorOriginal) Then
+                    TxtValorConIRS.Text = (valorOriginal / 0.98D).ToString("#,##0.00")
+                Else
+                    TxtValorConIRS.Text = ""
+                End If
+            Else
+                TxtValorConIRS.Text = ""
+            End If
+        Catch ex As Exception
+            TxtValorConIRS.Text = ""
         End Try
     End Sub
 End Class

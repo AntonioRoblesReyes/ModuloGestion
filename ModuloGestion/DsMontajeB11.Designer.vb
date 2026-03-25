@@ -1765,12 +1765,26 @@ Namespace DsMontajeB11TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT IdFacturaB11, IdEmpresaMontaje, Fecha, NCF, SubTotal, ITBIS, RetencionISR,"& _ 
                 " Total, Observaciones FROM dbo.FacturaMontajeB11"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT IdFacturaB11, IdEmpresaMontaje, Fecha, NCF, SubTotal, ITBIS, RetencionISR,"& _ 
+                " Total, Observaciones, Estado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   FacturaMontajeB11"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (IdEmpresaMontaje"& _ 
+                " = @IdEmpresaMontaje)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY IdFacturaB11 DESC"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT IdFacturaB11, IdEmpresaMontaje, Fecha, NCF, SubTotal, ITBIS, RetencionISR,"& _ 
+                " Total, Observaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   FacturaMontajeB11"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (IdFacturaB11 = @IdFactur"& _ 
+                "aB11)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaB11", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaB11", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1792,6 +1806,74 @@ Namespace DsMontajeB11TableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
         Public Overloads Overridable Function GetData() As DsMontajeB11.FacturaMontajeB11DataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As DsMontajeB11.FacturaMontajeB11DataTable = New DsMontajeB11.FacturaMontajeB11DataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByIdEmpresaMontaje(ByVal dataTable As DsMontajeB11.FacturaMontajeB11DataTable, ByVal IdEmpresaMontaje As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (IdEmpresaMontaje Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IdEmpresaMontaje,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByIdEmpresaMontaje(ByVal IdEmpresaMontaje As String) As DsMontajeB11.FacturaMontajeB11DataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (IdEmpresaMontaje Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IdEmpresaMontaje,String)
+            End If
+            Dim dataTable As DsMontajeB11.FacturaMontajeB11DataTable = New DsMontajeB11.FacturaMontajeB11DataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByIdNCF(ByVal dataTable As DsMontajeB11.FacturaMontajeB11DataTable, ByVal IdFacturaB11 As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (IdFacturaB11 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdFacturaB11")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IdFacturaB11,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByIdNCF(ByVal IdFacturaB11 As String) As DsMontajeB11.FacturaMontajeB11DataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (IdFacturaB11 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdFacturaB11")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IdFacturaB11,String)
+            End If
             Dim dataTable As DsMontajeB11.FacturaMontajeB11DataTable = New DsMontajeB11.FacturaMontajeB11DataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -2353,7 +2435,7 @@ Namespace DsMontajeB11TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT IdDetalle, IdFacturaB11, Descripcion, Cantidad, Precio, Total FROM dbo.Fac"& _ 
@@ -2361,8 +2443,14 @@ Namespace DsMontajeB11TableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT dbo.SiguienteFacturaB11() AS IdFactura"
+            Me._commandCollection(1).CommandText = "SELECT IdDetalle, IdFacturaB11, Descripcion, Cantidad, Precio, Total"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Fact"& _ 
+                "uraMontajeB11Detalle"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (IdFacturaB11 = @IdFacturaB11)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdFacturaB11", Global.System.Data.SqlDbType.NVarChar, 25, Global.System.Data.ParameterDirection.Input, 0, 0, "IdFacturaB11", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT dbo.SiguienteFacturaB11() AS IdFactura"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2384,6 +2472,40 @@ Namespace DsMontajeB11TableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
         Public Overloads Overridable Function GetData() As DsMontajeB11.FacturaMontajeB11DetalleDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As DsMontajeB11.FacturaMontajeB11DetalleDataTable = New DsMontajeB11.FacturaMontajeB11DetalleDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByIdNCF(ByVal dataTable As DsMontajeB11.FacturaMontajeB11DetalleDataTable, ByVal IdFacturaB11 As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (IdFacturaB11 Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IdFacturaB11,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByIdNCF(ByVal IdFacturaB11 As String) As DsMontajeB11.FacturaMontajeB11DetalleDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (IdFacturaB11 Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IdFacturaB11,String)
+            End If
             Dim dataTable As DsMontajeB11.FacturaMontajeB11DetalleDataTable = New DsMontajeB11.FacturaMontajeB11DetalleDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -2629,7 +2751,7 @@ Namespace DsMontajeB11TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SiguienteFacturaB11() As String
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

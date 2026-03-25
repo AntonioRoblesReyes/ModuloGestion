@@ -8464,7 +8464,7 @@ Namespace DsPagosMontajeTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT IdEmpresaMontaje, RazonSocial, Telefono1, Telefono2, Email, Activas, Banco"& _ 
@@ -8472,22 +8472,29 @@ Namespace DsPagosMontajeTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT Activas, Banco, Cuenta, Email, IdEmpresaMontaje, RazonSocial, Telefono1, T"& _ 
-                "elefono2 FROM EmpresasContratadasMontaje WHERE (Activas = 1)"
+            Me._commandCollection(1).CommandText = "SELECT IdEmpresaMontaje, RazonSocial, Telefono1, Telefono2, Email, Activas, Banco"& _ 
+                ", Cuenta"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   EmpresasContratadasMontaje"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (Activas = 1) AND (IdEmpresaM"& _ 
+                "ontaje = @IdEmpresaMontaje)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT Activas, Banco, Cuenta, Email, IdEmpresaMontaje, RazonSocial, Telefono1, T"& _ 
-                "elefono2 FROM EmpresasContratadasMontaje WHERE (IdEmpresaMontaje = @IdEmpresaMon"& _ 
-                "taje)"
+                "elefono2 FROM EmpresasContratadasMontaje WHERE (Activas = 1)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
             Me._commandCollection(3).CommandText = "SELECT Activas, Banco, Cuenta, Email, IdEmpresaMontaje, RazonSocial, Telefono1, T"& _ 
-                "elefono2 FROM EmpresasContratadasMontaje WHERE (RazonSocial = @RazonSocial)"
+                "elefono2 FROM EmpresasContratadasMontaje WHERE (IdEmpresaMontaje = @IdEmpresaMon"& _ 
+                "taje)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RazonSocial", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "RazonSocial", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IdEmpresaMontaje", Global.System.Data.SqlDbType.NVarChar, 40, Global.System.Data.ParameterDirection.Input, 0, 0, "IdEmpresaMontaje", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "SELECT Activas, Banco, Cuenta, Email, IdEmpresaMontaje, RazonSocial, Telefono1, T"& _ 
+                "elefono2 FROM EmpresasContratadasMontaje WHERE (RazonSocial = @RazonSocial)"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RazonSocial", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "RazonSocial", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8518,8 +8525,42 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByActivas(ByVal dataTable As DsPagosMontaje.EmpresasContratadasMontajeDataTable) As Integer
+        Public Overloads Overridable Function FillBIdEmpresa(ByVal dataTable As DsPagosMontaje.EmpresasContratadasMontajeDataTable, ByVal IdEmpresaMontaje As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (IdEmpresaMontaje Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IdEmpresaMontaje,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBydEmpresa(ByVal IdEmpresaMontaje As String) As DsPagosMontaje.EmpresasContratadasMontajeDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (IdEmpresaMontaje Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IdEmpresaMontaje,String)
+            End If
+            Dim dataTable As DsPagosMontaje.EmpresasContratadasMontajeDataTable = New DsPagosMontaje.EmpresasContratadasMontajeDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByActivas(ByVal dataTable As DsPagosMontaje.EmpresasContratadasMontajeDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -8532,7 +8573,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByActivas() As DsPagosMontaje.EmpresasContratadasMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
             Dim dataTable As DsPagosMontaje.EmpresasContratadasMontajeDataTable = New DsPagosMontaje.EmpresasContratadasMontajeDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -8543,7 +8584,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillById(ByVal dataTable As DsPagosMontaje.EmpresasContratadasMontajeDataTable, ByVal IdEmpresaMontaje As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             If (IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
             Else
@@ -8561,7 +8602,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataById(ByVal IdEmpresaMontaje As String) As DsPagosMontaje.EmpresasContratadasMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             If (IdEmpresaMontaje Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("IdEmpresaMontaje")
             Else
@@ -8577,7 +8618,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByRazonSocial(ByVal dataTable As DsPagosMontaje.EmpresasContratadasMontajeDataTable, ByVal RazonSocial As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             If (RazonSocial Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("RazonSocial")
             Else
@@ -8595,7 +8636,7 @@ Namespace DsPagosMontajeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataBy(ByVal RazonSocial As String) As DsPagosMontaje.EmpresasContratadasMontajeDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             If (RazonSocial Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("RazonSocial")
             Else

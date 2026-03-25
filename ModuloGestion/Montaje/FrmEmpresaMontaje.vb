@@ -46,9 +46,10 @@
     End Sub
 
     Private Sub FrmEmpresaMontaje_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
         'TODO: esta línea de código carga datos en la tabla 'DsArticulos.Articulos' Puede moverla o quitarla según sea necesario.
         Me.ArticulosTableAdapter.Fill(Me.DsArticulos.Articulos)
-
+        Me.PagoMontajeTableAdapter.FillByIdEmpresa(Me.DsPagosMontaje.PagoMontaje, IdEmpresaMontajeTextBox.Text)
         Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
         'TODO: esta línea de código carga datos en la tabla 'DsProyectos.Proyectos' Puede moverla o quitarla según sea necesario.
         Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
@@ -61,6 +62,7 @@
     Private Sub EmpresasContratadasMontajeBindingNavigator_RefreshItems(sender As System.Object, e As System.EventArgs) Handles EmpresasContratadasMontajeBindingNavigator.RefreshItems
         Me.FacturaMontajeTableAdapter.FillByIdEmpresa(Me.DsPagosMontaje.FacturaMontaje, IdEmpresaMontajeTextBox.Text)
         Me.PagoMontajeTableAdapter.FillByIdEmpresa(Me.DsPagosMontaje.PagoMontaje, IdEmpresaMontajeTextBox.Text)
+        Me.FacturaMontajeB11TableAdapter.FillByIdEmpresaMontaje(Me.DsMontajeB11.FacturaMontajeB11, IdEmpresaMontajeTextBox.Text)
         Sumar()
     End Sub
 
@@ -157,6 +159,27 @@
         f.IdFacturaGenerada = idFactura ' 👈 NUEVO
 
         f.ShowDialog()
+
+    End Sub
+
+    Private Sub FacturaMontajeB11DataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles FacturaMontajeB11DataGridView.CellClick
+
+        If e.RowIndex < 0 Then Exit Sub
+
+        If FacturaMontajeB11DataGridView.Columns(e.ColumnIndex).Name = "Imprimir" Then
+
+            Dim idFactura As String = FacturaMontajeB11DataGridView.Rows(e.RowIndex).Cells("IdFacturaB11").Value.ToString()
+
+            Dim frm As New ImpPagoMomtaje
+
+            ' 👇 Aquí le pasas el valor
+            frm.IdFacturaSeleccionada = idFactura
+            frm.ImprimirFacturaNfc()
+
+
+
+        End If
+
 
     End Sub
 End Class

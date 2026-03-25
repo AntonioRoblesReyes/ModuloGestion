@@ -45,6 +45,12 @@ Partial Class ImpPagoMomtaje
         Me.PresupuestoBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.PresupuestoTableAdapter1 = New ModuloGestion.DsPresupuestosTableAdapters.PresupuestoTableAdapter()
         Me.TableAdapterManager1 = New ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager()
+        Me.DsMontajeB11 = New ModuloGestion.DsMontajeB11()
+        Me.FacturaMontajeB11DetalleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.FacturaMontajeB11DetalleTableAdapter = New ModuloGestion.DsMontajeB11TableAdapters.FacturaMontajeB11DetalleTableAdapter()
+        Me.TableAdapterManager2 = New ModuloGestion.DsMontajeB11TableAdapters.TableAdapterManager()
+        Me.FacturaMontajeB11BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.FacturaMontajeB11TableAdapter = New ModuloGestion.DsMontajeB11TableAdapters.FacturaMontajeB11TableAdapter()
         CType(Me.DsPagosMontaje, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmpresasContratadasMontajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PagoMontajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,6 +61,9 @@ Partial Class ImpPagoMomtaje
         CType(Me.FacturaMontajeDetalleBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPresupuestos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PresupuestoBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsMontajeB11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FacturaMontajeB11DetalleBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FacturaMontajeB11BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CrystalReportViewer1
@@ -64,19 +73,19 @@ Partial Class ImpPagoMomtaje
         Me.CrystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default
         Me.CrystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 0)
-        Me.CrystalReportViewer1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CrystalReportViewer1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(1237, 631)
+        Me.CrystalReportViewer1.Size = New System.Drawing.Size(1392, 808)
         Me.CrystalReportViewer1.TabIndex = 0
-        Me.CrystalReportViewer1.ToolPanelWidth = 267
+        Me.CrystalReportViewer1.ToolPanelWidth = 300
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(741, 74)
+        Me.Label1.Location = New System.Drawing.Point(834, 92)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(48, 16)
+        Me.Label1.Size = New System.Drawing.Size(57, 20)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Label1"
         '
@@ -182,14 +191,44 @@ Partial Class ImpPagoMomtaje
         Me.TableAdapterManager1.PresupuestoTableAdapter = Me.PresupuestoTableAdapter1
         Me.TableAdapterManager1.UpdateOrder = ModuloGestion.DsPresupuestosTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
+        'DsMontajeB11
+        '
+        Me.DsMontajeB11.DataSetName = "DsMontajeB11"
+        Me.DsMontajeB11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'FacturaMontajeB11DetalleBindingSource
+        '
+        Me.FacturaMontajeB11DetalleBindingSource.DataMember = "FacturaMontajeB11Detalle"
+        Me.FacturaMontajeB11DetalleBindingSource.DataSource = Me.DsMontajeB11
+        '
+        'FacturaMontajeB11DetalleTableAdapter
+        '
+        Me.FacturaMontajeB11DetalleTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager2
+        '
+        Me.TableAdapterManager2.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager2.FacturaMontajeB11DetalleTableAdapter = Me.FacturaMontajeB11DetalleTableAdapter
+        Me.TableAdapterManager2.FacturaMontajeB11TableAdapter = Me.FacturaMontajeB11TableAdapter
+        Me.TableAdapterManager2.UpdateOrder = ModuloGestion.DsMontajeB11TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'FacturaMontajeB11BindingSource
+        '
+        Me.FacturaMontajeB11BindingSource.DataMember = "FacturaMontajeB11"
+        Me.FacturaMontajeB11BindingSource.DataSource = Me.DsMontajeB11
+        '
+        'FacturaMontajeB11TableAdapter
+        '
+        Me.FacturaMontajeB11TableAdapter.ClearBeforeFill = True
+        '
         'ImpPagoMomtaje
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1237, 631)
+        Me.ClientSize = New System.Drawing.Size(1392, 808)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Controls.Add(Me.Label1)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "ImpPagoMomtaje"
         Me.Text = "ImpPagoMomtaje"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -203,6 +242,9 @@ Partial Class ImpPagoMomtaje
         CType(Me.FacturaMontajeDetalleBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsPresupuestos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PresupuestoBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsMontajeB11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FacturaMontajeB11DetalleBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FacturaMontajeB11BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -229,4 +271,10 @@ Partial Class ImpPagoMomtaje
     Friend WithEvents PresupuestoBindingSource1 As BindingSource
     Friend WithEvents PresupuestoTableAdapter1 As DsPresupuestosTableAdapters.PresupuestoTableAdapter
     Friend WithEvents TableAdapterManager1 As DsPresupuestosTableAdapters.TableAdapterManager
+    Friend WithEvents DsMontajeB11 As DsMontajeB11
+    Friend WithEvents FacturaMontajeB11DetalleBindingSource As BindingSource
+    Friend WithEvents FacturaMontajeB11DetalleTableAdapter As DsMontajeB11TableAdapters.FacturaMontajeB11DetalleTableAdapter
+    Friend WithEvents TableAdapterManager2 As DsMontajeB11TableAdapters.TableAdapterManager
+    Friend WithEvents FacturaMontajeB11TableAdapter As DsMontajeB11TableAdapters.FacturaMontajeB11TableAdapter
+    Friend WithEvents FacturaMontajeB11BindingSource As BindingSource
 End Class

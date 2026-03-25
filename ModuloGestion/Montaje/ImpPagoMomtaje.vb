@@ -1,4 +1,7 @@
 ﻿Public Class ImpPagoMomtaje
+
+    Public Property IdFacturaSeleccionada As String
+
     Sub ImprimirPagomontaje()
         MsgBox(Label1.Text)
         Me.EmpresasContratadasMontajeTableAdapter.Fill(Me.DsPagosMontaje.EmpresasContratadasMontaje)
@@ -26,17 +29,15 @@
         Me.Show()
     End Sub
     Sub ImprimirFacturaNfc()
+        MsgBox(IdFacturaSeleccionada)
+
+
         Me.EmpresasContratadasMontajeTableAdapter.Fill(Me.DsPagosMontaje.EmpresasContratadasMontaje)
-        Me.PresupuestoTableAdapter.Fill(Me.DsPagosMontaje.Presupuesto)
-        Me.FacturaMontajeTableAdapter.FillByIdFactura(Me.DsPagosMontaje.FacturaMontaje, Label1.Text)
-        Me.FacturaMontajeDetalleTableAdapter.FillByIdFactura(DsPagosMontaje.FacturaMontajeDetalle, Label1.Text)
-        Me.ProyectosTableAdapter.Fill(Me.DsPagosMontaje.Proyectos)
-        Me.PagoMontajeDetalleTableAdapter.FillByIdFactura(Me.DsPagosMontaje.PagoMontajeDetalle, Label1.Text)
-
-
+        Me.FacturaMontajeB11TableAdapter.FillByIdNCF(Me.DsMontajeB11.FacturaMontajeB11, IdFacturaSeleccionada)
+        Me.FacturaMontajeB11DetalleTableAdapter.FillByIdNCF(Me.DsMontajeB11.FacturaMontajeB11Detalle,IdFacturaSeleccionada)
 
         Dim rpt As New CryFacturaIns
-        rpt.SetDataSource(DsPagosMontaje)
+        rpt.SetDataSource(DsMontajeB11)
         CrystalReportViewer1.ReportSource = rpt
         Me.Show()
     End Sub
@@ -73,7 +74,9 @@
     End Sub
 
     Private Sub ImpPagoMomtaje_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: esta línea de código carga datos en la tabla 'DsPresupuestos.Presupuesto' Puede moverla o quitarla según sea necesario.
+
+
+        '
         Me.PresupuestoTableAdapter1.Fill(Me.DsPresupuestos.Presupuesto)
 
 
