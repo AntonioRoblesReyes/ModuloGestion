@@ -23,26 +23,18 @@
 
         Dim Cliente As String = Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).Id_Fiscal
         Dim impuesto As Double = Me.DsPresupuestos.Presupuesto(Me.PresupuestoBindingSource.Position).Impuesto
-
         If ComboBox1.Text = "" Then
             MsgBox("Debe elejir una moneda a facturar")
-            Exit Sub
-        End If
 
-        If ComboBox2.SelectedValue Is Nothing OrElse String.IsNullOrWhiteSpace(ComboBox2.SelectedValue.ToString()) Then
-            MsgBox("Debe elegir un tipo de comprobante")
-            Exit Sub
-        End If
-
-        My.Forms.FrmFacturas.Close()
-
-        Dim tipoComprobante As String = ComboBox2.SelectedValue.ToString().Trim().ToUpper()
-
-        If tipoComprobante = "NC" Then
-            My.Forms.FrmFacturas.NuevaNotaCredito()
         Else
+            My.Forms.FrmFacturas.Close()
+            'My.Forms.FrmFacturas.Show()
             My.Forms.FrmFacturas.NuevaFactura()
         End If
+
+
+
+
 
     End Sub
 
