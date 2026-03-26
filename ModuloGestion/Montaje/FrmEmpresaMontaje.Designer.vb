@@ -162,6 +162,7 @@ Partial Class FrmEmpresaMontaje
         Me.RetencionISR = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Imprimir = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Anular = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Modificar = New System.Windows.Forms.DataGridViewButtonColumn()
         EmailLabel = New System.Windows.Forms.Label()
         Telefono2Label = New System.Windows.Forms.Label()
         Telefono1Label = New System.Windows.Forms.Label()
@@ -940,7 +941,7 @@ Partial Class FrmEmpresaMontaje
         Me.FacturaMontajeB11DataGridView.AllowUserToDeleteRows = False
         Me.FacturaMontajeB11DataGridView.AutoGenerateColumns = False
         Me.FacturaMontajeB11DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaMontajeB11DataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFacturaB11, Me.Fecha, Me.SubTotal, Me.ITBIS, Me.DataGridViewTextBoxColumn16, Me.RetencionISR, Me.Imprimir, Me.Anular})
+        Me.FacturaMontajeB11DataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFacturaB11, Me.Fecha, Me.SubTotal, Me.ITBIS, Me.DataGridViewTextBoxColumn16, Me.RetencionISR, Me.Imprimir, Me.Anular, Me.Modificar})
         Me.FacturaMontajeB11DataGridView.DataSource = Me.FacturaMontajeB11BindingSource
         Me.FacturaMontajeB11DataGridView.Location = New System.Drawing.Point(943, 58)
         Me.FacturaMontajeB11DataGridView.Name = "FacturaMontajeB11DataGridView"
@@ -1362,6 +1363,14 @@ Partial Class FrmEmpresaMontaje
         Me.Anular.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.Anular.Width = 70
         '
+        'Modificar
+        '
+        Me.Modificar.HeaderText = "Modificar"
+        Me.Modificar.MinimumWidth = 8
+        Me.Modificar.Name = "Modificar"
+        Me.Modificar.ReadOnly = True
+        Me.Modificar.Width = 80
+        '
         'FrmEmpresaMontaje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1533,4 +1542,5 @@ Partial Class FrmEmpresaMontaje
     Friend WithEvents RetencionISR As DataGridViewTextBoxColumn
     Friend WithEvents Imprimir As DataGridViewButtonColumn
     Friend WithEvents Anular As DataGridViewButtonColumn
+    Friend WithEvents Modificar As DataGridViewButtonColumn
 End Class
