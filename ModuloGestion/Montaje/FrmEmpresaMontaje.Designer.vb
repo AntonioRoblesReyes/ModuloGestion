@@ -183,6 +183,7 @@ Partial Class FrmEmpresaMontaje
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
         Me.SplitContainerSuperior = New System.Windows.Forms.SplitContainer()
         Me.SplitContainerInferior = New System.Windows.Forms.SplitContainer()
+        Me.SplitContainerDetallePagos = New System.Windows.Forms.SplitContainer()
         Me.FacturaMontajeB11TableAdapter = New ModuloGestion.DsMontajeB11TableAdapters.FacturaMontajeB11TableAdapter()
         Me.TableAdapterManager4 = New ModuloGestion.DsMontajeB11TableAdapters.TableAdapterManager()
         CType(Me.EmpresasContratadasMontajeBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -226,9 +227,13 @@ Partial Class FrmEmpresaMontaje
         Me.SplitContainerSuperior.Panel2.SuspendLayout()
         Me.SplitContainerSuperior.SuspendLayout()
         CType(Me.SplitContainerInferior, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainerDetallePagos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerInferior.Panel1.SuspendLayout()
         Me.SplitContainerInferior.Panel2.SuspendLayout()
         Me.SplitContainerInferior.SuspendLayout()
+        Me.SplitContainerDetallePagos.Panel1.SuspendLayout()
+        Me.SplitContainerDetallePagos.Panel2.SuspendLayout()
+        Me.SplitContainerDetallePagos.SuspendLayout()
         Me.SuspendLayout()
         '
         'EmailLabel
@@ -448,13 +453,14 @@ Partial Class FrmEmpresaMontaje
         'BtnResumenFactura
         '
         Me.BtnResumenFactura.AutoSize = True
+        Me.BtnResumenFactura.BackColor = System.Drawing.Color.White
         Me.BtnResumenFactura.Location = New System.Drawing.Point(348, 11)
         Me.BtnResumenFactura.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnResumenFactura.Name = "BtnResumenFactura"
         Me.BtnResumenFactura.Size = New System.Drawing.Size(167, 35)
         Me.BtnResumenFactura.TabIndex = 26
         Me.BtnResumenFactura.Text = "Resume Facturas"
-        Me.BtnResumenFactura.UseVisualStyleBackColor = True
+        Me.BtnResumenFactura.UseVisualStyleBackColor = False
         '
         'DsPresupuestos
         '
@@ -599,7 +605,7 @@ Partial Class FrmEmpresaMontaje
         Me.FacturaMontajeDetalleDataGridView.Name = "FacturaMontajeDetalleDataGridView"
         Me.FacturaMontajeDetalleDataGridView.ReadOnly = True
         Me.FacturaMontajeDetalleDataGridView.RowHeadersWidth = 51
-        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(557, 546)
+        Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(1220, 359)
         Me.FacturaMontajeDetalleDataGridView.TabIndex = 33
         '
         'DataGridViewTextBoxColumn12
@@ -746,7 +752,7 @@ Partial Class FrmEmpresaMontaje
         Me.PagoMontajeDetalleDataGridView.Name = "PagoMontajeDetalleDataGridView"
         Me.PagoMontajeDetalleDataGridView.ReadOnly = True
         Me.PagoMontajeDetalleDataGridView.RowHeadersWidth = 51
-        Me.PagoMontajeDetalleDataGridView.Size = New System.Drawing.Size(1541, 546)
+        Me.PagoMontajeDetalleDataGridView.Size = New System.Drawing.Size(870, 180)
         Me.PagoMontajeDetalleDataGridView.TabIndex = 15
         '
         'DataGridViewTextBoxColumn25
@@ -977,30 +983,31 @@ Partial Class FrmEmpresaMontaje
         Me.FacturaMontajeDataGridView.Name = "FacturaMontajeDataGridView"
         Me.FacturaMontajeDataGridView.ReadOnly = True
         Me.FacturaMontajeDataGridView.RowHeadersWidth = 51
-        Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(570, 257)
+        Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(1370, 510)
         Me.FacturaMontajeDataGridView.TabIndex = 13
         '
         'pnlCabecera
         '
 
+        Me.pnlCabecera.BackColor = System.Drawing.Color.WhiteSmoke
         Me.pnlCabecera.Controls.Add(Me.pnlCabeceraDatos)
         Me.pnlCabecera.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlCabecera.Location = New System.Drawing.Point(0, 31)
         Me.pnlCabecera.Name = "pnlCabecera"
-        Me.pnlCabecera.Padding = New System.Windows.Forms.Padding(8)
-        Me.pnlCabecera.Size = New System.Drawing.Size(2124, 370)
+        Me.pnlCabecera.Padding = New System.Windows.Forms.Padding(12)
+        Me.pnlCabecera.Size = New System.Drawing.Size(2124, 300)
         Me.pnlCabecera.TabIndex = 40
         '
         'pnlCabeceraB11
         '
-        Me.pnlCabeceraB11.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(252, Byte), Integer))
+        Me.pnlCabeceraB11.BackColor = System.Drawing.Color.White
         Me.pnlCabeceraB11.Controls.Add(Me.FacturaMontajeB11DataGridView)
         Me.pnlCabeceraB11.Controls.Add(Me.BtnFacturaB11)
         Me.pnlCabeceraB11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlCabeceraB11.Location = New System.Drawing.Point(988, 8)
+        Me.pnlCabeceraB11.Location = New System.Drawing.Point(0, 0)
         Me.pnlCabeceraB11.Name = "pnlCabeceraB11"
         Me.pnlCabeceraB11.Padding = New System.Windows.Forms.Padding(8)
-        Me.pnlCabeceraB11.Size = New System.Drawing.Size(1128, 354)
+        Me.pnlCabeceraB11.Size = New System.Drawing.Size(717, 510)
         Me.pnlCabeceraB11.TabIndex = 43
         '
         'FacturaMontajeB11DataGridView
@@ -1036,7 +1043,7 @@ Partial Class FrmEmpresaMontaje
         Me.FacturaMontajeB11DataGridView.ReadOnly = True
         Me.FacturaMontajeB11DataGridView.RowHeadersWidth = 51
         Me.FacturaMontajeB11DataGridView.RowTemplate.Height = 28
-        Me.FacturaMontajeB11DataGridView.Size = New System.Drawing.Size(1112, 307)
+        Me.FacturaMontajeB11DataGridView.Size = New System.Drawing.Size(701, 458)
         Me.FacturaMontajeB11DataGridView.TabIndex = 41
         '
         'FacturaMontajeB11BindingSource
@@ -1145,24 +1152,27 @@ Partial Class FrmEmpresaMontaje
         '
         'BtnFacturaB11
         '
+        Me.BtnFacturaB11.BackColor = System.Drawing.Color.White
         Me.BtnFacturaB11.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnFacturaB11.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnFacturaB11.Location = New System.Drawing.Point(8, 8)
         Me.BtnFacturaB11.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnFacturaB11.Name = "BtnFacturaB11"
-        Me.BtnFacturaB11.Size = New System.Drawing.Size(1112, 31)
+        Me.BtnFacturaB11.Size = New System.Drawing.Size(701, 36)
         Me.BtnFacturaB11.TabIndex = 41
         Me.BtnFacturaB11.Text = "Nueva Factura B11"
         Me.BtnFacturaB11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnFacturaB11.UseVisualStyleBackColor = True
+        Me.BtnFacturaB11.UseVisualStyleBackColor = False
         '
         'pnlCabeceraDatos
         '
+        Me.pnlCabeceraDatos.BackColor = System.Drawing.Color.White
         Me.pnlCabeceraDatos.Controls.Add(Me.TableLayoutPanelCabeceraDatos)
-        Me.pnlCabeceraDatos.Dock = System.Windows.Forms.DockStyle.Left
-        Me.pnlCabeceraDatos.Location = New System.Drawing.Point(8, 8)
+        Me.pnlCabeceraDatos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlCabeceraDatos.Location = New System.Drawing.Point(12, 12)
         Me.pnlCabeceraDatos.Name = "pnlCabeceraDatos"
-        Me.pnlCabeceraDatos.Padding = New System.Windows.Forms.Padding(8)
-        Me.pnlCabeceraDatos.Size = New System.Drawing.Size(980, 354)
+        Me.pnlCabeceraDatos.Padding = New System.Windows.Forms.Padding(12)
+        Me.pnlCabeceraDatos.Size = New System.Drawing.Size(2100, 276)
         Me.pnlCabeceraDatos.TabIndex = 42
         '
         'TableLayoutPanelCabeceraDatos
@@ -1176,16 +1186,16 @@ Partial Class FrmEmpresaMontaje
         Me.TableLayoutPanelCabeceraDatos.Location = New System.Drawing.Point(8, 8)
         Me.TableLayoutPanelCabeceraDatos.Name = "TableLayoutPanelCabeceraDatos"
         Me.TableLayoutPanelCabeceraDatos.RowCount = 3
-        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
-        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
-        Me.TableLayoutPanelCabeceraDatos.Size = New System.Drawing.Size(964, 338)
+        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.0!))
+        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.0!))
+        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.0!))
+        Me.TableLayoutPanelCabeceraDatos.Size = New System.Drawing.Size(2076, 252)
         Me.TableLayoutPanelCabeceraDatos.TabIndex = 44
         '
         'TableLayoutPanelCampos
         '
         Me.TableLayoutPanelCampos.ColumnCount = 2
-        Me.TableLayoutPanelCampos.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelCampos.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 190.0!))
         Me.TableLayoutPanelCampos.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanelCampos.Controls.Add(Me.IdEmpresaMontajeLabel, 0, 0)
         Me.TableLayoutPanelCampos.Controls.Add(Me.IdEmpresaMontajeTextBox, 1, 0)
@@ -1213,7 +1223,7 @@ Partial Class FrmEmpresaMontaje
         Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelCampos.Size = New System.Drawing.Size(958, 244)
+        Me.TableLayoutPanelCampos.Size = New System.Drawing.Size(2070, 135)
         Me.TableLayoutPanelCampos.TabIndex = 0
         '
         'IdEmpresaMontajeTextBox
@@ -1307,14 +1317,14 @@ Partial Class FrmEmpresaMontaje
         Me.TableLayoutPanelResumen.Controls.Add(Me.Label8, 2, 2)
         Me.TableLayoutPanelResumen.Controls.Add(Me.Label7, 3, 2)
         Me.TableLayoutPanelResumen.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanelResumen.Location = New System.Drawing.Point(3, 253)
+        Me.TableLayoutPanelResumen.Location = New System.Drawing.Point(3, 144)
         Me.TableLayoutPanelResumen.Name = "TableLayoutPanelResumen"
         Me.TableLayoutPanelResumen.Padding = New System.Windows.Forms.Padding(10, 6, 10, 6)
         Me.TableLayoutPanelResumen.RowCount = 3
         Me.TableLayoutPanelResumen.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanelResumen.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanelResumen.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanelResumen.Size = New System.Drawing.Size(958, 27)
+        Me.TableLayoutPanelResumen.Size = New System.Drawing.Size(2070, 59)
         Me.TableLayoutPanelResumen.TabIndex = 1
         '
         'Label1
@@ -1473,46 +1483,49 @@ Partial Class FrmEmpresaMontaje
         Me.FlowLayoutPanelBotones.Controls.Add(Me.BtnResumenPagos)
         Me.FlowLayoutPanelBotones.Controls.Add(Me.BtnResumenFactura)
         Me.FlowLayoutPanelBotones.Controls.Add(Me.BtnModificarFactura)
-        Me.FlowLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.FlowLayoutPanelBotones.Location = New System.Drawing.Point(3, 286)
+        Me.FlowLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlowLayoutPanelBotones.Location = New System.Drawing.Point(3, 209)
         Me.FlowLayoutPanelBotones.Name = "FlowLayoutPanelBotones"
         Me.FlowLayoutPanelBotones.Padding = New System.Windows.Forms.Padding(10, 6, 10, 6)
-        Me.FlowLayoutPanelBotones.Size = New System.Drawing.Size(958, 49)
+        Me.FlowLayoutPanelBotones.Size = New System.Drawing.Size(2070, 40)
         Me.FlowLayoutPanelBotones.TabIndex = 2
         Me.FlowLayoutPanelBotones.WrapContents = False
         '
         'Button3
         '
         Me.Button3.AutoSize = True
+        Me.Button3.BackColor = System.Drawing.Color.White
         Me.Button3.Location = New System.Drawing.Point(14, 11)
         Me.Button3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(159, 35)
         Me.Button3.TabIndex = 39
         Me.Button3.Text = "Nueva Empresa"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'BtnResumenPagos
         '
         Me.BtnResumenPagos.AutoSize = True
+        Me.BtnResumenPagos.BackColor = System.Drawing.Color.White
         Me.BtnResumenPagos.Location = New System.Drawing.Point(181, 11)
         Me.BtnResumenPagos.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnResumenPagos.Name = "BtnResumenPagos"
         Me.BtnResumenPagos.Size = New System.Drawing.Size(159, 35)
         Me.BtnResumenPagos.TabIndex = 34
         Me.BtnResumenPagos.Text = "Resume Pagos"
-        Me.BtnResumenPagos.UseVisualStyleBackColor = True
+        Me.BtnResumenPagos.UseVisualStyleBackColor = False
         '
         'BtnModificarFactura
         '
         Me.BtnModificarFactura.AutoSize = True
+        Me.BtnModificarFactura.BackColor = System.Drawing.Color.White
         Me.BtnModificarFactura.Location = New System.Drawing.Point(523, 11)
         Me.BtnModificarFactura.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnModificarFactura.Name = "BtnModificarFactura"
         Me.BtnModificarFactura.Size = New System.Drawing.Size(167, 35)
         Me.BtnModificarFactura.TabIndex = 40
         Me.BtnModificarFactura.Text = "Modificar Factura"
-        Me.BtnModificarFactura.UseVisualStyleBackColor = True
+        Me.BtnModificarFactura.UseVisualStyleBackColor = False
         '
         'Label17
         '
@@ -1568,12 +1581,12 @@ Partial Class FrmEmpresaMontaje
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.pnlContenido, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 401)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 331)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(2124, 821)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(2124, 891)
         Me.TableLayoutPanel1.TabIndex = 41
         '
         'pnlContenido
@@ -1582,8 +1595,8 @@ Partial Class FrmEmpresaMontaje
         Me.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlContenido.Location = New System.Drawing.Point(3, 3)
         Me.pnlContenido.Name = "pnlContenido"
-        Me.pnlContenido.Padding = New System.Windows.Forms.Padding(8, 0, 8, 8)
-        Me.pnlContenido.Size = New System.Drawing.Size(2118, 815)
+        Me.pnlContenido.Padding = New System.Windows.Forms.Padding(12, 0, 12, 12)
+        Me.pnlContenido.Size = New System.Drawing.Size(2118, 885)
         Me.pnlContenido.TabIndex = 42
         '
         'SplitContainerPrincipal
@@ -1600,8 +1613,8 @@ Partial Class FrmEmpresaMontaje
         'SplitContainerPrincipal.Panel2
         '
         Me.SplitContainerPrincipal.Panel2.Controls.Add(Me.SplitContainerInferior)
-        Me.SplitContainerPrincipal.Size = New System.Drawing.Size(2102, 807)
-        Me.SplitContainerPrincipal.SplitterDistance = 257
+        Me.SplitContainerPrincipal.Size = New System.Drawing.Size(2094, 873)
+        Me.SplitContainerPrincipal.SplitterDistance = 510
         Me.SplitContainerPrincipal.TabIndex = 0
 
         '
@@ -1625,9 +1638,8 @@ Partial Class FrmEmpresaMontaje
         Me.SplitContainerSuperior.Panel2.Controls.Add(Me.pnlCabeceraB11)
         Me.pnlCabeceraB11.Dock = System.Windows.Forms.DockStyle.Fill
         '
-        Me.SplitContainerSuperior.Panel2.Controls.Add(Me.PagoMontajeDataGridView)
-        Me.SplitContainerSuperior.Size = New System.Drawing.Size(2102, 257)
-        Me.SplitContainerSuperior.SplitterDistance = 570
+        Me.SplitContainerSuperior.Size = New System.Drawing.Size(2094, 510)
+        Me.SplitContainerSuperior.SplitterDistance = 1370
         Me.SplitContainerSuperior.TabIndex = 0
         '
         'SplitContainerInferior
@@ -1642,10 +1654,28 @@ Partial Class FrmEmpresaMontaje
         '
         'SplitContainerInferior.Panel2
         '
-        Me.SplitContainerInferior.Panel2.Controls.Add(Me.PagoMontajeDetalleDataGridView)
-        Me.SplitContainerInferior.Size = New System.Drawing.Size(2102, 546)
-        Me.SplitContainerInferior.SplitterDistance = 557
+        Me.SplitContainerInferior.Panel2.Controls.Add(Me.SplitContainerDetallePagos)
+        Me.SplitContainerInferior.Size = New System.Drawing.Size(2094, 359)
+        Me.SplitContainerInferior.SplitterDistance = 1220
         Me.SplitContainerInferior.TabIndex = 0
+        '
+        'SplitContainerDetallePagos
+        '
+        Me.SplitContainerDetallePagos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerDetallePagos.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainerDetallePagos.Name = "SplitContainerDetallePagos"
+        Me.SplitContainerDetallePagos.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainerDetallePagos.Panel1
+        '
+        Me.SplitContainerDetallePagos.Panel1.Controls.Add(Me.PagoMontajeDataGridView)
+        '
+        'SplitContainerDetallePagos.Panel2
+        '
+        Me.SplitContainerDetallePagos.Panel2.Controls.Add(Me.PagoMontajeDetalleDataGridView)
+        Me.SplitContainerDetallePagos.Size = New System.Drawing.Size(870, 359)
+        Me.SplitContainerDetallePagos.SplitterDistance = 175
+        Me.SplitContainerDetallePagos.TabIndex = 0
         '
         'FacturaMontajeB11TableAdapter
         '
@@ -1662,6 +1692,8 @@ Partial Class FrmEmpresaMontaje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.Gainsboro
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ClientSize = New System.Drawing.Size(2124, 1222)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.pnlCabecera)
@@ -1718,6 +1750,10 @@ Partial Class FrmEmpresaMontaje
         Me.SplitContainerInferior.Panel2.ResumeLayout(False)
         CType(Me.SplitContainerInferior, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerInferior.ResumeLayout(False)
+        Me.SplitContainerDetallePagos.Panel1.ResumeLayout(False)
+        Me.SplitContainerDetallePagos.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainerDetallePagos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerDetallePagos.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1829,6 +1865,7 @@ Partial Class FrmEmpresaMontaje
     Friend WithEvents SplitContainerPrincipal As SplitContainer
     Friend WithEvents SplitContainerSuperior As SplitContainer
     Friend WithEvents SplitContainerInferior As SplitContainer
+    Friend WithEvents SplitContainerDetallePagos As SplitContainer
     Friend WithEvents pnlCabeceraDatos As Panel
     Friend WithEvents pnlCabeceraB11 As Panel
     Friend WithEvents TableLayoutPanelCabeceraDatos As TableLayoutPanel
