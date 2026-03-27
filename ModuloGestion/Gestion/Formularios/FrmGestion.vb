@@ -1,5 +1,4 @@
-﻿
-Option Explicit On
+﻿Option Explicit On
 Option Strict On
 Imports System.Globalization
 Imports System.Threading
@@ -345,9 +344,15 @@ Public Class FrmGestion
     End Sub
 
     Private Sub EmpresaMontajesToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EmpresaMontajesToolStripMenuItem.Click
-        My.Forms.FrmEmpresaMontaje.Close()
+        ' Opción 1: Reutilizar el singleton (recomendado)
+        If Not My.Forms.FrmEmpresaMontaje.IsDisposed Then
+            My.Forms.FrmEmpresaMontaje.Close()
+        End If
         My.Forms.FrmEmpresaMontaje.Cargar()
 
+        ' Opción 2: No usar el singleton
+        ' Dim frm As New FrmEmpresaMontaje()
+        ' frm.Cargar()
     End Sub
 
     Private Sub FacturasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FacturasToolStripMenuItem1.Click

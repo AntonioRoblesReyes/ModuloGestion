@@ -167,6 +167,10 @@ Partial Class FrmEmpresaMontaje
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
         Me.SplitContainerSuperior = New System.Windows.Forms.SplitContainer()
         Me.SplitContainerInferior = New System.Windows.Forms.SplitContainer()
+        Me.TableLayoutPanelCabeceraDatos = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanelCampos = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanelResumen = New System.Windows.Forms.TableLayoutPanel()
+        Me.FlowLayoutPanelBotones = New System.Windows.Forms.FlowLayoutPanel()
         Me.FacturaMontajeB11TableAdapter = New ModuloGestion.DsMontajeB11TableAdapters.FacturaMontajeB11TableAdapter()
         Me.TableAdapterManager4 = New ModuloGestion.DsMontajeB11TableAdapters.TableAdapterManager()
         EmailLabel = New System.Windows.Forms.Label()
@@ -216,6 +220,10 @@ Partial Class FrmEmpresaMontaje
         Me.SplitContainerInferior.Panel1.SuspendLayout()
         Me.SplitContainerInferior.Panel2.SuspendLayout()
         Me.SplitContainerInferior.SuspendLayout()
+        Me.TableLayoutPanelCabeceraDatos.SuspendLayout()
+        Me.TableLayoutPanelCampos.SuspendLayout()
+        Me.TableLayoutPanelResumen.SuspendLayout()
+        Me.FlowLayoutPanelBotones.SuspendLayout()
         Me.SuspendLayout()
         '
         'EmailLabel
@@ -457,10 +465,10 @@ Partial Class FrmEmpresaMontaje
         '
         'BtnResumenFactura
         '
-        Me.BtnResumenFactura.Location = New System.Drawing.Point(579, 213)
+        Me.BtnResumenFactura.AutoSize = True
         Me.BtnResumenFactura.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnResumenFactura.Name = "BtnResumenFactura"
-        Me.BtnResumenFactura.Size = New System.Drawing.Size(159, 31)
+        Me.BtnResumenFactura.Size = New System.Drawing.Size(167, 35)
         Me.BtnResumenFactura.TabIndex = 26
         Me.BtnResumenFactura.Text = "Resume Facturas"
         Me.BtnResumenFactura.UseVisualStyleBackColor = True
@@ -538,6 +546,7 @@ Partial Class FrmEmpresaMontaje
         Me.Label16.Size = New System.Drawing.Size(101, 22)
         Me.Label16.TabIndex = 30
         Me.Label16.Text = "Presupuesto"
+        Me.Label16.Visible = False
         '
         'Label18
         '
@@ -549,6 +558,7 @@ Partial Class FrmEmpresaMontaje
         Me.Label18.Size = New System.Drawing.Size(68, 22)
         Me.Label18.TabIndex = 32
         Me.Label18.Text = "Label18"
+        Me.Label18.Visible = False
         '
         'FacturaMontajeDetalleBindingSource
         '
@@ -589,6 +599,12 @@ Partial Class FrmEmpresaMontaje
         Me.FacturaMontajeDetalleDataGridView.RowHeadersWidth = 51
         Me.FacturaMontajeDetalleDataGridView.Size = New System.Drawing.Size(1164, 359)
         Me.FacturaMontajeDetalleDataGridView.TabIndex = 33
+        Me.FacturaMontajeDetalleDataGridView.EnableHeadersVisualStyles = False
+        Me.FacturaMontajeDetalleDataGridView.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.FacturaMontajeDetalleDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White
+        Me.FacturaMontajeDetalleDataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.FacturaMontajeDetalleDataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
+        Me.FacturaMontajeDetalleDataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
         '
         'DataGridViewTextBoxColumn12
         '
@@ -717,6 +733,12 @@ Partial Class FrmEmpresaMontaje
         Me.PagoMontajeDetalleDataGridView.RowHeadersWidth = 51
         Me.PagoMontajeDetalleDataGridView.Size = New System.Drawing.Size(950, 359)
         Me.PagoMontajeDetalleDataGridView.TabIndex = 15
+        Me.PagoMontajeDetalleDataGridView.EnableHeadersVisualStyles = False
+        Me.PagoMontajeDetalleDataGridView.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.PagoMontajeDetalleDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White
+        Me.PagoMontajeDetalleDataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.PagoMontajeDetalleDataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
+        Me.PagoMontajeDetalleDataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
         '
         'DataGridViewTextBoxColumn25
         '
@@ -806,6 +828,12 @@ Partial Class FrmEmpresaMontaje
         Me.PagoMontajeDataGridView.RowHeadersWidth = 51
         Me.PagoMontajeDataGridView.Size = New System.Drawing.Size(950, 480)
         Me.PagoMontajeDataGridView.TabIndex = 14
+        Me.PagoMontajeDataGridView.EnableHeadersVisualStyles = False
+        Me.PagoMontajeDataGridView.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.PagoMontajeDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White
+        Me.PagoMontajeDataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.PagoMontajeDataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
+        Me.PagoMontajeDataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
         '
         'PendienteInstalador
         '
@@ -910,6 +938,12 @@ Partial Class FrmEmpresaMontaje
         Me.FacturaMontajeDataGridView.RowHeadersWidth = 51
         Me.FacturaMontajeDataGridView.Size = New System.Drawing.Size(1164, 480)
         Me.FacturaMontajeDataGridView.TabIndex = 13
+        Me.FacturaMontajeDataGridView.EnableHeadersVisualStyles = False
+        Me.FacturaMontajeDataGridView.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.FacturaMontajeDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White
+        Me.FacturaMontajeDataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.FacturaMontajeDataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
+        Me.FacturaMontajeDataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
         '
         'pnlCabecera
         '
@@ -917,9 +951,10 @@ Partial Class FrmEmpresaMontaje
         Me.pnlCabecera.Controls.Add(Me.pnlCabeceraDatos)
         Me.pnlCabecera.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlCabecera.Location = New System.Drawing.Point(0, 31)
-        Me.pnlCabecera.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.pnlCabecera.Margin = New System.Windows.Forms.Padding(3)
         Me.pnlCabecera.Name = "pnlCabecera"
-        Me.pnlCabecera.Size = New System.Drawing.Size(2124, 342)
+        Me.pnlCabecera.Padding = New System.Windows.Forms.Padding(8)
+        Me.pnlCabecera.Size = New System.Drawing.Size(2124, 370)
         Me.pnlCabecera.TabIndex = 40
         '
         'pnlCabeceraB11
@@ -934,12 +969,27 @@ Partial Class FrmEmpresaMontaje
         Me.pnlCabeceraB11.TabIndex = 43
         '
         'FacturaMontajeB11DataGridView
-        '
         Me.FacturaMontajeB11DataGridView.AllowUserToAddRows = False
         Me.FacturaMontajeB11DataGridView.AllowUserToDeleteRows = False
         Me.FacturaMontajeB11DataGridView.AutoGenerateColumns = False
         Me.FacturaMontajeB11DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.FacturaMontajeB11DataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFacturaB11, Me.Fecha, Me.SubTotal, Me.ITBIS, Me.DataGridViewTextBoxColumn16, Me.RetencionISR, Me.Imprimir, Me.Anular, Me.Modificar})
+
+        ' 🔥 LIMPIA CUALQUIER DUPLICADO (CLAVE)
+        Me.FacturaMontajeB11DataGridView.Columns.Clear()
+
+        ' 🔥 AGREGA COLUMNAS UNA SOLA VEZ
+        Me.FacturaMontajeB11DataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {
+    Me.IdFacturaB11,
+    Me.Fecha,
+    Me.SubTotal,
+    Me.ITBIS,
+    Me.DataGridViewTextBoxColumn16,
+    Me.RetencionISR,
+    Me.Imprimir,
+    Me.Anular,
+    Me.Modificar
+})
+
         Me.FacturaMontajeB11DataGridView.DataSource = Me.FacturaMontajeB11BindingSource
         Me.FacturaMontajeB11DataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FacturaMontajeB11DataGridView.Location = New System.Drawing.Point(8, 39)
@@ -1067,74 +1117,98 @@ Partial Class FrmEmpresaMontaje
         '
         'pnlCabeceraDatos
         '
-        Me.pnlCabeceraDatos.Controls.Add(Me.BtnModificarFactura)
-        Me.pnlCabeceraDatos.Controls.Add(IdEmpresaMontajeLabel)
-        Me.pnlCabeceraDatos.Controls.Add(Me.BtnResumenPagos)
-        Me.pnlCabeceraDatos.Controls.Add(CuentaLabel)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Button3)
-        Me.pnlCabeceraDatos.Controls.Add(Me.CuentaTextBox)
-        Me.pnlCabeceraDatos.Controls.Add(Me.EmailTextBox)
-        Me.pnlCabeceraDatos.Controls.Add(Me.BtnResumenFactura)
-        Me.pnlCabeceraDatos.Controls.Add(EmailLabel)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Telefono2TextBox)
-        Me.pnlCabeceraDatos.Controls.Add(BancoLabel)
-        Me.pnlCabeceraDatos.Controls.Add(Telefono2Label)
-        Me.pnlCabeceraDatos.Controls.Add(Me.BancoTextBox)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label17)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Telefono1TextBox)
-        Me.pnlCabeceraDatos.Controls.Add(Telefono1Label)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label15)
-        Me.pnlCabeceraDatos.Controls.Add(Me.RazonSocialComboBox)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label14)
-        Me.pnlCabeceraDatos.Controls.Add(RazonSocialLabel)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label13)
-        Me.pnlCabeceraDatos.Controls.Add(Me.IdEmpresaMontajeTextBox)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label16)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label18)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label1)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label7)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label2)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label8)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label4)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label9)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label3)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label10)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label6)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label11)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label5)
-        Me.pnlCabeceraDatos.Controls.Add(Me.Label12)
+        Me.pnlCabeceraDatos.Controls.Add(Me.TableLayoutPanelCabeceraDatos)
         Me.pnlCabeceraDatos.Dock = System.Windows.Forms.DockStyle.Left
-        Me.pnlCabeceraDatos.Location = New System.Drawing.Point(0, 0)
+        Me.pnlCabeceraDatos.Location = New System.Drawing.Point(8, 8)
         Me.pnlCabeceraDatos.Name = "pnlCabeceraDatos"
-        Me.pnlCabeceraDatos.Size = New System.Drawing.Size(934, 342)
+        Me.pnlCabeceraDatos.Padding = New System.Windows.Forms.Padding(8)
+        Me.pnlCabeceraDatos.Size = New System.Drawing.Size(980, 354)
         Me.pnlCabeceraDatos.TabIndex = 42
+
+        'pnlCabeceraB11
         '
+        Me.pnlCabeceraB11.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(252, Byte), Integer))
+        Me.pnlCabeceraB11.Controls.Add(Me.FacturaMontajeB11DataGridView)
+        Me.pnlCabeceraB11.Controls.Add(Me.BtnFacturaB11)
+        Me.pnlCabeceraB11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlCabeceraB11.Location = New System.Drawing.Point(988, 8)
+        Me.pnlCabeceraB11.Name = "pnlCabeceraB11"
+        Me.pnlCabeceraB11.Padding = New System.Windows.Forms.Padding(8)
+        Me.pnlCabeceraB11.Size = New System.Drawing.Size(1128, 354)
+        Me.pnlCabeceraB11.TabIndex = 43
+        '
+        'FacturaMontajeB11DataGridView
+        '
+        Me.FacturaMontajeB11DataGridView.AllowUserToAddRows = False
+        Me.FacturaMontajeB11DataGridView.AllowUserToDeleteRows = False
+        Me.FacturaMontajeB11DataGridView.AutoGenerateColumns = False
+        Me.FacturaMontajeB11DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
+        Me.FacturaMontajeB11DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.FacturaMontajeB11DataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdFacturaB11, Me.Fecha, Me.SubTotal, Me.ITBIS, Me.DataGridViewTextBoxColumn16, Me.RetencionISR, Me.Imprimir, Me.Anular, Me.Modificar})
+        Me.FacturaMontajeB11DataGridView.DataSource = Me.FacturaMontajeB11BindingSource
+        Me.FacturaMontajeB11DataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FacturaMontajeB11DataGridView.Location = New System.Drawing.Point(8, 49)
+        Me.FacturaMontajeB11DataGridView.Name = "FacturaMontajeB11DataGridView"
+        Me.FacturaMontajeB11DataGridView.ReadOnly = True
+        Me.FacturaMontajeB11DataGridView.RowHeadersWidth = 51
+        Me.FacturaMontajeB11DataGridView.RowTemplate.Height = 28
+        Me.FacturaMontajeB11DataGridView.Size = New System.Drawing.Size(1112, 297)
+        Me.FacturaMontajeB11DataGridView.TabIndex = 41
+        Me.FacturaMontajeB11DataGridView.EnableHeadersVisualStyles = False
+        Me.FacturaMontajeB11DataGridView.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.FacturaMontajeB11DataGridView.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White
+        Me.FacturaMontajeB11DataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.FacturaMontajeB11DataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
+        Me.FacturaMontajeB11DataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
+        '
+        'FacturaMontajeB11BindingSource
+        '
+        Me.FacturaMontajeB11BindingSource.DataMember = "FacturaMontajeB11"
+        Me.FacturaMontajeB11BindingSource.DataSource = Me.DsMontajeB11
+        '
+        'DsMontajeB11
+        '
+        Me.DsMontajeB11.DataSetName = "DsMontajeB11"
+        Me.DsMontajeB11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'BtnFacturaB11
+        '
+        Me.BtnFacturaB11.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnFacturaB11.Location = New System.Drawing.Point(8, 8)
+        Me.BtnFacturaB11.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnFacturaB11.Name = "BtnFacturaB11"
+        Me.BtnFacturaB11.Size = New System.Drawing.Size(1112, 31)
+        Me.BtnFacturaB11.TabIndex = 41
+        Me.BtnFacturaB11.Text = "Nueva Factura B11"
+        Me.BtnFacturaB11.UseVisualStyleBackColor = True
+        '
+
         'BtnModificarFactura
         '
-        Me.BtnModificarFactura.Location = New System.Drawing.Point(579, 254)
+        Me.BtnModificarFactura.AutoSize = True
         Me.BtnModificarFactura.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnModificarFactura.Name = "BtnModificarFactura"
-        Me.BtnModificarFactura.Size = New System.Drawing.Size(159, 31)
+        Me.BtnModificarFactura.Size = New System.Drawing.Size(167, 35)
         Me.BtnModificarFactura.TabIndex = 40
         Me.BtnModificarFactura.Text = "Modificar Factura"
         Me.BtnModificarFactura.UseVisualStyleBackColor = True
         '
         'BtnResumenPagos
         '
-        Me.BtnResumenPagos.Location = New System.Drawing.Point(579, 169)
+        Me.BtnResumenPagos.AutoSize = True
         Me.BtnResumenPagos.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnResumenPagos.Name = "BtnResumenPagos"
-        Me.BtnResumenPagos.Size = New System.Drawing.Size(159, 31)
+        Me.BtnResumenPagos.Size = New System.Drawing.Size(159, 35)
         Me.BtnResumenPagos.TabIndex = 34
         Me.BtnResumenPagos.Text = "Resume Pagos"
         Me.BtnResumenPagos.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(371, 157)
+        Me.Button3.AutoSize = True
         Me.Button3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(159, 31)
+        Me.Button3.Size = New System.Drawing.Size(159, 35)
         Me.Button3.TabIndex = 39
         Me.Button3.Text = "Nueva Empresa"
         Me.Button3.UseVisualStyleBackColor = True
@@ -1142,37 +1216,37 @@ Partial Class FrmEmpresaMontaje
         'CuentaTextBox
         '
         Me.CuentaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasContratadasMontajeBindingSource, "Cuenta", True))
-        Me.CuentaTextBox.Location = New System.Drawing.Point(461, 10)
+        Me.CuentaTextBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CuentaTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CuentaTextBox.Name = "CuentaTextBox"
-        Me.CuentaTextBox.Size = New System.Drawing.Size(196, 26)
+        Me.CuentaTextBox.Size = New System.Drawing.Size(753, 26)
         Me.CuentaTextBox.TabIndex = 38
         '
         'EmailTextBox
         '
         Me.EmailTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasContratadasMontajeBindingSource, "Email", True))
-        Me.EmailTextBox.Location = New System.Drawing.Point(170, 174)
+        Me.EmailTextBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.EmailTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.EmailTextBox.Name = "EmailTextBox"
-        Me.EmailTextBox.Size = New System.Drawing.Size(180, 26)
+        Me.EmailTextBox.Size = New System.Drawing.Size(753, 26)
         Me.EmailTextBox.TabIndex = 10
         '
         'Telefono2TextBox
         '
         Me.Telefono2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasContratadasMontajeBindingSource, "Telefono2", True))
-        Me.Telefono2TextBox.Location = New System.Drawing.Point(170, 134)
+        Me.Telefono2TextBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Telefono2TextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Telefono2TextBox.Name = "Telefono2TextBox"
-        Me.Telefono2TextBox.Size = New System.Drawing.Size(180, 26)
+        Me.Telefono2TextBox.Size = New System.Drawing.Size(753, 26)
         Me.Telefono2TextBox.TabIndex = 8
         '
         'BancoTextBox
         '
         Me.BancoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasContratadasMontajeBindingSource, "Banco", True))
-        Me.BancoTextBox.Location = New System.Drawing.Point(170, 211)
+        Me.BancoTextBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BancoTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BancoTextBox.Name = "BancoTextBox"
-        Me.BancoTextBox.Size = New System.Drawing.Size(180, 26)
+        Me.BancoTextBox.Size = New System.Drawing.Size(753, 26)
         Me.BancoTextBox.TabIndex = 36
         '
         'Label17
@@ -1185,14 +1259,15 @@ Partial Class FrmEmpresaMontaje
         Me.Label17.Size = New System.Drawing.Size(68, 22)
         Me.Label17.TabIndex = 31
         Me.Label17.Text = "Label17"
+        Me.Label17.Visible = False
         '
         'Telefono1TextBox
         '
         Me.Telefono1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasContratadasMontajeBindingSource, "Telefono1", True))
-        Me.Telefono1TextBox.Location = New System.Drawing.Point(170, 94)
+        Me.Telefono1TextBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Telefono1TextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Telefono1TextBox.Name = "Telefono1TextBox"
-        Me.Telefono1TextBox.Size = New System.Drawing.Size(180, 26)
+        Me.Telefono1TextBox.Size = New System.Drawing.Size(753, 26)
         Me.Telefono1TextBox.TabIndex = 6
         '
         'Label15
@@ -1205,15 +1280,17 @@ Partial Class FrmEmpresaMontaje
         Me.Label15.Size = New System.Drawing.Size(73, 22)
         Me.Label15.TabIndex = 29
         Me.Label15.Text = "Proyecto"
+        Me.Label15.Visible = False
         '
         'RazonSocialComboBox
         '
         Me.RazonSocialComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasContratadasMontajeBindingSource, "RazonSocial", True))
+        Me.RazonSocialComboBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RazonSocialComboBox.FormattingEnabled = True
-        Me.RazonSocialComboBox.Location = New System.Drawing.Point(170, 52)
+        Me.RazonSocialComboBox.Location = New System.Drawing.Point(181, 52)
         Me.RazonSocialComboBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RazonSocialComboBox.Name = "RazonSocialComboBox"
-        Me.RazonSocialComboBox.Size = New System.Drawing.Size(180, 28)
+        Me.RazonSocialComboBox.Size = New System.Drawing.Size(753, 28)
         Me.RazonSocialComboBox.TabIndex = 4
         '
         'Label14
@@ -1226,6 +1303,7 @@ Partial Class FrmEmpresaMontaje
         Me.Label14.Size = New System.Drawing.Size(68, 22)
         Me.Label14.TabIndex = 28
         Me.Label14.Text = "Label14"
+        Me.Label14.Visible = False
         '
         'Label13
         '
@@ -1237,24 +1315,25 @@ Partial Class FrmEmpresaMontaje
         Me.Label13.Size = New System.Drawing.Size(60, 22)
         Me.Label13.TabIndex = 27
         Me.Label13.Text = "Cliente"
+        Me.Label13.Visible = False
         '
         'IdEmpresaMontajeTextBox
         '
         Me.IdEmpresaMontajeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.EmpresasContratadasMontajeBindingSource, "IdEmpresaMontaje", True))
-        Me.IdEmpresaMontajeTextBox.Location = New System.Drawing.Point(170, 12)
+        Me.IdEmpresaMontajeTextBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.IdEmpresaMontajeTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.IdEmpresaMontajeTextBox.Name = "IdEmpresaMontajeTextBox"
-        Me.IdEmpresaMontajeTextBox.Size = New System.Drawing.Size(180, 26)
+        Me.IdEmpresaMontajeTextBox.Size = New System.Drawing.Size(753, 26)
         Me.IdEmpresaMontajeTextBox.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label1.Location = New System.Drawing.Point(389, 55)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(84, 22)
+        Me.Label1.Size = New System.Drawing.Size(219, 24)
         Me.Label1.TabIndex = 12
         Me.Label1.Text = "Facturado"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1262,10 +1341,10 @@ Partial Class FrmEmpresaMontaje
         'Label7
         '
         Me.Label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label7.Location = New System.Drawing.Point(802, 130)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(102, 22)
+        Me.Label7.Size = New System.Drawing.Size(220, 24)
         Me.Label7.TabIndex = 25
         Me.Label7.Text = "Total"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1273,10 +1352,10 @@ Partial Class FrmEmpresaMontaje
         'Label2
         '
         Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label2.Location = New System.Drawing.Point(478, 55)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(102, 22)
+        Me.Label2.Size = New System.Drawing.Size(220, 24)
         Me.Label2.TabIndex = 13
         Me.Label2.Text = "Total"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1285,10 +1364,10 @@ Partial Class FrmEmpresaMontaje
         '
         Me.Label8.AutoSize = True
         Me.Label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label8.Location = New System.Drawing.Point(645, 130)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(141, 22)
+        Me.Label8.Size = New System.Drawing.Size(220, 24)
         Me.Label8.TabIndex = 24
         Me.Label8.Text = "Pendiente Asignar"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1297,10 +1376,10 @@ Partial Class FrmEmpresaMontaje
         '
         Me.Label4.AutoSize = True
         Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label4.Location = New System.Drawing.Point(389, 96)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(66, 22)
+        Me.Label4.Size = New System.Drawing.Size(219, 24)
         Me.Label4.TabIndex = 16
         Me.Label4.Text = "Pagado"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1308,10 +1387,10 @@ Partial Class FrmEmpresaMontaje
         'Label9
         '
         Me.Label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label9.Location = New System.Drawing.Point(802, 96)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(102, 22)
+        Me.Label9.Size = New System.Drawing.Size(220, 24)
         Me.Label9.TabIndex = 23
         Me.Label9.Text = "Total"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1319,10 +1398,10 @@ Partial Class FrmEmpresaMontaje
         'Label3
         '
         Me.Label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label3.Location = New System.Drawing.Point(478, 96)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(102, 22)
+        Me.Label3.Size = New System.Drawing.Size(220, 24)
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "Total"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1331,10 +1410,10 @@ Partial Class FrmEmpresaMontaje
         '
         Me.Label10.AutoSize = True
         Me.Label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label10.Location = New System.Drawing.Point(645, 96)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(78, 22)
+        Me.Label10.Size = New System.Drawing.Size(220, 24)
         Me.Label10.TabIndex = 22
         Me.Label10.Text = "Asignado"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1343,10 +1422,10 @@ Partial Class FrmEmpresaMontaje
         '
         Me.Label6.AutoSize = True
         Me.Label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label6.Location = New System.Drawing.Point(389, 130)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(83, 22)
+        Me.Label6.Size = New System.Drawing.Size(219, 25)
         Me.Label6.TabIndex = 18
         Me.Label6.Text = "Pendiente"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1354,10 +1433,10 @@ Partial Class FrmEmpresaMontaje
         'Label11
         '
         Me.Label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label11.Location = New System.Drawing.Point(802, 55)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(102, 22)
+        Me.Label11.Size = New System.Drawing.Size(220, 24)
         Me.Label11.TabIndex = 21
         Me.Label11.Text = "Total"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1365,10 +1444,10 @@ Partial Class FrmEmpresaMontaje
         'Label5
         '
         Me.Label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label5.Location = New System.Drawing.Point(478, 130)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(102, 22)
+        Me.Label5.Size = New System.Drawing.Size(220, 25)
         Me.Label5.TabIndex = 19
         Me.Label5.Text = "Total"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1377,13 +1456,110 @@ Partial Class FrmEmpresaMontaje
         '
         Me.Label12.AutoSize = True
         Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label12.Location = New System.Drawing.Point(645, 55)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(66, 22)
+        Me.Label12.Size = New System.Drawing.Size(220, 24)
         Me.Label12.TabIndex = 20
         Me.Label12.Text = "Pagado"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TableLayoutPanelCabeceraDatos
+        '
+        Me.TableLayoutPanelCabeceraDatos.ColumnCount = 1
+        Me.TableLayoutPanelCabeceraDatos.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelCabeceraDatos.Controls.Add(Me.TableLayoutPanelCampos, 0, 0)
+        Me.TableLayoutPanelCabeceraDatos.Controls.Add(Me.TableLayoutPanelResumen, 0, 1)
+        Me.TableLayoutPanelCabeceraDatos.Controls.Add(Me.FlowLayoutPanelBotones, 0, 2)
+        Me.TableLayoutPanelCabeceraDatos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelCabeceraDatos.Location = New System.Drawing.Point(8, 8)
+        Me.TableLayoutPanelCabeceraDatos.Name = "TableLayoutPanelCabeceraDatos"
+        Me.TableLayoutPanelCabeceraDatos.RowCount = 3
+        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
+        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelCabeceraDatos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
+        Me.TableLayoutPanelCabeceraDatos.Size = New System.Drawing.Size(964, 338)
+        Me.TableLayoutPanelCabeceraDatos.TabIndex = 44
+        '
+        'TableLayoutPanelCampos
+        '
+        Me.TableLayoutPanelCampos.AutoSize = False
+        Me.TableLayoutPanelCampos.ColumnCount = 2
+        Me.TableLayoutPanelCampos.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelCampos.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelCampos.Controls.Add(IdEmpresaMontajeLabel, 0, 0)
+        Me.TableLayoutPanelCampos.Controls.Add(Me.IdEmpresaMontajeTextBox, 1, 0)
+        Me.TableLayoutPanelCampos.Controls.Add(RazonSocialLabel, 0, 1)
+        Me.TableLayoutPanelCampos.Controls.Add(Me.RazonSocialComboBox, 1, 1)
+        Me.TableLayoutPanelCampos.Controls.Add(Telefono1Label, 0, 2)
+        Me.TableLayoutPanelCampos.Controls.Add(Me.Telefono1TextBox, 1, 2)
+        Me.TableLayoutPanelCampos.Controls.Add(Telefono2Label, 0, 3)
+        Me.TableLayoutPanelCampos.Controls.Add(Me.Telefono2TextBox, 1, 3)
+        Me.TableLayoutPanelCampos.Controls.Add(EmailLabel, 0, 4)
+        Me.TableLayoutPanelCampos.Controls.Add(Me.EmailTextBox, 1, 4)
+        Me.TableLayoutPanelCampos.Controls.Add(BancoLabel, 0, 5)
+        Me.TableLayoutPanelCampos.Controls.Add(Me.BancoTextBox, 1, 5)
+        Me.TableLayoutPanelCampos.Controls.Add(CuentaLabel, 0, 6)
+        Me.TableLayoutPanelCampos.Controls.Add(Me.CuentaTextBox, 1, 6)
+        Me.TableLayoutPanelCampos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelCampos.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanelCampos.Name = "TableLayoutPanelCampos"
+        Me.TableLayoutPanelCampos.Padding = New System.Windows.Forms.Padding(10)
+        Me.TableLayoutPanelCampos.RowCount = 7
+        Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelCampos.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelCampos.Size = New System.Drawing.Size(958, 244)
+        Me.TableLayoutPanelCampos.TabIndex = 0
+        '
+        'TableLayoutPanelResumen
+        '
+        Me.TableLayoutPanelResumen.ColumnCount = 4
+        Me.TableLayoutPanelResumen.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanelResumen.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanelResumen.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanelResumen.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label1, 0, 0)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label2, 1, 0)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label12, 2, 0)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label11, 3, 0)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label4, 0, 1)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label3, 1, 1)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label10, 2, 1)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label9, 3, 1)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label6, 0, 2)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label5, 1, 2)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label8, 2, 2)
+        Me.TableLayoutPanelResumen.Controls.Add(Me.Label7, 3, 2)
+        Me.TableLayoutPanelResumen.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelResumen.Location = New System.Drawing.Point(3, 316)
+        Me.TableLayoutPanelResumen.Name = "TableLayoutPanelResumen"
+        Me.TableLayoutPanelResumen.Padding = New System.Windows.Forms.Padding(10, 6, 10, 6)
+        Me.TableLayoutPanelResumen.RowCount = 3
+        Me.TableLayoutPanelResumen.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanelResumen.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanelResumen.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanelResumen.Size = New System.Drawing.Size(958, 27)
+        Me.TableLayoutPanelResumen.TabIndex = 1
+        '
+        'FlowLayoutPanelBotones
+        '
+        Me.FlowLayoutPanelBotones.Controls.Add(Me.Button3)
+        Me.FlowLayoutPanelBotones.Controls.Add(Me.BtnResumenPagos)
+        Me.FlowLayoutPanelBotones.Controls.Add(Me.BtnResumenFactura)
+        Me.FlowLayoutPanelBotones.Controls.Add(Me.BtnModificarFactura)
+        Me.FlowLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.FlowLayoutPanelBotones.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight
+        Me.FlowLayoutPanelBotones.Location = New System.Drawing.Point(3, 322)
+        Me.FlowLayoutPanelBotones.Name = "FlowLayoutPanelBotones"
+        Me.FlowLayoutPanelBotones.Padding = New System.Windows.Forms.Padding(10, 6, 10, 6)
+        Me.FlowLayoutPanelBotones.Size = New System.Drawing.Size(958, 49)
+        Me.FlowLayoutPanelBotones.TabIndex = 2
+        Me.FlowLayoutPanelBotones.WrapContents = False
         '
         'TableLayoutPanel1
         '
@@ -1391,12 +1567,12 @@ Partial Class FrmEmpresaMontaje
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.pnlContenido, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 373)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 401)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(2124, 849)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(2124, 821)
         Me.TableLayoutPanel1.TabIndex = 41
         '
         'pnlContenido
@@ -1405,13 +1581,14 @@ Partial Class FrmEmpresaMontaje
         Me.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlContenido.Location = New System.Drawing.Point(3, 3)
         Me.pnlContenido.Name = "pnlContenido"
-        Me.pnlContenido.Size = New System.Drawing.Size(2118, 843)
+        Me.pnlContenido.Padding = New System.Windows.Forms.Padding(8, 0, 8, 8)
+        Me.pnlContenido.Size = New System.Drawing.Size(2118, 815)
         Me.pnlContenido.TabIndex = 42
         '
         'SplitContainerPrincipal
         '
         Me.SplitContainerPrincipal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainerPrincipal.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainerPrincipal.Location = New System.Drawing.Point(8, 0)
         Me.SplitContainerPrincipal.Name = "SplitContainerPrincipal"
         Me.SplitContainerPrincipal.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -1422,7 +1599,7 @@ Partial Class FrmEmpresaMontaje
         'SplitContainerPrincipal.Panel2
         '
         Me.SplitContainerPrincipal.Panel2.Controls.Add(Me.SplitContainerInferior)
-        Me.SplitContainerPrincipal.Size = New System.Drawing.Size(2118, 843)
+        Me.SplitContainerPrincipal.Size = New System.Drawing.Size(2102, 807)
         Me.SplitContainerPrincipal.SplitterDistance = 480
         Me.SplitContainerPrincipal.TabIndex = 0
         '
@@ -1525,6 +1702,14 @@ Partial Class FrmEmpresaMontaje
         Me.SplitContainerInferior.Panel2.ResumeLayout(False)
         CType(Me.SplitContainerInferior, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerInferior.ResumeLayout(False)
+        Me.FlowLayoutPanelBotones.ResumeLayout(False)
+        Me.FlowLayoutPanelBotones.PerformLayout()
+        Me.TableLayoutPanelResumen.ResumeLayout(False)
+        Me.TableLayoutPanelResumen.PerformLayout()
+        Me.TableLayoutPanelCampos.ResumeLayout(False)
+        Me.TableLayoutPanelCampos.PerformLayout()
+        Me.TableLayoutPanelCabeceraDatos.ResumeLayout(False)
+        Me.TableLayoutPanelCabeceraDatos.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1640,6 +1825,10 @@ Partial Class FrmEmpresaMontaje
     Friend WithEvents SplitContainerInferior As SplitContainer
     Friend WithEvents pnlCabeceraDatos As Panel
     Friend WithEvents pnlCabeceraB11 As Panel
+    Friend WithEvents TableLayoutPanelCabeceraDatos As TableLayoutPanel
+    Friend WithEvents TableLayoutPanelCampos As TableLayoutPanel
+    Friend WithEvents TableLayoutPanelResumen As TableLayoutPanel
+    Friend WithEvents FlowLayoutPanelBotones As FlowLayoutPanel
     Friend WithEvents BtnModificarFactura As Button
     Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn31 As DataGridViewTextBoxColumn
