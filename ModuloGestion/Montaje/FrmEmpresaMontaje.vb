@@ -46,10 +46,11 @@
     End Sub
 
     Private Sub FrmEmpresaMontaje_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
+        'TODO: esta línea de código carga datos en la tabla 'DsMontajeB11.FacturaMontajeB11' Puede moverla o quitarla según sea necesario.
+        Me.FacturaMontajeB11TableAdapter.Fill(Me.DsMontajeB11.FacturaMontajeB11)
         'TODO: esta línea de código carga datos en la tabla 'DsArticulos.Articulos' Puede moverla o quitarla según sea necesario.
         Me.ArticulosTableAdapter.Fill(Me.DsArticulos.Articulos)
-        Me.PagoMontajeTableAdapter.FillByIdEmpresa(Me.DsPagosMontaje.PagoMontaje, IdEmpresaMontajeTextBox.Text)
+
         Me.ClientesTableAdapter.Fill(Me.DsClientes.Clientes)
         'TODO: esta línea de código carga datos en la tabla 'DsProyectos.Proyectos' Puede moverla o quitarla según sea necesario.
         Me.ProyectosTableAdapter.Fill(Me.DsProyectos.Proyectos)
@@ -62,7 +63,6 @@
     Private Sub EmpresasContratadasMontajeBindingNavigator_RefreshItems(sender As System.Object, e As System.EventArgs) Handles EmpresasContratadasMontajeBindingNavigator.RefreshItems
         Me.FacturaMontajeTableAdapter.FillByIdEmpresa(Me.DsPagosMontaje.FacturaMontaje, IdEmpresaMontajeTextBox.Text)
         Me.PagoMontajeTableAdapter.FillByIdEmpresa(Me.DsPagosMontaje.PagoMontaje, IdEmpresaMontajeTextBox.Text)
-        Me.FacturaMontajeB11TableAdapter.FillByIdEmpresaMontaje(Me.DsMontajeB11.FacturaMontajeB11, IdEmpresaMontajeTextBox.Text)
         Sumar()
     End Sub
 
@@ -143,43 +143,33 @@
         End If
 
         Dim idEmpresa As String =
-    CType(EmpresasContratadasMontajeBindingSource.Current, DataRowView)("IdEmpresaMontaje").ToString()
+        CType(EmpresasContratadasMontajeBindingSource.Current, DataRowView)("IdEmpresaMontaje").ToString()
 
-        ' 🔥 GENERAR ID DESDE LA FUNCIÓN SQL
-        Dim cn As New SqlClient.SqlConnection(My.Settings.GestionEmpresaConnectionString)
-        Dim cmd As New SqlClient.SqlCommand("SELECT dbo.SiguienteFacturaB11()", cn)
-
-        cn.Open()
-        Dim idFactura As String = cmd.ExecuteScalar().ToString()
-        cn.Close()
-
-        ' 🚀 ABRIR FORM Y PASAR DATOS
         Dim f As New FrmFacturaMontajeB11
         f.IdEmpresaSeleccionada = idEmpresa
-        f.IdFacturaGenerada = idFactura ' 👈 NUEVO
-
         f.ShowDialog()
 
     End Sub
 
-    Private Sub FacturaMontajeB11DataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles FacturaMontajeB11DataGridView.CellClick
+    Private Sub BtnInmprimirB11_Click(sender As Object, e As EventArgs) Handles BtnInmprimirB11.Click
 
-        If e.RowIndex < 0 Then Exit Sub
-
-        If FacturaMontajeB11DataGridView.Columns(e.ColumnIndex).Name = "Imprimir" Then
-
-            Dim idFactura As String = FacturaMontajeB11DataGridView.Rows(e.RowIndex).Cells("IdFacturaB11").Value.ToString()
-
-            Dim frm As New ImpPagoMomtaje
-
-            ' 👇 Aquí le pasas el valor
-            frm.IdFacturaSeleccionada = idFactura
-            frm.ImprimirFacturaNfc()
-
-
-
+        If FacturaMontajeB11DataGridView.CurrentRow Is Nothing Then
+            MessageBox.Show("Seleccione una factura.", "Imprimir B11", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
         End If
 
+        Dim IdFactura As String = FacturaMontajeB11DataGridView.CurrentRow.Cells("IdFacturaB11").Value.ToString()
+
+        If String.IsNullOrWhiteSpace(IdFactura) Then
+            MessageBox.Show("La fila seleccionada no tiene IdFacturaB11.", "Imprimir B11", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim frm As New ImpPagoMomtaje
+
+        frm.IdFacturaSeleccionada = IdFactura
+
+        frm.ImprimirFacturaNfc()
 
     End Sub
 End Class

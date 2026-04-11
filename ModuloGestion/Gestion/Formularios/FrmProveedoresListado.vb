@@ -81,35 +81,65 @@
 
     Private Sub PrepararNuevaCompra()
 
-        Dim row As DataRow = DsProveedores.Proveedores(ProveedoresBindingSource.Position)
-        Dim frm As FrmIngresoCompras = My.Forms.FrmIngresoCompras
+        Try
+            If ProveedoresBindingSource.Position < 0 Then Exit Sub
 
-        frm.EsNuevaCompra = True
-        If Not frm.Visible Then frm.Show()
+            Dim row As DataRow = DsProveedores.Proveedores(ProveedoresBindingSource.Position)
+            Dim frm As FrmIngresoCompras = My.Forms.FrmIngresoCompras
 
-        ' --- Proveedor ---
-        frm.LblProveedor.Text = row("Id_Proveedor").ToString()
-        frm.Id_ProveedorTextBox.Text = row("Id_Proveedor").ToString()
-        frm.Id_EmpresaTextBox.Text = "IN"
-        frm.PorcientoImpuestoTextBox.Text = row("Itebis1").ToString()
-        frm.MonedaTextBox.Text = row("Moneda").ToString()
+            frm.EsNuevaCompra = True
 
-        ' --- Contexto ---
-        frm.LblPresupuesto.Text = LblPresupuesto.Text
-        frm.LblProyecto.Text = LblProyecto.Text
+            If Not frm.Visible Then frm.Show()
 
-        ' --- Número de compra ---
-        frm.Id_CompraTextBox.Text =
-            frm.CompraMaterialesTableAdapter.Siguiente(frm.Id_EmpresaTextBox.Text)
+            'Crear fila temporal de cabecera si todavía no existe
+            If frm.CompraMaterialesBindingSource.Current Is Nothing Then
+                frm.CompraMaterialesBindingSource.AddNew()
+            End If
 
-        ' --- Grids ---
-        frm.DataGrid()
+            Dim fila As DataRowView =
+            CType(frm.CompraMaterialesBindingSource.Current, DataRowView)
 
-        ' --- Tasa ---
-        CargarTasaDelDia(frm)
+            'Contexto visual
+            frm.LblProveedor.Text = row("Id_Proveedor").ToString()
+            frm.LblPresupuesto.Text = LblPresupuesto.Text
+            frm.LblProyecto.Text = LblProyecto.Text
 
-        ' --- Totales ---
-        frm.Totales()
+            'Cabecera en memoria
+            fila("Id_Proveedor") = row("Id_Proveedor").ToString()
+            fila("Id_Empresa") = "IN"
+            fila("PorcientoImpuesto") = row("Itebis1")
+            fila("Moneda") = row("Moneda").ToString()
+            fila("Fecha_Compra") = Date.Today
+
+            'Número de compra
+            Dim idCompra As String =
+            frm.CompraMaterialesTableAdapter.Siguiente("IN").ToString()
+
+            fila("Id_Compra") = idCompra
+
+            'Si usas Label1 internamente para el Id
+            frm.Label1.Text = idCompra
+
+            'Guardar la fila en memoria
+            fila.EndEdit()
+            frm.CompraMaterialesBindingSource.EndEdit()
+
+            'Actualizar controles enlazados
+            frm.Id_CompraTextBox.Refresh()
+            frm.Id_ProveedorTextBox.Refresh()
+            frm.MonedaTextBox.Refresh()
+            frm.PorcientoImpuestoTextBox.Refresh()
+
+            'Grids y cálculos
+            frm.DataGrid()
+            CargarTasaDelDia(frm)
+            frm.Totales()
+
+            frm.BringToFront()
+
+        Catch ex As Exception
+            MostrarError("Error preparando la nueva compra.", ex)
+        End Try
 
     End Sub
 
