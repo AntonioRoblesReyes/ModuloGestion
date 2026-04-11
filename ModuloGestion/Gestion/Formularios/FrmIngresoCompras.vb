@@ -1,4 +1,6 @@
 ﻿Imports System.Data
+Imports System.Globalization
+Imports System.Linq
 Imports System.Threading.Tasks
 
 Public Class FrmIngresoCompras
@@ -26,6 +28,7 @@ Public Class FrmIngresoCompras
 
             DataGrid()
             Totales()
+            cambiosPendientes = False
 
         Catch ex As Exception
             MessageBox.Show("Error al cargar la compra: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -54,15 +57,47 @@ Public Class FrmIngresoCompras
     End Sub
 
     Sub TotalesCompra()
+        Dim filaActual As DataRowView = TryCast(Me.CompraMaterialesBindingSource.Current, DataRowView)
+        If filaActual Is Nothing Then Exit Sub
+
         Me.CompraMaterialesTableAdapter.ActulizarTotales(
-            CDbl(SubTotalCompraUSTextBox.Text),
-            CDbl(ImpuestoCompraUSTextBox.Text),
-            CDbl(TotalCompraUSTextBox.Text),
-            CDbl(SubTotalCompraRDTextBox.Text),
-            CDbl(ImpuestoCompraRDTextBox.Text),
-            CDbl(TotalCompraRDTextBox.Text),
+            ObtenerDecimalSeguro(filaActual, "SubTotalCompraUS"),
+            ObtenerDecimalSeguro(filaActual, "ImpuestoCompraUS"),
+            ObtenerDecimalSeguro(filaActual, "TotalCompraUS"),
+            ObtenerDecimalSeguro(filaActual, "SubTotalCompraRD"),
+            ObtenerDecimalSeguro(filaActual, "ImpuestoCompraRD"),
+            ObtenerDecimalSeguro(filaActual, "TotalCompraRD"),
             Id_CompraTextBox.Text)
     End Sub
+
+    Private Function ObtenerDecimalSeguro(fila As DataRowView, nombreColumna As String) As Decimal
+        If fila Is Nothing OrElse Not fila.Row.Table.Columns.Contains(nombreColumna) Then Return 0D
+        If fila.Row.IsNull(nombreColumna) Then Return 0D
+
+        Dim valor As Object = fila(nombreColumna)
+        If TypeOf valor Is Decimal Then Return CDec(valor)
+
+        Dim convertido As Decimal
+        If Decimal.TryParse(Convert.ToString(valor, CultureInfo.CurrentCulture), NumberStyles.Any, CultureInfo.CurrentCulture, convertido) Then
+            Return convertido
+        End If
+
+        If Decimal.TryParse(Convert.ToString(valor, CultureInfo.InvariantCulture), NumberStyles.Any, CultureInfo.InvariantCulture, convertido) Then
+            Return convertido
+        End If
+
+        Return 0D
+    End Function
+
+    Private Function EsFilaDetalleVacia(row As DataGridViewRow) As Boolean
+        If row Is Nothing OrElse row.IsNewRow Then Return True
+
+        Dim descripcion As String = Convert.ToString(row.Cells("DescripcionProveedor").Value)
+        Dim cantidad As Decimal
+        Decimal.TryParse(Convert.ToString(row.Cells("Cantidad").Value), NumberStyles.Any, CultureInfo.CurrentCulture, cantidad)
+
+        Return String.IsNullOrWhiteSpace(descripcion) AndAlso cantidad <= 0D
+    End Function
 
     ' =========================
     '   TOTALES Y FORMATO
@@ -368,17 +403,18 @@ Public Class FrmIngresoCompras
     Function ObtenerSiguienteIdDetalleCompra(idCompra As String) As String
         Dim maxCorrelativo As Integer = 0
 
-        For Each fila As DataGridViewRow In CompraMaterialesDetalleDataGridView.Rows
-            If Not fila.IsNewRow AndAlso fila.Cells("IdDetallecompra").Value IsNot Nothing Then
-                Dim idDetalle As String = fila.Cells("IdDetallecompra").Value.ToString()
-                If idDetalle.StartsWith(idCompra & "-") Then
-                    Dim partes() = idDetalle.Split("-"c)
-                    Dim correlativo As Integer
-                    If partes.Length > 1 AndAlso Integer.TryParse(partes.Last(), correlativo) Then
-                        If correlativo > maxCorrelativo Then
-                            maxCorrelativo = correlativo
-                        End If
-                    End If
+        For Each row As DsCompras.CompraMaterialesDetalleRow In Me.DsCompras.CompraMaterialesDetalle.Rows
+            If row.RowState = DataRowState.Deleted Then Continue For
+            If row.IsId_Detalle_compraNull() Then Continue For
+
+            Dim idDetalle As String = row.Id_Detalle_compra.Trim()
+            If Not idDetalle.StartsWith(idCompra & "-", StringComparison.OrdinalIgnoreCase) Then Continue For
+
+            Dim partes() As String = idDetalle.Split("-"c)
+            Dim correlativo As Integer
+            If partes.Length > 1 AndAlso Integer.TryParse(partes(partes.Length - 1), correlativo) Then
+                If correlativo > maxCorrelativo Then
+                    maxCorrelativo = correlativo
                 End If
             End If
         Next
@@ -404,9 +440,25 @@ Public Class FrmIngresoCompras
     ''' </summary>
     Sub AñadirItm()
         Try
+            If String.IsNullOrWhiteSpace(Id_ProveedorTextBox.Text) Then
+                MessageBox.Show("Debe seleccionar un proveedor antes de agregar productos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            If My.Forms.FrmProductos.ProveedoresProductoBindingSource Is Nothing OrElse
+               My.Forms.FrmProductos.ProveedoresProductoBindingSource.Position < 0 OrElse
+               My.Forms.FrmProductos.DsProveedoresProducto.ProveedoresProducto.Count = 0 Then
+                MessageBox.Show("El proveedor no tiene productos disponibles para agregar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
             Dim filaProducto = My.Forms.FrmProductos.DsProveedoresProducto.ProveedoresProducto(My.Forms.FrmProductos.ProveedoresProductoBindingSource.Position)
 
             Dim idCompra As String = Id_CompraTextBox.Text
+            If String.IsNullOrWhiteSpace(idCompra) Then
+                MessageBox.Show("No existe un Id de compra válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
 
             Dim idmaterial As String = filaProducto.IdProductoProveedor.ToString()
             Dim idmedida As String = filaProducto.Id_Medida.ToString()
@@ -464,6 +516,7 @@ Public Class FrmIngresoCompras
             My.Forms.FrmProductos.Close()
 
             Totales()
+            cambiosPendientes = True
 
         Catch ex As Exception
             MsgBox("Error al añadir ítem: " & ex.Message, MsgBoxStyle.Critical)
@@ -536,6 +589,21 @@ Public Class FrmIngresoCompras
             'Recalcular totales
             Totales()
 
+            If String.IsNullOrWhiteSpace(Id_CompraTextBox.Text) Then
+                MessageBox.Show("El Id de compra es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            If String.IsNullOrWhiteSpace(Id_ProveedorTextBox.Text) Then
+                MessageBox.Show("Debe seleccionar un proveedor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            Dim filasConDatos = Me.CompraMaterialesDetalleDataGridView.Rows.Cast(Of DataGridViewRow)().Count(Function(r) Not EsFilaDetalleVacia(r))
+            If filasConDatos = 0 Then
+                MessageBox.Show("No se puede guardar una compra sin detalle.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
 
             '=====================================
             '   NUEVA COMPRA (INSERT)
