@@ -81,35 +81,95 @@
 
     Private Sub PrepararNuevaCompra()
 
-        Dim row As DataRow = DsProveedores.Proveedores(ProveedoresBindingSource.Position)
-        Dim frm As FrmIngresoCompras = My.Forms.FrmIngresoCompras
+        Try
 
-        frm.EsNuevaCompra = True
-        If Not frm.Visible Then frm.Show()
+            If ProveedoresBindingSource.Current Is Nothing Then
+                MessageBox.Show("Debe seleccionar un proveedor.",
+                            "Proveedor",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning)
+                Exit Sub
+            End If
 
-        ' --- Proveedor ---
-        frm.LblProveedor.Text = row("Id_Proveedor").ToString()
-        frm.Id_ProveedorTextBox.Text = row("Id_Proveedor").ToString()
-        frm.Id_EmpresaTextBox.Text = "IN"
-        frm.PorcientoImpuestoTextBox.Text = row("Itebis1").ToString()
-        frm.MonedaTextBox.Text = row("Moneda").ToString()
+            Dim row As DsProveedores.ProveedoresRow =
+            CType(CType(ProveedoresBindingSource.Current, DataRowView).Row,
+                  DsProveedores.ProveedoresRow)
 
-        ' --- Contexto ---
-        frm.LblPresupuesto.Text = LblPresupuesto.Text
-        frm.LblProyecto.Text = LblProyecto.Text
+            Dim frm As FrmIngresoCompras = My.Forms.FrmIngresoCompras
 
-        ' --- Número de compra ---
-        frm.Id_CompraTextBox.Text =
-            frm.CompraMaterialesTableAdapter.Siguiente(frm.Id_EmpresaTextBox.Text)
+            frm.EsNuevaCompra = True
 
-        ' --- Grids ---
-        frm.DataGrid()
+            ' Mostrar primero el formulario para asegurar que Load ya se ejecutó
+            If Not frm.Visible Then
+                frm.Show()
+            End If
 
-        ' --- Tasa ---
-        CargarTasaDelDia(frm)
+            ' ============================
+            ' DATOS DEL PROVEEDOR
+            ' ============================
+            frm.LblProveedor.Text = row.Id_Proveedor
+            frm.Id_ProveedorTextBox.Text = row.Id_Proveedor
+            frm.Id_EmpresaTextBox.Text = "IN"
 
-        ' --- Totales ---
-        frm.Totales()
+            If row.IsItebis1Null() Then
+                frm.PorcientoImpuestoTextBox.Text = "0.18"
+            Else
+                frm.PorcientoImpuestoTextBox.Text = row.Itebis1.ToString()
+            End If
+
+            If row.IsMonedaNull() Then
+                frm.MonedaTextBox.Text = "US$"
+            Else
+                frm.MonedaTextBox.Text = row.Moneda.ToString().Trim().ToUpper()
+            End If
+
+            ' ============================
+            ' CONTEXTO
+            ' ============================
+            frm.LblPresupuesto.Text = Me.LblPresupuesto.Text
+            frm.LblProyecto.Text = Me.LblProyecto.Text
+
+            ' ============================
+            ' NUEVO ID DE COMPRA
+            ' ============================
+            Dim nuevoId As Object =
+            frm.CompraMaterialesTableAdapter.Siguiente("IN")
+
+            If nuevoId Is Nothing OrElse IsDBNull(nuevoId) OrElse nuevoId.ToString.Trim = "" Then
+                frm.Id_CompraTextBox.Text = "IN-0001"
+            Else
+                frm.Id_CompraTextBox.Text = nuevoId.ToString()
+            End If
+
+            ' ============================
+            ' CARGAR TASA DEL DÍA
+            ' ============================
+            CargarTasaDelDia(frm)
+
+            ' Si no encontró tasa, dejar 1 para evitar errores
+            If String.IsNullOrWhiteSpace(frm.TasaTextBox.Text) Then
+                frm.TasaTextBox.Text = "1"
+            End If
+
+            ' ============================
+            ' REFRESCAR GRID Y TOTALES
+            ' ============================
+            frm.DataGrid()
+            frm.Totales()
+
+            frm.BringToFront()
+
+        Catch ex As Exception
+
+            MessageBox.Show(
+            "Error preparando la nueva compra:" & vbCrLf & vbCrLf &
+            ex.Message & vbCrLf & vbCrLf &
+            ex.StackTrace,
+            "Error",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error)
+
+        End Try
 
     End Sub
 

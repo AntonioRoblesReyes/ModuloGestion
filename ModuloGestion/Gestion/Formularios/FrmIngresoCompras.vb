@@ -618,6 +618,4 @@ Public Class FrmIngresoCompras
 
 
 
-
-
 End Class

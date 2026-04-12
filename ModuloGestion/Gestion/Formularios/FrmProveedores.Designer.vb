@@ -155,7 +155,7 @@ Partial Class FrmProveedores
         Me.TableAdapterManager1 = New ModuloGestion.DsComprasTableAdapters.TableAdapterManager()
         Me.CompraMaterialesDetalleTableAdapter = New ModuloGestion.DsComprasTableAdapters.CompraMaterialesDetalleTableAdapter()
         Me.ComprasPorMesTableAdapter = New ModuloGestion.DsComprasTableAdapters.ComprasPorMesTableAdapter()
-        Me.BtnPagos = New System.Windows.Forms.Button()
+        Me.BtnHistorialPagos = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ValorFiscalCheckBox = New System.Windows.Forms.CheckBox()
         Me.Itebis1TextBox = New System.Windows.Forms.TextBox()
@@ -188,118 +188,118 @@ Partial Class FrmProveedores
         'Id_ProveedorLabel
         '
         Id_ProveedorLabel.AutoSize = True
-        Id_ProveedorLabel.Location = New System.Drawing.Point(21, 52)
+        Id_ProveedorLabel.Location = New System.Drawing.Point(24, 65)
         Id_ProveedorLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Id_ProveedorLabel.Name = "Id_ProveedorLabel"
-        Id_ProveedorLabel.Size = New System.Drawing.Size(93, 17)
+        Id_ProveedorLabel.Size = New System.Drawing.Size(103, 20)
         Id_ProveedorLabel.TabIndex = 25
         Id_ProveedorLabel.Text = "Id Proveedor:"
         '
         'RazonSocialLabel
         '
         RazonSocialLabel.AutoSize = True
-        RazonSocialLabel.Location = New System.Drawing.Point(21, 84)
+        RazonSocialLabel.Location = New System.Drawing.Point(24, 105)
         RazonSocialLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         RazonSocialLabel.Name = "RazonSocialLabel"
-        RazonSocialLabel.Size = New System.Drawing.Size(95, 17)
+        RazonSocialLabel.Size = New System.Drawing.Size(107, 20)
         RazonSocialLabel.TabIndex = 27
         RazonSocialLabel.Text = "Razon Social:"
         '
         'DireccionLabel
         '
         DireccionLabel.AutoSize = True
-        DireccionLabel.Location = New System.Drawing.Point(21, 116)
+        DireccionLabel.Location = New System.Drawing.Point(24, 145)
         DireccionLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         DireccionLabel.Name = "DireccionLabel"
-        DireccionLabel.Size = New System.Drawing.Size(71, 17)
+        DireccionLabel.Size = New System.Drawing.Size(79, 20)
         DireccionLabel.TabIndex = 29
         DireccionLabel.Text = "Direccion:"
         '
         'CiudadLabel
         '
         CiudadLabel.AutoSize = True
-        CiudadLabel.Location = New System.Drawing.Point(21, 148)
+        CiudadLabel.Location = New System.Drawing.Point(24, 185)
         CiudadLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         CiudadLabel.Name = "CiudadLabel"
-        CiudadLabel.Size = New System.Drawing.Size(56, 17)
+        CiudadLabel.Size = New System.Drawing.Size(63, 20)
         CiudadLabel.TabIndex = 31
         CiudadLabel.Text = "Ciudad:"
         '
         'PaisLabel
         '
         PaisLabel.AutoSize = True
-        PaisLabel.Location = New System.Drawing.Point(21, 180)
+        PaisLabel.Location = New System.Drawing.Point(24, 225)
         PaisLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         PaisLabel.Name = "PaisLabel"
-        PaisLabel.Size = New System.Drawing.Size(39, 17)
+        PaisLabel.Size = New System.Drawing.Size(43, 20)
         PaisLabel.TabIndex = 33
         PaisLabel.Text = "Pais:"
         '
         'Tlf1Label
         '
         Tlf1Label.AutoSize = True
-        Tlf1Label.Location = New System.Drawing.Point(21, 212)
+        Tlf1Label.Location = New System.Drawing.Point(24, 265)
         Tlf1Label.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Tlf1Label.Name = "Tlf1Label"
-        Tlf1Label.Size = New System.Drawing.Size(36, 17)
+        Tlf1Label.Size = New System.Drawing.Size(39, 20)
         Tlf1Label.TabIndex = 35
         Tlf1Label.Text = "Tlf1:"
         '
         'Tlf2Label
         '
         Tlf2Label.AutoSize = True
-        Tlf2Label.Location = New System.Drawing.Point(264, 212)
+        Tlf2Label.Location = New System.Drawing.Point(297, 265)
         Tlf2Label.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Tlf2Label.Name = "Tlf2Label"
-        Tlf2Label.Size = New System.Drawing.Size(36, 17)
+        Tlf2Label.Size = New System.Drawing.Size(39, 20)
         Tlf2Label.TabIndex = 37
         Tlf2Label.Text = "Tlf2:"
         '
         'FaxLabel
         '
         FaxLabel.AutoSize = True
-        FaxLabel.Location = New System.Drawing.Point(447, 212)
+        FaxLabel.Location = New System.Drawing.Point(503, 265)
         FaxLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         FaxLabel.Name = "FaxLabel"
-        FaxLabel.Size = New System.Drawing.Size(34, 17)
+        FaxLabel.Size = New System.Drawing.Size(39, 20)
         FaxLabel.TabIndex = 39
         FaxLabel.Text = "Fax:"
         '
         'EmailLabel
         '
         EmailLabel.AutoSize = True
-        EmailLabel.Location = New System.Drawing.Point(21, 244)
+        EmailLabel.Location = New System.Drawing.Point(24, 305)
         EmailLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         EmailLabel.Name = "EmailLabel"
-        EmailLabel.Size = New System.Drawing.Size(46, 17)
+        EmailLabel.Size = New System.Drawing.Size(52, 20)
         EmailLabel.TabIndex = 41
         EmailLabel.Text = "Email:"
         '
         'MonedaLabel
         '
         MonedaLabel.AutoSize = True
-        MonedaLabel.Location = New System.Drawing.Point(276, 50)
+        MonedaLabel.Location = New System.Drawing.Point(310, 62)
         MonedaLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         MonedaLabel.Name = "MonedaLabel"
-        MonedaLabel.Size = New System.Drawing.Size(63, 17)
+        MonedaLabel.Size = New System.Drawing.Size(71, 20)
         MonedaLabel.TabIndex = 45
         MonedaLabel.Text = "Moneda:"
         '
         'Itebis1Label
         '
         Itebis1Label.AutoSize = True
-        Itebis1Label.Location = New System.Drawing.Point(440, 50)
+        Itebis1Label.Location = New System.Drawing.Point(495, 62)
         Itebis1Label.Name = "Itebis1Label"
-        Itebis1Label.Size = New System.Drawing.Size(45, 17)
+        Itebis1Label.Size = New System.Drawing.Size(52, 20)
         Itebis1Label.TabIndex = 65
         Itebis1Label.Text = "Itebis:"
         '
         'BtnGuardar
         '
-        Me.BtnGuardar.Location = New System.Drawing.Point(509, 272)
-        Me.BtnGuardar.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnGuardar.Location = New System.Drawing.Point(573, 340)
+        Me.BtnGuardar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnGuardar.Name = "BtnGuardar"
-        Me.BtnGuardar.Size = New System.Drawing.Size(100, 28)
+        Me.BtnGuardar.Size = New System.Drawing.Size(112, 35)
         Me.BtnGuardar.TabIndex = 22
         Me.BtnGuardar.Text = "Guardar"
         Me.BtnGuardar.UseVisualStyleBackColor = True
@@ -332,6 +332,7 @@ Partial Class FrmProveedores
         Me.BindingNavigatorPositionItem.AccessibleName = "Posición"
         Me.BindingNavigatorPositionItem.AutoSize = False
         Me.BindingNavigatorPositionItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.BindingNavigatorPositionItem.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
         Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
         Me.BindingNavigatorPositionItem.Text = "0"
@@ -413,7 +414,7 @@ Partial Class FrmProveedores
         Me.ProveedoresBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem1
         Me.ProveedoresBindingNavigator.Name = "ProveedoresBindingNavigator"
         Me.ProveedoresBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem1
-        Me.ProveedoresBindingNavigator.Size = New System.Drawing.Size(1924, 27)
+        Me.ProveedoresBindingNavigator.Size = New System.Drawing.Size(2164, 31)
         Me.ProveedoresBindingNavigator.TabIndex = 25
         Me.ProveedoresBindingNavigator.Text = "BindingNavigator1"
         '
@@ -423,7 +424,7 @@ Partial Class FrmProveedores
         Me.BindingNavigatorAddNewItem1.Image = CType(resources.GetObject("BindingNavigatorAddNewItem1.Image"), System.Drawing.Image)
         Me.BindingNavigatorAddNewItem1.Name = "BindingNavigatorAddNewItem1"
         Me.BindingNavigatorAddNewItem1.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem1.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorAddNewItem1.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorAddNewItem1.Text = "Agregar nuevo"
         '
         'ProveedoresBindingSource
@@ -439,7 +440,7 @@ Partial Class FrmProveedores
         'BindingNavigatorCountItem1
         '
         Me.BindingNavigatorCountItem1.Name = "BindingNavigatorCountItem1"
-        Me.BindingNavigatorCountItem1.Size = New System.Drawing.Size(48, 24)
+        Me.BindingNavigatorCountItem1.Size = New System.Drawing.Size(57, 26)
         Me.BindingNavigatorCountItem1.Text = "de {0}"
         Me.BindingNavigatorCountItem1.ToolTipText = "Número total de elementos"
         '
@@ -449,7 +450,7 @@ Partial Class FrmProveedores
         Me.BindingNavigatorDeleteItem1.Image = CType(resources.GetObject("BindingNavigatorDeleteItem1.Image"), System.Drawing.Image)
         Me.BindingNavigatorDeleteItem1.Name = "BindingNavigatorDeleteItem1"
         Me.BindingNavigatorDeleteItem1.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem1.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorDeleteItem1.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorDeleteItem1.Text = "Eliminar"
         '
         'BindingNavigatorMoveFirstItem1
@@ -458,7 +459,7 @@ Partial Class FrmProveedores
         Me.BindingNavigatorMoveFirstItem1.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem1.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem1.Name = "BindingNavigatorMoveFirstItem1"
         Me.BindingNavigatorMoveFirstItem1.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem1.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveFirstItem1.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorMoveFirstItem1.Text = "Mover primero"
         '
         'BindingNavigatorMovePreviousItem1
@@ -467,13 +468,13 @@ Partial Class FrmProveedores
         Me.BindingNavigatorMovePreviousItem1.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem1.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem1.Name = "BindingNavigatorMovePreviousItem1"
         Me.BindingNavigatorMovePreviousItem1.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem1.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMovePreviousItem1.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorMovePreviousItem1.Text = "Mover anterior"
         '
         'BindingNavigatorSeparator3
         '
         Me.BindingNavigatorSeparator3.Name = "BindingNavigatorSeparator3"
-        Me.BindingNavigatorSeparator3.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator3.Size = New System.Drawing.Size(6, 31)
         '
         'BindingNavigatorPositionItem1
         '
@@ -481,14 +482,14 @@ Partial Class FrmProveedores
         Me.BindingNavigatorPositionItem1.AutoSize = False
         Me.BindingNavigatorPositionItem1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.BindingNavigatorPositionItem1.Name = "BindingNavigatorPositionItem1"
-        Me.BindingNavigatorPositionItem1.Size = New System.Drawing.Size(65, 27)
+        Me.BindingNavigatorPositionItem1.Size = New System.Drawing.Size(73, 31)
         Me.BindingNavigatorPositionItem1.Text = "0"
         Me.BindingNavigatorPositionItem1.ToolTipText = "Posición actual"
         '
         'BindingNavigatorSeparator4
         '
         Me.BindingNavigatorSeparator4.Name = "BindingNavigatorSeparator4"
-        Me.BindingNavigatorSeparator4.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator4.Size = New System.Drawing.Size(6, 31)
         '
         'BindingNavigatorMoveNextItem1
         '
@@ -496,7 +497,7 @@ Partial Class FrmProveedores
         Me.BindingNavigatorMoveNextItem1.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem1.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem1.Name = "BindingNavigatorMoveNextItem1"
         Me.BindingNavigatorMoveNextItem1.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem1.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveNextItem1.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorMoveNextItem1.Text = "Mover siguiente"
         '
         'BindingNavigatorMoveLastItem1
@@ -505,29 +506,29 @@ Partial Class FrmProveedores
         Me.BindingNavigatorMoveLastItem1.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem1.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem1.Name = "BindingNavigatorMoveLastItem1"
         Me.BindingNavigatorMoveLastItem1.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem1.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveLastItem1.Size = New System.Drawing.Size(34, 26)
         Me.BindingNavigatorMoveLastItem1.Text = "Mover último"
         '
         'BindingNavigatorSeparator5
         '
         Me.BindingNavigatorSeparator5.Name = "BindingNavigatorSeparator5"
-        Me.BindingNavigatorSeparator5.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator5.Size = New System.Drawing.Size(6, 31)
         '
         'ProveedoresBindingNavigatorSaveItem1
         '
         Me.ProveedoresBindingNavigatorSaveItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ProveedoresBindingNavigatorSaveItem1.Image = CType(resources.GetObject("ProveedoresBindingNavigatorSaveItem1.Image"), System.Drawing.Image)
         Me.ProveedoresBindingNavigatorSaveItem1.Name = "ProveedoresBindingNavigatorSaveItem1"
-        Me.ProveedoresBindingNavigatorSaveItem1.Size = New System.Drawing.Size(29, 24)
+        Me.ProveedoresBindingNavigatorSaveItem1.Size = New System.Drawing.Size(34, 26)
         Me.ProveedoresBindingNavigatorSaveItem1.Text = "Guardar datos"
         '
         'LblIdProveedor
         '
         Me.LblIdProveedor.AutoSize = True
-        Me.LblIdProveedor.Location = New System.Drawing.Point(345, 268)
+        Me.LblIdProveedor.Location = New System.Drawing.Point(388, 335)
         Me.LblIdProveedor.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblIdProveedor.Name = "LblIdProveedor"
-        Me.LblIdProveedor.Size = New System.Drawing.Size(51, 17)
+        Me.LblIdProveedor.Size = New System.Drawing.Size(57, 20)
         Me.LblIdProveedor.TabIndex = 21
         Me.LblIdProveedor.Text = "Label1"
         '
@@ -535,86 +536,86 @@ Partial Class FrmProveedores
         '
         Me.Id_ProveedorTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.Id_ProveedorTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Id_Proveedor", True))
-        Me.Id_ProveedorTextBox.Location = New System.Drawing.Point(127, 48)
-        Me.Id_ProveedorTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.Id_ProveedorTextBox.Location = New System.Drawing.Point(143, 60)
+        Me.Id_ProveedorTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Id_ProveedorTextBox.Name = "Id_ProveedorTextBox"
-        Me.Id_ProveedorTextBox.Size = New System.Drawing.Size(140, 22)
+        Me.Id_ProveedorTextBox.Size = New System.Drawing.Size(157, 26)
         Me.Id_ProveedorTextBox.TabIndex = 26
         '
         'RazonSocialTextBox
         '
         Me.RazonSocialTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.RazonSocialTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "RazonSocial", True))
-        Me.RazonSocialTextBox.Location = New System.Drawing.Point(127, 80)
-        Me.RazonSocialTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.RazonSocialTextBox.Location = New System.Drawing.Point(143, 100)
+        Me.RazonSocialTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RazonSocialTextBox.Name = "RazonSocialTextBox"
-        Me.RazonSocialTextBox.Size = New System.Drawing.Size(481, 22)
+        Me.RazonSocialTextBox.Size = New System.Drawing.Size(541, 26)
         Me.RazonSocialTextBox.TabIndex = 28
         '
         'DireccionTextBox
         '
         Me.DireccionTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.DireccionTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Direccion", True))
-        Me.DireccionTextBox.Location = New System.Drawing.Point(127, 112)
-        Me.DireccionTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.DireccionTextBox.Location = New System.Drawing.Point(143, 140)
+        Me.DireccionTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DireccionTextBox.Name = "DireccionTextBox"
-        Me.DireccionTextBox.Size = New System.Drawing.Size(481, 22)
+        Me.DireccionTextBox.Size = New System.Drawing.Size(541, 26)
         Me.DireccionTextBox.TabIndex = 30
         '
         'CiudadTextBox
         '
         Me.CiudadTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.CiudadTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Ciudad", True))
-        Me.CiudadTextBox.Location = New System.Drawing.Point(127, 144)
-        Me.CiudadTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.CiudadTextBox.Location = New System.Drawing.Point(143, 180)
+        Me.CiudadTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CiudadTextBox.Name = "CiudadTextBox"
-        Me.CiudadTextBox.Size = New System.Drawing.Size(481, 22)
+        Me.CiudadTextBox.Size = New System.Drawing.Size(541, 26)
         Me.CiudadTextBox.TabIndex = 32
         '
         'PaisTextBox
         '
         Me.PaisTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.PaisTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Pais", True))
-        Me.PaisTextBox.Location = New System.Drawing.Point(127, 176)
-        Me.PaisTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.PaisTextBox.Location = New System.Drawing.Point(143, 220)
+        Me.PaisTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PaisTextBox.Name = "PaisTextBox"
-        Me.PaisTextBox.Size = New System.Drawing.Size(481, 22)
+        Me.PaisTextBox.Size = New System.Drawing.Size(541, 26)
         Me.PaisTextBox.TabIndex = 34
         '
         'Tlf1TextBox
         '
         Me.Tlf1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Tlf1", True))
-        Me.Tlf1TextBox.Location = New System.Drawing.Point(127, 208)
-        Me.Tlf1TextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.Tlf1TextBox.Location = New System.Drawing.Point(143, 260)
+        Me.Tlf1TextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Tlf1TextBox.Name = "Tlf1TextBox"
-        Me.Tlf1TextBox.Size = New System.Drawing.Size(117, 22)
+        Me.Tlf1TextBox.Size = New System.Drawing.Size(131, 26)
         Me.Tlf1TextBox.TabIndex = 36
         '
         'Tlf2TextBox
         '
         Me.Tlf2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Tlf2", True))
-        Me.Tlf2TextBox.Location = New System.Drawing.Point(309, 208)
-        Me.Tlf2TextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.Tlf2TextBox.Location = New System.Drawing.Point(348, 260)
+        Me.Tlf2TextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Tlf2TextBox.Name = "Tlf2TextBox"
-        Me.Tlf2TextBox.Size = New System.Drawing.Size(117, 22)
+        Me.Tlf2TextBox.Size = New System.Drawing.Size(131, 26)
         Me.Tlf2TextBox.TabIndex = 38
         '
         'FaxTextBox
         '
         Me.FaxTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Fax", True))
-        Me.FaxTextBox.Location = New System.Drawing.Point(491, 208)
-        Me.FaxTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.FaxTextBox.Location = New System.Drawing.Point(552, 260)
+        Me.FaxTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FaxTextBox.Name = "FaxTextBox"
-        Me.FaxTextBox.Size = New System.Drawing.Size(117, 22)
+        Me.FaxTextBox.Size = New System.Drawing.Size(131, 26)
         Me.FaxTextBox.TabIndex = 40
         '
         'EmailTextBox
         '
         Me.EmailTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Email", True))
-        Me.EmailTextBox.Location = New System.Drawing.Point(127, 240)
-        Me.EmailTextBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.EmailTextBox.Location = New System.Drawing.Point(143, 300)
+        Me.EmailTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.EmailTextBox.Name = "EmailTextBox"
-        Me.EmailTextBox.Size = New System.Drawing.Size(481, 22)
+        Me.EmailTextBox.Size = New System.Drawing.Size(541, 26)
         Me.EmailTextBox.TabIndex = 42
         '
         'MonedaComboBox
@@ -622,10 +623,10 @@ Partial Class FrmProveedores
         Me.MonedaComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Moneda", True))
         Me.MonedaComboBox.FormattingEnabled = True
         Me.MonedaComboBox.Items.AddRange(New Object() {"RD$", "US$", "EUR"})
-        Me.MonedaComboBox.Location = New System.Drawing.Point(349, 47)
-        Me.MonedaComboBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.MonedaComboBox.Location = New System.Drawing.Point(393, 59)
+        Me.MonedaComboBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MonedaComboBox.Name = "MonedaComboBox"
-        Me.MonedaComboBox.Size = New System.Drawing.Size(77, 24)
+        Me.MonedaComboBox.Size = New System.Drawing.Size(86, 28)
         Me.MonedaComboBox.TabIndex = 46
         '
         'CuentaAsociadaBindingSource
@@ -635,10 +636,10 @@ Partial Class FrmProveedores
         '
         'BtnAnadirCuenta
         '
-        Me.BtnAnadirCuenta.Location = New System.Drawing.Point(127, 272)
-        Me.BtnAnadirCuenta.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnAnadirCuenta.Location = New System.Drawing.Point(143, 340)
+        Me.BtnAnadirCuenta.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnAnadirCuenta.Name = "BtnAnadirCuenta"
-        Me.BtnAnadirCuenta.Size = New System.Drawing.Size(116, 28)
+        Me.BtnAnadirCuenta.Size = New System.Drawing.Size(130, 35)
         Me.BtnAnadirCuenta.TabIndex = 47
         Me.BtnAnadirCuenta.Text = "Añadir cuenta"
         Me.BtnAnadirCuenta.UseVisualStyleBackColor = True
@@ -671,10 +672,10 @@ Partial Class FrmProveedores
         'Label1
         '
         Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label1.Location = New System.Drawing.Point(617, 79)
+        Me.Label1.Location = New System.Drawing.Point(694, 99)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(81, 25)
+        Me.Label1.Size = New System.Drawing.Size(91, 31)
         Me.Label1.TabIndex = 48
         Me.Label1.Text = "Totales:"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -682,10 +683,10 @@ Partial Class FrmProveedores
         'Label2
         '
         Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label2.Location = New System.Drawing.Point(729, 54)
+        Me.Label2.Location = New System.Drawing.Point(820, 68)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(116, 16)
+        Me.Label2.Size = New System.Drawing.Size(130, 20)
         Me.Label2.TabIndex = 49
         Me.Label2.Text = "SubTotal:"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -693,10 +694,10 @@ Partial Class FrmProveedores
         'LblSubtotal
         '
         Me.LblSubtotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.LblSubtotal.Location = New System.Drawing.Point(729, 79)
+        Me.LblSubtotal.Location = New System.Drawing.Point(820, 99)
         Me.LblSubtotal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblSubtotal.Name = "LblSubtotal"
-        Me.LblSubtotal.Size = New System.Drawing.Size(116, 25)
+        Me.LblSubtotal.Size = New System.Drawing.Size(130, 31)
         Me.LblSubtotal.TabIndex = 50
         Me.LblSubtotal.Text = "0"
         Me.LblSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -704,10 +705,10 @@ Partial Class FrmProveedores
         'Label4
         '
         Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label4.Location = New System.Drawing.Point(876, 54)
+        Me.Label4.Location = New System.Drawing.Point(986, 68)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(116, 16)
+        Me.Label4.Size = New System.Drawing.Size(130, 20)
         Me.Label4.TabIndex = 51
         Me.Label4.Text = "Itebis"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -715,10 +716,10 @@ Partial Class FrmProveedores
         'LblItebis
         '
         Me.LblItebis.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.LblItebis.Location = New System.Drawing.Point(876, 79)
+        Me.LblItebis.Location = New System.Drawing.Point(986, 99)
         Me.LblItebis.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblItebis.Name = "LblItebis"
-        Me.LblItebis.Size = New System.Drawing.Size(116, 25)
+        Me.LblItebis.Size = New System.Drawing.Size(130, 31)
         Me.LblItebis.TabIndex = 52
         Me.LblItebis.Text = "0"
         Me.LblItebis.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -726,10 +727,10 @@ Partial Class FrmProveedores
         'Label6
         '
         Me.Label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label6.Location = New System.Drawing.Point(1000, 54)
+        Me.Label6.Location = New System.Drawing.Point(1125, 68)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(113, 16)
+        Me.Label6.Size = New System.Drawing.Size(127, 20)
         Me.Label6.TabIndex = 53
         Me.Label6.Text = "Total:"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -737,20 +738,20 @@ Partial Class FrmProveedores
         'LblTotal
         '
         Me.LblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.LblTotal.Location = New System.Drawing.Point(1000, 79)
+        Me.LblTotal.Location = New System.Drawing.Point(1125, 99)
         Me.LblTotal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblTotal.Name = "LblTotal"
-        Me.LblTotal.Size = New System.Drawing.Size(113, 25)
+        Me.LblTotal.Size = New System.Drawing.Size(127, 31)
         Me.LblTotal.TabIndex = 54
         Me.LblTotal.Text = "0"
         Me.LblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(1137, 106)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button3.Location = New System.Drawing.Point(1279, 132)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(100, 28)
+        Me.Button3.Size = New System.Drawing.Size(112, 35)
         Me.Button3.TabIndex = 58
         Me.Button3.Text = "Productos "
         Me.Button3.UseVisualStyleBackColor = True
@@ -762,12 +763,12 @@ Partial Class FrmProveedores
         Me.CompraMaterialesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CompraMaterialesDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn22})
         Me.CompraMaterialesDataGridView.DataSource = Me.CompraMaterialesBindingSource
-        Me.CompraMaterialesDataGridView.Location = New System.Drawing.Point(699, 148)
-        Me.CompraMaterialesDataGridView.Margin = New System.Windows.Forms.Padding(4)
+        Me.CompraMaterialesDataGridView.Location = New System.Drawing.Point(786, 185)
+        Me.CompraMaterialesDataGridView.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CompraMaterialesDataGridView.Name = "CompraMaterialesDataGridView"
         Me.CompraMaterialesDataGridView.ReadOnly = True
         Me.CompraMaterialesDataGridView.RowHeadersWidth = 51
-        Me.CompraMaterialesDataGridView.Size = New System.Drawing.Size(1223, 450)
+        Me.CompraMaterialesDataGridView.Size = New System.Drawing.Size(1376, 562)
         Me.CompraMaterialesDataGridView.TabIndex = 58
         '
         'DataGridViewTextBoxColumn5
@@ -912,10 +913,10 @@ Partial Class FrmProveedores
         'SubRd
         '
         Me.SubRd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.SubRd.Location = New System.Drawing.Point(729, 107)
+        Me.SubRd.Location = New System.Drawing.Point(820, 134)
         Me.SubRd.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.SubRd.Name = "SubRd"
-        Me.SubRd.Size = New System.Drawing.Size(116, 25)
+        Me.SubRd.Size = New System.Drawing.Size(130, 31)
         Me.SubRd.TabIndex = 59
         Me.SubRd.Text = "0"
         Me.SubRd.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -923,10 +924,10 @@ Partial Class FrmProveedores
         'TotalRD
         '
         Me.TotalRD.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.TotalRD.Location = New System.Drawing.Point(1000, 107)
+        Me.TotalRD.Location = New System.Drawing.Point(1125, 134)
         Me.TotalRD.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.TotalRD.Name = "TotalRD"
-        Me.TotalRD.Size = New System.Drawing.Size(113, 25)
+        Me.TotalRD.Size = New System.Drawing.Size(127, 31)
         Me.TotalRD.TabIndex = 60
         Me.TotalRD.Text = "0"
         Me.TotalRD.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -934,10 +935,10 @@ Partial Class FrmProveedores
         'ItbisRd
         '
         Me.ItbisRd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.ItbisRd.Location = New System.Drawing.Point(876, 107)
+        Me.ItbisRd.Location = New System.Drawing.Point(986, 134)
         Me.ItbisRd.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ItbisRd.Name = "ItbisRd"
-        Me.ItbisRd.Size = New System.Drawing.Size(116, 25)
+        Me.ItbisRd.Size = New System.Drawing.Size(130, 31)
         Me.ItbisRd.TabIndex = 61
         Me.ItbisRd.Text = "0"
         Me.ItbisRd.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -950,11 +951,11 @@ Partial Class FrmProveedores
         Me.CompraMaterialesDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CompraMaterialesDetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn35, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn26, Me.DataGridViewTextBoxColumn27, Me.DataGridViewTextBoxColumn28, Me.DataGridViewTextBoxColumn29, Me.Id_Presupuesto})
         Me.CompraMaterialesDetalleDataGridView.DataSource = Me.CompraMaterialesDetalleBindingSource
-        Me.CompraMaterialesDetalleDataGridView.Location = New System.Drawing.Point(699, 625)
-        Me.CompraMaterialesDetalleDataGridView.Margin = New System.Windows.Forms.Padding(4)
+        Me.CompraMaterialesDetalleDataGridView.Location = New System.Drawing.Point(786, 781)
+        Me.CompraMaterialesDetalleDataGridView.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CompraMaterialesDetalleDataGridView.Name = "CompraMaterialesDetalleDataGridView"
         Me.CompraMaterialesDetalleDataGridView.RowHeadersWidth = 51
-        Me.CompraMaterialesDetalleDataGridView.Size = New System.Drawing.Size(1223, 282)
+        Me.CompraMaterialesDetalleDataGridView.Size = New System.Drawing.Size(1376, 352)
         Me.CompraMaterialesDetalleDataGridView.TabIndex = 61
         '
         'DataGridViewTextBoxColumn35
@@ -1083,10 +1084,10 @@ Partial Class FrmProveedores
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(1673, 110)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button4.Location = New System.Drawing.Point(1882, 138)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(144, 28)
+        Me.Button4.Size = New System.Drawing.Size(162, 35)
         Me.Button4.TabIndex = 62
         Me.Button4.Text = "Abrir Compra"
         Me.Button4.UseVisualStyleBackColor = True
@@ -1101,12 +1102,12 @@ Partial Class FrmProveedores
         Me.ComprasPorMesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ComprasPorMesDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn24})
         Me.ComprasPorMesDataGridView.DataSource = Me.ComprasPorMesBindingSource
-        Me.ComprasPorMesDataGridView.Location = New System.Drawing.Point(0, 351)
-        Me.ComprasPorMesDataGridView.Margin = New System.Windows.Forms.Padding(4)
+        Me.ComprasPorMesDataGridView.Location = New System.Drawing.Point(0, 439)
+        Me.ComprasPorMesDataGridView.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ComprasPorMesDataGridView.Name = "ComprasPorMesDataGridView"
         Me.ComprasPorMesDataGridView.ReadOnly = True
         Me.ComprasPorMesDataGridView.RowHeadersWidth = 51
-        Me.ComprasPorMesDataGridView.Size = New System.Drawing.Size(691, 634)
+        Me.ComprasPorMesDataGridView.Size = New System.Drawing.Size(777, 792)
         Me.ComprasPorMesDataGridView.TabIndex = 62
         '
         'DataGridViewTextBoxColumn1
@@ -1212,11 +1213,10 @@ Partial Class FrmProveedores
         'TableAdapterManager1
         '
         Me.TableAdapterManager1.BackupDataSetBeforeUpdate = False
-
         Me.TableAdapterManager1.CompraMaterialesDetalleTableAdapter = Nothing
-
         Me.TableAdapterManager1.Connection = Nothing
-
+        Me.TableAdapterManager1.PagoProveedorDetalleTableAdapter = Nothing
+        Me.TableAdapterManager1.PagoProveedorTableAdapter = Nothing
         Me.TableAdapterManager1.UpdateOrder = ModuloGestion.DsComprasTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
         'CompraMaterialesDetalleTableAdapter
@@ -1227,21 +1227,22 @@ Partial Class FrmProveedores
         '
         Me.ComprasPorMesTableAdapter.ClearBeforeFill = True
         '
-        'BtnPagos
+        'BtnHistorialPagos
         '
-        Me.BtnPagos.Location = New System.Drawing.Point(1137, 70)
-        Me.BtnPagos.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtnPagos.Name = "BtnPagos"
-        Me.BtnPagos.Size = New System.Drawing.Size(100, 28)
-        Me.BtnPagos.TabIndex = 63
-        Me.BtnPagos.Text = "Pagos"
-        Me.BtnPagos.UseVisualStyleBackColor = True
+        Me.BtnHistorialPagos.Location = New System.Drawing.Point(1279, 62)
+        Me.BtnHistorialPagos.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnHistorialPagos.Name = "BtnHistorialPagos"
+        Me.BtnHistorialPagos.Size = New System.Drawing.Size(159, 35)
+        Me.BtnHistorialPagos.TabIndex = 63
+        Me.BtnHistorialPagos.Text = "Pagos"
+        Me.BtnHistorialPagos.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(1673, 30)
+        Me.Button1.Location = New System.Drawing.Point(1882, 38)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(126, 37)
+        Me.Button1.Size = New System.Drawing.Size(142, 46)
         Me.Button1.TabIndex = 64
         Me.Button1.Text = "Actulizar Indice"
         Me.Button1.UseVisualStyleBackColor = True
@@ -1249,9 +1250,10 @@ Partial Class FrmProveedores
         'ValorFiscalCheckBox
         '
         Me.ValorFiscalCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ProveedoresBindingSource, "ValorFiscal", True))
-        Me.ValorFiscalCheckBox.Location = New System.Drawing.Point(627, 109)
+        Me.ValorFiscalCheckBox.Location = New System.Drawing.Point(705, 136)
+        Me.ValorFiscalCheckBox.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ValorFiscalCheckBox.Name = "ValorFiscalCheckBox"
-        Me.ValorFiscalCheckBox.Size = New System.Drawing.Size(53, 24)
+        Me.ValorFiscalCheckBox.Size = New System.Drawing.Size(60, 30)
         Me.ValorFiscalCheckBox.TabIndex = 65
         Me.ValorFiscalCheckBox.Text = "VF"
         Me.ValorFiscalCheckBox.UseVisualStyleBackColor = True
@@ -1259,22 +1261,23 @@ Partial Class FrmProveedores
         'Itebis1TextBox
         '
         Me.Itebis1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProveedoresBindingSource, "Itebis1", True))
-        Me.Itebis1TextBox.Location = New System.Drawing.Point(491, 47)
+        Me.Itebis1TextBox.Location = New System.Drawing.Point(552, 59)
+        Me.Itebis1TextBox.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Itebis1TextBox.Name = "Itebis1TextBox"
-        Me.Itebis1TextBox.Size = New System.Drawing.Size(100, 22)
+        Me.Itebis1TextBox.Size = New System.Drawing.Size(112, 26)
         Me.Itebis1TextBox.TabIndex = 66
         '
         'FrmProveedores
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1924, 1000)
+        Me.ClientSize = New System.Drawing.Size(2164, 1250)
         Me.Controls.Add(Itebis1Label)
         Me.Controls.Add(Me.Itebis1TextBox)
         Me.Controls.Add(Me.ValorFiscalCheckBox)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.BtnPagos)
+        Me.Controls.Add(Me.BtnHistorialPagos)
         Me.Controls.Add(Me.ComprasPorMesDataGridView)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.CompraMaterialesDetalleDataGridView)
@@ -1314,7 +1317,7 @@ Partial Class FrmProveedores
         Me.Controls.Add(Me.ProveedoresBindingNavigator)
         Me.Controls.Add(Me.BtnGuardar)
         Me.Controls.Add(Me.LblIdProveedor)
-        Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmProveedores"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Proveedores"
@@ -1427,7 +1430,7 @@ Partial Class FrmProveedores
     Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn24 As DataGridViewTextBoxColumn
-    Friend WithEvents BtnPagos As Button
+    Friend WithEvents BtnHistorialPagos As Button
     Friend WithEvents DataGridViewTextBoxColumn35 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn25 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn

@@ -158,4 +158,19 @@
         End If
     End Sub
 
+    Private Sub BtnHistorialPagos_Click(sender As Object, e As EventArgs) Handles BtnHistorialPagos.Click
+        If ProveedoresBindingSource.Current Is Nothing Then Exit Sub
+
+        Dim frm As New FrmHistorialPagosProveedor
+
+        frm.IdProveedor =
+            CType(ProveedoresBindingSource.Current, DataRowView)("Id_Proveedor").ToString()
+
+        frm.NombreProveedor =
+            CType(ProveedoresBindingSource.Current, DataRowView)("RazonSocial").ToString()
+
+        frm.ShowDialog()
+
+    End Sub
+
 End Class
