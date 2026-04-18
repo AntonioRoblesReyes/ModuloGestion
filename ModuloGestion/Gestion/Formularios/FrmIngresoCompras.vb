@@ -365,19 +365,28 @@ Public Class FrmIngresoCompras
 
     ''
 
-    Function ObtenerSiguienteIdDetalleCompra(idCompra As String) As String
+    Private Function ObtenerSiguienteIdDetalleCompra(idCompra As String) As String
         Dim maxCorrelativo As Integer = 0
 
-        For Each fila As DataGridViewRow In CompraMaterialesDetalleDataGridView.Rows
-            If Not fila.IsNewRow AndAlso fila.Cells("IdDetallecompra").Value IsNot Nothing Then
-                Dim idDetalle As String = fila.Cells("IdDetallecompra").Value.ToString()
-                If idDetalle.StartsWith(idCompra & "-") Then
-                    Dim partes() = idDetalle.Split("-"c)
-                    Dim correlativo As Integer
-                    If partes.Length > 1 AndAlso Integer.TryParse(partes.Last(), correlativo) Then
-                        If correlativo > maxCorrelativo Then
-                            maxCorrelativo = correlativo
-                        End If
+        For Each drv As DataRowView In CompraMaterialesDetalleBindingSource.List
+
+            If drv Is Nothing Then Continue For
+
+            If drv("Id_Detalle_compra") Is Nothing OrElse IsDBNull(drv("Id_Detalle_compra")) Then
+                Continue For
+            End If
+
+            Dim idDetalle As String = drv("Id_Detalle_compra").ToString().Trim()
+
+            ' Formato esperado: IDCOMPRA-001
+            If idDetalle.StartsWith(idCompra & "-") Then
+
+                Dim partes() As String = idDetalle.Split("-"c)
+                Dim correlativo As Integer
+
+                If partes.Length > 1 AndAlso Integer.TryParse(partes(partes.Length - 1), correlativo) Then
+                    If correlativo > maxCorrelativo Then
+                        maxCorrelativo = correlativo
                     End If
                 End If
             End If
@@ -390,84 +399,178 @@ Public Class FrmIngresoCompras
     '   INSERTAR NUEVOS DETALLES
     ' =========================
 
-    Sub Nuevodetallecompra()
-        ' Preparar formulario de productos para selección por proveedor
-        My.Forms.FrmProductos.Close()
-        My.Forms.FrmProductos.ProveedoresTableAdapter.FillByIdProveedor(My.Forms.FrmProductos.DsProveedores.Proveedores, Id_ProveedorTextBox.Text)
-        My.Forms.FrmProductos.ProveedoresProductoTableAdapter.FillByIdProveedor(My.Forms.FrmProductos.DsProveedoresProducto.ProveedoresProducto, Id_ProveedorTextBox.Text)
-        My.Forms.FrmProductos.Paracompra()
-    End Sub
+    Private Sub NuevoDetalleCompra()
 
-    ''' <summary>
-    ''' Añade un ítem seleccionado desde FrmProductos.
-    ''' Esta sub debe ser llamada desde FrmProductos cuando el usuario elige un producto.
-    ''' </summary>
-    Sub AñadirItm()
         Try
-            Dim filaProducto = My.Forms.FrmProductos.DsProveedoresProducto.ProveedoresProducto(My.Forms.FrmProductos.ProveedoresProductoBindingSource.Position)
 
-            Dim idCompra As String = Id_CompraTextBox.Text
+            Dim idProveedor As String = Id_ProveedorTextBox.Text.Trim()
 
-            Dim idmaterial As String = filaProducto.IdProductoProveedor.ToString()
-            Dim idmedida As String = filaProducto.Id_Medida.ToString()
-            Dim Descripcion As String = filaProducto.DescripcionProveedor.ToString()
-            Dim Itbis As Double = If(IsNumeric(PorcientoImpuestoTextBox.Text), Convert.ToDouble(PorcientoImpuestoTextBox.Text), 0)
-            Dim idPresupuesto As String = If(LblPresupuesto.Text IsNot Nothing, LblPresupuesto.Text, "")
-            Dim codigoUnico As String = filaProducto.IdDetalle.ToString()
-            Dim moneda As String = If(Not String.IsNullOrWhiteSpace(MonedaTextBox.Text), MonedaTextBox.Text, "US$")
-            Dim tasa As Double = If(IsNumeric(TasaTextBox.Text), CDbl(TasaTextBox.Text), 1)
-
-            Dim nuevoIdDetalleCompra As String = ObtenerSiguienteIdDetalleCompra(idCompra)
-
-            Dim nuevaFila As DataRowView = CType(CompraMaterialesDetalleBindingSource.AddNew(), DataRowView)
-            nuevaFila("Id_Detalle_compra") = nuevoIdDetalleCompra
-            nuevaFila("Id_Compra") = idCompra
-            nuevaFila("Id_Material") = idmaterial
-            nuevaFila("DescripcionProveedor") = Descripcion
-            nuevaFila("Cantidad") = 1D
-            nuevaFila("PrecioUS") = 0D
-            nuevaFila("ItebisUS") = 0D
-            nuevaFila("TotalUS") = 0D
-            nuevaFila("Id_Medida") = idmedida
-            nuevaFila("Moneda") = moneda
-            nuevaFila("Tasa") = tasa
-            nuevaFila("PrecioRD") = 0D
-            nuevaFila("ItebisRD") = 0D
-            nuevaFila("TotalRD") = 0D
-            nuevaFila("PrecioEU") = 0D
-            nuevaFila("ItebisEu") = 0D
-            nuevaFila("TotalEU") = 0D
-            nuevaFila("Itebis") = Itbis
-
-            If Not String.IsNullOrWhiteSpace(idPresupuesto) Then
-                nuevaFila("Id_Presupuesto") = idPresupuesto
-            End If
-            If Not String.IsNullOrWhiteSpace(codigoUnico) Then
-                nuevaFila("IdDetalle") = codigoUnico
+            If String.IsNullOrWhiteSpace(idProveedor) Then
+                MessageBox.Show("Debe seleccionar un proveedor antes de agregar artículos.",
+                            "Proveedor requerido",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning)
+                Exit Sub
             End If
 
-            nuevaFila("fecha") = Date.Now
-            nuevaFila("TSubtotalRD") = 0D
-            nuevaFila("TItbisRD") = 0D
-            nuevaFila("TTotalRD") = 0D
-            nuevaFila("TSubtotaUS") = 0D
-            nuevaFila("TItbisUS") = 0D
-            nuevaFila("TTotalus") = 0D
+            Using frm As New FrmProductos
 
-            CompraMaterialesDetalleBindingSource.EndEdit()
+                frm.Id_ProveedorTextBox.Text = idProveedor
 
-            If CompraMaterialesDetalleDataGridView.Rows.Count > 0 Then
-                CompraMaterialesDetalleDataGridView.CurrentCell =
-                    CompraMaterialesDetalleDataGridView.Rows(CompraMaterialesDetalleDataGridView.Rows.Count - 1).Cells("DescripcionProveedor")
-            End If
+                frm.ProveedoresTableAdapter.FillByIdProveedor(
+                frm.DsProveedores.Proveedores,
+                idProveedor)
 
-            My.Forms.FrmProductos.Close()
+                frm.ProveedoresProductoTableAdapter.FillByIdProveedor(
+                frm.DsProveedoresProducto.ProveedoresProducto,
+                idProveedor)
 
-            Totales()
+                If frm.ShowDialog() = DialogResult.OK Then
+
+                    Dim idCompra As String = Id_CompraTextBox.Text.Trim()
+
+                    If String.IsNullOrWhiteSpace(idCompra) Then
+                        MessageBox.Show("No existe un Id de compra válido.",
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+
+                    If String.IsNullOrWhiteSpace(frm.IdMedidaSeleccionada) Then
+                        MessageBox.Show("El artículo seleccionado no tiene medida asignada.",
+                                    "Medida requerida",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+
+                    Dim filaProducto As DataRowView =
+                    CType(CompraMaterialesDetalleBindingSource.AddNew(), DataRowView)
+
+                    Dim nuevoIdDetalleCompra As String =
+                    ObtenerSiguienteIdDetalleCompra(idCompra)
+
+                    Dim itbis As Decimal = 0D
+                    Decimal.TryParse(PorcientoImpuestoTextBox.Text, itbis)
+
+                    Dim moneda As String =
+                    If(String.IsNullOrWhiteSpace(MonedaTextBox.Text),
+                       "RD$",
+                       MonedaTextBox.Text.Trim())
+
+                    Dim tasa As Decimal = 1D
+                    Decimal.TryParse(TasaTextBox.Text, tasa)
+
+                    If tasa <= 0D Then tasa = 1D
+
+                    filaProducto("Id_Detalle_compra") = nuevoIdDetalleCompra
+                    filaProducto("Id_Compra") = idCompra
+                    filaProducto("Id_Material") = frm.IdProductoSeleccionado
+                    filaProducto("DescripcionProveedor") = frm.DescripcionSeleccionada
+                    filaProducto("Cantidad") = 1D
+                    filaProducto("Id_Medida") = frm.IdMedidaSeleccionada
+                    filaProducto("Moneda") = moneda
+                    filaProducto("Tasa") = tasa
+                    filaProducto("Itebis") = itbis
+                    filaProducto("Fecha") = Date.Now
+
+                    If Not String.IsNullOrWhiteSpace(frm.IdDetalleSeleccionado) Then
+                        filaProducto("IdDetalle") = frm.IdDetalleSeleccionado
+                    End If
+
+                    '========================
+                    ' Precios
+                    '========================
+                    If moneda = "US$" Then
+
+                        filaProducto("PrecioUS") = frm.PrecioSeleccionado
+                        filaProducto("PrecioRD") = Math.Round(frm.PrecioSeleccionado * tasa, 4)
+                        filaProducto("PrecioEU") = 0D
+
+                    Else
+
+                        filaProducto("PrecioRD") = frm.PrecioSeleccionado
+
+                        If tasa > 0D Then
+                            filaProducto("PrecioUS") = Math.Round(frm.PrecioSeleccionado / tasa, 4)
+                        Else
+                            filaProducto("PrecioUS") = 0D
+                        End If
+
+                        filaProducto("PrecioEU") = 0D
+
+                    End If
+
+                    '========================
+                    ' Itbis obligatorios
+                    '========================
+                    filaProducto("ItebisUS") = 0D
+                    filaProducto("ItebisRD") = 0D
+                    filaProducto("ItebisEU") = 0D
+
+                    '========================
+                    ' Totales obligatorios
+                    '========================
+                    filaProducto("TotalUS") = 0D
+                    filaProducto("TotalRD") = 0D
+                    filaProducto("TotalEU") = 0D
+
+                    '========================
+                    ' Campos acumulados obligatorios
+                    '========================
+                    If filaProducto.Row.Table.Columns.Contains("TSubtotalRD") Then
+                        filaProducto("TSubtotalRD") = 0D
+                    End If
+
+                    If filaProducto.Row.Table.Columns.Contains("TItbisRD") Then
+                        filaProducto("TItbisRD") = 0D
+                    End If
+
+                    If filaProducto.Row.Table.Columns.Contains("TTotalRD") Then
+                        filaProducto("TTotalRD") = 0D
+                    End If
+
+                    If filaProducto.Row.Table.Columns.Contains("TSubtotaUS") Then
+                        filaProducto("TSubtotaUS") = 0D
+                    End If
+
+                    If filaProducto.Row.Table.Columns.Contains("TItbisUS") Then
+                        filaProducto("TItbisUS") = 0D
+                    End If
+
+                    If filaProducto.Row.Table.Columns.Contains("TTotalUS") Then
+                        filaProducto("TTotalUS") = 0D
+                    End If
+
+                    filaProducto.EndEdit()
+                    CompraMaterialesDetalleBindingSource.EndEdit()
+
+                    CompraMaterialesDetalleDataGridView.Refresh()
+
+                    If CompraMaterialesDetalleDataGridView.Rows.Count > 0 Then
+                        CompraMaterialesDetalleDataGridView.CurrentCell =
+                        CompraMaterialesDetalleDataGridView.Rows(
+                            CompraMaterialesDetalleDataGridView.Rows.Count - 1).Cells("Cantidad")
+                    End If
+
+                    cambiosPendientes = True
+
+                    Totales()
+
+                End If
+
+            End Using
 
         Catch ex As Exception
-            MsgBox("Error al añadir ítem: " & ex.Message, MsgBoxStyle.Critical)
+
+            MessageBox.Show("Error al agregar el detalle de compra: " & ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error)
+
         End Try
+
     End Sub
 
     Private Sub BtnNuevoArticulo_Click(sender As Object, e As EventArgs) Handles BtnNuevoArticulo.Click

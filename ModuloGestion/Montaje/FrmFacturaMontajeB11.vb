@@ -1,74 +1,246 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data
+Imports System.Data.SqlClient
 
 Partial Public Class FrmFacturaMontajeB11
 
     Public Property IdEmpresaSeleccionada As String
-    Public Property IdFacturaGenerada As String
 
     Private Sub FrmFacturaMontajeB11_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Try
-            ' Cargar empresas
             EmpresasContratadasMontajeTableAdapter.FillByActivas(DsPagosMontaje.EmpresasContratadasMontaje)
 
-            If Not String.IsNullOrEmpty(IdEmpresaSeleccionada) Then
+            If Not String.IsNullOrWhiteSpace(IdEmpresaSeleccionada) Then
                 cboEmpresa.SelectedValue = IdEmpresaSeleccionada
             End If
 
-            ' 🔥 ASIGNAR FACTURA GENERADA DESDE EL BOTÓN
-            txtIdFactura.Text = IdFacturaGenerada
-
-            LimpiarPantallaNuevaFactura()
+            PrepararNuevaFactura()
 
         Catch ex As Exception
-            MessageBox.Show("Error cargando formulario B11: " & ex.Message)
+            MessageBox.Show("Error cargando formulario B11: " & ex.Message,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error)
         End Try
 
     End Sub
 
+    Private Sub PrepararNuevaFactura()
+
+        LimpiarPantallaNuevaFactura()
+
+        Dim nuevoNCF As String = ObtenerSiguienteNCFB11()
+
+        txtIdFactura.Text = nuevoNCF
+        txtNCFB11.Text = nuevoNCF
+
+        dgvDetalle.Rows.Clear()
+
+        txtIdFactura.Focus()
+
+    End Sub
+
+    Private Function ObtenerSiguienteNCFB11() As String
+
+        Dim numero As Integer = 1
+
+        Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
+
+            cn.Open()
+
+            Dim sql As String =
+                "SELECT TOP 1 IdFacturaB11
+                 FROM FacturaMontajeB11
+                 WHERE IdFacturaB11 LIKE 'B11%'
+                 ORDER BY CAST(SUBSTRING(IdFacturaB11,4,8) AS INT) DESC"
+
+            Using cmd As New SqlCommand(sql, cn)
+
+                Dim resultado As Object = cmd.ExecuteScalar()
+
+                If resultado IsNot Nothing AndAlso Not IsDBNull(resultado) Then
+
+                    Dim ultimoNCF As String = resultado.ToString()
+
+                    If ultimoNCF.Length >= 11 Then
+                        Integer.TryParse(ultimoNCF.Substring(3, 8), numero)
+                        numero += 1
+                    End If
+
+                End If
+
+            End Using
+
+        End Using
+
+        Return "B11" & numero.ToString("00000000")
+
+    End Function
+
     Private Sub BtnNuevaFactura_Click(sender As Object, e As EventArgs) Handles BtnNuevaFactura.Click
 
         Try
+
             If cboEmpresa.SelectedValue Is Nothing Then
-                MessageBox.Show("Debe seleccionar una empresa instaladora.")
+                MessageBox.Show("Debe seleccionar una empresa instaladora.",
+                                "Factura B11",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
                 Exit Sub
             End If
 
             Dim idFactura As String = txtIdFactura.Text.Trim()
-            Dim idEmpresa As String = Convert.ToString(cboEmpresa.SelectedValue)
+            Dim idEmpresa As String = cboEmpresa.SelectedValue.ToString()
 
             If String.IsNullOrWhiteSpace(idFactura) Then
-                MessageBox.Show("No hay número de factura.")
+                MessageBox.Show("No hay número de factura.",
+                                "Factura B11",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
                 Exit Sub
             End If
 
-            ' 🔥 INSERT DIRECTO A TU TABLA NUEVA
             Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
-                Using cmd As New SqlCommand("
-                    INSERT INTO FacturaMontajeB11
+
+                cn.Open()
+
+                Dim sql As String =
+                    "INSERT INTO FacturaMontajeB11
                     (IdFacturaB11, IdEmpresaMontaje, Fecha, NCF, SubTotal, ITBIS, RetencionISR, Total)
                     VALUES
-                    (@IdFactura, @IdEmpresa, @Fecha, @NCF, @SubTotal, @ITBIS, @Retencion, @Total)", cn)
+                    (@IdFactura, @IdEmpresa, @Fecha, @NCF, @SubTotal, @ITBIS, @RetencionISR, @Total)"
 
-                    cmd.Parameters.AddWithValue("@IdFactura", idFactura)
-                    cmd.Parameters.AddWithValue("@IdEmpresa", idEmpresa)
-                    cmd.Parameters.AddWithValue("@Fecha", dtpFechaFactura.Value)
-                    cmd.Parameters.AddWithValue("@NCF", txtNCFB11.Text)
+                Using cmd As New SqlCommand(sql, cn)
 
-                    cmd.Parameters.AddWithValue("@SubTotal", ObtenerDecimal(txtSubTotal.Text))
-                    cmd.Parameters.AddWithValue("@ITBIS", ObtenerDecimal(txtImpuesto.Text))
-                    cmd.Parameters.AddWithValue("@Retencion", ObtenerDecimal(txtRetencionIRS.Text))
-                    cmd.Parameters.AddWithValue("@Total", ObtenerDecimal(txtTotal.Text))
+                    cmd.Parameters.Add("@IdFactura", SqlDbType.NVarChar, 25).Value = idFactura
+                    cmd.Parameters.Add("@IdEmpresa", SqlDbType.NVarChar, 20).Value = idEmpresa
+                    cmd.Parameters.Add("@Fecha", SqlDbType.Date).Value = dtpFechaFactura.Value
+                    cmd.Parameters.Add("@NCF", SqlDbType.NVarChar, 25).Value = txtNCFB11.Text.Trim()
 
-                    cn.Open()
+                    Dim pSubTotal = cmd.Parameters.Add("@SubTotal", SqlDbType.Decimal)
+                    pSubTotal.Precision = 18
+                    pSubTotal.Scale = 2
+                    pSubTotal.Value = txtSubTotal.Text
+                    Dim pITBIS = cmd.Parameters.Add("@ITBIS", SqlDbType.Decimal)
+                    pITBIS.Precision = 18
+                    pITBIS.Scale = 2
+                    pITBIS.Value = txtImpuesto.Text
+                    Dim pRetencion = cmd.Parameters.Add("@RetencionISR", SqlDbType.Decimal)
+                    pRetencion.Precision = 18
+                    pRetencion.Scale = 2
+                    pRetencion.Value = txtRetencionIRS.Text
+
+                    Dim pTotal = cmd.Parameters.Add("@Total", SqlDbType.Decimal)
+                    pTotal.Precision = 18
+                    pTotal.Scale = 2
+                    pTotal.Value = txtTotal.Text
                     cmd.ExecuteNonQuery()
+
                 End Using
+
             End Using
 
-            MessageBox.Show("Factura creada correctamente.")
+            MessageBox.Show("Factura creada correctamente.",
+                            "Factura B11",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information)
+
+            BtnNuevaFactura.Enabled = False
+            BtnGuardar.Enabled = True
+            BtnNuevoDetalle.Enabled = True
+
+        Catch exSql As SqlException When exSql.Number = 2627 OrElse exSql.Number = 2601
+
+            MessageBox.Show("Ya existe una factura con ese número. Se generará un nuevo consecutivo.",
+                            "Factura duplicada",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning)
+
+            Dim nuevoNCF As String = ObtenerSiguienteNCFB11()
+            txtIdFactura.Text = nuevoNCF
+            txtNCFB11.Text = nuevoNCF
 
         Catch ex As Exception
-            MessageBox.Show("Error creando factura: " & ex.Message)
+
+            MessageBox.Show("Error creando factura: " & ex.Message,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
+
+    Private Sub LimpiarPantallaNuevaFactura()
+
+        txtSubTotal.Text = "0.00"
+        txtImpuesto.Text = "0.00"
+        txtRetencionIRS.Text = "0.00"
+
+        If txtRetencionITBIS IsNot Nothing Then
+            txtRetencionITBIS.Text = "0.00"
+        End If
+
+        txtTotal.Text = "0.00"
+
+        If txtTotalPagado IsNot Nothing Then
+            txtTotalPagado.Text = "0.00"
+        End If
+
+        dtpFechaFactura.Value = Date.Today
+
+    End Sub
+
+
+
+    Private Sub BtnNuevoDetalle_Click(sender As Object, e As EventArgs) Handles BtnNuevoDetalle.Click
+
+        Try
+
+            If String.IsNullOrWhiteSpace(txtIdFactura.Text) Then
+                MessageBox.Show("Debe crear la factura primero.",
+                            "Detalle B11",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            Dim consecutivo As Integer = 1
+
+            For Each row As DataGridViewRow In dgvDetalle.Rows
+
+                If row.IsNewRow Then Continue For
+
+                consecutivo += 1
+
+            Next
+
+            Dim idDetalle As String =
+            txtIdFactura.Text.Trim() & "-" & consecutivo.ToString("000")
+
+            Dim fila As Integer = dgvDetalle.Rows.Add()
+
+            With dgvDetalle.Rows(fila)
+
+                .Cells("ColIdDetalle").Value = idDetalle
+                .Cells("ColIdFactura").Value = txtIdFactura.Text.Trim()
+                .Cells("ColDescripcion").Value = ""
+                .Cells("ColCantidad").Value = 1D
+                .Cells("ColPrecio").Value = 0D
+                .Cells("ColTotal").Value = 0D
+
+            End With
+
+            dgvDetalle.CurrentCell = dgvDetalle.Rows(fila).Cells("ColDescripcion")
+            dgvDetalle.BeginEdit(True)
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error agregando detalle: " & ex.Message,
+                        "Detalle B11",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error)
+
         End Try
 
     End Sub
@@ -76,324 +248,167 @@ Partial Public Class FrmFacturaMontajeB11
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
 
         Try
-            Dim idFactura As String = txtIdFactura.Text.Trim()
 
-            If String.IsNullOrWhiteSpace(idFactura) Then
-                MessageBox.Show("No hay número de factura.")
-                Exit Sub
-            End If
-
-            If cboEmpresa.SelectedValue Is Nothing Then
-                MessageBox.Show("Debe seleccionar una empresa.")
-                Exit Sub
-            End If
-
-            ' 🔹 CREAR DATATABLE PARA EL DETALLE (TVP)
-            Dim dtDetalle As New DataTable()
-            dtDetalle.Columns.Add("IdDetalle", GetType(String))
-            dtDetalle.Columns.Add("Descripcion", GetType(String))
-            dtDetalle.Columns.Add("Cantidad", GetType(Decimal))
-            dtDetalle.Columns.Add("Precio", GetType(Decimal))
-            dtDetalle.Columns.Add("Total", GetType(Decimal))
-
-            ' 🔹 LLENAR DESDE EL GRID
-            For Each row As DataGridViewRow In dgvDetalle.Rows
-
-                If row.IsNewRow Then Continue For
-
-                dtDetalle.Rows.Add(
-                Convert.ToString(row.Cells("ColIdDetalle").Value),
-                Convert.ToString(row.Cells("ColDescripcion").Value),
-                ObtenerDecimal(row.Cells("ColCantidad").Value),
-                ObtenerDecimal(row.Cells("ColPrecio").Value),
-                ObtenerDecimal(row.Cells("ColTotal").Value)
-            )
-
-            Next
-
-            ' 🔹 LLAMAR AL STORED PROCEDURE
-            Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
-                Using cmd As New SqlCommand("sp_GuardarFacturaB11", cn)
-
-                    cmd.CommandType = CommandType.StoredProcedure
-
-                    cmd.Parameters.Add("@IdFacturaB11", SqlDbType.NVarChar, 25).Value = idFactura
-                    cmd.Parameters.Add("@IdEmpresaMontaje", SqlDbType.NVarChar, 20).Value = cboEmpresa.SelectedValue
-                    cmd.Parameters.Add("@Fecha", SqlDbType.Date).Value = dtpFechaFactura.Value
-                    cmd.Parameters.Add("@NCF", SqlDbType.NVarChar, 20).Value = txtNCFB11.Text
-
-                    ' 🔹 DECIMALES (IMPORTANTE)
-                    Dim pSub As SqlParameter = cmd.Parameters.Add("@SubTotal", SqlDbType.Decimal)
-                    pSub.Precision = 18 : pSub.Scale = 2
-                    pSub.Value = ObtenerDecimal(txtSubTotal.Text)
-
-                    Dim pItbis As SqlParameter = cmd.Parameters.Add("@ITBIS", SqlDbType.Decimal)
-                    pItbis.Precision = 18 : pItbis.Scale = 2
-                    pItbis.Value = ObtenerDecimal(txtImpuesto.Text)
-
-                    Dim pRet As SqlParameter = cmd.Parameters.Add("@RetencionISR", SqlDbType.Decimal)
-                    pRet.Precision = 18 : pRet.Scale = 2
-                    pRet.Value = ObtenerDecimal(txtRetencionIRS.Text)
-
-                    Dim pTotal As SqlParameter = cmd.Parameters.Add("@Total", SqlDbType.Decimal)
-                    pTotal.Precision = 18 : pTotal.Scale = 2
-                    pTotal.Value = ObtenerDecimal(txtTotal.Text)
-
-                    ' 🔥 PARAMETRO TIPO TABLA (TVP)
-                    Dim pDetalle As New SqlParameter("@Detalle", SqlDbType.Structured)
-                    pDetalle.TypeName = "dbo.TipoDetalleFacturaB11"
-                    pDetalle.Value = dtDetalle
-                    cmd.Parameters.Add(pDetalle)
-
-                    cn.Open()
-                    cmd.ExecuteNonQuery()
-
-                End Using
-            End Using
-
-            MessageBox.Show("Factura guardada correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-        Catch ex As Exception
-            MessageBox.Show("Error guardando: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-    End Sub
-    Private Sub LimpiarPantallaNuevaFactura()
-        txtNCFB11.Text = ""
-        txtImpuesto.Text = "0"
-        txtRetencionIRS.Text = "0"
-        txtSubTotal.Text = "0"
-        txtTotal.Text = "0"
-        dtpFechaFactura.Value = Date.Today
-    End Sub
-
-    Private Function ObtenerDecimal(valorTexto As String) As Decimal
-        Dim valor As Decimal
-        If Decimal.TryParse(valorTexto, valor) Then Return valor
-        Return 0D
-    End Function
-
-    Private Sub BtnNuevoDetalle_Click(sender As Object, e As EventArgs) Handles BtnNuevoDetalle.Click
-
-        Try
             If String.IsNullOrWhiteSpace(txtIdFactura.Text) Then
-                MsgBox("Debe crear la factura primero.")
+                MessageBox.Show("Debe crear la factura primero.")
                 Exit Sub
             End If
 
-            Dim idDetalle As String = GenerarIdDetalle(txtIdFactura.Text)
-
-            Dim rowIndex As Integer = dgvDetalle.Rows.Add()
-
-            With dgvDetalle.Rows(rowIndex)
-                .Cells("ColIdDetalle").Value = idDetalle
-                .Cells("ColIdFactura").Value = txtIdFactura.Text
-                .Cells("ColDescripcion").Value = ""
-                .Cells("ColCantidad").Value = 1D
-                .Cells("ColPrecio").Value = 0D
-                .Cells("ColTotal").Value = 0D
-            End With
-
-            dgvDetalle.CurrentCell = dgvDetalle.Rows(rowIndex).Cells("ColDescripcion")
-            dgvDetalle.BeginEdit(True)
-
-            CalcularTotalesFactura()
-
-        Catch ex As Exception
-            MsgBox("Error agregando detalle: " & ex.Message)
-        End Try
-
-    End Sub
-    Private Function GenerarIdDetalle(idFactura As String) As String
-        Dim contador As Integer = 0
-
-        For Each row As DataGridViewRow In dgvDetalle.Rows
-            If Not row.IsNewRow Then
-                contador += 1
-            End If
-        Next
-
-        contador += 1
-
-        Return idFactura & "-" & contador.ToString("000")
-    End Function
-    Private Function ObtenerValorCeldaDecimal(row As DataGridViewRow, nombreColumna As String) As Decimal
-        Try
-            If row Is Nothing OrElse row.Cells(nombreColumna).Value Is Nothing OrElse IsDBNull(row.Cells(nombreColumna).Value) Then
-                Return 0D
+            If dgvDetalle.Rows.Count = 0 Then
+                MessageBox.Show("Debe agregar al menos un detalle.")
+                Exit Sub
             End If
 
-            Dim valor As Decimal
-            If Decimal.TryParse(row.Cells(nombreColumna).Value.ToString(), valor) Then
-                Return valor
-            End If
-
-            Return 0D
-        Catch
-            Return 0D
-        End Try
-    End Function
-
-    Private Sub CalcularLinea(row As DataGridViewRow)
-        If row Is Nothing OrElse row.IsNewRow Then Exit Sub
-
-        Dim cantidad As Decimal = ObtenerValorCeldaDecimal(row, "ColCantidad")
-        Dim precio As Decimal = ObtenerValorCeldaDecimal(row, "ColPrecio")
-
-        Dim totalLinea As Decimal = Math.Round(cantidad * precio, 2)
-
-        row.Cells("ColTotal").Value = totalLinea
-    End Sub
-
-    Private Sub CalcularTotalesFactura()
-
-        Dim subtotal As Decimal = 0D
-
-        For Each row As DataGridViewRow In dgvDetalle.Rows
-            If row.IsNewRow Then Continue For
-
-            subtotal += ObtenerValorCeldaDecimal(row, "ColTotal")
-        Next
-
-        subtotal = Math.Round(subtotal, 2)
-
-        ' 🔹 ITBIS 18%
-        Dim itbis As Decimal = Math.Round(subtotal * 0.18D, 2)
-
-        ' 🔹 TOTAL
-        Dim total As Decimal = subtotal + itbis
-
-        ' 🔹 RETENCION ISR (2% del subtotal)
-        Dim retencionISR As Decimal = Math.Round(subtotal * 0.02, 2)
-
-        ' 🔹 RETENCION ITBIS (100%)
-        Dim retencionITBIS As Decimal = itbis
-
-        ' 🔹 TOTAL PAGADO
-        Dim totalPagado As Decimal = total - retencionISR - retencionITBIS
-
-        ' 🔹 ASIGNAR
-        txtSubTotal.Text = subtotal.ToString("#,##0.00")
-        txtImpuesto.Text = itbis.ToString("#,##0.00")
-        txtTotal.Text = total.ToString("#,##0.00")
-
-        txtRetencionIRS.Text = retencionISR.ToString("#,##0.00")
-
-        ' 👇 ESTE CAMPO TIENES QUE CREARLO SI NO EXISTE
-        txtRetencionITBIS.Text = retencionITBIS.ToString("#,##0.00")
-
-        ' 👇 ESTE TAMBIÉN
-        txtTotalPagado.Text = totalPagado.ToString("#,##0.00")
-
-    End Sub
-    Private Sub dgvDetalle_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDetalle.CellEndEdit
-        Try
-            If e.RowIndex < 0 Then Exit Sub
-
-            Dim row As DataGridViewRow = dgvDetalle.Rows(e.RowIndex)
-
-            If dgvDetalle.Columns(e.ColumnIndex).Name = "ColCantidad" OrElse
-               dgvDetalle.Columns(e.ColumnIndex).Name = "ColPrecio" Then
-
-                CalcularLinea(row)
-                CalcularTotalesFactura()
-            End If
-
-        Catch ex As Exception
-            MsgBox("Error al calcular detalle: " & ex.Message, MsgBoxStyle.Exclamation)
-        End Try
-    End Sub
-    Private Sub dgvDetalle_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles dgvDetalle.RowsRemoved
-        Try
-            CalcularTotalesFactura()
-        Catch ex As Exception
-            MsgBox("Error al recalcular totales: " & ex.Message, MsgBoxStyle.Exclamation)
-        End Try
-    End Sub
-    Private Sub GuardarDetalle()
-
-        If String.IsNullOrWhiteSpace(txtIdFactura.Text) Then
-            Throw New Exception("No hay factura.")
-        End If
-
-        Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
-
-            cn.Open()
-
-            ' 🔥 BORRAR DETALLE ANTERIOR (para evitar duplicados)
-            Using cmdDelete As New SqlCommand("
-            DELETE FROM FacturaMontajeB11Detalle
-            WHERE IdFacturaB11 = @IdFactura", cn)
-
-                cmdDelete.Parameters.AddWithValue("@IdFactura", txtIdFactura.Text)
-                cmdDelete.ExecuteNonQuery()
-            End Using
-
-            ' 🔥 INSERTAR DETALLE NUEVO
-            For Each row As DataGridViewRow In dgvDetalle.Rows
-
-                If row.IsNewRow Then Continue For
-
-                Using cmd As New SqlCommand("
-                INSERT INTO FacturaMontajeB11Detalle
-                (IdDetalle, IdFacturaB11, Descripcion, Cantidad, Precio, Total)
-                VALUES
-                (@IdDetalle, @IdFactura, @Descripcion, @Cantidad, @Precio, @Total)", cn)
-
-                    cmd.Parameters.AddWithValue("@IdDetalle", row.Cells("ColIdDetalle").Value)
-                    cmd.Parameters.AddWithValue("@IdFactura", txtIdFactura.Text)
-                    cmd.Parameters.AddWithValue("@Descripcion", row.Cells("ColDescripcion").Value)
-                    cmd.Parameters.AddWithValue("@Cantidad", ObtenerDecimal(row.Cells("ColCantidad").Value))
-                    cmd.Parameters.AddWithValue("@Precio", ObtenerDecimal(row.Cells("ColPrecio").Value))
-                    cmd.Parameters.AddWithValue("@Total", ObtenerDecimal(row.Cells("ColTotal").Value))
-
-                    cmd.ExecuteNonQuery()
-                End Using
-
-            Next
-
-        End Using
-
-    End Sub
-    Private Sub BtnAnular_Click(sender As Object, e As EventArgs) Handles BtnAnular.Click
-
-        Dim id As String = txtIdFactura.Text
-
-        If MessageBox.Show("¿Seguro que desea anular esta factura?", "Confirmar", MessageBoxButtons.YesNo) = DialogResult.No Then
-            Exit Sub
-        End If
-
-        Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
-            Using cmd As New SqlCommand("sp_AnularFacturaB11", cn)
-
-                cmd.CommandType = CommandType.StoredProcedure
-                cmd.Parameters.AddWithValue("@IdFacturaB11", id)
+            Using cn As New SqlConnection(My.Settings.GestionEmpresaConnectionString)
 
                 cn.Open()
-                cmd.ExecuteNonQuery()
+
+                ' Verificar que exista la cabecera
+                Dim existe As Integer
+
+                Using cmdExiste As New SqlCommand("
+                SELECT COUNT(*)
+                FROM FacturaMontajeB11
+                WHERE IdFacturaB11 = @IdFactura", cn)
+
+                    cmdExiste.Parameters.Add("@IdFactura", SqlDbType.NVarChar, 25).Value =
+                    txtIdFactura.Text.Trim()
+
+                    existe = CInt(cmdExiste.ExecuteScalar())
+
+                End Using
+
+                If existe = 0 Then
+                    MessageBox.Show("Primero debe pulsar 'Nueva factura'.")
+                    Exit Sub
+                End If
+
+                ' Borrar detalle anterior
+                Using cmdDelete As New SqlCommand("
+                DELETE FROM FacturaMontajeB11Detalle
+                WHERE IdFacturaB11 = @IdFactura", cn)
+
+                    cmdDelete.Parameters.Add("@IdFactura", SqlDbType.NVarChar, 25).Value =
+                    txtIdFactura.Text.Trim()
+
+                    cmdDelete.ExecuteNonQuery()
+
+                End Using
+
+                ' Guardar detalle
+                For Each row As DataGridViewRow In dgvDetalle.Rows
+
+                    If row.IsNewRow Then Continue For
+
+                    Using cmd As New SqlCommand("
+                    INSERT INTO FacturaMontajeB11Detalle
+                    (IdDetalle, IdFacturaB11, Descripcion, Cantidad, Precio, Total)
+                    VALUES
+                    (@IdDetalle, @IdFactura, @Descripcion, @Cantidad, @Precio, @Total)", cn)
+
+                        cmd.Parameters.Add("@IdDetalle", SqlDbType.NVarChar, 50).Value =
+                        Convert.ToString(row.Cells("ColIdDetalle").Value)
+
+                        cmd.Parameters.Add("@IdFactura", SqlDbType.NVarChar, 25).Value =
+                        txtIdFactura.Text.Trim()
+
+                        cmd.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 500).Value =
+                        Convert.ToString(row.Cells("ColDescripcion").Value)
+
+                        cmd.Parameters.Add("@Cantidad", SqlDbType.Decimal).Value =
+                        Convert.ToDecimal(row.Cells("ColCantidad").Value)
+
+                        cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value =
+                        Convert.ToDecimal(row.Cells("ColPrecio").Value)
+
+                        cmd.Parameters.Add("@Total", SqlDbType.Decimal).Value =
+                        Convert.ToDecimal(row.Cells("ColTotal").Value)
+
+                        cmd.ExecuteNonQuery()
+
+                    End Using
+
+                Next
+
+                ' Actualizar cabecera
+                Using cmdUpdate As New SqlCommand("
+                UPDATE FacturaMontajeB11
+                SET SubTotal = @SubTotal,
+                    ITBIS = @ITBIS,
+                    RetencionISR = @RetencionISR,
+                    Total = @Total
+                WHERE IdFacturaB11 = @IdFactura", cn)
+
+                    cmdUpdate.Parameters.Add("@IdFactura", SqlDbType.NVarChar, 25).Value =
+                    txtIdFactura.Text.Trim()
+
+                    cmdUpdate.Parameters.Add("@SubTotal", SqlDbType.Decimal).Value =
+                    Convert.ToDecimal(txtSubTotal.Text)
+
+                    cmdUpdate.Parameters.Add("@ITBIS", SqlDbType.Decimal).Value =
+                    Convert.ToDecimal(txtImpuesto.Text)
+
+                    cmdUpdate.Parameters.Add("@RetencionISR", SqlDbType.Decimal).Value =
+                    Convert.ToDecimal(txtRetencionIRS.Text)
+
+                    cmdUpdate.Parameters.Add("@Total", SqlDbType.Decimal).Value =
+                    Convert.ToDecimal(txtTotal.Text)
+
+                    cmdUpdate.ExecuteNonQuery()
+
+                End Using
 
             End Using
-        End Using
 
-        MessageBox.Show("Factura anulada correctamente.")
+            MessageBox.Show("Factura guardada correctamente.")
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error guardando factura: " & ex.Message)
+
+        End Try
 
     End Sub
 
-    Private Sub TxtValorOriginal_TextChanged(sender As Object, e As EventArgs) Handles TxtValorOriginal.TextChanged
-        Try
-            If TxtValorOriginal.Text.Trim <> "" Then
-                Dim valorOriginal As Decimal
+    Private Sub dgvDetalle_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDetalle.CellEndEdit
 
-                If Decimal.TryParse(TxtValorOriginal.Text, valorOriginal) Then
-                    TxtValorConIRS.Text = (valorOriginal / 0.98D).ToString("#,##0.00")
-                Else
-                    TxtValorConIRS.Text = ""
-                End If
-            Else
-                TxtValorConIRS.Text = ""
-            End If
+        Try
+
+            If e.RowIndex < 0 Then Exit Sub
+
+            Dim fila As DataGridViewRow = dgvDetalle.Rows(e.RowIndex)
+
+            Dim cantidad As Decimal = fila.Cells("ColCantidad").Value
+            Dim precio As Decimal = fila.Cells("ColPrecio").Value
+
+            Dim totalLinea As Decimal = cantidad * precio
+
+            fila.Cells("ColTotal").Value = totalLinea.ToString("N2")
+
+            Dim subTotal As Decimal = 0D
+
+            For Each row As DataGridViewRow In dgvDetalle.Rows
+
+                If row.IsNewRow Then Continue For
+
+                subTotal += row.Cells("ColTotal").Value
+
+            Next
+
+            txtSubTotal.Text = subTotal.ToString("N2")
+            txtImpuesto.Text = (subTotal * 0.18D).ToString("N2")
+            txtTotal.Text = (subTotal + (subTotal * 0.18D)).ToString("N2")
+            txtRetencionIRS.Text = (subTotal * 0.02D).ToString("N2")
+            txtRetencionITBIS.Text = (subTotal * 0.18D).ToString("N2")
+
         Catch ex As Exception
-            TxtValorConIRS.Text = ""
+
+            MessageBox.Show("Error recalculando detalle: " & ex.Message,
+                    "Detalle B11",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error)
+
         End Try
+
     End Sub
 End Class

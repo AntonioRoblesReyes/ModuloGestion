@@ -23,9 +23,9 @@ Partial Class FrmFacturaMontajeB11
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblEmpresa = New System.Windows.Forms.Label()
         Me.lblFactura = New System.Windows.Forms.Label()
         Me.lblFecha = New System.Windows.Forms.Label()
@@ -66,11 +66,10 @@ Partial Class FrmFacturaMontajeB11
         Me.TableAdapterManager = New ModuloGestion.DsMontajeB11TableAdapters.TableAdapterManager()
         Me.FacturaMontajeB11DetalleTableAdapter = New ModuloGestion.DsMontajeB11TableAdapters.FacturaMontajeB11DetalleTableAdapter()
         Me.FacturaMontajeB11DetalleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.BtnAnular = New System.Windows.Forms.Button()
+        Me.txtObservaciones = New System.Windows.Forms.TextBox()
         Me.txtTotalPagado = New System.Windows.Forms.TextBox()
         Me.txtRetencionITBIS = New System.Windows.Forms.TextBox()
-        Me.BtnAnular = New System.Windows.Forms.Button()
-        Me.TxtValorOriginal = New System.Windows.Forms.TextBox()
-        Me.TxtValorConIRS = New System.Windows.Forms.TextBox()
         CType(Me.EmpresasContratadasMontajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPagosMontaje, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FacturaMontajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,7 +118,7 @@ Partial Class FrmFacturaMontajeB11
         'lblImpuesto
         '
         Me.lblImpuesto.AutoSize = True
-        Me.lblImpuesto.Location = New System.Drawing.Point(24, 184)
+        Me.lblImpuesto.Location = New System.Drawing.Point(24, 224)
         Me.lblImpuesto.Name = "lblImpuesto"
         Me.lblImpuesto.Size = New System.Drawing.Size(125, 20)
         Me.lblImpuesto.TabIndex = 4
@@ -128,7 +127,7 @@ Partial Class FrmFacturaMontajeB11
         'lblRetencion
         '
         Me.lblRetencion.AutoSize = True
-        Me.lblRetencion.Location = New System.Drawing.Point(24, 224)
+        Me.lblRetencion.Location = New System.Drawing.Point(24, 290)
         Me.lblRetencion.Name = "lblRetencion"
         Me.lblRetencion.Size = New System.Drawing.Size(118, 20)
         Me.lblRetencion.TabIndex = 5
@@ -137,7 +136,7 @@ Partial Class FrmFacturaMontajeB11
         'lblSubTotal
         '
         Me.lblSubTotal.AutoSize = True
-        Me.lblSubTotal.Location = New System.Drawing.Point(24, 264)
+        Me.lblSubTotal.Location = New System.Drawing.Point(24, 192)
         Me.lblSubTotal.Name = "lblSubTotal"
         Me.lblSubTotal.Size = New System.Drawing.Size(77, 20)
         Me.lblSubTotal.TabIndex = 6
@@ -146,7 +145,7 @@ Partial Class FrmFacturaMontajeB11
         'lblTotal
         '
         Me.lblTotal.AutoSize = True
-        Me.lblTotal.Location = New System.Drawing.Point(24, 304)
+        Me.lblTotal.Location = New System.Drawing.Point(24, 256)
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(48, 20)
         Me.lblTotal.TabIndex = 7
@@ -217,7 +216,7 @@ Partial Class FrmFacturaMontajeB11
         'txtImpuesto
         '
         Me.txtImpuesto.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "Impuesto", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.txtImpuesto.Location = New System.Drawing.Point(200, 180)
+        Me.txtImpuesto.Location = New System.Drawing.Point(200, 220)
         Me.txtImpuesto.Name = "txtImpuesto"
         Me.txtImpuesto.Size = New System.Drawing.Size(120, 26)
         Me.txtImpuesto.TabIndex = 13
@@ -226,7 +225,7 @@ Partial Class FrmFacturaMontajeB11
         'txtRetencionIRS
         '
         Me.txtRetencionIRS.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "RetencionIRS", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.txtRetencionIRS.Location = New System.Drawing.Point(200, 220)
+        Me.txtRetencionIRS.Location = New System.Drawing.Point(200, 286)
         Me.txtRetencionIRS.Name = "txtRetencionIRS"
         Me.txtRetencionIRS.Size = New System.Drawing.Size(120, 26)
         Me.txtRetencionIRS.TabIndex = 14
@@ -235,7 +234,7 @@ Partial Class FrmFacturaMontajeB11
         'txtSubTotal
         '
         Me.txtSubTotal.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "SubTotal", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.txtSubTotal.Location = New System.Drawing.Point(200, 260)
+        Me.txtSubTotal.Location = New System.Drawing.Point(200, 188)
         Me.txtSubTotal.Name = "txtSubTotal"
         Me.txtSubTotal.Size = New System.Drawing.Size(120, 26)
         Me.txtSubTotal.TabIndex = 15
@@ -244,7 +243,7 @@ Partial Class FrmFacturaMontajeB11
         'txtTotal
         '
         Me.txtTotal.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "Total", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.txtTotal.Location = New System.Drawing.Point(200, 300)
+        Me.txtTotal.Location = New System.Drawing.Point(200, 252)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.Size = New System.Drawing.Size(120, 26)
         Me.txtTotal.TabIndex = 16
@@ -331,9 +330,9 @@ Partial Class FrmFacturaMontajeB11
         '
         'ColCantidad
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle4.Format = "n2"
-        Me.ColCantidad.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle13.Format = "n2"
+        Me.ColCantidad.DefaultCellStyle = DataGridViewCellStyle13
         Me.ColCantidad.HeaderText = "Cantidad"
         Me.ColCantidad.MinimumWidth = 6
         Me.ColCantidad.Name = "ColCantidad"
@@ -341,9 +340,9 @@ Partial Class FrmFacturaMontajeB11
         '
         'ColPrecio
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle5.Format = "n2"
-        Me.ColPrecio.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle14.Format = "n2"
+        Me.ColPrecio.DefaultCellStyle = DataGridViewCellStyle14
         Me.ColPrecio.HeaderText = "Precio"
         Me.ColPrecio.MinimumWidth = 6
         Me.ColPrecio.Name = "ColPrecio"
@@ -351,9 +350,9 @@ Partial Class FrmFacturaMontajeB11
         '
         'ColTotal
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle6.Format = "n2"
-        Me.ColTotal.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle15.Format = "n2"
+        Me.ColTotal.DefaultCellStyle = DataGridViewCellStyle15
         Me.ColTotal.HeaderText = "Total"
         Me.ColTotal.MinimumWidth = 6
         Me.ColTotal.Name = "ColTotal"
@@ -397,24 +396,6 @@ Partial Class FrmFacturaMontajeB11
         Me.FacturaMontajeB11DetalleBindingSource.DataMember = "FacturaMontajeB11Detalle"
         Me.FacturaMontajeB11DetalleBindingSource.DataSource = Me.DsMontajeB11
         '
-        'txtTotalPagado
-        '
-        Me.txtTotalPagado.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "Total", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.txtTotalPagado.Location = New System.Drawing.Point(387, 304)
-        Me.txtTotalPagado.Name = "txtTotalPagado"
-        Me.txtTotalPagado.Size = New System.Drawing.Size(120, 26)
-        Me.txtTotalPagado.TabIndex = 24
-        Me.txtTotalPagado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtRetencionITBIS
-        '
-        Me.txtRetencionITBIS.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "SubTotal", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.txtRetencionITBIS.Location = New System.Drawing.Point(387, 264)
-        Me.txtRetencionITBIS.Name = "txtRetencionITBIS"
-        Me.txtRetencionITBIS.Size = New System.Drawing.Size(120, 26)
-        Me.txtRetencionITBIS.TabIndex = 23
-        Me.txtRetencionITBIS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
         'BtnAnular
         '
         Me.BtnAnular.Location = New System.Drawing.Point(865, 24)
@@ -424,31 +405,40 @@ Partial Class FrmFacturaMontajeB11
         Me.BtnAnular.Text = "Anular"
         Me.BtnAnular.UseVisualStyleBackColor = True
         '
-        'TxtValorOriginal
+        'txtObservaciones
         '
-        Me.TxtValorOriginal.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "SubTotal", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.TxtValorOriginal.Location = New System.Drawing.Point(968, 224)
-        Me.TxtValorOriginal.Name = "TxtValorOriginal"
-        Me.TxtValorOriginal.Size = New System.Drawing.Size(177, 26)
-        Me.TxtValorOriginal.TabIndex = 26
-        Me.TxtValorOriginal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtObservaciones.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "SubTotal", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
+        Me.txtObservaciones.Location = New System.Drawing.Point(623, 256)
+        Me.txtObservaciones.Multiline = True
+        Me.txtObservaciones.Name = "txtObservaciones"
+        Me.txtObservaciones.Size = New System.Drawing.Size(418, 100)
+        Me.txtObservaciones.TabIndex = 26
+        Me.txtObservaciones.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TxtValorConIRS
+        'txtTotalPagado
         '
-        Me.TxtValorConIRS.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "SubTotal", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
-        Me.TxtValorConIRS.Location = New System.Drawing.Point(968, 264)
-        Me.TxtValorConIRS.Name = "TxtValorConIRS"
-        Me.TxtValorConIRS.Size = New System.Drawing.Size(177, 26)
-        Me.TxtValorConIRS.TabIndex = 27
-        Me.TxtValorConIRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtTotalPagado.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "Total", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
+        Me.txtTotalPagado.Location = New System.Drawing.Point(366, 290)
+        Me.txtTotalPagado.Name = "txtTotalPagado"
+        Me.txtTotalPagado.Size = New System.Drawing.Size(120, 26)
+        Me.txtTotalPagado.TabIndex = 24
+        Me.txtTotalPagado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtRetencionITBIS
+        '
+        Me.txtRetencionITBIS.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FacturaMontajeBindingSource, "SubTotal", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, Nothing, "N2"))
+        Me.txtRetencionITBIS.Location = New System.Drawing.Point(366, 256)
+        Me.txtRetencionITBIS.Name = "txtRetencionITBIS"
+        Me.txtRetencionITBIS.Size = New System.Drawing.Size(120, 26)
+        Me.txtRetencionITBIS.TabIndex = 23
+        Me.txtRetencionITBIS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'FrmFacturaMontajeB11
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1640, 670)
-        Me.Controls.Add(Me.TxtValorConIRS)
-        Me.Controls.Add(Me.TxtValorOriginal)
+        Me.Controls.Add(Me.txtObservaciones)
         Me.Controls.Add(Me.BtnAnular)
         Me.Controls.Add(Me.txtTotalPagado)
         Me.Controls.Add(Me.txtRetencionITBIS)
@@ -528,8 +518,6 @@ Partial Class FrmFacturaMontajeB11
     Friend WithEvents TableAdapterManager As DsMontajeB11TableAdapters.TableAdapterManager
     Friend WithEvents FacturaMontajeB11DetalleTableAdapter As DsMontajeB11TableAdapters.FacturaMontajeB11DetalleTableAdapter
     Friend WithEvents FacturaMontajeB11DetalleBindingSource As BindingSource
-    Friend WithEvents txtTotalPagado As TextBox
-    Friend WithEvents txtRetencionITBIS As TextBox
     Friend WithEvents BtnAnular As Button
     Friend WithEvents ColIdDetalle As DataGridViewTextBoxColumn
     Friend WithEvents ColIdFactura As DataGridViewTextBoxColumn
@@ -537,6 +525,7 @@ Partial Class FrmFacturaMontajeB11
     Friend WithEvents ColCantidad As DataGridViewTextBoxColumn
     Friend WithEvents ColPrecio As DataGridViewTextBoxColumn
     Friend WithEvents ColTotal As DataGridViewTextBoxColumn
-    Friend WithEvents TxtValorOriginal As TextBox
-    Friend WithEvents TxtValorConIRS As TextBox
+    Friend WithEvents txtObservaciones As TextBox
+    Friend WithEvents txtTotalPagado As TextBox
+    Friend WithEvents txtRetencionITBIS As TextBox
 End Class

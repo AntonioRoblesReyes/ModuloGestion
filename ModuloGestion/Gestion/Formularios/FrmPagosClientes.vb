@@ -1,4 +1,5 @@
-﻿Public Class FrmPagosClientes
+﻿Imports System.Globalization
+Public Class FrmPagosClientes
     Sub EliminarPagodetalle()
 
         Me.PagosClientesDetalleBindingSource.MoveFirst()
@@ -79,22 +80,37 @@
     Sub TotalAsignadoDetalle()
         Try
             Me.PagosClientesDetalleBindingSource.MoveFirst()
-            Dim TotalAsignado As Double = 0
-            Dim iTotalasignado As Integer = PagosClientesDetalleDataGridView.Rows.Count 'ITotal toma el valor del numero de registros k tiene latabla
-            'Definimos la variable i para controlar el ciclo for
-            Dim i As Integer
-            'Definimos del ciclo que va desde que i vale cero hasta que i valga itotal menos uno, osea el penultimo regsitro de la tabla
-            For i = 0 To iTotalasignado - 1
-                'Double.parse()<---es para convertir a double el valor que se encuentre entre lso parentesis
-                'me.datagridview1(4,i).value <----toma todos los valores de la columna 4... 4 es el numero de columna y i es el numero de fila asi toma todos los 
-                'valores de esa columna, recuerda que las columnas inician en 0... asi que la 4 enrealidad sera la 5 visualmente
-                TotalAsignado += CDbl(PagosClientesDetalleDataGridView(4, i).Value)
-            Next
-            Me.TextBox4.Text = Format(TotalAsignado, "#,##0.00")
 
-            Me.ClientesTableAdapter.FillByIdFiscal(Me.DsClientes.Clientes, My.Forms.FrmCliente.Id_FiscalTextBox.Text)
+            Dim totalAsignado As Decimal = 0D
+
+            For Each fila As DataGridViewRow In PagosClientesDetalleDataGridView.Rows
+
+                If fila.IsNewRow Then Continue For
+
+                If fila.Cells(4).Value IsNot Nothing AndAlso
+               Not IsDBNull(fila.Cells(4).Value) Then
+
+                    Dim valor As Decimal
+
+                    If Decimal.TryParse(
+                    fila.Cells(4).Value.ToString(),
+                    NumberStyles.Any,
+                    CultureInfo.CurrentCulture,
+                    valor) Then
+
+                        totalAsignado += valor
+                    End If
+                End If
+            Next
+
+            TextBox4.Text = totalAsignado.ToString("N2", CultureInfo.CurrentCulture)
+
+            Me.ClientesTableAdapter.FillByIdFiscal(
+            Me.DsClientes.Clientes,
+            My.Forms.FrmCliente.Id_FiscalTextBox.Text)
+
         Catch ex As Exception
-            Me.TextBox4.Text = Format(0, "#,##0.00")
+            TextBox4.Text = 0D.ToString("N2", CultureInfo.CurrentCulture)
         End Try
     End Sub
     Sub TotalCobrado()
@@ -102,25 +118,35 @@
             Me.ClientesTableAdapter.FillByIdFiscal(Me.DsClientes.Clientes, My.Forms.FrmCliente.Id_FiscalTextBox.Text)
             Me.PagosClientesBindingSource.MoveFirst()
 
-            Dim totalPagado As Double = 0
-            Dim totalAsignado As Double = 0
-            Dim totalPendiente As Double = 0
-            Dim totalFilas As Integer = PagosClientesDataGridView.Rows.Count
+            Dim totalPagado As Decimal = 0D
+            Dim totalAsignado As Decimal = 0D
+            Dim totalPendiente As Decimal = 0D
 
-            For i As Integer = 0 To totalFilas - 1
-                totalPagado += CDbl(PagosClientesDataGridView(3, i).Value)     'Columna 3: Pagado
-                totalAsignado += CDbl(PagosClientesDataGridView(5, i).Value)  'Columna 5: Asignado
-                totalPendiente += CDbl(PagosClientesDataGridView(6, i).Value) 'Columna 6: Pendiente
+            For Each fila As DataGridViewRow In PagosClientesDataGridView.Rows
+
+                If fila.IsNewRow Then Continue For
+
+                If fila.Cells(3).Value IsNot Nothing AndAlso Not IsDBNull(fila.Cells(3).Value) Then
+                    totalPagado += Convert.ToDecimal(fila.Cells(3).Value)
+                End If
+
+                If fila.Cells(5).Value IsNot Nothing AndAlso Not IsDBNull(fila.Cells(5).Value) Then
+                    totalAsignado += Convert.ToDecimal(fila.Cells(5).Value)
+                End If
+
+                If fila.Cells(6).Value IsNot Nothing AndAlso Not IsDBNull(fila.Cells(6).Value) Then
+                    totalPendiente += Convert.ToDecimal(fila.Cells(6).Value)
+                End If
             Next
 
-            Me.TextBox1.Text = Format(totalPagado, "#,##0.00")
-            Me.TextBox2.Text = Format(totalAsignado, "#,##0.00")
-            Me.TextBox3.Text = Format(totalPendiente, "#,##0.00")
+            TextBox1.Text = totalPagado.ToString("N2", CultureInfo.CurrentCulture)
+            TextBox2.Text = totalAsignado.ToString("N2", CultureInfo.CurrentCulture)
+            TextBox3.Text = totalPendiente.ToString("N2", CultureInfo.CurrentCulture)
 
         Catch ex As Exception
-            Me.TextBox1.Text = Format(0, "#,##0.00")
-            Me.TextBox2.Text = Format(0, "#,##0.00")
-            Me.TextBox3.Text = Format(0, "#,##0.00")
+            TextBox1.Text = 0D.ToString("N2", CultureInfo.CurrentCulture)
+            TextBox2.Text = 0D.ToString("N2", CultureInfo.CurrentCulture)
+            TextBox3.Text = 0D.ToString("N2", CultureInfo.CurrentCulture)
         End Try
     End Sub
 
@@ -152,7 +178,7 @@
 
     Private Sub FrmPagosClientes_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'TODO: esta línea de código carga datos en la tabla 'DsPresupuestos.Presupuesto' Puede moverla o quitarla según sea necesario.
-     
+
         Me.PresupuestoTableAdapter.Fill(Me.DsPresupuestos.Presupuesto)
         TotalCobrado()
         CargarValoresMonto()
@@ -237,18 +263,66 @@
     End Sub
 
     Private Sub PagosClientesDataGridView_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles PagosClientesDataGridView.CellClick
-        FiltrarDetalle()
-        Dim asignado As Double = CDbl(PagosClientesDataGridView.CurrentRow.Cells(5).Value)
-        Dim TotalAsignado As Double = TextBox4.Text
-        If asignado <> CDbl(TextBox4.Text) Then
-            PagosClientesDataGridView.CurrentRow.Cells(5).Value = TextBox4.Text
-            PagosClientesDataGridView.CurrentRow.Cells(6).Value = CDbl(PagosClientesDataGridView.CurrentRow.Cells(3).Value) - TotalAsignado
+        Try
+            If e.RowIndex < 0 Then Exit Sub
+            If PagosClientesDataGridView.CurrentRow Is Nothing Then Exit Sub
 
-            Me.Validate()
-            Me.PagosClientesBindingSource.EndEdit()
-            Me.PagosClientesTableAdapter.Update(DsPagosClientes)
-            MsgBox("Se actulizo el saldo")
-        End If
+            FiltrarDetalle()
+
+            Dim asignadoActual As Decimal = 0D
+            Dim totalAsignado As Decimal = 0D
+            Dim valorPago As Decimal = 0D
+
+            ' Valor actual asignado
+            If PagosClientesDataGridView.CurrentRow.Cells(5).Value IsNot Nothing AndAlso
+           Not IsDBNull(PagosClientesDataGridView.CurrentRow.Cells(5).Value) Then
+
+                Decimal.TryParse(
+                PagosClientesDataGridView.CurrentRow.Cells(5).Value.ToString(),
+                NumberStyles.Any,
+                CultureInfo.CurrentCulture,
+                asignadoActual)
+            End If
+
+            ' Valor de TextBox4 (por ejemplo 10.676,25)
+            If Not Decimal.TryParse(
+            TextBox4.Text,
+            NumberStyles.Any,
+            CultureInfo.CurrentCulture,
+            totalAsignado) Then
+
+                MessageBox.Show("No se pudo convertir el monto: " & TextBox4.Text)
+                Exit Sub
+            End If
+
+            ' Valor total del pago
+            If PagosClientesDataGridView.CurrentRow.Cells(3).Value IsNot Nothing AndAlso
+           Not IsDBNull(PagosClientesDataGridView.CurrentRow.Cells(3).Value) Then
+
+                Decimal.TryParse(
+                PagosClientesDataGridView.CurrentRow.Cells(3).Value.ToString(),
+                NumberStyles.Any,
+                CultureInfo.CurrentCulture,
+                valorPago)
+            End If
+
+            If asignadoActual <> totalAsignado Then
+
+                PagosClientesDataGridView.CurrentRow.Cells(5).Value = totalAsignado
+                PagosClientesDataGridView.CurrentRow.Cells(6).Value = valorPago - totalAsignado
+
+                Me.Validate()
+                Me.PagosClientesBindingSource.EndEdit()
+                Me.PagosClientesTableAdapter.Update(Me.DsPagosClientes)
+
+                MsgBox("Se actualizó el saldo")
+
+                TotalCobrado()
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error al actualizar el saldo: " & ex.Message)
+        End Try
     End Sub
 
     Private Sub PagosClientesDetalleDataGridView_UserDeletedRow(sender As System.Object, e As System.Windows.Forms.DataGridViewRowEventArgs) Handles PagosClientesDetalleDataGridView.UserDeletedRow
@@ -340,6 +414,15 @@
             ' Silenciar errores si alguna columna no existe
         End Try
     End Sub
+    Private Sub PagosClientesDataGridView_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles PagosClientesDataGridView.DataError
+        e.ThrowException = False
 
+        MessageBox.Show(
+            "El número ingresado no tiene un formato válido." & vbCrLf &
+            "Ejemplo correcto en tu PC: 10.676,25",
+            "Formato incorrecto",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Warning)
+    End Sub
 
 End Class
