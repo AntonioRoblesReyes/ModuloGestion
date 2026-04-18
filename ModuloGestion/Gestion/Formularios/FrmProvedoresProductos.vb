@@ -13,34 +13,82 @@ Public Class FrmProvedoresProductos
     End Sub
 
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
-        If TxtArticuloProvveedor.Text <> "" Then
-            If TxtDescripcionProveedor.Text <> "" Then
 
-                If ComboBox1.Text <> "PONER MEDIDA" Then
+        '' Validar código del proveedor
+        'If String.IsNullOrWhiteSpace(TxtArticuloProvveedor.Text) Then
+        '    MessageBox.Show(
+        '    "Debe introducir el código del artículo del proveedor.",
+        '    "Dato requerido",
+        '    MessageBoxButtons.OK,
+        '    MessageBoxIcon.Warning)
 
+        '    TxtArticuloProvveedor.Focus()
+        '    Exit Sub
+        'End If
 
-                    Try
+        ' Validar descripción
+        If String.IsNullOrWhiteSpace(TxtDescripcionProveedor.Text) Then
+            MessageBox.Show(
+            "Debe introducir una descripción.",
+            "Dato requerido",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Warning)
 
-                        Me.ProveedoresProductoTableAdapter.Insertar(TxtIdUnico.Text, TxtIdProvedore.Text, TxtDescripcionProveedor.Text, TxtArticuloProvveedor.Text, 0, 0, CDec(Me.ComboBox1.SelectedValue))
-                        My.Forms.FrmProductos.ProveedoresProductoTableAdapter.FillByIdProveedor(My.Forms.FrmProductos.DsProveedoresProducto.ProveedoresProducto, TxtIdProvedore.Text)
-                        My.Forms.FrmProductos.ProveedoresProductoBindingSource.MoveLast()
-                        Me.Close()
-                    Catch ex As Exception
-                        MsgBox(ex.Message)
-                        Me.Button1.Enabled = False
-                    End Try
-                Else
-                    MsgBox("Debe poner una medida")
-                End If
-
-            Else
-                MsgBox("Debe poner una descripcion")
-            End If
-        Else
-            MsgBox("Debe poner el codigo del proveedor")
-
+            TxtDescripcionProveedor.Focus()
+            Exit Sub
         End If
 
+        ' Validar medida
+        If ComboBox1.SelectedValue Is Nothing OrElse
+       ComboBox1.Text.Trim().ToUpper() = "PONER MEDIDA" Then
+
+            MessageBox.Show(
+            "Debe seleccionar una medida válida.",
+            "Dato requerido",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Warning)
+
+            ComboBox1.Focus()
+            Exit Sub
+        End If
+
+        Try
+            Button1.Enabled = False
+
+            Dim idUnico As String = TxtIdUnico.Text.Trim()
+            Dim idProveedor As String = TxtIdProvedore.Text.Trim()
+            Dim descripcion As String = TxtDescripcionProveedor.Text.Trim()
+            Dim codigoProveedor As String = TxtArticuloProvveedor.Text.Trim()
+            Dim idMedida As Decimal = Convert.ToDecimal(ComboBox1.SelectedValue)
+
+            Me.ProveedoresProductoTableAdapter.Insertar(
+            idUnico,
+            idProveedor,
+            descripcion,
+            codigoProveedor,
+            0D,
+            0D,
+            idMedida)
+
+            My.Forms.FrmProductos.ProveedoresProductoTableAdapter.FillByIdProveedor(
+            My.Forms.FrmProductos.DsProveedoresProducto.ProveedoresProducto,
+            idProveedor)
+
+            My.Forms.FrmProductos.ProveedoresProductoBindingSource.MoveLast()
+
+            Me.DialogResult = DialogResult.OK
+            Me.Close()
+
+        Catch ex As Exception
+            MessageBox.Show(
+            "Ocurrió un error al guardar el producto:" & vbCrLf & vbCrLf & ex.Message,
+            "Error",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error)
+
+        Finally
+            Button1.Enabled = True
+        End Try
 
     End Sub
 
